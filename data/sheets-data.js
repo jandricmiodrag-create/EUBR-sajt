@@ -414,21 +414,18 @@ window.EB_DATA = {
    "nav_order": "5",
    "segment": "A,B",
    "intent": "Kako da počnem",
-   "message": "„Prvi koraci",
-   "goal": " vodiči i webinari\"",
-   "primary_cta": "Edukacija kao akvizicioni kanal",
-   "primary_cta_link": "Prijava na webinar",
-   "secondary_cta": "kontakt",
+   "message": "Prvi koraci, vodiči i webinari",
+   "goal": "Edukacija kao akvizicioni kanal",
+   "primary_cta": "Prijava na webinar",
+   "primary_cta_link": "kontakt",
+   "secondary_cta": "",
    "secondary_cta_link": "",
-   "related": "",
-   "documents": "obveznice-rs,analize",
-   "seo": "",
-   "compliance": "1-10",
-   "kpi": "Razgraničenje edukacije od investicione preporuke",
-   "classification": "Prijave na webinar; preuzimanja",
-   "null": [
-    "A"
-   ]
+   "related": "obveznice-rs,analize",
+   "documents": "",
+   "seo": "1-10",
+   "compliance": "Razgraničenje edukacije od investicione preporuke",
+   "kpi": "Prijave na webinar; preuzimanja",
+   "classification": "A"
   },
   {
    "id": "19",
