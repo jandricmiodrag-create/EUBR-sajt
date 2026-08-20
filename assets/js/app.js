@@ -4,6 +4,16 @@
   const C = () => window.EB_CONTENT || {};
   const esc = (s) => (s == null ? "" : String(s).replace(/[&<>"]/g, m => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[m])));
 
+  /* --- osnovna putanja (za GitHub Pages podputanju /<repo>/) --- */
+  EB.BASE = (function () {
+    if (typeof location !== "undefined" && location.hostname.slice(-10) === ".github.io") {
+      var s = location.pathname.split("/").filter(Boolean)[0];
+      if (s) return "/" + s + "/";
+    }
+    return "/";
+  })();
+  const BASEP = EB.BASE.replace(/\/$/, ""); // "" ili "/EUBR-sajt"
+
   /* --- dvojezičnost --- */
   EB.lang = (typeof localStorage !== "undefined" && localStorage.getItem("eb_lang") === "en") ? "en" : "sr";
   const T = (k) => { const e = (window.EB_I18N && EB_I18N.ui[k]) || null; return e ? (e[EB.lang] || e.sr) : k; };
@@ -694,10 +704,11 @@
     "vijesti": "/vijesti/"
   };
   function slugToPath(slug) {
-    if (!slug || slug === "pocetna") return "/";
-    if (SYNTH_PATHS[slug]) return SYNTH_PATHS[slug];
-    const pg = EB.page(slug);
-    return (pg && pg.url) ? pg.url : "/" + slug + "/";
+    let rel;
+    if (!slug || slug === "pocetna") rel = "/";
+    else if (SYNTH_PATHS[slug]) rel = SYNTH_PATHS[slug];
+    else { const pg = EB.page(slug); rel = (pg && pg.url) ? pg.url : "/" + slug + "/"; }
+    return BASEP + rel;
   }
   let _pathIndex = null;
   function pathIndex() {
@@ -709,6 +720,7 @@
   }
   function pathToSlug(pathname) {
     let path = decodeURIComponent(pathname || "/").replace(/\/index\.html$/i, "/");
+    if (BASEP && path.indexOf(BASEP) === 0) path = path.slice(BASEP.length) || "/"; // skini /<repo> prefiks
     if (!path || path === "/") return "pocetna";
     const norm = path.endsWith("/") ? path : path + "/";
     const idx = pathIndex();
