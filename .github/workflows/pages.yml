@@ -26,10 +26,12 @@ jobs:
 
       # Sklopi čist _site (bez .git/.github); GitHub Pages servira 404.html
       # za nepoznate putanje — to je kopija index.html, pa ruter preuzme rutiranje.
-      - name: Assemble site (+ SPA 404 fallback)
+      - name: Assemble site (+ base path + SPA 404 fallback)
         run: |
           mkdir -p _site
           rsync -a --exclude='.git' --exclude='.github' --exclude='_site' ./ _site/
+          # Pages servira projekat na /<repo>/ — prepiši base putanju
+          sed -i 's#<base href="/">#<base href="/${{ github.event.repository.name }}/">#' _site/index.html
           cp _site/index.html _site/404.html
 
       - name: Configure Pages (auto-enable)

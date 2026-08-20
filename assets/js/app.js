@@ -52,7 +52,10 @@
     scale: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M7 21h10M6 7l-3 6a3 3 0 0 0 6 0zM18 7l-3 6a3 3 0 0 0 6 0zM3 7h18"/></svg>',
     handshake: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13l3 3 3-3 4-4-3-3-4 3-4-3-3 3 4 4z"/><path d="M2 12l4 4M22 12l-4 4"/></svg>',
     book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16a1 1 0 0 0 1 1h14V3H6a2 2 0 0 0-2 2z"/><path d="M8 7h8M8 11h6"/></svg>',
-    download: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>'
+    download: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>',
+    monitor: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
+    smartphone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg>',
+    external: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>'
   };
   const segIcon = { A: I.invest, B: I.globe, C: I.globe, D: I.advice, E: I.company, F: I.company, G: I.inst, H: I.handshake };
   const pageIcon = {
@@ -339,11 +342,26 @@
   }
 
   /* ---------------- SERVICE (10-question) ---------------- */
+  function platformsBlock(list) {
+    const en = isEN();
+    const cards = list.map(x => `
+      <a class="platcard" href="${esc(x.url)}" target="_blank" rel="noopener" data-ext>
+        <span class="platcard__ic">${x.ikona === "smartphone" ? I.smartphone : I.monitor}</span>
+        <span class="platcard__body"><b>${esc(x.naziv)}</b><small>${esc(x.opis)}</small></span>
+        <span class="platcard__go">${en ? "Open" : "Otvorite"} ${I.external}</span>
+      </a>`).join("");
+    return `<div class="qblock"><span class="qn">${en ? "ELECTRONIC TRADING" : "ELEKTRONSKO TRGOVANJE"}</span>
+      <h2>${en ? "Trade on the Banja Luka Stock Exchange online" : "Trgujte na Banjalučkoj berzi elektronski"}</h2>
+      <div class="platgrid">${cards}</div>
+      <p class="formnote" style="margin-top:10px">${en ? "For existing clients with a contract. Access is via the Banja Luka Stock Exchange platform." : "Za postojeće klijente sa ugovorom. Pristup je preko platforme Banjalučke berze."}</p>
+    </div>`;
+  }
   function renderService(p) {
     const c = content(p.slug);
     const faqs = EB.faqFor(p.slug);
     let body = "";
     if (c.what) body += qb(T("q1"), "01", `<p>${esc(c.what)}</p>`);
+    if (c.platforme) body += platformsBlock(c.platforme);
     if (c.whoFor) body += qb(T("q2"), "02", `<div class="chips">${c.whoFor.map(w => `<span class="chip">${esc(w)}</span>`).join("")}</div>`);
     if (c.problem) body += qb(T("q3"), "03", `<p>${esc(c.problem)}</p>`);
     if (c.steps) body += qb(T("q4"), "04", `<div class="steps">${c.steps.map(s => `<div class="step"><div><h4>${esc(s.t)}</h4><p>${esc(s.d)}</p></div></div>`).join("")}</div>`);
@@ -892,6 +910,7 @@
         const href = a.getAttribute("href") || "";
         if (href.indexOf("tel:") === 0) { if (EB.track) EB.track(EB.EVENTS.PHONE_CLICK, { number: href.slice(4) }); return; }
         if (a.hasAttribute("download")) { if (EB.track) EB.track(EB.EVENTS.DOC_INTENT, { file: href }); return; }
+        if (a.hasAttribute("data-ext")) { if (EB.track) EB.track(EB.EVENTS.CTA_CLICK, { label: (a.textContent || "").trim().slice(0, 40), href: href, external: true }); return; }
         if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
         if (a.target === "_blank") return;
         if (href.charAt(0) !== "/") return; // samo interne apsolutne putanje (http/mailto/# se preskaču)

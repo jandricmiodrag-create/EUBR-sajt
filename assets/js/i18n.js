@@ -269,7 +269,11 @@ window.EB_I18N = {
         { t: "Settlement and report", d: "You receive execution confirmation and your account balance." }
       ],
       roles: { eurobroker: "Receives and executes the order, keeps records, reports.", klijent: "Makes the decision and signs the order.", treci: "Banja Luka Stock Exchange (execution) and the Central Registry (settlement and ownership records)." },
-      risks: ["A security's price can rise and fall.", "The domestic market can be illiquid — a sale is not always immediate.", "Past returns do not guarantee future ones."]
+      risks: ["A security's price can rise and fall.", "The domestic market can be illiquid — a sale is not always immediate.", "Past returns do not guarantee future ones."],
+      platforme: [
+        { naziv: "eTrader", opis: "Electronic trading via the web platform", url: "https://eubr.blberza.com/etrader/", ikona: "monitor" },
+        { naziv: "mTrader", opis: "Trading via mobile phone", url: "https://eubr.blberza.com/mtrader/sign/in?returnUrl=~%2F", ikona: "smartphone" }
+      ]
     },
     "svjetska-trzista": {
       what: "Through Eurobroker, as a local licensed firm, you buy global equities, ETFs and futures — without opening an account with an unfamiliar foreign app.",

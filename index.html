@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Dinamički base: "/" lokalno / na custom domenu, "/<repo>/" na GitHub Pages -->
-  <script>(function(){var b="/";if(location.hostname.slice(-10)===".github.io"){var s=location.pathname.split("/").filter(Boolean)[0];if(s)b="/"+s+"/";}document.write('<base href="'+b+'">');})();</script>
+  <!-- Base je "/" lokalno; GitHub Pages build (workflow) ga prepiše u "/<repo>/". -->
+  <base href="/">
   <title>Eurobroker — Tržište kapitala, od prvog naloga do emisije</title>
   <meta name="description" content="Eurobroker a.d. Banja Luka — licencirano društvo tržišta kapitala. Domaća berza i svjetska tržišta, investiciono savjetovanje i usluge za kompanije, uz objavljen cjenovnik.">
   <meta name="theme-color" content="#0a2540">

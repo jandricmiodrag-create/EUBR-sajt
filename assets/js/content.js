@@ -32,7 +32,11 @@ window.EB_CONTENT = {
       { t: "Poravnanje i izvještaj", d: "Dobijate potvrdu o izvršenju i stanje na računu." }
     ],
     roles: { eurobroker: "Prima i izvršava nalog, vodi evidenciju, izvještava.", klijent: "Donosi odluku i potpisuje nalog.", treci: "Banjalučka berza (izvršenje) i Centralni registar (poravnanje i evidencija vlasništva)." },
-    risks: ["Cijena hartije može rasti i padati.", "Domaće tržište može biti nelikvidno — prodaja nije uvijek trenutna.", "Prošli prinosi ne garantuju buduće."]
+    risks: ["Cijena hartije može rasti i padati.", "Domaće tržište može biti nelikvidno — prodaja nije uvijek trenutna.", "Prošli prinosi ne garantuju buduće."],
+    platforme: [
+      { naziv: "eTrader", opis: "Elektronsko trgovanje putem web platforme", url: "https://eubr.blberza.com/etrader/", ikona: "monitor" },
+      { naziv: "mTrader", opis: "Trgovanje putem mobilnog telefona", url: "https://eubr.blberza.com/mtrader/sign/in?returnUrl=~%2F", ikona: "smartphone" }
+    ]
   },
 
   "svjetska-trzista": {
