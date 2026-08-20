@@ -95,7 +95,7 @@
       </div>
     </div></div>
     <header class="header" id="hdr"><div class="wrap">
-      <a class="brand" href="#/">${brandMark()}<span class="brand__name">EURO<b>BROKER</b></span></a>
+      <a class="brand" href="#/"><img class="brand__logo" src="assets/img/logo.png" alt="Eurobroker" width="122" height="67"></a>
       <nav class="nav" id="mainnav">${links}</nav>
       <div class="header__cta">
         <a class="btn btn--primary btn--sm" href="#/otvorite-racun">${T("btn.otvoriteRacun")}</a>
@@ -105,7 +105,7 @@
     </div></header>
     <div class="drawer" id="drawer"><div class="drawer__panel">
       <button class="drawer__close" id="drawerClose" aria-label="Zatvori">✕</button>
-      <div style="margin:8px 0 20px"><span class="brand__name">EURO<b>BROKER</b></span></div>
+      <div style="margin:8px 0 20px"><img class="brand__logo" src="assets/img/logo.png" alt="Eurobroker" width="122" height="67"></div>
       ${nav.map(p => `<a href="#/${p.slug}">${esc(navLabel(p))}</a>`).join("")}
       <a href="#/cjenovnik">${T("u.cjenovnik")}</a><a href="#/dokumenti">${T("u.dokumenti")}</a><a href="#/kontakt">${T("u.kontakt")}</a>
       <a class="btn btn--primary btn--block" style="margin-top:18px" href="#/otvorite-racun">${T("btn.otvoriteRacun")}</a>
@@ -119,7 +119,7 @@
     return `<footer class="footer"><div class="wrap">
       <div class="footer__top">
         <div class="footer__brand">
-          <a class="brand" href="#/">${brandMark()}<span class="brand__name">EURO<b>BROKER</b></span></a>
+          <a class="brand" href="#/"><img class="brand__logo" src="assets/img/logo.png" alt="Eurobroker" width="122" height="67"></a>
           <p>${esc(d.puni_naziv || "Eurobroker a.d. Banja Luka")} — ${T("foot.tagline")}</p>
         </div>
         <div><h4>${T("foot.usluge")}</h4><ul>
