@@ -196,7 +196,7 @@
 
     const heroTag = en ? c.heroTag : "Licencirana kuća tržišta kapitala · Banja Luka";
     const heroTitle = en ? `${esc(c.heroTitleA)} <span class="accent">${esc(c.heroTitleB)}</span>.` : `Tržište kapitala, <span class="accent">od prvog naloga do emisije</span>.`;
-    const heroSub = en ? c.heroSub : "Domaća berza i svjetska tržišta, investiciono savjetovanje i usluge za kompanije — uz objavljen cjenovnik i imenovanog sagovornika.";
+    const heroSub = en ? c.heroSub : "Domaća berza i svjetska tržišta, investiciono savjetovanje i usluge za kompanije.";
 
     return `
     <section class="hero"><div class="hero__grid"></div><div class="wrap">
