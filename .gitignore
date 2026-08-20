@@ -1,0 +1,14 @@
+# OS / editor
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Python (dev server / generator)
+__pycache__/
+*.pyc
+
+# Lokalna Claude podešavanja (launch.json se čuva)
+.claude/settings.local.json
+
+# Izvorni zadatak (nije dio sajta)
+Prompt.txt

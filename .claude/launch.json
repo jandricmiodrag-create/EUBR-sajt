@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "eurobroker-site",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [".devserver.py"],
+      "autoPort": true
+    }
+  ]
+}

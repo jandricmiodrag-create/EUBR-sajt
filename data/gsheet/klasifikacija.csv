@@ -1,0 +1,12 @@
+usluga,status,kategorija,uslov,sajt_danas
+Brokersko posredovanje — domaće tržište,Odobreno i raspoloživo,A,—,"Puna uslužna stranica sa procesom, cijenom i rizicima."
+Posredovanje na stranim tržištima,Odobreno i raspoloživo,A,Proširenje obuhvata zahtijeva pravnu provjeru,"Puna uslužna stranica; bez naziva platforme ako ugovor to ne dozvoljava."
+Investiciono savjetovanje,Odobreno; ne primjenjuje se prije usvajanja internih akata,A (uslovno),Politika sukoba interesa; registar preporuka; cjenovnik,"Do ispunjenja uslova samo pomen usluge, bez cijene i CTA."
+Poslovi agenta emisije i korporativne finansije,Odobreno i raspoloživo,A,—,"Puna uslužna stranica; bez utiska da je emisija odobrena; bez poziva na upis."
+Institucionalni program (SLA),Raspoloživo; uslovljeno kibernetičkim pregledom,A (uslovno),Usvojeni nivoi usluge; plan kontinuiteta,"Stranica bez objavljenih rokova dok nisu izvodljivi."
+Kastodi usluge,Dozvola važi; komercijalizacija zavisi od odluke,B → A ili C,Potvrda operativne spremnosti,"Do odluke: pomen dozvole na stranici o regulatornom statusu."
+Privatni investicioni servis,Paket nije spreman za tržišno predstavljanje,B,"Definisan sadržaj, nivoi, cijene, dokumentacija","Najava bez naziva paketa i bez cijena."
+Trgovanje na margini,Regulatorni status nije potvrđen,C,Pozitivno regulatorno mišljenje; pilot,"Ne pominje se."
+Vanberzanski (OTC) poslovi,Zahtijeva pravno mišljenje,C,Pozitivno mišljenje; procedura,"Ne kao proizvod."
+B2B2C i usluge grupaciji,Nije operativno aktivna,C,Odluka grupacije; okvirni ugovor,"Ne objavljuje se."
+Analize po narudžbi,Model ponude i cjenovnik se pripremaju,B,Usvojen model ponude i cjenovnik,"Najava mogućnosti uz kontakt, bez cijene."

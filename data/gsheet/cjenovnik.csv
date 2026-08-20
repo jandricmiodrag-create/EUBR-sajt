@@ -1,0 +1,13 @@
+kategorija,usluga,naknada,osnovica,napomena
+Domaće tržište,Posredovanje pri kupovini/prodaji akcija — Banjalučka berza,"od 0,80%","od vrijednosti transakcije","Minimalna naknada po nalogu; puni raspon u zvaničnom cjenovniku"
+Domaće tržište,Posredovanje — obveznice i trezorski zapisi,"od 0,30%","od vrijednosti transakcije","Niža naknada za dužničke instrumente"
+Domaće tržište,Minimalna naknada po realizovanom nalogu,"na upit","po nalogu","Utvrđuje se zvaničnim cjenovnikom"
+Svjetska tržišta,Posredovanje — globalne akcije i ETF-ovi,"na upit","po nalogu / od vrijednosti","Zavisi od tržišta i instrumenta"
+Svjetska tržišta,Posredovanje — fjučersi,"na upit","po ugovoru","Za kvalifikovane klijente"
+Svjetska tržišta,Konverzija valute,"na upit","od iznosa","Prema važećem kursu i uslovima"
+Kastodi i registar,Vođenje računa hartija od vrijednosti,"na upit","godišnje / mjesečno","Uslovljeno odlukom o komercijalizaciji kastodi usluge"
+Investiciono savjetovanje,Pregled portfelja i pisana preporuka,"objavljuje se uz usvajanje paketa","po paketu","Cijena se objavljuje tek po usvajanju internih akata"
+Za kompanije,Poslovi agenta emisije obveznica,"na upit","od veličine emisije","Utvrđuje se ponudom nakon procjene spremnosti"
+Za kompanije,Priprema društva za tržište kapitala,"na upit","po projektu","Obuhvat se definiše nakon inicijalnog razgovora"
+Institucionalni klijenti,Institucionalni program (SLA),"na upit","po nivou usluge","Tri nivoa; ponuda na zahtjev"
+Ostalo,Izvod i potvrde,"na upit","po dokumentu","Standardne administrativne naknade"

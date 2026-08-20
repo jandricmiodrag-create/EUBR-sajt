@@ -1,0 +1,910 @@
+/* EUROBROKER — aplikacija (router + rendering + interakcije) */
+(function () {
+  "use strict";
+  const C = () => window.EB_CONTENT || {};
+  const esc = (s) => (s == null ? "" : String(s).replace(/[&<>"]/g, m => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[m])));
+
+  /* --- dvojezičnost --- */
+  EB.lang = (typeof localStorage !== "undefined" && localStorage.getItem("eb_lang") === "en") ? "en" : "sr";
+  const T = (k) => { const e = (window.EB_I18N && EB_I18N.ui[k]) || null; return e ? (e[EB.lang] || e.sr) : k; };
+  const content = (slug) => {
+    const sr = (window.EB_CONTENT || {})[slug] || {};
+    if (EB.lang === "en" && window.EB_I18N && EB_I18N.content[slug]) return Object.assign({}, sr, EB_I18N.content[slug]);
+    return sr;
+  };
+  const isEN = () => EB.lang === "en";
+  const i18 = (bucket, slug) => (isEN() && window.EB_I18N && EB_I18N[bucket] && EB_I18N[bucket][slug]) || null;
+  const pTitle = (p) => p ? (i18("titles", p.slug) || p.title) : "";
+  const pMsg = (p) => p ? (i18("messages", p.slug) || p.message || p.title) : "";
+  const pGoal = (p) => p ? (i18("goals", p.slug) || p.goal || p.intent || "") : "";
+  function synthPage(slug) {
+    const m = (window.EB_I18N && EB_I18N.pagemeta && EB_I18N.pagemeta[slug]) || {};
+    const meta = m[EB.lang] || m.sr || {};
+    return { slug: slug, title: meta.title || slug, type: meta.type || "Edukacija", message: meta.message || "", goal: meta.goal || "",
+      url: SYNTH_PATHS[slug] || ("/" + slug + "/"), parent: "edukacija", segment: "C", primary_cta: "", primary_cta_link: "kontakt", secondary_cta: "", secondary_cta_link: "",
+      related: "svjetska-trzista,edukacija,investiciono-savjetovanje", documents: "", classification: "A", compliance: "" };
+  }
+
+  /* ---------------- Icons ---------------- */
+  const I = {
+    invest: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>',
+    advice: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
+    company: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg>',
+    inst: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M4 10h16"/><path d="M12 3l8 4H4z"/><path d="M6 10v11M10 10v11M14 10v11M18 10v11"/></svg>',
+    globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>',
+    bond: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M7 12h.01M17 12h.01"/></svg>',
+    shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>',
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>',
+    arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+    phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>',
+    doc: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg>',
+    plus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+    scale: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M7 21h10M6 7l-3 6a3 3 0 0 0 6 0zM18 7l-3 6a3 3 0 0 0 6 0zM3 7h18"/></svg>',
+    handshake: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13l3 3 3-3 4-4-3-3-4 3-4-3-3 3 4 4z"/><path d="M2 12l4 4M22 12l-4 4"/></svg>',
+    book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16a1 1 0 0 0 1 1h14V3H6a2 2 0 0 0-2 2z"/><path d="M8 7h8M8 11h6"/></svg>',
+    download: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>'
+  };
+  const segIcon = { A: I.invest, B: I.globe, C: I.globe, D: I.advice, E: I.company, F: I.company, G: I.inst, H: I.handshake };
+  const pageIcon = {
+    investiranje: I.invest, "za-kompanije": I.company, "institucionalni-klijenti": I.inst,
+    analize: I.book, edukacija: I.book, "o-nama": I.shield,
+    "domace-trziste": I.invest, "svjetska-trzista": I.globe, "obveznice-rs": I.bond,
+    "investiciono-savjetovanje": I.advice, "finansiranje-putem-trzista-kapitala": I.scale,
+    "emisija-obveznica": I.bond, "emisija-akcija-i-dokapitalizacija": I.company,
+    "priprema-za-trziste-kapitala": I.company, "procjena-spremnosti": I.check,
+    "institucionalni-program": I.inst, "blok-transakcije": I.invest,
+    "regulatorni-status": I.shield, cjenovnik: I.scale, "otvorite-racun": I.check,
+    kontakt: I.phone, partneri: I.handshake, dokumenti: I.doc
+  };
+
+  /* ---------------- Header & Footer ---------------- */
+  const NAVLABEL = {
+    "institucionalni-klijenti": "Institucionalni",
+    "analize": "Analize",
+    "edukacija": "Edukacija",
+    "za-kompanije": "Za kompanije"
+  };
+  const navLabel = (p) => T("nav." + p.slug) !== ("nav." + p.slug) ? T("nav." + p.slug) : (NAVLABEL[p.slug] || p.title);
+  function renderHeader() {
+    const nav = EB.navPages();
+    const links = nav.map(p => `<a href="#/${p.slug}" data-slug="${p.slug}">${esc(navLabel(p))}</a>`).join("");
+    const other = isEN() ? "SR" : "EN";
+    return `
+    <div class="utilitybar"><div class="wrap">
+      <div class="u-links">
+        <a href="#/cjenovnik">${T("u.cjenovnik")}</a>
+        <a href="#/dokumenti" class="hide-sm">${T("u.dokumenti")}</a>
+        <a href="#/kontakt">${T("u.kontakt")}</a>
+      </div>
+      <div class="u-right">
+        <a href="#/kontakt" class="hide-sm">${I.phone} <span style="margin-left:6px">+387 51 ...</span></a>
+        <button class="lang" id="langToggle" aria-label="Language">${EB.lang.toUpperCase()} · <b>${other}</b></button>
+      </div>
+    </div></div>
+    <header class="header" id="hdr"><div class="wrap">
+      <a class="brand" href="#/">${brandMark()}<span class="brand__name">EURO<b>BROKER</b></span></a>
+      <nav class="nav" id="mainnav">${links}</nav>
+      <div class="header__cta">
+        <a class="btn btn--primary btn--sm" href="#/otvorite-racun">${T("btn.otvoriteRacun")}</a>
+        <a class="btn btn--dark btn--sm" href="#/kontakt">${T("btn.prijava")}</a>
+        <button class="hamburger" id="burger" aria-label="Meni"><span></span><span></span><span></span></button>
+      </div>
+    </div></header>
+    <div class="drawer" id="drawer"><div class="drawer__panel">
+      <button class="drawer__close" id="drawerClose" aria-label="Zatvori">✕</button>
+      <div style="margin:8px 0 20px"><span class="brand__name">EURO<b>BROKER</b></span></div>
+      ${nav.map(p => `<a href="#/${p.slug}">${esc(navLabel(p))}</a>`).join("")}
+      <a href="#/cjenovnik">${T("u.cjenovnik")}</a><a href="#/dokumenti">${T("u.dokumenti")}</a><a href="#/kontakt">${T("u.kontakt")}</a>
+      <a class="btn btn--primary btn--block" style="margin-top:18px" href="#/otvorite-racun">${T("btn.otvoriteRacun")}</a>
+    </div></div>`;
+  }
+  function brandMark() {
+    return `<svg class="brand__mark" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="11" fill="#0a2540"/><path d="M13 30l6-7 5 4 6-9" stroke="#c8a24c" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="36" cy="18" r="2.4" fill="#0e8a7d"/><path d="M13 35h22" stroke="#2b4d70" stroke-width="2" stroke-linecap="round"/></svg>`;
+  }
+  function renderFooter() {
+    const d = EB.drustvo();
+    return `<footer class="footer"><div class="wrap">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a class="brand" href="#/">${brandMark()}<span class="brand__name">EURO<b>BROKER</b></span></a>
+          <p>${esc(d.puni_naziv || "Eurobroker a.d. Banja Luka")} — ${T("foot.tagline")}</p>
+        </div>
+        <div><h4>${T("foot.usluge")}</h4><ul>
+          <li><a href="#/domace-trziste">${T("svc.dom")}</a></li>
+          <li><a href="#/svjetska-trzista">${T("svc.world")}</a></li>
+          <li><a href="#/obveznice-rs">${isEN() ? "RS bonds" : "Obveznice RS"}</a></li>
+          <li><a href="#/investiciono-savjetovanje">${T("svc.adv")}</a></li>
+          <li><a href="#/za-kompanije">${T("nav.za-kompanije")}</a></li>
+          <li><a href="#/institucionalni-klijenti">${T("nav.institucionalni-klijenti")}</a></li>
+        </ul></div>
+        <div><h4>${T("foot.sadrzaj")}</h4><ul>
+          <li><a href="#/analize">${T("nav.analize")}</a></li>
+          <li><a href="#/edukacija">${T("nav.edukacija")}</a></li>
+          <li><a href="#/vijesti">${isEN() ? "News" : "Vijesti"}</a></li>
+          <li><a href="#/o-nama">${T("nav.o-nama")}</a></li>
+          <li><a href="#/regulatorni-status">${isEN() ? "Regulatory status" : "Regulatorni status"}</a></li>
+          <li><a href="#/partneri">${isEN() ? "Partnerships" : "Partnerstva"}</a></li>
+        </ul></div>
+        <div><h4>${T("foot.dokumenti")}</h4><ul>
+          <li><a href="#/cjenovnik">Cjenovnik</a></li>
+          <li><a href="#/dokumenti">Pravila i obrasci</a></li>
+          <li><a href="#/dokumenti">Upozorenje o rizicima</a></li>
+          <li><a href="#/dokumenti">Prigovori</a></li>
+          <li><a href="#/dokumenti">Zaštita podataka</a></li>
+        </ul></div>
+      </div>
+      <div class="footer__legal">
+        <div class="risk">${esc(d.upozorenje_rizik || "")}</div>
+        <div class="cols">
+          <span>${esc(d.puni_naziv || "Eurobroker a.d. Banja Luka")} · ${esc(d.grad || "Banja Luka")} · MB ${esc(d.maticni_broj || "—")} · PIB ${esc(d.poreski_broj || "—")}</span>
+          <span>Nadzor: ${esc(d.nadzorni_organ || "KHOV RS")} · © ${new Date().getFullYear()} · v1.0</span>
+        </div>
+      </div>
+    </div></footer>
+    <div class="mobar">
+      <a class="btn btn--primary" href="#/otvorite-racun">${T("btn.otvoriteRacun")}</a>
+      <a class="btn btn--dark" href="#/kontakt">${I.phone} ${T("btn.pozovite")}</a>
+    </div>`;
+  }
+
+  /* ---------------- HOME ---------------- */
+  function renderHome() {
+    const c = content("pocetna");
+    const en = isEN();
+    const segs = EB.data.segmenti || [];
+    const proofs = (c.heroProofs || []).map(p => `<div class="proof"><b>${esc(p.k)}</b><span>${esc(p.v)}</span></div>`).join("");
+    const segSub = { A: T("seg.A.sub"), D: T("seg.D.sub"), F: T("seg.F.sub"), G: T("seg.G.sub") };
+    const segCards = segs.filter(s => ["A", "D", "F", "G"].includes(s.oznaka)).map(s => `
+      <a class="segcard reveal" href="#/${esc(s.link)}">
+        <div class="segcard__icon">${segIcon[s.oznaka] || I.invest}</div>
+        <h3>${esc(T("seg." + s.oznaka))}</h3>
+        <p>${esc(en ? segSub[s.oznaka] : s.potreba)}</p>
+        <span class="link-arrow">${esc(en ? T("btn.saznajteVise") : s.cta)} ${I.arrow}</span>
+      </a>`).join("");
+
+    const svc = [
+      ["domace-trziste", T("svc.dom"), T("svc.dom.d")],
+      ["svjetska-trzista", T("svc.world"), T("svc.world.d")],
+      ["investiciono-savjetovanje", T("svc.adv"), T("svc.adv.d")],
+      ["za-kompanije", T("svc.corp"), T("svc.corp.d")],
+      ["institucionalni-klijenti", T("svc.inst"), T("svc.inst.d")]
+    ].map((s, i) => `<a class="svc reveal" href="#/${s[0]}"><span class="svc__no">0${i + 1}</span><div><h3>${esc(s[1])}</h3><p>${esc(s[2])}</p><span class="link-arrow">${T("btn.saznajteVise")} ${I.arrow}</span></div></a>`).join("");
+
+    const why = (c.zasto || []).map((z, i) => `<div class="why__item reveal"><span class="why__num">0${i + 1}</span><h3>${esc(z.t)}</h3><p>${esc(z.d)}</p></div>`).join("");
+
+    const ed = EB.data.urednickiPlan || [];
+    const m1 = ed[0] || {};
+    const insight = `
+      <div class="grid grid-3">
+        <div class="icard reveal"><div class="icard__top analiza">${T("card.analiza")}</div><div class="icard__body"><h3>${esc(m1.analiza || "Prvi pregled svjetskih tržišta")}</h3><p>${en ? "General market review, not individual advice." : "Opšti tržišni pregled bez individualne preporuke."}</p><a class="link-arrow" href="#/analize">${T("card.read")} ${I.arrow}</a></div></div>
+        <div class="icard reveal"><div class="icard__top webinar">${T("card.webinar")}</div><div class="icard__body"><h3>${esc(m1.webinar || "Prvi koraci na stranim tržištima")}</h3><p>${en ? "A free introductory webinar with sign-up." : "Besplatan uvodni webinar uz prijavu."}</p><a class="link-arrow" href="#/edukacija">${T("card.signup")} ${I.arrow}</a></div></div>
+        <div class="icard reveal"><div class="icard__top vodic">${T("card.vodic")}</div><div class="icard__body"><h3>${esc(m1.vodic || "Kako otvoriti brokerski račun")}</h3><p>${en ? "Step by step, for your first account." : "Korak po korak, za prvi račun."}</p><a class="link-arrow" href="#/edukacija">${T("card.download")} ${I.arrow}</a></div></div>
+      </div>`;
+
+    const heroTag = en ? c.heroTag : "Licencirana kuća tržišta kapitala · Banja Luka";
+    const heroTitle = en ? `${esc(c.heroTitleA)} <span class="accent">${esc(c.heroTitleB)}</span>.` : `Tržište kapitala, <span class="accent">od prvog naloga do emisije</span>.`;
+    const heroSub = en ? c.heroSub : "Domaća berza i svjetska tržišta, investiciono savjetovanje i usluge za kompanije — uz objavljen cjenovnik i imenovanog sagovornika.";
+
+    return `
+    <section class="hero"><div class="hero__grid"></div><div class="wrap">
+      <div>
+        <span class="eyebrow hero__eyebrow">${esc(heroTag)}</span>
+        <h1>${heroTitle}</h1>
+        <p class="hero__sub">${esc(heroSub)}</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#/otvorite-racun">${T("btn.otvoriteRacun")} ${I.arrow}</a>
+          <a class="btn btn--ghost-light" href="#/kontakt">${T("btn.zakazite")}</a>
+        </div>
+        <div class="hero__proofs">${proofs}</div>
+      </div>
+      <div class="hero__card">
+        <h3>${T("home.whatNeed")}</h3>
+        <p class="tiny">${en ? "Choose the path built for you." : "Izaberite put napravljen baš za vas."}</p>
+        <a class="miniquote" href="#/investiranje"><div><div class="mq-name">${T("seg.A")}</div><div class="mq-sub">${T("seg.A.sub")}</div></div><div class="mq-val">${I.arrow}</div></a>
+        <a class="miniquote" href="#/investiciono-savjetovanje"><div><div class="mq-name">${T("seg.D")}</div><div class="mq-sub">${T("seg.D.sub")}</div></div><div class="mq-val">${I.arrow}</div></a>
+        <a class="miniquote" href="#/za-kompanije"><div><div class="mq-name">${T("seg.F")}</div><div class="mq-sub">${T("seg.F.sub")}</div></div><div class="mq-val">${I.arrow}</div></a>
+        <a class="miniquote" href="#/institucionalni-klijenti"><div><div class="mq-name">${T("seg.G")}</div><div class="mq-sub">${T("seg.G.sub")}</div></div><div class="mq-val">${I.arrow}</div></a>
+      </div>
+    </div></section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head center"><span class="eyebrow">${T("home.whatNeed")}</span><h2>${T("home.segTitle")}</h2><p>${T("home.segSub")}</p></div>
+        <div class="grid grid-4">${segCards}</div>
+      </div>
+    </section>
+
+    <section class="section section--soft">
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">${T("home.svcEyebrow")}</span><h2>${T("home.svcTitle")}</h2><p>${T("home.svcSub")}</p></div>
+        <div class="grid grid-3">${svc}</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head center"><span class="eyebrow">${T("home.whyEyebrow")}</span><h2>${T("home.whyTitle")}</h2><p>${T("home.whySub")}</p></div>
+        <div class="why">${why}</div>
+      </div>
+    </section>
+
+    <section class="section section--soft"><div class="wrap">
+      <div class="section-head center"><span class="eyebrow">${T("home.mktEyebrow")}</span><h2>${T("home.mktTitle")}</h2></div>
+      <div class="split">
+        <div class="split__col dom reveal">
+          <h3>${I.invest} ${T("home.domH")}</h3>
+          <p>${T("home.domP")}</p>
+          <ul><li>${T("home.domL1")}</li><li>${T("home.domL2")}</li><li>${T("home.domL3")}</li></ul>
+          <a class="btn btn--primary" href="#/domace-trziste">${T("home.domH")} ${I.arrow}</a>
+        </div>
+        <div class="split__col world reveal">
+          <h3>${I.globe} ${T("home.worldH")}</h3>
+          <p>${T("home.worldP")}</p>
+          <ul><li>${T("home.worldL1")}</li><li>${T("home.worldL2")}</li><li>${T("home.worldL3")}</li></ul>
+          <a class="btn btn--ghost-light" href="#/svjetska-trzista">${T("home.worldH")} ${I.arrow}</a>
+        </div>
+      </div>
+    </div></section>
+
+    ${en ? "" : `<section class="section"><div class="wrap">
+      <div class="band reveal">
+        <div>
+          <span class="eyebrow">Investiciono savjetovanje</span>
+          <h2>Savjet postoji kao ugovorena usluga</h2>
+          <p>Razlika između izvršenja naloga i savjetovanja je odgovornost: kod savjeta dobijate pisanu preporuku zasnovanu na vašem cilju i profilu rizika.</p>
+          <div class="packages" style="margin-top:18px">
+            <div class="pkg"><b>Pregled</b><span>Osnovni paket</span></div>
+            <div class="pkg"><b>Portfelj</b><span>Prošireni paket</span></div>
+            <div class="pkg"><b>Privatni</b><span>Za veće portfelje</span></div>
+          </div>
+        </div>
+        <div><a class="btn btn--dark btn--block" href="#/investiciono-savjetovanje">Zakažite razgovor sa savjetnikom ${I.arrow}</a><p class="formnote" style="margin-top:10px;text-align:center">Cijena paketa objavljuje se po usvajanju internih akata.</p></div>
+      </div>
+    </div></section>`}
+
+    <section class="section ${en ? "section--soft" : ""}"><div class="wrap">
+      <div class="split">
+        <div class="split__col dom reveal" style="background:linear-gradient(150deg,#5a3d0e,#8a6417)">
+          <span class="eyebrow" style="color:#f0e3c2">${T("home.corpEyebrow")}</span>
+          <h3 style="margin-top:10px">${T("home.corpH")}</h3>
+          <p>${T("home.corpP")}</p>
+          <a class="btn btn--primary" href="#/procjena-spremnosti">${T("home.corpCta")} ${I.arrow}</a>
+        </div>
+        <div class="split__col world reveal" style="background:linear-gradient(150deg,#0a2540,#163f6b)">
+          <span class="eyebrow" style="color:#c3d2e2">${T("home.instEyebrow")}</span>
+          <h3 style="margin-top:10px">${T("home.instH")}</h3>
+          <p>${T("home.instP")}</p>
+          <a class="btn btn--ghost-light" href="#/institucionalni-klijenti">${T("home.instCta")} ${I.arrow}</a>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="section ${en ? "" : "section--soft"}"><div class="wrap">
+      <div class="section-head"><span class="eyebrow">${T("home.insEyebrow")}</span><h2>${T("home.insTitle")}</h2><p>${T("home.insSub")}</p></div>
+      ${insight}
+    </div></section>
+
+    <section class="section section--soft"><div class="wrap">
+      <div class="section-head center"><span class="eyebrow">${T("home.trustEyebrow")}</span><h2>${T("home.trustTitle")}</h2></div>
+      <div class="trust">
+        <div class="trust__item">${I.shield} ${T("trust.licence")}</div>
+        <div class="trust__item">${I.check} ${T("trust.fees")}</div>
+        <div class="trust__item">${I.doc} ${T("trust.rules")}</div>
+        <div class="trust__item">${I.phone} ${T("trust.contact")}</div>
+        <div class="trust__item">${I.scale} ${T("trust.complaints")}</div>
+      </div>
+    </div></section>
+
+    <section class="section"><div class="wrap">
+      <div class="finalcta reveal">
+        <h2>${T("home.finalTitle")}</h2>
+        <p>${T("home.finalSub")}</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#/otvorite-racun">${T("btn.otvoriteRacun")} ${I.arrow}</a>
+          <a class="btn btn--ghost-light" href="#/kontakt">${T("btn.zakazite")}</a>
+        </div>
+      </div>
+    </div></section>`;
+  }
+  function segHeadline(o) { return ({ A: "Želim da ulažem", D: "Treba mi savjet", F: "Kompaniji treba kapital", G: "Institucija smo" })[o] || ""; }
+
+  /* ---------------- HUB ---------------- */
+  function renderHub(p) {
+    const cont = content(p.slug);
+    const kids = EB.children(p.slug);
+    const kidSub = (k) => { const c = content(k.slug); return (isEN() && c.what) ? c.what.split(". ")[0] + "." : (k.message || k.intent); };
+    const cards = kids.map(k => `
+      <a class="segcard reveal" href="#/${esc(k.slug)}">
+        <div class="segcard__icon">${pageIcon[k.slug] || I.invest}</div>
+        <h3>${esc(pTitle(k))}</h3>
+        <p>${esc(kidSub(k))}</p>
+        <span class="link-arrow">${T("btn.saznajteVise")} ${I.arrow}</span>
+      </a>`).join("");
+    return pagehero(p) + `
+    <section class="section"><div class="wrap">
+      ${cont.what ? `<div class="section-head" style="max-width:820px"><p class="lead">${esc(cont.what)}</p></div>` : ""}
+      <div class="grid ${kids.length === 4 ? "grid-2" : "grid-3"}">${cards}</div>
+    </div></section>
+    ${ctaBand(p)}`;
+  }
+
+  /* ---------------- SERVICE (10-question) ---------------- */
+  function renderService(p) {
+    const c = content(p.slug);
+    const faqs = EB.faqFor(p.slug);
+    let body = "";
+    if (c.what) body += qb(T("q1"), "01", `<p>${esc(c.what)}</p>`);
+    if (c.whoFor) body += qb(T("q2"), "02", `<div class="chips">${c.whoFor.map(w => `<span class="chip">${esc(w)}</span>`).join("")}</div>`);
+    if (c.problem) body += qb(T("q3"), "03", `<p>${esc(c.problem)}</p>`);
+    if (c.steps) body += qb(T("q4"), "04", `<div class="steps">${c.steps.map(s => `<div class="step"><div><h4>${esc(s.t)}</h4><p>${esc(s.d)}</p></div></div>`).join("")}</div>`);
+    if (c.roles) body += qb(T("q5"), "05", `<div class="roles"><div class="role"><b>${T("roles.eb")}</b><p>${esc(c.roles.eurobroker)}</p></div><div class="role"><b>${T("roles.client")}</b><p>${esc(c.roles.klijent)}</p></div><div class="role"><b>${T("roles.third")}</b><p>${esc(c.roles.treci)}</p></div></div>`);
+    body += qb(T("q6"), "06", `<p>${esc(c.napomenaCijena || T("side.cost"))}</p><a class="link-arrow" href="#/cjenovnik">${T("side.seeFees")} ${I.arrow}</a>`);
+    if (c.risks) body += qb(T("q7"), "07", `<ul class="risklist">${c.risks.map(r => `<li>${esc(r)}</li>`).join("")}</ul><div class="notebox notebox--reg">${T("side.riskNote")}</div>`);
+    if (p.documents) body += qb(T("q8"), "08", `<div class="chips">${String(p.documents).split(";").map(x => x.trim()).filter(Boolean).map(x => `<span class="chip">${I.doc} ${esc(x)}</span>`).join("")}</div>`);
+
+    if (faqs.length) {
+      body += `<div class="qblock"><span class="qn">${T("q.faq")}</span><h2>${T("q.faqTitle")}</h2>${renderFaq(faqs)}</div>`;
+    }
+
+    return pagehero(p) + `
+    <section class="section"><div class="wrap"><div class="pglayout">
+      <div class="prose">${body}</div>
+      ${serviceSidebar(p)}
+    </div></div></section>`;
+  }
+  function qb(title, n, inner) { return `<div class="qblock"><span class="qn">${T("q.label")} ${n}</span><h2>${esc(title)}</h2>${inner}</div>`; }
+
+  function serviceSidebar(p) {
+    const related = String(p.related || "").split(",").map(s => s.trim()).filter(Boolean)
+      .map(slug => { const rp = EB.page(slug); return rp ? `<a href="#/${slug}">${esc(pTitle(rp))} ${I.arrow}</a>` : ""; }).join("");
+    const cls = p.classification || "";
+    const primaryCta = isEN() ? T("btn.zakazite") : (p.primary_cta || "Zakažite razgovor");
+    return `<aside class="side">
+      <div class="side__card dark">
+        <h3>${esc(primaryCta)}</h3>
+        <p>${T("cta.replyNote")}</p>
+        <a class="btn btn--primary btn--block" href="#/${esc(p.primary_cta_link || "kontakt")}">${esc(isEN() ? T("btn.posaljite") : (p.primary_cta || "Pošaljite upit"))}</a>
+        ${p.secondary_cta ? `<a class="btn btn--ghost-light btn--block" style="margin-top:10px" href="#/${esc(p.secondary_cta_link || "kontakt")}">${esc(isEN() ? T("btn.zakazite") : p.secondary_cta)}</a>` : ""}
+      </div>
+      <div class="side__card">
+        <h3>${T("side.details")}</h3>
+        <div class="side__meta" style="margin-top:12px">
+          <div class="row"><span>${T("side.for")}</span><b>${esc(segNames(p.segment))}</b></div>
+          <div class="row"><span>${T("side.status")}</span><b>${esc(clsLabel(cls))}</b></div>
+          <div class="row"><span>${T("side.responseTime")}</span><b>${T("side.oneDay")}</b></div>
+        </div>
+      </div>
+      ${related ? `<div class="side__card"><h3>${T("side.related")}</h3><div class="related" style="margin-top:8px">${related}</div></div>` : ""}
+      <div class="side__card" style="background:var(--bg-soft)">
+        <p class="formnote">${esc(p.compliance || "Sadržaj provjerava funkcija usklađenosti prije objave.")}</p>
+      </div>
+    </aside>`;
+  }
+  function segNames(seg) {
+    const map = isEN()
+      ? { A: "Domestic investors", B: "Foreign markets", C: "Diaspora", D: "Private clients", E: "Entrepreneurs", F: "Companies", G: "Institutions", H: "Partners" }
+      : { A: "Domaći investitori", B: "Strana tržišta", C: "Dijaspora", D: "Privatni klijenti", E: "Preduzetnici", F: "Kompanije", G: "Institucije", H: "Partneri" };
+    return String(seg || "").split(",").map(s => map[s.trim()] || s.trim()).filter(Boolean).join(", ") || (isEN() ? "All" : "Svi");
+  }
+  const clsLabel = (cls) => isEN() ? String(cls || "Active").replace("(uslovno)", "(conditional)") : (cls || "Aktivno");
+
+  /* ---------------- PAGE HERO ---------------- */
+  function pagehero(p) {
+    const parent = p.parent ? EB.page(p.parent) : null;
+    const crumb = `<div class="crumb"><a href="#/">${T("crumb.home")}</a> <span>/</span> ${parent ? `<a href="#/${parent.slug}">${esc(pTitle(parent))}</a> <span>/</span> ` : ""}${esc(pTitle(p))}</div>`;
+    return `<section class="pagehero"><div class="wrap">
+      ${crumb}
+      <span class="tag">${esc(p.type || "Usluga")}</span>
+      <h1>${esc(pMsg(p))}</h1>
+      <p>${esc(pGoal(p))}</p>
+    </div></section>`;
+  }
+  function ctaBand(p) {
+    const cta = isEN() ? T("btn.zakazite") : (p.primary_cta || "Zakažite razgovor");
+    return `<section class="section section--soft"><div class="wrap"><div class="finalcta reveal">
+      <h2>${esc(cta)}</h2>
+      <p>${T("cta.replyNote")}</p>
+      <div class="hero__actions"><a class="btn btn--primary" href="#/${esc(p.primary_cta_link || "kontakt")}">${esc(isEN() ? T("btn.posaljite") : (p.primary_cta || "Pošaljite upit"))} ${I.arrow}</a>${p.secondary_cta ? `<a class="btn btn--ghost-light" href="#/${esc(p.secondary_cta_link || "kontakt")}">${esc(isEN() ? T("btn.zakazite") : p.secondary_cta)}</a>` : ""}</div>
+    </div></div></section>`;
+  }
+
+  /* ---------------- FAQ ---------------- */
+  function renderFaq(list) {
+    return `<div class="faq" style="margin-top:16px">${list.map(f => `
+      <div class="faq__item"><button class="faq__q">${esc(f.pitanje)}<span class="ic">${I.plus}</span></button><div class="faq__a"><p>${esc(f.odgovor)}</p></div></div>`).join("")}</div>`;
+  }
+
+  /* ---------------- CJENOVNIK ---------------- */
+  function renderCjenovnik(p) {
+    const rows = EB.data.cjenovnik || [];
+    const cats = [...new Set(rows.map(r => r.kategorija))];
+    const body = cats.map(cat => {
+      const rs = rows.filter(r => r.kategorija === cat);
+      return rs.map((r, i) => `<tr>${i === 0 ? `<td rowspan="${rs.length}" class="cat">${esc(cat)}</td>` : ""}<td><b>${esc(r.usluga)}</b></td><td class="fee">${esc(r.naknada)}</td><td>${esc(r.osnovica)}</td><td>${esc(r.napomena)}</td></tr>`).join("");
+    }).join("");
+    const en = isEN();
+    const th = en ? ["Category", "Service", "Fee", "Basis", "Note"] : ["Kategorija", "Usluga", "Naknada", "Osnovica", "Napomena"];
+    const priceDocs = (EB.data.dokumenti || []).filter(d => d.kategorija === "Cjenovnik");
+    const officialBlock = priceDocs.length ? `
+      <div class="section-head" style="margin-bottom:16px"><span class="eyebrow">${en ? "Official price lists" : "Zvanični cjenovnici"}</span><h2 style="font-size:1.3rem">${en ? "Download the published fee schedules" : "Preuzmite objavljene cjenovnike"}</h2></div>
+      <div class="doclist" style="margin-bottom:28px">${priceDocs.map(docCard).join("")}</div>` : "";
+    return pagehero(p) + `<section class="section"><div class="wrap">
+      ${officialBlock}
+      <div class="notebox" style="margin-bottom:24px">${en ? "The table below is an orientational summary. The downloadable price lists above are the authoritative documents; an updated price list with an effective date is published upon adoption." : "Tabela ispod je orijentacioni pregled. Cjenovnici za preuzimanje iznad su mjerodavni dokumenti; ažurirani cjenovnik sa datumom primjene objavljuje se po usvajanju."}</div>
+      <div class="tablewrap"><table class="price"><thead><tr><th>${th[0]}</th><th>${th[1]}</th><th>${th[2]}</th><th>${th[3]}</th><th>${th[4]}</th></tr></thead><tbody>${body}</tbody></table></div>
+      <p class="formnote" style="margin-top:16px">${en ? "The price list is linked from every service page and available from the utility bar. For an extract specific to your situation, " : "Cjenovnik je povezan sa svake uslužne stranice i dostupan iz uslužne trake. Za konkretan izvod za vašu situaciju, "}${'<a class="link-arrow" style="display:inline-flex" href="#/kontakt">' + (en ? "get in touch " : "javite nam se ") + I.arrow + '</a>'}.</p>
+    </div></section>`;
+  }
+
+  /* ---------------- ANALIZE ---------------- */
+  function renderAnalize(p) {
+    const en = isEN();
+    const ed = EB.data.urednickiPlan || [];
+    const sub = en ? "General market review — not individual investment advice." : "Opšti tržišni pregled — ne predstavlja individualnu investicionu preporuku.";
+    const cta = en ? "Sign up for the overview" : "Prijava na pregled";
+    const cards = ed.filter(m => m.analiza).slice(0, 9).map(m => `
+      <div class="icard reveal"><div class="icard__top analiza">${esc(m.mjesec)} · ${esc(m.tema)}</div>
+      <div class="icard__body"><h3>${esc(m.analiza)}</h3><p>${sub}</p><a class="link-arrow" href="#/kontakt">${cta} ${I.arrow}</a></div></div>`).join("");
+    const pubs = EB.data.publikacije || [];
+    const pubBlock = pubs.length ? `
+      <div class="section-head" style="margin:44px 0 16px"><span class="eyebrow">${en ? "Research reports" : "Istraživački izvještaji"}</span><h2 style="font-size:1.4rem">${en ? "Equity analyses by issuer (archive)" : "Analize po emitentu (arhiva)"}</h2><p>${en ? "Historical research reports (2019). General research, not individual advice." : "Istorijski istraživački izvještaji (2019). Opšte istraživanje, ne individualna preporuka."}</p></div>
+      <div class="doclist">${pubs.map(x => `<a class="docitem" href="${esc(x.fajl)}" download>
+        <span class="docitem__ic">${I.book}</span>
+        <span class="docitem__body"><b>${esc(x.naziv)}</b><small>${en ? "Research report" : "Istraživački izvještaj"} · ${esc(x.datum)}</small></span>
+        <span class="docitem__meta">${esc(x.jezik)} · ${esc(x.tip)} · ${esc(x.velicina_kb)} KB ${I.download}</span>
+      </a>`).join("")}</div>` : "";
+    return pagehero(p) + `<section class="section"><div class="wrap">
+      <div class="notebox notebox--reg" style="margin-bottom:24px">${en ? "All publications are general market overviews and do not constitute individual investment advice. Read the risk warning before deciding." : "Sve publikacije su opšti tržišni pregledi i ne predstavljaju individualnu investicionu preporuku. Prije odluke pročitajte upozorenje o rizicima."}</div>
+      <div class="grid grid-3">${cards}</div>
+      ${pubBlock}
+    </div></section>${ctaBand(p)}`;
+  }
+
+  /* ---------------- EDUKACIJA ---------------- */
+  function renderEdukacija(p) {
+    const ed = EB.data.urednickiPlan || [];
+    const guides = ed.filter(m => m.vodic).map(m => `<a class="cal__item reveal" href="#/kontakt"><div class="cal__m">${esc(m.mjesec)} · ${esc(m.tema)}</div><h4>${esc(m.vodic)}</h4><span class="link-arrow">Vodič ${I.arrow}</span></a>`).join("");
+    const webs = ed.filter(m => m.webinar).slice(0, 4).map(m => `<div class="icard reveal"><div class="icard__top webinar">Webinar · ${esc(m.mjesec)}</div><div class="icard__body"><h3>${esc(m.webinar)}</h3><p>Besplatan webinar uz prijavu.</p><a class="link-arrow" href="#/kontakt">Prijavite se ${I.arrow}</a></div></div>`).join("");
+    const en = isEN();
+    const dia = `<a class="band reveal" href="#/investiranje-iz-dijaspore" style="text-decoration:none;margin-bottom:34px;grid-template-columns:1fr auto;align-items:center">
+      <div><span class="eyebrow">${en ? "For the diaspora" : "Za dijasporu"}</span>
+      <h2 style="margin:8px 0 6px">${en ? "Investing from abroad, step by step" : "Ulaganje iz inostranstva, korak po korak"}</h2>
+      <p style="margin:0">${en ? "Documentation and a remote process for members of the diaspora and returnees." : "Dokumentacija i postupak na daljinu za članove dijaspore i povratnike."}</p></div>
+      <span class="btn btn--dark">${en ? "Read the guide" : "Pročitajte vodič"} ${I.arrow}</span>
+    </a>`;
+    return pagehero(p) + `<section class="section"><div class="wrap">
+      ${dia}
+      <div class="section-head"><span class="eyebrow">${en ? "Knowledge centre" : "Centar znanja"}</span><h2>${en ? "Guides — from first step to portfolio" : "Vodiči — od prvog koraka do portfelja"}</h2></div>
+      <div class="cal">${guides}</div>
+    </div></section>
+    <section class="section section--soft"><div class="wrap">
+      <div class="section-head"><span class="eyebrow">${en ? "Webinars & events" : "Webinari i događaji"}</span><h2>${en ? "Learn live, ask directly" : "Uči uživo, pitaj direktno"}</h2></div>
+      <div class="grid grid-4">${webs}</div>
+    </div></section>${ctaBand(p)}`;
+  }
+
+  /* ---------------- READINESS TOOL ---------------- */
+  const TOOLQ = [
+    ["Kolika je godišnja potreba za kapitalom?", ["Manje od 1 mil. KM", "1–5 mil. KM", "Više od 5 mil. KM"], [0, 2, 3]],
+    ["Da li društvo ima revidirane finansijske izvještaje?", ["Da, više godina", "Da, jednu godinu", "Ne"], [3, 1, 0]],
+    ["Kakav je novčani tok u posljednje 3 godine?", ["Stabilan i pozitivan", "Promjenljiv", "Negativan"], [3, 1, 0]],
+    ["Da li je vlasnička struktura uređena?", ["Da, jasno", "Djelimično", "Ne"], [2, 1, 0]],
+    ["Postoji li iskustvo sa spoljnim finansiranjem?", ["Da (krediti/investitori)", "Ograničeno", "Ne"], [2, 1, 0]],
+    ["Koji je cilj prikupljanja kapitala?", ["Rast/investicija", "Refinansiranje", "Likvidnost"], [3, 1, 0]],
+    ["Da li menadžment može posvetiti vrijeme procesu?", ["Da", "Djelimično", "Ne"], [2, 1, 0]],
+    ["Kakva je spremnost na transparentnost prema investitorima?", ["Visoka", "Srednja", "Niska"], [3, 1, 0]],
+    ["Koji je željeni rok?", ["6–12 mjeseci", "3–6 mjeseci", "Odmah"], [2, 1, 0]],
+    ["Da li postoji uređeno korporativno upravljanje?", ["Da", "Djelimično", "Ne"], [2, 1, 0]]
+  ];
+  const TOOLQ_EN = [
+    ["What is your annual capital need?", ["Under 1M KM", "1–5M KM", "Over 5M KM"], [0, 2, 3]],
+    ["Does the company have audited financial statements?", ["Yes, several years", "Yes, one year", "No"], [3, 1, 0]],
+    ["How has cash flow been over the last 3 years?", ["Stable and positive", "Variable", "Negative"], [3, 1, 0]],
+    ["Is the ownership structure orderly?", ["Yes, clearly", "Partly", "No"], [2, 1, 0]],
+    ["Any experience with external financing?", ["Yes (loans/investors)", "Limited", "No"], [2, 1, 0]],
+    ["What is the goal of raising capital?", ["Growth/investment", "Refinancing", "Liquidity"], [3, 1, 0]],
+    ["Can management devote time to the process?", ["Yes", "Partly", "No"], [2, 1, 0]],
+    ["How ready are you for transparency to investors?", ["High", "Medium", "Low"], [3, 1, 0]],
+    ["What is your desired timeframe?", ["6–12 months", "3–6 months", "Immediately"], [2, 1, 0]],
+    ["Is corporate governance in place?", ["Yes", "Partly", "No"], [2, 1, 0]]
+  ];
+  const toolStrings = () => isEN()
+    ? { note: "The result is a general orientation of readiness, not investment advice or an offer. It is a basis for a conversation.", count: (a, b) => "Question " + a + " of " + b, verdicts: ["Good candidate", "With preparation", "Early stage"], notes: ["Your company shows clear signs of readiness. We suggest an initial conversation about the issue structure.", "The basis exists, but some areas need tidying. Preparing for the capital markets takes you to readiness.", "Before an issue it is worth tidying reporting and governance. We are glad to guide you through preparation."], send: "Send the result and book a call", again: "Retake the questionnaire" }
+    : { note: "Rezultat je opšta orijentaciona procjena spremnosti, a ne investicioni savjet ni ponuda. Služi kao osnova za razgovor.", count: (a, b) => "Pitanje " + a + " od " + b, verdicts: ["Dobar kandidat", "Uz pripremu", "Rano je"], notes: ["Vaše društvo pokazuje jasne pokazatelje spremnosti. Predlažemo inicijalni razgovor o strukturi emisije.", "Osnova postoji, ali pojedina područja treba urediti. Priprema za tržište kapitala vodi vas do spremnosti.", "Prije emisije vrijedi urediti izvještavanje i upravljanje. Rado vas vodimo kroz pripremu."], send: "Pošaljite rezultat i zakažite razgovor", again: "Ponovite upitnik" };
+  function renderTool(p) {
+    return pagehero(p) + `<section class="section"><div class="wrap"><div class="pglayout">
+      <div>
+        <div class="notebox" style="margin-bottom:20px">${toolStrings().note}</div>
+        <div class="tool" id="tool"><div class="tool__bar"><div class="tool__fill" id="toolFill"></div></div><div class="tool__body" id="toolBody"></div></div>
+      </div>
+      ${serviceSidebar(p)}
+    </div></div></section>`;
+  }
+  function initTool() {
+    const body = document.getElementById("toolBody"), fill = document.getElementById("toolFill");
+    if (!body) return;
+    const Q = isEN() ? TOOLQ_EN : TOOLQ, S = toolStrings();
+    let i = 0, score = 0, max = Q.reduce((a, q) => a + Math.max(...q[2]), 0);
+    if (EB.track) EB.track(EB.EVENTS.READINESS_START, {});
+    function step() {
+      if (i >= Q.length) return result();
+      const q = Q[i];
+      fill.style.width = ((i) / Q.length * 100) + "%";
+      body.innerHTML = `<div class="tool__count">${S.count(i + 1, Q.length)}</div><div class="tool__q">${esc(q[0])}</div><div class="tool__opts">${q[1].map((o, k) => `<button class="tool__opt" data-v="${q[2][k]}">${esc(o)}</button>`).join("")}</div>`;
+      body.querySelectorAll(".tool__opt").forEach(b => b.addEventListener("click", () => { score += +b.dataset.v; i++; step(); }));
+    }
+    function result() {
+      fill.style.width = "100%";
+      const pct = Math.round(score / max * 100);
+      const idx = pct >= 70 ? 0 : (pct >= 40 ? 1 : 2);
+      if (EB.track) EB.track(EB.EVENTS.READINESS_COMPLETE, { score_pct: pct, bucket: ["good", "with_prep", "early"][idx] });
+      body.innerHTML = `<div class="tool__result">
+        <div class="tool__score">${pct}%</div>
+        <div style="font-family:var(--ff-head);font-weight:700;color:var(--teal);margin:6px 0 10px">${S.verdicts[idx]}</div>
+        <p style="color:var(--muted);max-width:420px;margin:0 auto 22px">${esc(S.notes[idx])}</p>
+        <a class="btn btn--primary" href="#/kontakt">${S.send} ${I.arrow}</a>
+        <div style="margin-top:14px"><button class="link-arrow" id="toolReset" style="background:none;border:0">${S.again}</button></div>
+      </div>`;
+      const r = document.getElementById("toolReset"); if (r) r.addEventListener("click", () => { i = 0; score = 0; step(); });
+    }
+    step();
+  }
+
+  /* ---------------- FORMS (otvorite-racun, kontakt) ---------------- */
+  function renderForm(p, kind) {
+    const c = content(p.slug);
+    const en = isEN();
+    const L = en
+      ? { name: "Full name", nameP: "Your name", contact: "Contact (phone or e-mail)", contactP: "+387 / you@email", topicRacun: "What are you interested in", topicTema: "Topic", msg: "Message", msgP: "Briefly about your situation", source: "How did you hear about us? (source)", consent: "I agree to the processing of my data for the purpose of responding to this inquiry, per the privacy policy.", note: "We reply within one business day. This form is neither a contract nor investment advice.", direct: "Direct contact", hours: "Weekdays 8am–4pm", phone: "Phone", email: "E-mail", hq: "Head office", optRacun: ["Domestic market", "World markets", "RS bonds", "Investment advice"], optTema: ["General inquiry", "Opening an account", "Investment advice", "Corporate services", "Institutional programme", "Partnerships"], optSrc: ["Search (Google)", "Referral", "Social media", "Existing client", "Other"] }
+      : { name: "Ime i prezime", nameP: "Vaše ime", contact: "Kontakt (telefon ili e-pošta)", contactP: "+387 / vas@email", topicRacun: "Šta vas zanima", topicTema: "Tema", msg: "Poruka", msgP: "Ukratko o vašoj situaciji", source: "Kako ste čuli za nas? (izvor)", consent: "Saglasan/na sam sa obradom podataka u svrhu odgovora na upit, u skladu sa politikom zaštite podataka.", note: "Javljamo se u jednom radnom danu. Ovaj obrazac ne predstavlja ugovor niti investicionu preporuku.", direct: "Direktan kontakt", hours: "Radnim danima 08–16h.", phone: "Telefon", email: "E-pošta", hq: "Sjedište", optRacun: ["Domaće tržište", "Svjetska tržišta", "Obveznice RS", "Investiciono savjetovanje"], optTema: ["Opšti upit", "Otvaranje računa", "Investiciono savjetovanje", "Usluge za kompanije", "Institucionalni program", "Partnerstva"], optSrc: ["Pretraga (Google)", "Preporuka", "Društvene mreže", "Postojeći klijent", "Drugo"] };
+    const steps = c.steps ? `<div class="steps" style="margin-bottom:28px">${c.steps.map(s => `<div class="step"><div><h4>${esc(s.t)}</h4><p>${esc(s.d)}</p></div></div>`).join("")}</div>` : "";
+    const opts = (arr) => arr.map(o => `<option>${esc(o)}</option>`).join("");
+    const topic = kind === "racun"
+      ? `<div class="field"><label>${L.topicRacun}</label><select>${opts(L.optRacun)}</select></div>`
+      : `<div class="field"><label>${L.topicTema}</label><select>${opts(L.optTema)}</select></div>`;
+    return pagehero(p) + `<section class="section"><div class="wrap"><div class="pglayout">
+      <div>
+        ${c.what ? `<p class="lead" style="margin-bottom:24px">${esc(c.what)}</p>` : ""}
+        ${steps}
+        ${kind === "racun" ? (function () {
+          const req = (EB.data.dokumenti || []).filter(d => d.kategorija === "Otvaranje računa" || ["obrazac-nalog.pdf", "punomoc-za-zastupanje.pdf", "upitnik-klijent-obavezan.pdf"].some(x => (d.fajl || "").indexOf(x) !== -1));
+          return req.length ? `<div style="margin-bottom:28px"><h3 style="font-size:1.05rem;margin-bottom:12px">${en ? "Required documentation and forms" : "Potrebna dokumentacija i obrasci"}</h3><div class="doclist">${req.map(docCard).join("")}</div><p class="formnote" style="margin-top:10px">${en ? "Choose the list that matches your status; a broker sends the exact set after your request." : "Izaberite spisak koji odgovara vašem statusu; tačan set šalje broker nakon vašeg zahtjeva."}</p></div>` : "";
+        })() : ""}
+        <form class="form" data-form="1" data-kind="${kind}">
+          <div class="row2">
+            <div class="field"><label>${L.name}</label><input required placeholder="${L.nameP}"></div>
+            <div class="field"><label>${L.contact}</label><input required placeholder="${L.contactP}"></div>
+          </div>
+          ${topic}
+          <div class="field"><label>${L.msg}</label><textarea placeholder="${L.msgP}"></textarea></div>
+          <div class="field"><label>${L.source}</label><select>${opts(L.optSrc)}</select></div>
+          <label class="consent"><input type="checkbox" required> ${L.consent}</label>
+          <button class="btn btn--primary" type="submit">${T("btn.posaljite")} ${I.arrow}</button>
+          <p class="formnote">${L.note}</p>
+        </form>
+      </div>
+      <aside class="side">
+        <div class="side__card dark"><h3>${L.direct}</h3><p>${L.hours}</p>
+          <div class="side__meta"><div class="row"><span>${L.phone}</span><b>+387 51 ...</b></div><div class="row"><span>${L.email}</span><b>info@eurobroker.ba</b></div><div class="row"><span>${L.hq}</span><b>Banja Luka</b></div></div>
+        </div>
+        <div class="side__card"><h3>${T("home.whatNeed")}</h3><div class="related" style="margin-top:8px">
+          <a href="#/investiranje">${T("seg.A")} ${I.arrow}</a>
+          <a href="#/za-kompanije">${T("seg.F")} ${I.arrow}</a>
+          <a href="#/institucionalni-klijenti">${T("seg.G")} ${I.arrow}</a>
+        </div></div>
+      </aside>
+    </div></div></section>`;
+  }
+
+  /* ---------------- DOKUMENTI (stvarni dokumenti za preuzimanje) ---------------- */
+  const DOC_CAT_EN = {
+    "Pravila i uslovi": "Rules and terms", "Cjenovnik": "Price lists", "Obrasci": "Forms",
+    "Izjave": "Declarations", "Upitnici": "Questionnaires", "Otvaranje računa": "Account opening"
+  };
+  const docCatLabel = (c) => isEN() ? (DOC_CAT_EN[c] || c) : c;
+  function docCard(d) {
+    return `<a class="docitem" href="${esc(d.fajl)}" download>
+      <span class="docitem__ic">${I.doc}</span>
+      <span class="docitem__body"><b>${esc(d.naziv)}</b><small>${esc(d.opis || "")}</small></span>
+      <span class="docitem__meta">${esc(d.tip)} · ${esc(d.velicina_kb)} KB ${I.download}</span>
+    </a>`;
+  }
+  function renderDocs(filterCats) {
+    const docs = EB.data.dokumenti || [];
+    let cats = [...new Set(docs.map(d => d.kategorija))];
+    if (filterCats) cats = cats.filter(c => filterCats.indexOf(c) !== -1);
+    if (!docs.length) return `<div class="notebox">${isEN() ? "Documents are being prepared." : "Dokumenti se pripremaju."}</div>`;
+    const note = isEN()
+      ? "These are the currently published official documents (2017–2025 versions). Upon adoption of updated acts, the files here are replaced."
+      : "Ovo su trenutno objavljeni zvanični dokumenti (verzije 2017–2025). Usvajanjem ažuriranih akata, fajlovi se ovdje zamjenjuju.";
+    return `<div class="notebox" style="margin:0 0 22px">${note}</div>` + cats.map(cat => `
+      <div class="docgroup">
+        <h3 class="docgroup__h">${esc(docCatLabel(cat))}</h3>
+        <div class="doclist">${docs.filter(d => d.kategorija === cat).map(docCard).join("")}</div>
+      </div>`).join("");
+  }
+
+  /* ---------------- SIMPLE PAGES (regulatorni, o-nama, partneri, dokumenti) ---------------- */
+  function renderSimple(p) {
+    const c = content(p.slug);
+    let inner = "";
+    if (c.what) inner += `<p class="lead" style="margin-bottom:24px">${esc(c.what)}</p>`;
+    if (p.slug === "o-nama" && c.vrijednosti) {
+      inner += `<div class="why" style="margin:26px 0">${c.vrijednosti.map((v, i) => `<div class="why__item reveal"><span class="why__num">0${i + 1}</span><h3>${esc(v.t)}</h3><p>${esc(v.d)}</p></div>`).join("")}</div>`;
+      inner += `<div class="grid grid-3" style="margin-top:26px">${EB.children("o-nama").concat([EB.page("cjenovnik")]).filter(Boolean).map(k => `<a class="svc" href="#/${k.slug}"><span class="svc__no">${I.arrow}</span><div><h3>${esc(pTitle(k))}</h3><p>${esc(k.intent || "")}</p></div></a>`).join("")}</div>`;
+    }
+    if (p.slug === "regulatorni-status") {
+      const d = EB.drustvo();
+      const L = isEN()
+        ? { puni_naziv: "Full name", djelatnost: "Activity", grad: "Head office", adresa: "Address", nadzorni_organ: "Supervisory authority", dozvole: "Licences", maticni_broj: "Registration no.", poreski_broj: "Tax ID", email: "E-mail" }
+        : { puni_naziv: "Puni naziv", djelatnost: "Djelatnost", grad: "Sjedište", adresa: "Adresa", nadzorni_organ: "Nadzorni organ", dozvole: "Dozvole", maticni_broj: "Matični broj", poreski_broj: "Poreski broj", email: "E-pošta" };
+      inner += `<div class="tablewrap" style="margin:8px 0 20px"><table class="price"><tbody>
+        ${Object.keys(L).map(k => `<tr><td class="cat" style="width:220px">${L[k]}</td><td colspan="4">${esc(d[k] || "—")}</td></tr>`).join("")}
+      </tbody></table></div>`;
+      if (c.napomena) inner += `<div class="notebox notebox--reg">${esc(c.napomena)}</div>`;
+    }
+    if (p.slug === "partneri" && c.whoFor) {
+      inner += `<div class="chips" style="margin:10px 0 20px">${c.whoFor.map(w => `<span class="chip">${esc(w)}</span>`).join("")}</div>`;
+    }
+    if (p.slug === "dokumenti") {
+      inner += renderDocs();
+    }
+    return pagehero(p) + `<section class="section"><div class="wrap"><div class="simple" style="max-width:840px">${inner || `<p class="lead">${esc(p.goal || "")}</p>`}</div></div></section>${ctaBand(p)}`;
+  }
+
+  /* ---------------- 404 ---------------- */
+  function render404(slug) {
+    const en = isEN();
+    return `<section class="pagehero"><div class="wrap">
+      <div class="crumb"><a href="#/">${T("crumb.home")}</a> <span>/</span> 404</div>
+      <span class="tag">404</span>
+      <h1>${en ? "Page not found" : "Stranica nije pronađena"}</h1>
+      <p>${en ? "The address you requested does not exist or has moved." : "Adresa koju ste zatražili ne postoji ili je premještena."}</p>
+    </div></section>
+    <section class="section"><div class="wrap">
+      <div class="grid grid-4">
+        ${["investiranje", "za-kompanije", "institucionalni-klijenti", "edukacija"].map(s => { const pp = EB.page(s); return `<a class="segcard reveal" href="#/${s}"><div class="segcard__icon">${pageIcon[s] || I.invest}</div><h3>${esc(pTitle(pp))}</h3><span class="link-arrow">${T("btn.saznajteVise")} ${I.arrow}</span></a>`; }).join("")}
+      </div>
+      <div style="margin-top:26px"><a class="btn btn--dark" href="#/">${en ? "Back to home" : "Nazad na početnu"} ${I.arrow}</a></div>
+    </div></section>`;
+  }
+
+  /* ---------------- VIJESTI (korporativne i regulatorne objave) ---------------- */
+  function renderVijesti() {
+    const en = isEN();
+    const items = en ? [
+      { d: "2027", t: "New website and price list published", x: "The published price list applies from its effective date. Corporate and regulatory notices are collected here." },
+      { d: "2027", t: "Investor education programme launched", x: "Monthly market overviews and webinars — general information, not individual advice." }
+    ] : [
+      { d: "2027", t: "Objavljeni novi sajt i cjenovnik", x: "Objavljeni cjenovnik primjenjuje se od datuma primjene. Korporativne i regulatorne objave prikupljaju se ovdje." },
+      { d: "2027", t: "Pokrenut program edukacije investitora", x: "Mjesečni tržišni pregledi i webinari — opšte informacije, ne individualna preporuka." }
+    ];
+    const meta = { slug: "vijesti", title: en ? "News & notices" : "Vijesti i objave", type: en ? "Corporate / regulatory" : "Korporativna / regulatorna", message: en ? "Corporate and regulatory notices" : "Korporativne i regulatorne objave", goal: en ? "A record of orderly conduct and disclosure obligations." : "Dokaz urednosti i ispunjenja obaveza objavljivanja.", parent: "" };
+    return pagehero(meta) + `<section class="section"><div class="wrap">
+      <div class="notebox" style="margin-bottom:24px">${en ? "Illustrative entries. Corporate and regulatory notices are published here with a date." : "Ilustrativni unosi. Korporativne i regulatorne objave objavljuju se ovdje sa datumom."}</div>
+      <div style="display:grid;gap:16px;max-width:820px">
+        ${items.map(n => `<div class="svc"><span class="svc__no">${I.doc}</span><div><div class="cal__m">${esc(n.d)}</div><h3>${esc(n.t)}</h3><p>${esc(n.x)}</p></div></div>`).join("")}
+      </div>
+    </div></section>`;
+  }
+
+  /* ---------------- History API rutiranje (prave putanje) ---------------- */
+  const SYNTH_PATHS = {
+    "investiranje-iz-dijaspore": "/edukacija/investiranje-iz-dijaspore/",
+    "vijesti": "/vijesti/"
+  };
+  function slugToPath(slug) {
+    if (!slug || slug === "pocetna") return "/";
+    if (SYNTH_PATHS[slug]) return SYNTH_PATHS[slug];
+    const pg = EB.page(slug);
+    return (pg && pg.url) ? pg.url : "/" + slug + "/";
+  }
+  let _pathIndex = null;
+  function pathIndex() {
+    if (_pathIndex) return _pathIndex;
+    _pathIndex = {};
+    EB.pages().forEach(pg => { if (pg.url && pg.url !== "/") _pathIndex[pg.url.replace(/\/*$/, "/")] = pg.slug; });
+    Object.keys(SYNTH_PATHS).forEach(slug => { _pathIndex[SYNTH_PATHS[slug]] = slug; });
+    return _pathIndex;
+  }
+  function pathToSlug(pathname) {
+    let path = decodeURIComponent(pathname || "/").replace(/\/index\.html$/i, "/");
+    if (!path || path === "/") return "pocetna";
+    const norm = path.endsWith("/") ? path : path + "/";
+    const idx = pathIndex();
+    if (idx[norm]) return idx[norm];
+    const seg = norm.replace(/\/+$/, "").split("/").pop();
+    return seg || "pocetna";
+  }
+  // pretvori sve `#/slug` linkove (iz šablona) u prave putanje
+  function finalizeLinks(root) {
+    root.querySelectorAll('a[href^="#/"]').forEach(a => {
+      const slug = a.getAttribute("href").replace(/^#\//, "").replace(/\/$/, "") || "pocetna";
+      a.setAttribute("href", slugToPath(slug));
+    });
+  }
+  function navigate(path) {
+    if (location.pathname !== path) history.pushState({}, "", path);
+    route();
+  }
+
+  /* ---------------- ROUTER ---------------- */
+  function route() {
+    const slug = pathToSlug(location.pathname);
+    let p = EB.page(slug);
+    const main = document.getElementById("main");
+    // sintetičke stranice (nisu u tabeli)
+    if (!p && slug === "investiranje-iz-dijaspore") p = synthPage(slug);
+
+    let html;
+    if (slug === "pocetna") html = renderHome();
+    else if (slug === "vijesti") html = renderVijesti();
+    else if (!p) html = render404(slug);
+    else if (slug === "cjenovnik") html = renderCjenovnik(p);
+    else if (slug === "analize") html = renderAnalize(p);
+    else if (slug === "edukacija") html = renderEdukacija(p);
+    else if (slug === "procjena-spremnosti") html = renderTool(p);
+    else if (slug === "otvorite-racun") html = renderForm(p, "racun");
+    else if (slug === "kontakt") html = renderForm(p, "kontakt");
+    else if (["regulatorni-status", "o-nama", "partneri", "dokumenti"].includes(slug)) html = renderSimple(p);
+    else if (slug === "investiranje-iz-dijaspore") html = renderService(p);
+    else if ((p.type || "").toLowerCase().includes("hub")) html = renderHub(p);
+    else html = renderService(p);
+
+    main.innerHTML = html;
+    let tprefix = "";
+    if (slug === "vijesti") tprefix = (isEN() ? "News & notices" : "Vijesti i objave") + " · ";
+    else if (!p && slug !== "pocetna") tprefix = "404 · ";
+    else if (p && slug !== "pocetna") tprefix = pTitle(p) + " · ";
+    document.title = tprefix + "Eurobroker — Tržište kapitala";
+    updateSEO(p, slug);
+    finalizeLinks(document);
+    window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+    setActiveNav(slug, p);
+    bindPage();
+    if (slug === "procjena-spremnosti") initTool();
+    if (EB.track) {
+      EB.track(EB.EVENTS.PAGE_VIEW, { page_slug: slug, page_title: document.title });
+      if (slug === "cjenovnik") EB.track(EB.EVENTS.PRICELIST_VIEW, { page_slug: slug });
+    }
+  }
+
+  /* ---------------- SEO (meta + strukturirani podaci) ---------------- */
+  const SITE = "https://eurobroker.ba";
+  function setMeta(sel, attr, val) {
+    let el = document.head.querySelector(sel);
+    if (!el) { el = document.createElement("meta"); const m = sel.match(/\[(name|property)="([^"]+)"\]/); if (m) el.setAttribute(m[1], m[2]); document.head.appendChild(el); }
+    el.setAttribute(attr, val);
+  }
+  function updateSEO(p, slug) {
+    const is404 = !p && slug !== "pocetna" && slug !== "vijesti";
+    const desc = p ? (pGoal(p) || pMsg(p) || "")
+      : slug === "vijesti" ? (isEN() ? "Corporate and regulatory notices from Eurobroker." : "Korporativne i regulatorne objave Eurobrokera.")
+      : (isEN() ? "Page not found." : "Stranica nije pronađena.");
+    const path = (p && p.url) ? p.url : (slug === "pocetna" ? "/" : "/" + slug + "/");
+    const url = SITE + path;
+    setMeta('meta[name="robots"]', "content", is404 ? "noindex, follow" : "index, follow");
+    setMeta('meta[name="description"]', "content", desc);
+    setMeta('meta[property="og:title"]', "content", document.title);
+    setMeta('meta[property="og:description"]', "content", desc);
+    setMeta('meta[property="og:url"]', "content", url);
+    setMeta('meta[property="og:locale"]', "content", isEN() ? "en_US" : "sr_RS");
+    let can = document.head.querySelector('link[rel="canonical"]');
+    if (!can) { can = document.createElement("link"); can.rel = "canonical"; document.head.appendChild(can); }
+    can.href = url;
+    document.documentElement.lang = isEN() ? "en" : "sr-Latn";
+    injectJSONLD(p, slug, url);
+  }
+  function injectJSONLD(p, slug, url) {
+    const d = EB.drustvo();
+    const org = {
+      "@context": "https://schema.org", "@type": "FinancialService",
+      name: d.naziv || "Eurobroker a.d. Banja Luka",
+      legalName: d.puni_naziv || undefined,
+      url: SITE + "/",
+      areaServed: "BA",
+      address: { "@type": "PostalAddress", addressLocality: d.grad || "Banja Luka", addressCountry: "BA" },
+      email: (d.email && d.email.indexOf("[") === -1) ? d.email : undefined,
+      description: isEN() ? "A licensed capital-markets firm from Banja Luka." : "Licencirano društvo tržišta kapitala iz Banje Luke."
+    };
+    const graph = [org];
+    if (p && slug !== "pocetna") {
+      const items = [{ "@type": "ListItem", position: 1, name: T("crumb.home"), item: SITE + "/" }];
+      const parent = p.parent ? EB.page(p.parent) : null;
+      if (parent) items.push({ "@type": "ListItem", position: 2, name: pTitle(parent), item: SITE + (parent.url || "/" + parent.slug + "/") });
+      items.push({ "@type": "ListItem", position: items.length + 1, name: pTitle(p), item: url });
+      graph.push({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: items });
+    }
+    let s = document.getElementById("eb-jsonld");
+    if (!s) { s = document.createElement("script"); s.type = "application/ld+json"; s.id = "eb-jsonld"; document.head.appendChild(s); }
+    s.textContent = JSON.stringify(graph.length === 1 ? graph[0] : graph);
+  }
+  function setActiveNav(slug, p) {
+    const active = (p && p.level !== "1") ? (p.parent || slug) : slug;
+    document.querySelectorAll("#mainnav a").forEach(a => a.classList.toggle("active", a.dataset.slug === active));
+  }
+
+  /* ---------------- Page-level bindings ---------------- */
+  function bindPage() {
+    // reveal
+    const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .12 });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+    // faq
+    document.querySelectorAll(".faq__item").forEach(it => {
+      const q = it.querySelector(".faq__q"), a = it.querySelector(".faq__a");
+      q.addEventListener("click", () => {
+        const open = it.classList.toggle("open"); a.style.maxHeight = open ? a.scrollHeight + "px" : 0;
+        if (open && EB.track) EB.track(EB.EVENTS.FAQ_OPEN, { question: q.textContent.trim().slice(0, 120) });
+      });
+    });
+    // forms
+    const okMsg = isEN()
+      ? "✓ Thank you. Your inquiry has been recorded (demo). In production it is sent to the CRM with the acquisition source logged, and we reply within one business day."
+      : "✓ Hvala. Vaš upit je zabilježen (demo). U produkciji se šalje u CRM sa evidentiranim izvorom akvizicije, a javljamo se u jednom radnom danu.";
+    document.querySelectorAll("form[data-form]").forEach(f => f.addEventListener("submit", e => {
+      e.preventDefault();
+      if (EB.track) {
+        const kind = f.getAttribute("data-kind");
+        EB.track(EB.EVENTS.GENERATE_LEAD, { form_kind: kind || "kontakt" });
+        EB.track(kind === "racun" ? EB.EVENTS.ACCOUNT_SUBMIT : EB.EVENTS.CONTACT_SUBMIT, {});
+      }
+      f.innerHTML = `<div class="success">${okMsg}</div>`;
+    }));
+  }
+
+  /* ---------------- Global bindings ---------------- */
+  function bindGlobal() {
+    const hdr = document.getElementById("hdr");
+    window.addEventListener("scroll", () => { hdr.classList.toggle("scrolled", window.scrollY > 8); }, { passive: true });
+    const drawer = document.getElementById("drawer"), burger = document.getElementById("burger"), close = document.getElementById("drawerClose");
+    if (burger) burger.addEventListener("click", () => drawer.classList.add("open"));
+    if (close) close.addEventListener("click", () => drawer.classList.remove("open"));
+    drawer.addEventListener("click", e => { if (e.target === drawer) drawer.classList.remove("open"); });
+    drawer.querySelectorAll("a").forEach(a => a.addEventListener("click", () => drawer.classList.remove("open")));
+    const lang = document.getElementById("langToggle");
+    if (lang) lang.addEventListener("click", () => {
+      EB.lang = isEN() ? "sr" : "en";
+      if (EB.track) EB.track(EB.EVENTS.LANGUAGE_SWITCH, { to: EB.lang });
+      try { localStorage.setItem("eb_lang", EB.lang); } catch (e) {}
+      const root = document.getElementById("app");
+      root.innerHTML = renderHeader() + '<main id="main"></main>' + renderFooter();
+      bindGlobal();
+      route();
+    });
+    // History API: presretni interne linkove + mjeri konverzije (veže se jednom)
+    if (!EB._navBound) {
+      EB._navBound = true;
+      window.addEventListener("popstate", route);
+      document.addEventListener("click", e => {
+        const a = e.target.closest("a"); if (!a) return;
+        const href = a.getAttribute("href") || "";
+        if (href.indexOf("tel:") === 0) { if (EB.track) EB.track(EB.EVENTS.PHONE_CLICK, { number: href.slice(4) }); return; }
+        if (a.hasAttribute("download")) { if (EB.track) EB.track(EB.EVENTS.DOC_INTENT, { file: href }); return; }
+        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        if (a.target === "_blank") return;
+        if (href.charAt(0) !== "/") return; // samo interne apsolutne putanje (http/mailto/# se preskaču)
+        if (EB.track) {
+          const sl = pathToSlug(href);
+          if (sl === "otvorite-racun") EB.track(EB.EVENTS.OPEN_ACCOUNT_START, { from: location.pathname });
+          if (a.classList.contains("btn") || a.classList.contains("link-arrow") || a.classList.contains("miniquote"))
+            EB.track(EB.EVENTS.CTA_CLICK, { label: (a.textContent || "").trim().slice(0, 60), href: href });
+        }
+        e.preventDefault();
+        navigate(href);
+      });
+    }
+  }
+
+  /* ---------------- Boot ---------------- */
+  async function boot() {
+    await EB.loadAll();
+    const root = document.getElementById("app");
+    root.innerHTML = renderHeader() + '<main id="main"></main>' + renderFooter();
+    bindGlobal();
+    route();
+    const badge = document.getElementById("srcBadge");
+    if (badge) { const src = EB._source.stranice || "embedded"; badge.textContent = "podaci: " + src; }
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();

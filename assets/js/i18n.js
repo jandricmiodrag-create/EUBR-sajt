@@ -1,0 +1,411 @@
+/* EUROBROKER — dvojezičnost (SR / EN)
+ * Engleska verzija je, prema planu, namijenjena institucionalnom, korporativnom
+ * i dijasporskom dijelu. Chrome (navigacija, dugmad, podnožje, skela uslužne
+ * stranice) prevodi se u cijelosti; proza je prevedena za te ciljne stranice,
+ * a ostale zadržavaju srpski tekst uz englesku navigaciju. */
+window.EB_I18N = {
+  /* --- UI stringovi --- */
+  ui: {
+    "nav.investiranje":   { sr: "Investiranje", en: "Investing" },
+    "nav.za-kompanije":   { sr: "Za kompanije", en: "For companies" },
+    "nav.institucionalni-klijenti": { sr: "Institucionalni", en: "Institutional" },
+    "nav.analize":        { sr: "Analize", en: "Insights" },
+    "nav.edukacija":      { sr: "Edukacija", en: "Learn" },
+    "nav.o-nama":         { sr: "O nama", en: "About" },
+
+    "btn.otvoriteRacun":  { sr: "Otvorite račun", en: "Open an account" },
+    "btn.prijava":        { sr: "Prijava", en: "Sign in" },
+    "btn.zakazite":       { sr: "Zakažite razgovor", en: "Book a call" },
+    "btn.saznajteVise":   { sr: "Saznajte više", en: "Learn more" },
+    "btn.posaljite":      { sr: "Pošaljite", en: "Send" },
+    "btn.pozovite":       { sr: "Pozovite", en: "Call us" },
+
+    "u.cjenovnik":        { sr: "Cjenovnik", en: "Fees" },
+    "u.dokumenti":        { sr: "Dokumenti", en: "Documents" },
+    "u.kontakt":          { sr: "Kontakt", en: "Contact" },
+
+    "foot.tagline":       { sr: "licencirano društvo tržišta kapitala pod nadzorom KHOV RS.", en: "a licensed capital-markets firm supervised by the SEC of Republika Srpska." },
+    "foot.usluge":        { sr: "Usluge", en: "Services" },
+    "foot.sadrzaj":       { sr: "Sadržaj", en: "Content" },
+    "foot.dokumenti":     { sr: "Dokumenti", en: "Documents" },
+
+    "crumb.home":         { sr: "Početna", en: "Home" },
+    "q.label":            { sr: "PITANJE", en: "QUESTION" },
+    "q.faq":              { sr: "ČESTA PITANJA", en: "FAQ" },
+    "q.faqTitle":         { sr: "Pitanja koja najčešće dobijamo", en: "Questions we hear most" },
+    "q1": { sr: "Šta je usluga?", en: "What is the service?" },
+    "q2": { sr: "Kome je namijenjena?", en: "Who is it for?" },
+    "q3": { sr: "Koji problem rješava?", en: "What problem does it solve?" },
+    "q4": { sr: "Kako funkcioniše?", en: "How does it work?" },
+    "q5": { sr: "Šta radi Eurobroker, šta klijent, šta treća lica?", en: "Who does what — Eurobroker, client, third parties?" },
+    "q6": { sr: "Koliko košta i gdje je cjenovnik?", en: "What does it cost, and where are the fees?" },
+    "q7": { sr: "Koji su rizici?", en: "What are the risks?" },
+    "q8": { sr: "Koji dokumenti su potrebni?", en: "Which documents are needed?" },
+    "roles.eb": { sr: "Eurobroker", en: "Eurobroker" },
+    "roles.client": { sr: "Klijent", en: "Client" },
+    "roles.third": { sr: "Treća lica", en: "Third parties" },
+    "side.cost": { sr: "Naknada se utvrđuje objavljenim cjenovnikom. Konkretan izvod dobijate uz uslugu.", en: "Fees follow the published price list. You receive the relevant extract with the service." },
+    "side.seeFees": { sr: "Pogledajte cjenovnik", en: "See the price list" },
+    "side.riskNote": { sr: "Vrijednost ulaganja može rasti i padati. Prije odluke pročitajte upozorenje o rizicima. Ovaj sadržaj ne predstavlja individualnu investicionu preporuku.", en: "The value of investments can rise and fall. Read the risk warning before deciding. This content is not individual investment advice." },
+    "side.details": { sr: "Detalji usluge", en: "Service details" },
+    "side.for": { sr: "Namijenjeno", en: "For" },
+    "side.status": { sr: "Status", en: "Status" },
+    "side.responseTime": { sr: "Rok odziva", en: "Response time" },
+    "side.oneDay": { sr: "1 radni dan", en: "1 business day" },
+    "side.related": { sr: "Povezano", en: "Related" },
+    "cta.replyNote": { sr: "Javljamo se u jednom radnom danu.", en: "We reply within one business day." },
+    "home.whatNeed": { sr: "Šta vam je potrebno?", en: "What do you need?" },
+
+    "home.segTitle": { sr: "Četiri puta, jedna licencirana kuća", en: "Four paths, one licensed firm" },
+    "home.segSub": { sr: "Razdvajamo potpuno različite potrebe prije nego što potrošite i minut na pogrešnu stranicu.", en: "We separate very different needs before you spend a minute on the wrong page." },
+    "seg.A": { sr: "Želim da ulažem", en: "I want to invest" },
+    "seg.D": { sr: "Treba mi savjet", en: "I need advice" },
+    "seg.F": { sr: "Kompaniji treba kapital", en: "My company needs capital" },
+    "seg.G": { sr: "Institucija smo", en: "We are an institution" },
+    "seg.A.sub": { sr: "Domaće i svjetska tržišta", en: "Domestic and world markets" },
+    "seg.D.sub": { sr: "Investiciono savjetovanje", en: "Investment advice" },
+    "seg.F.sub": { sr: "Emisija obveznica i akcija", en: "Bond and share issues" },
+    "seg.G.sub": { sr: "Institucionalni program", en: "Institutional programme" },
+    "home.svcEyebrow": { sr: "Usluge u jednom pogledu", en: "Services at a glance" },
+    "home.svcTitle": { sr: "Pet prihodnih linija pod jednim krovom", en: "Five business lines under one roof" },
+    "home.svcSub": { sr: "Ovo je kuća tržišta kapitala, a ne samo posrednik za naloge.", en: "This is a capital-markets house, not just an order broker." },
+    "svc.dom": { sr: "Domaće tržište", en: "Domestic market" },
+    "svc.dom.d": { sr: "Nalozi na Banjalučkoj berzi uz brokera koji objašnjava.", en: "Orders on the Banja Luka exchange with a broker who explains." },
+    "svc.world": { sr: "Svjetska tržišta", en: "World markets" },
+    "svc.world.d": { sr: "Globalne akcije, ETF-ovi i fjučersi preko domaćeg društva.", en: "Global equities, ETFs and futures via a local firm." },
+    "svc.adv": { sr: "Investiciono savjetovanje", en: "Investment advice" },
+    "svc.adv.d": { sr: "Pisana preporuka po vašem cilju i profilu rizika.", en: "A written recommendation for your goal and risk profile." },
+    "svc.corp": { sr: "Usluge za kompanije", en: "Corporate services" },
+    "svc.corp.d": { sr: "Finansiranje putem tržišta kapitala — emisija obveznica i akcija.", en: "Capital-markets financing — bond and share issues." },
+    "svc.inst": { sr: "Institucionalni program", en: "Institutional programme" },
+    "svc.inst.d": { sr: "Nivoi usluge, izvještavanje i kontrola izvršenja.", en: "Service levels, reporting and execution control." },
+    "home.whyEyebrow": { sr: "Zašto Eurobroker", en: "Why Eurobroker" },
+    "home.whyTitle": { sr: "Tri provjerljiva razloga", en: "Three verifiable reasons" },
+    "home.whySub": { sr: "Bez superlativa i bez neprovjerljivih brojki.", en: "No superlatives, no unverifiable numbers." },
+    "home.mktEyebrow": { sr: "Domaće i svjetska tržišta", en: "Domestic and world markets" },
+    "home.mktTitle": { sr: "Birate — i oboje je dostupno", en: "You choose — and both are available" },
+    "home.domH": { sr: "Domaće tržište", en: "Domestic market" },
+    "home.domP": { sr: "Banjalučka berza i obveznice Republike Srpske, uz brokera koji svaki korak objašnjava.", en: "The Banja Luka exchange and Republika Srpska bonds, with a broker who explains each step." },
+    "home.domL1": { sr: "Kupovina i prodaja akcija", en: "Buying and selling shares" },
+    "home.domL2": { sr: "Obveznice Republike Srpske", en: "Republika Srpska bonds" },
+    "home.domL3": { sr: "Naslijeđene hartije od vrijednosti", en: "Inherited securities" },
+    "home.worldH": { sr: "Svjetska tržišta", en: "World markets" },
+    "home.worldP": { sr: "Globalne akcije, ETF-ovi i fjučersi preko domaćeg licenciranog društva.", en: "Global equities, ETFs and futures via a local licensed firm." },
+    "home.worldL1": { sr: "Globalne akcije i ETF-ovi", en: "Global equities and ETFs" },
+    "home.worldL2": { sr: "Fjučersi za kvalifikovane klijente", en: "Futures for qualified clients" },
+    "home.worldL3": { sr: "Redovno izvještavanje", en: "Regular reporting" },
+    "home.corpEyebrow": { sr: "Za kompanije", en: "For companies" },
+    "home.corpH": { sr: "Kapital ne mora doći samo iz kredita", en: "Capital does not have to come from a loan alone" },
+    "home.corpP": { sr: "Emisija obveznica, dokapitalizacija i priprema društva za tržište kapitala — uz domaćeg sagovornika.", en: "Bond issues, recapitalisation and preparing a company for the capital markets — with a local partner." },
+    "home.corpCta": { sr: "Provjerite spremnost kompanije", en: "Check your company's readiness" },
+    "home.instEyebrow": { sr: "Institucionalni klijenti", en: "Institutional clients" },
+    "home.instH": { sr: "Program prilagođen institucijama", en: "A programme tailored to institutions" },
+    "home.instP": { sr: "Tri nivoa usluge, izvještavanje i eskalacija. Bez marketinškog tona.", en: "Three service levels, reporting and escalation. Without marketing tone." },
+    "home.instCta": { sr: "Zatražite formalnu ponudu", en: "Request a formal proposal" },
+    "home.insEyebrow": { sr: "Najnovije analize i edukacija", en: "Latest insights and learning" },
+    "home.insTitle": { sr: "Sadržaj koji se obnavlja", en: "Content that keeps refreshing" },
+    "home.insSub": { sr: "Dokaz da iza sajta neko stoji — i mekan prvi korak za one koji još ne kupuju.", en: "Proof that someone stands behind the site — and a soft first step for those not yet buying." },
+    "home.trustEyebrow": { sr: "Elementi povjerenja", en: "Trust signals" },
+    "home.trustTitle": { sr: "Rizik saradnje je mali i provjerljiv", en: "The risk of working with us is small and verifiable" },
+    "trust.licence": { sr: "Dozvole KHOV RS", en: "SEC RS licences" },
+    "trust.fees": { sr: "Objavljen cjenovnik", en: "Published price list" },
+    "trust.rules": { sr: "Pravila poslovanja", en: "Business rules" },
+    "trust.contact": { sr: "Imenovani sagovornik", en: "A named contact" },
+    "trust.complaints": { sr: "Postupak po prigovorima", en: "Complaints procedure" },
+    "home.finalTitle": { sr: "Naredni korak je jednostavan i neobavezujući", en: "The next step is simple and without obligation" },
+    "home.finalSub": { sr: "Otvorite račun ili zakažite razgovor — javljamo se u jednom radnom danu.", en: "Open an account or book a call — we reply within one business day." },
+    "card.analiza": { sr: "Analiza · tržišni pregled", en: "Insight · market review" },
+    "card.webinar": { sr: "Webinar · uskoro", en: "Webinar · soon" },
+    "card.vodic": { sr: "Vodič · edukacija", en: "Guide · learning" },
+    "card.read": { sr: "Pročitajte", en: "Read" },
+    "card.signup": { sr: "Prijavite se", en: "Sign up" },
+    "card.download": { sr: "Preuzmite", en: "Download" }
+  },
+
+  /* --- EN proza po stranici (ista struktura kao window.EB_CONTENT) --- */
+  content: {
+    pocetna: {
+      heroTag: "Licensed capital-markets firm · Banja Luka",
+      heroTitleA: "Capital markets,", heroTitleB: "from your first order to a bond issue",
+      heroSub: "The domestic exchange and world markets, investment advice and corporate services — with a published price list and a named point of contact.",
+      heroProofs: [
+        { k: "20+", v: "years in business" },
+        { k: "SEC RS", v: "licensed firm" },
+        { k: "Local + global", v: "markets in one place" }
+      ],
+      zasto: [
+        { t: "A full set of licences under one roof", d: "Broker-dealer operations, issue-agent services, investment advice and custody — a combination held by few firms in Republika Srpska." },
+        { t: "Domestic and world markets in one place", d: "The Banja Luka Stock Exchange, Republika Srpska bonds, global equities, ETFs and futures — through one local partner." },
+        { t: "A named person and a published response time", d: "Every client knows who is responsible for their relationship and by when they get an answer. We reply within one business day." }
+      ]
+    },
+
+    "za-kompanije": {
+      what: "Capital does not have to come from a loan alone. Eurobroker helps companies raise capital through the capital markets — by issuing bonds or shares — and guides them through the entire process.",
+      whoFor: ["Companies that need growth capital", "Owners seeking an alternative to bank debt", "Firms considering a listing"]
+    },
+    "finansiranje-putem-trzista-kapitala": {
+      what: "A comparison of two routes to capital: bank debt and capital-markets financing. No disparaging of banks — just the facts, so an owner can compare.",
+      whoFor: ["Owners and CFOs", "Companies facing a larger investment", "Not for micro liquidity needs"],
+      problem: "Many firms know only the loan, because no local partner ever told them about an issue. This page explains the options before they are needed.",
+      steps: [
+        { t: "Comparison", d: "Loan vs. bond — cost, term, obligations, flexibility." },
+        { t: "Readiness assessment", d: "A short questionnaire shows whether you are a candidate." },
+        { t: "Initial conversation", d: "No obligation; we agree the next steps." }
+      ],
+      roles: { eurobroker: "Explains the options and runs the process.", klijent: "Provides data on the need and timing.", treci: "Exchange, Commission, registry (in later phases)." },
+      risks: ["An issue is not pre-approved — feasibility is assessed.", "Market conditions affect the cost of capital.", "The process requires preparation and time."]
+    },
+    "emisija-obveznica": {
+      what: "As an issue agent, Eurobroker runs a bond issue from readiness assessment to listing. Your company raises capital from investors, with clearly defined obligations.",
+      whoFor: ["Medium and larger companies", "Firms with stable cash flow", "Not for firms without orderly financial statements"],
+      problem: "“An issue” sounds complex and out of reach. We break it into phases with realistic deadlines, so the owner knows what lies ahead.",
+      steps: [
+        { t: "Readiness assessment", d: "Ten questions and an initial analysis." },
+        { t: "Structuring", d: "Size, maturity, coupon and terms of the issue." },
+        { t: "Documentation and approvals", d: "Prospectus preparation and the procedure before the authorities." },
+        { t: "Placement and listing", d: "The issue is offered to investors and listed." }
+      ],
+      roles: { eurobroker: "Issue agent: structures, prepares and runs the procedure.", klijent: "Issuer: makes decisions and provides data.", treci: "SEC of Republika Srpska, the exchange, the Central Registry." },
+      risks: ["Success depends on market conditions and investor interest.", "The procedure is subject to regulatory deadlines.", "This page describes the service, not a specific issue, and is not a call to subscribe."]
+    },
+    "emisija-akcija-i-dokapitalizacija": {
+      what: "A recapitalisation means raising equity capital by issuing new shares — an alternative to further borrowing. Eurobroker runs the procedure as it does for bonds.",
+      whoFor: ["Companies wanting capital without new debt", "Firms facing ownership restructuring", "Not for firms not ready for new owners"],
+      problem: "Owners do not always realise capital can be raised without a loan. A recapitalisation makes that possible, with a change in the ownership structure.",
+      steps: [
+        { t: "Options analysis", d: "Whether equity is the right route." },
+        { t: "Structuring the share issue", d: "Volume, price, rights attached to the shares." },
+        { t: "Procedure and listing", d: "Approvals, placement and registration." }
+      ],
+      roles: { eurobroker: "Runs the share-issue procedure.", klijent: "Issuer: decides on the ownership structure.", treci: "Commission, exchange, registry." },
+      risks: ["New owners change the governance structure.", "Price depends on market conditions.", "The same regulatory rules apply as for a bond issue."]
+    },
+    "priprema-za-trziste-kapitala": {
+      what: "If a company is not yet ready for an issue, we prepare it: tidying reporting, corporate governance and documentation, with a future issue in mind.",
+      whoFor: ["Companies with potential but no orderly base", "Firms planning an issue in 1–2 years"],
+      problem: "“What are we missing?” is the owner's most common question. Rather than turn you away, we prepare the company for the moment an issue becomes feasible.",
+      steps: [
+        { t: "Diagnostics", d: "Where you stand against market requirements." },
+        { t: "Preparation plan", d: "Concrete actions and their sequence." },
+        { t: "Follow-through", d: "Until readiness for an issue." }
+      ],
+      roles: { eurobroker: "Advises and monitors the preparation (ancillary services within the licence).", klijent: "Carries out the recommended actions.", treci: "Auditor and legal adviser, as needed." },
+      risks: ["Preparation does not guarantee a later successful issue.", "It requires management's involvement.", "Timelines depend on the state of the company."]
+    },
+    "institucionalni-klijenti": {
+      what: "A programme tailored to institutional investors — with clear service levels, reporting and escalation. Concrete obligations are set out in a formal proposal.",
+      whoFor: ["Pension and investment funds", "Insurance companies", "Larger corporate portfolios"]
+    },
+    "institucionalni-program": {
+      what: "The institutional programme is a service tailored to institutional investors — with clear service levels, reporting and escalation. You receive concrete obligations in a formal proposal.",
+      whoFor: ["Pension and investment funds", "Insurance companies", "Larger corporate portfolios"],
+      problem: "An institution must see, in one click, that a programme exists for it — serious, without marketing tone, with measurable obligations.",
+      steps: [
+        { t: "Request for proposal", d: "You define needs and scope." },
+        { t: "Formal proposal", d: "Service level, deadlines, reporting, escalation." },
+        { t: "Contracting", d: "Establishing the relationship and reporting cycle." }
+      ],
+      roles: { eurobroker: "Executes, reports and escalates per the agreed level.", klijent: "Defines mandates and limits.", treci: "Exchange, registry, depositary." },
+      risks: ["Market risk on executed orders.", "Deadlines are published only when operationally feasible.", "Terms are set out in the formal proposal."]
+    },
+    "blok-transakcije": {
+      what: "A block trade executes a large order while controlling its price impact. It is intended for institutional and large clients, within the existing licence.",
+      whoFor: ["Institutional investors", "Holders of large share blocks"],
+      problem: "A large order placed naively moves the price against the client. Block execution controls that.",
+      steps: [
+        { t: "Order analysis", d: "Size, liquidity, time frame." },
+        { t: "Execution strategy", d: "How to limit price impact." },
+        { t: "Execution and reporting", d: "Realisation and confirmation." }
+      ],
+      roles: { eurobroker: "Structures and executes the block order.", klijent: "Defines the objective and limits.", treci: "Exchange and registry." },
+      risks: ["Market risk during execution.", "Outcome depends on liquidity.", "Only within the existing licence."]
+    },
+    "investiranje-iz-dijaspore": {
+      what: "You can invest from abroad through Eurobroker as a local licensed firm — global equities and ETFs, Republika Srpska bonds, or the domestic exchange — with documentation and a remote onboarding conversation.",
+      whoFor: ["Members of the diaspora and returnees", "Non-residents with ties to Republika Srpska", "Those who want a local, accountable point of contact"],
+      problem: "From abroad, the process seems inaccessible: which documents, how to sign, how taxes work. We lay it out step by step and handle as much as possible remotely.",
+      steps: [
+        { t: "Send an inquiry", d: "We reply within one business day with the exact document list." },
+        { t: "Documentation", d: "Identification and forms; as much as possible handled remotely." },
+        { t: "Account and first order", d: "Once the account is active, you place your first order with broker support." }
+      ],
+      roles: { eurobroker: "Guides onboarding, intermediates and reports.", klijent: "Provides documents and makes the decision.", treci: "Exchange, registry, and a foreign execution partner where relevant." },
+      risks: ["Currency risk when investing in a foreign currency.", "Tax obligations depend on your residence — we give general information, not tax advice.", "Market risk of the chosen instruments."]
+    },
+    "o-nama": {
+      what: "Eurobroker is a joint-stock company from Banja Luka, licensed for capital-markets operations. For more than two decades it has intermediated between investors and the markets — domestic and global.",
+      vrijednosti: [
+        { t: "Verifiability", d: "We publish only what can be confirmed — licences, price list, procedures." },
+        { t: "Accountability", d: "Every client has a named contact and a published response time." },
+        { t: "Clarity", d: "Price, process and risk are stated before you sign anything." }
+      ]
+    },
+    "regulatorni-status": {
+      what: "Eurobroker operates as a licensed capital-markets firm supervised by the Securities and Exchange Commission of Republika Srpska. Here, in one place, are the licences and basic identification details.",
+      napomena: "Exact licence numbers, validity dates and identification details are confirmed by the compliance function before publication. Fields marked “to be entered” are filled with verified data."
+    },
+    "otvorite-racun": {
+      what: "Opening an account is the first step to trading. In Phase 1 the process is combined (form + signature), aiming for at most two business days.",
+      steps: [
+        { t: "Send a request", d: "Fill in a short form; we reply within one business day." },
+        { t: "Provide documentation", d: "You receive the exact document list in advance." },
+        { t: "Account activation", d: "You sign the agreement; the account is ready for an order." }
+      ]
+    },
+
+    investiranje: {
+      what: "Investing with Eurobroker means access to the domestic and world markets through a local licensed intermediary. You choose how much support you want — from executing your own orders to a contracted advisory relationship.",
+      whoFor: ["Savers who want more than a deposit", "Experienced investors for global markets", "Clients from the diaspora", "Larger-portfolio owners seeking advice"]
+    },
+    "domace-trziste": {
+      what: "Domestic brokerage means Eurobroker buys and sells securities on the Banja Luka Stock Exchange on your behalf. You sign the order; the firm handles execution and settlement.",
+      whoFor: ["Owners of shares in local companies", "Savers entering the market for the first time", "Heirs of securities", "Not for those seeking daily speculative trading without an intermediary"],
+      problem: "The domestic market seems closed and illiquid. It is unclear what may be bought, what it costs, how it is paid for, and who is responsible. Eurobroker explains that path step by step.",
+      steps: [
+        { t: "Opening an account", d: "You sign an agreement and power of attorney; you get a named broker. Timeline: 1–2 business days." },
+        { t: "Order", d: "You place a buy or sell order; the broker explains price and terms." },
+        { t: "Execution on the exchange", d: "The firm executes the order on the Banja Luka Stock Exchange." },
+        { t: "Settlement and report", d: "You receive execution confirmation and your account balance." }
+      ],
+      roles: { eurobroker: "Receives and executes the order, keeps records, reports.", klijent: "Makes the decision and signs the order.", treci: "Banja Luka Stock Exchange (execution) and the Central Registry (settlement and ownership records)." },
+      risks: ["A security's price can rise and fall.", "The domestic market can be illiquid — a sale is not always immediate.", "Past returns do not guarantee future ones."]
+    },
+    "svjetska-trzista": {
+      what: "Through Eurobroker, as a local licensed firm, you buy global equities, ETFs and futures — without opening an account with an unfamiliar foreign app.",
+      whoFor: ["Investors seeking global diversification", "Clients from the diaspora", "Higher-net-worth private clients", "Not for those expecting a guaranteed return"],
+      problem: "Global markets seem out of reach from BiH, and foreign platforms raise questions of trust, language, tax and support. Eurobroker is a local, licensed partner for the same access.",
+      steps: [
+        { t: "Opening a world-markets account", d: "You provide documentation; you get the list of steps in advance." },
+        { t: "Funding and conversion", d: "Funds are prepared for trading per the applicable terms." },
+        { t: "Order", d: "You buy global equities, ETFs or futures with broker support." },
+        { t: "Reporting", d: "You get a sample report and regular balance overviews." }
+      ],
+      roles: { eurobroker: "Intermediates, executes orders and reports.", klijent: "Makes the investment decision.", treci: "A foreign execution partner and depositary (named only if the contract allows)." },
+      risks: ["Currency risk when investing in a foreign currency.", "Market risk of global instruments.", "Tax obligations depend on your situation — we give general information, not tax advice."]
+    },
+    "obveznice-rs": {
+      what: "Republika Srpska bonds are a debt instrument: you lend funds to the issuer and, in return, receive interest and repayment of principal at maturity. They are bought through a broker, not at a bank.",
+      whoFor: ["Savers wanting a more understandable first step than shares", "More conservative investors", "Not for those seeking quick resale at a high return"],
+      problem: "Many do not know that RS bonds can be bought as a citizen at all, or how. Eurobroker explains the available series, maturity and procedure.",
+      steps: [
+        { t: "Information on series", d: "We check available bonds and terms." },
+        { t: "Opening an account", d: "A standard procedure; the document list in advance." },
+        { t: "Purchase", d: "The order is executed; you receive confirmation." }
+      ],
+      roles: { eurobroker: "Informs, intermediates and executes the purchase.", klijent: "Decides on the purchase.", treci: "The exchange and the Central Registry." },
+      risks: ["There is not a guaranteed return in every situation.", "Risk of price change before maturity.", "Read the risk warning before deciding."]
+    },
+    "investiciono-savjetovanje": {
+      what: "Investment advice is a contracted service: you receive a written recommendation based on your goal and risk profile. It is not a casual conversation alongside order execution.",
+      whoFor: ["Higher-net-worth private clients", "Larger-portfolio owners", "Not for those seeking a “sure tip” without a contract and risk profile"],
+      problem: "Order execution and advice are often confused. With advice, responsibility is clearly defined and documented — you know what the recommendation is based on.",
+      steps: [
+        { t: "Conversation and risk profile", d: "We establish your goal, horizon and attitude to risk." },
+        { t: "Portfolio review", d: "We analyse your current position." },
+        { t: "Written recommendation", d: "You receive a reasoned recommendation under contract." }
+      ],
+      roles: { eurobroker: "Provides a written recommendation under contract and keeps a register of recommendations.", klijent: "Provides data and makes the final decision.", treci: "—" },
+      risks: ["A recommendation does not guarantee a return.", "The outcome depends on market movements.", "Advice applies within the contracted relationship and risk profile."],
+      napomenaCijena: "Prices and package names are published only after the conflict-of-interest policy, the register of recommendations and the price list are adopted. Until then, only a conversation is possible."
+    },
+    kontakt: {
+      what: "One named person and a published response time. Tell us what you need — we reply within one business day."
+    },
+    partneri: {
+      what: "Referrals are our strongest channel of growth. Here we formalise cooperation with partners — banks, accountants, lawyers and intermediaries — with materials and a clear referral model.",
+      whoFor: ["Accounting and consulting firms", "Law offices", "Business intermediaries and referrers"]
+    },
+    dokumenti: {
+      what: "In one place: business rules, general terms, forms, client information, the risk warning, the complaints procedure, data protection and conflict of interest. Every document carries a version and a date.",
+      lista: [
+        "Business rules and general terms",
+        "Forms to download (order, agreement, power of attorney)",
+        "Client information",
+        "Risk warning",
+        "Complaints procedure",
+        "Personal data protection",
+        "Conflict-of-interest policy"
+      ]
+    }
+  },
+
+  /* EN naslovi stranica (za navigaciju, breadcrumb, kartice) */
+  titles: {
+    "investiranje": "Investing",
+    "domace-trziste": "Domestic market",
+    "svjetska-trzista": "World markets",
+    "obveznice-rs": "Republika Srpska bonds",
+    "investiciono-savjetovanje": "Investment advice",
+    "za-kompanije": "For companies",
+    "finansiranje-putem-trzista-kapitala": "Capital-markets financing",
+    "emisija-obveznica": "Bond issue",
+    "emisija-akcija-i-dokapitalizacija": "Share issue & recapitalisation",
+    "priprema-za-trziste-kapitala": "Preparing for the capital markets",
+    "procjena-spremnosti": "Issue-readiness assessment",
+    "institucionalni-klijenti": "Institutional clients",
+    "institucionalni-program": "Institutional programme",
+    "blok-transakcije": "Block trades",
+    "analize": "Insights & markets",
+    "edukacija": "Learning centre",
+    "o-nama": "About us",
+    "regulatorni-status": "Regulatory status & licences",
+    "cjenovnik": "Price list",
+    "otvorite-racun": "Open an account",
+    "kontakt": "Contact",
+    "partneri": "Partnerships",
+    "dokumenti": "Documents & forms",
+    "investiranje-iz-dijaspore": "Investing from the diaspora"
+  },
+  /* EN glavne poruke (message) za hero na stranicama u EN obuhvatu */
+  messages: {
+    "za-kompanije": "Capital does not have to come from a loan alone",
+    "finansiranje-putem-trzista-kapitala": "Loan and capital markets — a factual comparison",
+    "emisija-obveznica": "We run the issue from readiness assessment to listing",
+    "emisija-akcija-i-dokapitalizacija": "Recapitalisation as an alternative to debt",
+    "priprema-za-trziste-kapitala": "We prepare your company for a future issue",
+    "procjena-spremnosti": "Ten questions and three minutes",
+    "institucionalni-klijenti": "A programme tailored to institutional needs",
+    "institucionalni-program": "Three service levels with clear obligations",
+    "blok-transakcije": "Large orders while controlling price impact",
+    "o-nama": "A licensed capital-markets firm from Banja Luka",
+    "regulatorni-status": "Licences and the supervisory authority in one place",
+    "otvorite-racun": "Three steps to an active account",
+    "kontakt": "A named person and a response time",
+    "investiranje": "Invest on your own or with advice",
+    "domace-trziste": "An order on the Banja Luka exchange, with a broker who explains",
+    "svjetska-trzista": "Global equities, ETFs and futures through a local licensed firm",
+    "obveznice-rs": "Bonds are bought through a broker, not at a bank",
+    "investiciono-savjetovanje": "A written recommendation based on your goal and risk",
+    "analize": "A market overview and commentary — without individual advice",
+    "edukacija": "First steps, guides and webinars",
+    "cjenovnik": "A published price list, applied from its effective date",
+    "dokumenti": "Every document with a version and a date",
+    "partneri": "A formalised partner channel"
+  },
+  goals: {
+    "za-kompanije": "Turn “we need money” into an initial conversation.",
+    "emisija-obveznica": "A clear path for companies raising capital.",
+    "institucionalni-klijenti": "A serious institutional programme, without marketing tone.",
+    "otvorite-racun": "The primary conversion — start in one business day.",
+    "kontakt": "We reply within one business day.",
+    "investiranje": "Separating visitors by market and level of support.",
+    "domace-trziste": "Retaining and reactivating the existing base.",
+    "svjetska-trzista": "New accounts and access to global markets.",
+    "obveznice-rs": "An entry point through the most understandable instrument.",
+    "investiciono-savjetovanje": "Turning knowledge into a contracted service.",
+    "analize": "Proof of expertise that keeps refreshing.",
+    "edukacija": "Education as an acquisition channel.",
+    "cjenovnik": "Price transparency as a trust signal.",
+    "dokumenti": "Client support and lighter broker workload.",
+    "partneri": "A channel for partners and the group."
+  },
+
+  /* EN meta za sintetičku dijaspora stranicu i huben naslov */
+  pagemeta: {
+    "investiranje-iz-dijaspore": {
+      sr: { title: "Investiranje iz dijaspore", type: "Edukacija", message: "Ulažite iz inostranstva, uz domaćeg sagovornika", goal: "Jasna dokumentacija i postupak na daljinu za klijente iz dijaspore." },
+      en: { title: "Investing from the diaspora", type: "Guide", message: "Invest from abroad, with a local point of contact", goal: "Clear documentation and a remote process for clients abroad." }
+    }
+  }
+};
