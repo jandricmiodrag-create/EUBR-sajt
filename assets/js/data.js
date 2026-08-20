@@ -51,6 +51,14 @@ EB._valid = function (key, rows) {
   return want ? Object.prototype.hasOwnProperty.call(rows[0], want) : true;
 };
 
+/* fetch sa tajmautom — spor/neuspio Google zahtjev brzo pada na ugrađenu kopiju */
+EB._fetchT = function (url, opts, ms) {
+  if (typeof AbortController === "undefined") return fetch(url, opts);
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), ms || 4000);
+  return fetch(url, Object.assign({ signal: ctrl.signal }, opts)).finally(() => clearTimeout(t));
+};
+
 EB.loadAll = async function () {
   const cfg = window.EB_SHEETS_CONFIG || {};
   const base = "data/"; // relativno u odnosu na index.html
@@ -58,7 +66,7 @@ EB.loadAll = async function () {
     const c = cfg[key];
     try {
       if (c.source === "gsheet" && c.url) {
-        const res = await fetch(c.url, { cache: "no-store", redirect: "follow" });
+        const res = await EB._fetchT(c.url, { cache: "no-store", redirect: "follow" }, 4000);
         const txt = await res.text();
         const rows = EB.parseCSV(txt);
         if (res.ok && EB._valid(key, rows)) { EB.data[key] = rows; EB._source[key] = "gsheet"; return; }

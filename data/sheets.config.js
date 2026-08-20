@@ -24,12 +24,12 @@
      │  Sajt će od tada čitati žive podatke iz Google Sheets-a.             │
      │  Dok je LIVE = false, koristi se ugrađena kopija (bez mrežnih poziva).│
      └──────────────────────────────────────────────────────────────────────┘ */
-  var LIVE = false;
+  var LIVE = true;
 
   var csv = function (id) { return "https://docs.google.com/spreadsheets/d/" + id + "/gviz/tq?tqx=out:csv"; };
   var src = LIVE ? "gsheet" : "embedded";
   window.EB_SHEETS_CONFIG = {
-    stranice:      { source: src, file: "gsheet/stranice.csv",       url: csv("1lGq3foCR3ajfuhbx7CwIF4ODV0_ZkC_kfhLYK2M6k58") },
+    stranice:      { source: src, file: "gsheet/stranice.csv",       url: csv("1lOr5zOBzT71YkqBHHgvOJME4qlWTCdDfa-2gtjcOAv0") },
     cjenovnik:     { source: src, file: "gsheet/cjenovnik.csv",      url: csv("1jybJiqU2b47cktaH6PqejiwoewS9M5TkMO5Ke7ARYjE") },
     urednickiPlan: { source: src, file: "gsheet/urednicki-plan.csv", url: csv("1lVitdl9uvjID1VghL9O600guHsyFE26CWnOyI6yTHMs") },
     segmenti:      { source: src, file: "gsheet/segmenti.csv",       url: csv("1dHRDSJCgYBgxiAZ4erOTlBnMCxsCE37_YJlDqDwGYv4") },
@@ -46,7 +46,7 @@
   // Direktni linkovi na tabele (za uređivanje):
   window.EB_SHEETS_LINKS = {
     folder:        "https://drive.google.com/drive/folders/1a85KKlnBy7vfiauHk0_PFRH_mzdAWfar",
-    stranice:      "https://docs.google.com/spreadsheets/d/1lGq3foCR3ajfuhbx7CwIF4ODV0_ZkC_kfhLYK2M6k58/edit",
+    stranice:      "https://docs.google.com/spreadsheets/d/1lOr5zOBzT71YkqBHHgvOJME4qlWTCdDfa-2gtjcOAv0/edit",
     cjenovnik:     "https://docs.google.com/spreadsheets/d/1jybJiqU2b47cktaH6PqejiwoewS9M5TkMO5Ke7ARYjE/edit",
     urednickiPlan: "https://docs.google.com/spreadsheets/d/1lVitdl9uvjID1VghL9O600guHsyFE26CWnOyI6yTHMs/edit",
     segmenti:      "https://docs.google.com/spreadsheets/d/1dHRDSJCgYBgxiAZ4erOTlBnMCxsCE37_YJlDqDwGYv4/edit",
