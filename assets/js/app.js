@@ -419,8 +419,9 @@
   /* ---------------- PAGE HERO ---------------- */
   function pagehero(p) {
     const parent = p.parent ? EB.page(p.parent) : null;
+    const section = (p.parent || p.slug || "").replace(/[^a-z-]/g, "");
     const crumb = `<div class="crumb"><a href="#/">${T("crumb.home")}</a> <span>/</span> ${parent ? `<a href="#/${parent.slug}">${esc(pTitle(parent))}</a> <span>/</span> ` : ""}${esc(pTitle(p))}</div>`;
-    return `<section class="pagehero"><div class="wrap">
+    return `<section class="pagehero pagehero--${section}"><div class="wrap">
       ${crumb}
       <span class="tag">${esc(p.type || "Usluga")}</span>
       <h1>${esc(pMsg(p))}</h1>

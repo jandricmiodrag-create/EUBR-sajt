@@ -234,8 +234,16 @@ a svg, button svg, .link-arrow svg, .mq-val svg, .chip svg, .svc__no svg { width
 .reveal.in { opacity: 1; transform: none; }
 
 /* ---------- Breadcrumb / inner hero ---------- */
-.pagehero { background: linear-gradient(160deg, #0a2540, #133c64); color: #eaf1f8; padding: 54px 0 46px; position: relative; overflow: hidden; }
-.pagehero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(600px 300px at 88% 0%, rgba(200,162,76,.18), transparent 65%); }
+.pagehero { --glow: rgba(200,162,76,.20); color: #eaf1f8; padding: 54px 0 46px; position: relative; overflow: hidden; background-color: #0a2540;
+  background-image: linear-gradient(102deg, rgba(8,29,51,.95) 0%, rgba(10,37,64,.86) 50%, rgba(18,58,94,.64) 100%), url("../img/hero-map.png");
+  background-size: cover, cover; background-position: center, center right; background-repeat: no-repeat, no-repeat; }
+.pagehero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(620px 320px at 86% 0%, var(--glow), transparent 66%); pointer-events: none; }
+.pagehero--investiranje { --glow: rgba(14,138,125,.30); }
+.pagehero--za-kompanije { --glow: rgba(200,162,76,.30); }
+.pagehero--institucionalni-klijenti { --glow: rgba(90,140,200,.28); }
+.pagehero--analize { --glow: rgba(126,116,224,.26); }
+.pagehero--edukacija { --glow: rgba(70,184,146,.26); }
+.pagehero--o-nama { --glow: rgba(200,162,76,.24); }
 .crumb { display: flex; gap: 8px; font-size: .84rem; color: #9fb4c9; margin-bottom: 16px; position: relative; flex-wrap: wrap; }
 .crumb a:hover { color: #fff; }
 .crumb span { color: #6f88a1; }
