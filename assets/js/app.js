@@ -95,7 +95,7 @@
       </div>
     </div></div>
     <header class="header" id="hdr"><div class="wrap">
-      <a class="brand" href="#/"><img class="brand__logo" src="assets/img/logo.png" alt="Eurobroker" width="122" height="67"></a>
+      <a class="brand" href="#/">${brandMark()}<span class="brand__name">EURO<b>BROKER</b></span></a>
       <nav class="nav" id="mainnav">${links}</nav>
       <div class="header__cta">
         <a class="btn btn--primary btn--sm" href="#/otvorite-racun">${T("btn.otvoriteRacun")}</a>
@@ -105,21 +105,34 @@
     </div></header>
     <div class="drawer" id="drawer"><div class="drawer__panel">
       <button class="drawer__close" id="drawerClose" aria-label="Zatvori">✕</button>
-      <div style="margin:8px 0 20px"><img class="brand__logo" src="assets/img/logo.png" alt="Eurobroker" width="122" height="67"></div>
+      <div class="brand" style="margin:8px 0 20px">${brandMark()}<span class="brand__name">EURO<b>BROKER</b></span></div>
       ${nav.map(p => `<a href="#/${p.slug}">${esc(navLabel(p))}</a>`).join("")}
       <a href="#/cjenovnik">${T("u.cjenovnik")}</a><a href="#/dokumenti">${T("u.dokumenti")}</a><a href="#/kontakt">${T("u.kontakt")}</a>
       <a class="btn btn--primary btn--block" style="margin-top:18px" href="#/otvorite-racun">${T("btn.otvoriteRacun")}</a>
     </div></div>`;
   }
   function brandMark() {
-    return `<svg class="brand__mark" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="11" fill="#0a2540"/><path d="M13 30l6-7 5 4 6-9" stroke="#c8a24c" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="36" cy="18" r="2.4" fill="#0e8a7d"/><path d="M13 35h22" stroke="#2b4d70" stroke-width="2" stroke-linecap="round"/></svg>`;
+    return `<svg class="brand__mark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Eurobroker">
+      <defs><radialGradient id="ebGlobe" cx="36%" cy="30%" r="78%">
+        <stop offset="0%" stop-color="#5aa9e6"/><stop offset="55%" stop-color="#2172b4"/><stop offset="100%" stop-color="#0c3a63"/>
+      </radialGradient></defs>
+      <circle cx="24" cy="24" r="21.5" fill="url(#ebGlobe)"/>
+      <g fill="none" stroke="#d6ecfb" stroke-width="1.1" opacity=".8">
+        <ellipse cx="24" cy="24" rx="8" ry="21.5"/>
+        <ellipse cx="24" cy="24" rx="15" ry="21.5"/>
+        <line x1="3" y1="24" x2="45" y2="24"/>
+        <line x1="6" y1="14.5" x2="42" y2="14.5"/>
+        <line x1="6" y1="33.5" x2="42" y2="33.5"/>
+      </g>
+      <circle cx="24" cy="24" r="21.5" fill="none" stroke="#0a2540" stroke-width="1.4"/>
+    </svg>`;
   }
   function renderFooter() {
     const d = EB.drustvo();
     return `<footer class="footer"><div class="wrap">
       <div class="footer__top">
         <div class="footer__brand">
-          <a class="brand" href="#/"><img class="brand__logo" src="assets/img/logo.png" alt="Eurobroker" width="122" height="67"></a>
+          <a class="brand" href="#/">${brandMark()}<span class="brand__name">EURO<b>BROKER</b></span></a>
           <p>${esc(d.puni_naziv || "Eurobroker a.d. Banja Luka")} — ${T("foot.tagline")}</p>
         </div>
         <div><h4>${T("foot.usluge")}</h4><ul>
