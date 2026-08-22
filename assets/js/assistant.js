@@ -34,6 +34,21 @@
   var pick = function (a) { return a[Math.floor(Math.random() * a.length)]; };
   var sentence = function (txt, max) { if (txt.length <= max) return txt; var c = txt.slice(0, max); var p = c.lastIndexOf(". "); return p > 60 ? c.slice(0, p + 1) : c.trim() + "…"; };
 
+  /* ---------- lijeno učitavanje baze znanja ---------- */
+  var kbLoading = false, kbQueue = [];
+  function ensureKB(cb) {
+    if (window.EB_KB) return cb();
+    kbQueue.push(cb);
+    if (kbLoading) return;
+    kbLoading = true;
+    var s = document.createElement("script");
+    s.src = "data/kb-data.js";
+    s.onload = flushKB;
+    s.onerror = function () { window.EB_KB = window.EB_KB || []; flushKB(); };
+    document.head.appendChild(s);
+  }
+  function flushKB() { kbLoading = false; var q = kbQueue.slice(); kbQueue = []; index = null; q.forEach(function (f) { f(); }); }
+
   /* ---------- indeks ---------- */
   function buildIndex() {
     var idx = [];
@@ -102,7 +117,7 @@
     opened = !opened;
     panel.classList.toggle("open", opened);
     document.getElementById("ebAsstBtn").classList.toggle("hidden", opened);
-    if (opened) setTimeout(function () { input && input.focus(); }, 60);
+    if (opened) { ensureKB(function () {}); setTimeout(function () { input && input.focus(); }, 60); }
   }
   function bubble(who, html) {
     var b = el('<div class="ebasst-b ebasst-' + who + '">' + html + '</div>');
@@ -142,6 +157,9 @@
     q = (q || "").trim(); if (!q) return;
     input.value = "";
     bubble("user", esc(q));
+    ensureKB(function () { runAsk(q); });
+  }
+  function runAsk(q) {
     if (!index) index = buildIndex();
     var results = search(q, index);
     if (window.EB && EB.track) EB.track("assistant_query", { q: q.slice(0, 120), hits: results.length });

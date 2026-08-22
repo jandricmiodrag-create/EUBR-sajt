@@ -21,25 +21,41 @@ def parse(path):
                 if k == "title": title = v
                 elif k == "tags": tags = [t.strip() for t in v.split(",") if t.strip()]
                 elif k == "lang": lang = v or "sr"
+    # Podijeli tijelo na sekcije po naslovima (## ...); svaki naslov -> nova sekcija.
+    # Time se dugi dokumenti (npr. zakon po članovima) cijepaju na pretražive dijelove.
+    sections = []          # (naslov_sekcije, tekst)
+    cur_head, cur_lines = "", []
+    def flush():
+        txt = "\n".join(cur_lines).strip()
+        if txt:
+            sections.append((cur_head, txt))
+    ART = re.compile(r"^\s*Član\s+[0-9][\w.\-]*\.?\s*$")   # npr. "Član 13", "Član 12d"
+    for line in body.split("\n"):
+        hm = re.match(r"^#{1,6}\s+(.*)$", line)
+        if hm:
+            flush()
+            cur_head, cur_lines = hm.group(1).strip(), []
+        elif ART.match(line):
+            flush()
+            cur_head, cur_lines = line.strip(), []
+        else:
+            cur_lines.append(line)
+    flush()
+
     entries = []
-    sub = ""
-    for block in re.split(r"\n\s*\n", body):
-        block = block.strip()
-        if not block:
-            continue
-        hm = re.match(r"^#{1,6}\s+(.*)$", block)
-        if hm and "\n" not in block:
-            sub = hm.group(1).strip()
-            continue
-        # skloni eventualne markdown oznake naslova unutar bloka
-        text = re.sub(r"^#{1,6}\s+", "", block).strip()
-        text = re.sub(r"\s+", " ", text)
-        full_title = title + (" — " + sub if sub else "")
-        entries.append({
-            "title": full_title, "doc": title, "section": sub,
-            "tags": tags, "lang": lang, "text": text,
-            "source": os.path.basename(path)
-        })
+    for head, txt in sections:
+        # unutar sekcije dodatno razdvoji po praznim redovima (pasusi)
+        parts = [p.strip() for p in re.split(r"\n\s*\n", txt) if p.strip()] or [txt]
+        for p in parts:
+            text = re.sub(r"\s+", " ", re.sub(r"^#{1,6}\s+", "", p)).strip()
+            if len(text) < 15:
+                continue
+            full_title = title + (" — " + head if head else "")
+            entries.append({
+                "title": full_title, "doc": title, "section": head,
+                "tags": tags, "lang": lang, "text": text,
+                "source": os.path.basename(path)
+            })
     return entries
 
 def main():
