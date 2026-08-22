@@ -23,6 +23,8 @@
     return sr;
   };
   const isEN = () => EB.lang === "en";
+  // hero naslov iz tabele: dio omeđen *zvjezdicama* dobija zlatni naglasak
+  const heroAccent = (s) => esc(s || "").replace(/\*([^*]+)\*/g, '<span class="accent">$1</span>');
   const i18 = (bucket, slug) => (isEN() && window.EB_I18N && EB_I18N[bucket] && EB_I18N[bucket][slug]) || null;
   const pTitle = (p) => p ? (i18("titles", p.slug) || p.title) : "";
   const pMsg = (p) => p ? (i18("messages", p.slug) || p.message || p.title) : "";
@@ -208,7 +210,8 @@
       </div>`;
 
     const heroTag = en ? c.heroTag : "Licencirana kuća tržišta kapitala · Banja Luka";
-    const heroTitle = en ? `${esc(c.heroTitleA)} <span class="accent">${esc(c.heroTitleB)}</span>.` : `Svijet investicija <span class="accent">na jednom mjestu</span>`;
+    const pocMsg = (EB.page("pocetna") || {}).message || "Svijet investicija *na jednom mjestu*";
+    const heroTitle = en ? `${esc(c.heroTitleA)} <span class="accent">${esc(c.heroTitleB)}</span>.` : heroAccent(pocMsg);
     const heroSub = en ? c.heroSub : "Domaća berza i svjetska tržišta, investiciono savjetovanje i usluge za kompanije.";
 
     return `

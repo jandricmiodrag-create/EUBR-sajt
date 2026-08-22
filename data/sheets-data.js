@@ -14,7 +14,7 @@ window.EB_DATA = {
    "nav_order": "0",
    "segment": "A,B",
    "intent": "Ko je Eurobroker i da li rješava moj problem",
-   "message": "Tržište kapitala, od prvog naloga do emisije",
+   "message": "Svijet investicija na jednom mjestu",
    "goal": "Usmjeriti posjetioca u ispravan segmentni ulaz u 15 sekundi",
    "primary_cta": "Otvorite račun",
    "primary_cta_link": "otvorite-racun",
