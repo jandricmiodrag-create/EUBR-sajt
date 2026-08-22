@@ -24,6 +24,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Automatski regeneriši indeks baze znanja iz data/kb/*.md
+      # (tako je dovoljno dodati .md fajl preko GitHub-a — bez lokalnog build-a)
+      - name: Build knowledge base index
+        run: python3 data/build-kb.py
+
       # Sklopi čist _site (bez .git/.github); GitHub Pages servira 404.html
       # za nepoznate putanje — to je kopija index.html, pa ruter preuzme rutiranje.
       - name: Assemble site (+ base path + SPA 404 fallback)
