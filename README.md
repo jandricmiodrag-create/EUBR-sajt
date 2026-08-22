@@ -109,6 +109,12 @@ eurobroker.ba/
   [sitemap.xml](sitemap.xml) (26 stvarnih URL-ova iz plana).
 - **404** — nepoznate adrese daju pravu „stranica nije pronađena“ sa `noindex`.
 - **Vijesti** — dodata stranica (Faza 1 iz sitemapa), dostupna iz podnožja.
+- **AI asistent (baza znanja)** — plutajući chat (`assets/js/assistant.js`) koji
+  pretražuje bazu znanja iz **foldera `data/kb/`** (`.md` fajlovi → `data/build-kb.py`
+  → `data/kb-data.js`) + česta pitanja. Client-side, bez backenda/API ključa,
+  dvojezično, sa izvorom odgovora. Pripremljeno za LLM: `data/kb.config.js`
+  (`llmEndpoint`) — kad se doda backend, asistent daje generativne odgovore.
+  Uputstvo za punjenje: [data/kb/README.md](data/kb/README.md).
 
 > **Preostali SEO korak (opciono):** za potpunu indeksaciju svih putanja od strane
 > pretraživača preporučuje se **prerendering / SSR** (npr. statičko generisanje HTML-a
