@@ -209,10 +209,11 @@
         <div class="icard reveal"><div class="icard__top vodic">${T("card.vodic")}</div><div class="icard__body"><h3>${esc(m1.vodic || "Kako otvoriti brokerski račun")}</h3><p>${en ? "Step by step, for your first account." : "Korak po korak, za prvi račun."}</p><a class="link-arrow" href="#/edukacija">${T("card.download")} ${I.arrow}</a></div></div>
       </div>`;
 
-    const heroTag = en ? c.heroTag : "Licencirana kuća tržišta kapitala · Banja Luka";
-    const pocMsg = (EB.page("pocetna") || {}).message || "Svijet investicija *na jednom mjestu*";
-    const heroTitle = en ? `${esc(c.heroTitleA)} <span class="accent">${esc(c.heroTitleB)}</span>.` : heroAccent(pocMsg);
-    const heroSub = en ? c.heroSub : "Domaća berza i svjetska tržišta, investiciono savjetovanje i usluge za kompanije.";
+    const poc = EB.page("pocetna") || {};
+    const heroTag = en ? c.heroTag : (poc.eyebrow || "Licencirana kuća tržišta kapitala · Banja Luka");
+    const pocMsg = poc.message || "Svijet investicija *na jednom mjestu*";
+    const heroTitle = en ? `${esc(c.heroTitleA)} <span class="accent">${esc(c.heroTitleB)}</span>` : heroAccent(pocMsg);
+    const heroSub = en ? c.heroSub : (poc.subtitle || "Domaća berza i svjetska tržišta, investiciono savjetovanje i usluge za kompanije.");
 
     return `
     <section class="hero"><div class="hero__grid"></div><div class="wrap">

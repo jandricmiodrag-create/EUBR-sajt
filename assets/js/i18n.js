@@ -126,8 +126,8 @@ window.EB_I18N = {
   content: {
     pocetna: {
       heroTag: "Licensed capital-markets firm · Banja Luka",
-      heroTitleA: "Capital markets,", heroTitleB: "from your first order to a bond issue",
-      heroSub: "The domestic exchange and world markets, investment advice and corporate services — with a published price list and a named point of contact.",
+      heroTitleA: "The world of investing", heroTitleB: "in one place",
+      heroSub: "The domestic exchange and world markets, investment advice and corporate services.",
       heroProofs: [
         { k: "20+", v: "years in business" },
         { k: "SEC RS", v: "licensed firm" },

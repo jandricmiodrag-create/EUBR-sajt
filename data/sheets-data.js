@@ -22,10 +22,12 @@ window.EB_DATA = {
    "secondary_cta_link": "kontakt",
    "related": "investiranje,za-kompanije,institucionalni-klijenti,analize",
    "documents": "",
-   "seo": "1 - brendirani",
+   "seo": "",
    "compliance": "Upozorenje o riziku i identifikacioni podaci u podnožju",
    "kpi": "Udio ulazaka u segmentni tok",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "Licencirana kuća tržišta kapitala · Banja Luka",
+   "subtitle": "Domaća berza i svjetska tržišta, investiciono savjetovanje i usluge za kompanije."
   },
   {
    "id": "2",
@@ -40,17 +42,19 @@ window.EB_DATA = {
    "segment": "A,B",
    "intent": "Šta su moje opcije za ulaganje",
    "message": "Ulažete sami ili uz savjet",
-   "goal": "Razdvojiti posjetioce prema tržištu i nivou podrške",
+   "goal": "Izaberite tržište i nivo podrške",
    "primary_cta": "Otvorite račun",
    "primary_cta_link": "otvorite-racun",
    "secondary_cta": "Zakažite razgovor",
    "secondary_cta_link": "kontakt",
    "related": "domace-trziste,svjetska-trzista,obveznice-rs,investiciono-savjetovanje",
    "documents": "Vodič za početnike",
-   "seo": "2,5",
+   "seo": "",
    "compliance": "Bez tvrdnji o prinosu",
    "kpi": "Prelazak na uslužnu stranicu",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "3",
@@ -75,7 +79,9 @@ window.EB_DATA = {
    "seo": "2",
    "compliance": "Usklađenost sa Pravilima poslovanja i pravilima berze",
    "kpi": "Upiti; preuzimanja obrazaca",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "4",
@@ -100,7 +106,9 @@ window.EB_DATA = {
    "seo": "3",
    "compliance": "Naziv platforme samo ako je ugovorno dozvoljeno",
    "kpi": "Pokrenuti procesi; prva transakcija u 90 dana",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "5",
@@ -125,7 +133,9 @@ window.EB_DATA = {
    "seo": "5",
    "compliance": "Bez tvrdnji o zagarantovanom prinosu",
    "kpi": "Upiti; preuzimanja; prijave na webinar",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "6",
@@ -150,7 +160,9 @@ window.EB_DATA = {
    "seo": "4",
    "compliance": "Ne objavljuje se cijena prije usvajanja internih akata",
    "kpi": "Zahtjevi; sastanci; ugovoreni paketi",
-   "classification": "A (uslovno)"
+   "classification": "A (uslovno)",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "8",
@@ -165,17 +177,19 @@ window.EB_DATA = {
    "segment": "F",
    "intent": "Postoji li alternativa kreditu",
    "message": "Kapital ne mora doći samo iz kredita",
-   "goal": "Prevesti „treba nam novac\" u inicijalni razgovor",
+   "goal": "Od potrebe za kapitalom do rješenja na tržištu kapitala",
    "primary_cta": "Provjerite spremnost kompanije",
    "primary_cta_link": "procjena-spremnosti",
    "secondary_cta": "Zakažite inicijalni razgovor",
    "secondary_cta_link": "kontakt",
    "related": "emisija-obveznica,finansiranje-putem-trzista-kapitala",
    "documents": "Kontrolna lista „Deset pitanja\"",
-   "seo": "6,7",
+   "seo": "",
    "compliance": "Bez utiska da je emisija unaprijed odobrena",
    "kpi": "Popunjeni upitnici; sastanci",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "9",
@@ -189,7 +203,7 @@ window.EB_DATA = {
    "nav_order": "",
    "segment": "F",
    "intent": "Koje su opcije osim banke",
-   "message": "Kredit i tržište kapitala — činjenično poređenje",
+   "message": "Kredit i tržište kapitala - činjenično poređenje",
    "goal": "Uhvatiti kompaniju prije nego što zna za emisiju",
    "primary_cta": "Preuzmite vodič „Kredit ili obveznica\"",
    "primary_cta_link": "kontakt",
@@ -200,7 +214,9 @@ window.EB_DATA = {
    "seo": "7",
    "compliance": "Bez omalovažavanja bankarskih proizvoda",
    "kpi": "Preuzimanja; prelazak na uslužnu stranicu",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "10",
@@ -225,7 +241,9 @@ window.EB_DATA = {
    "seo": "6",
    "compliance": "Opisuje uslugu, ne pojedinačnu emisiju; nema poziva na upis",
    "kpi": "Upiti; prilike u registru",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "11",
@@ -250,7 +268,9 @@ window.EB_DATA = {
    "seo": "6",
    "compliance": "Ista pravila kao za emisiju obveznica",
    "kpi": "Upiti",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "12",
@@ -275,7 +295,9 @@ window.EB_DATA = {
    "seo": "7",
    "compliance": "Pomoćni poslovi u okviru dozvole",
    "kpi": "Upiti; prilike u registru",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "13",
@@ -297,10 +319,12 @@ window.EB_DATA = {
    "secondary_cta_link": "",
    "related": "emisija-obveznica,priprema-za-trziste-kapitala",
    "documents": "PDF sa rezultatom",
-   "seo": "6,7",
+   "seo": "",
    "compliance": "Rezultat je opšta orijentaciona procjena, ne savjet",
    "kpi": "Započeti i završeni upitnici",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "14",
@@ -315,7 +339,7 @@ window.EB_DATA = {
    "segment": "G",
    "intent": "Postoji li program za institucije",
    "message": "Program prilagođen institucionalnim zahtjevima",
-   "goal": "Kratko i ozbiljno potvrditi da postoji institucionalni program",
+   "goal": "Jasno definisane usluge, odgovornost i podrška za institucionalne klijente",
    "primary_cta": "Zatražite formalnu ponudu",
    "primary_cta_link": "kontakt",
    "secondary_cta": "Zakažite razgovor",
@@ -325,7 +349,9 @@ window.EB_DATA = {
    "seo": "8",
    "compliance": "Bez objavljenih rokova dok nisu izvodljivi",
    "kpi": "Zahtjevi za ponudu",
-   "classification": "A (uslovno)"
+   "classification": "A (uslovno)",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "15",
@@ -350,7 +376,9 @@ window.EB_DATA = {
    "seo": "8",
    "compliance": "Rokovi se objavljuju tek kada su operativno izvodljivi",
    "kpi": "Zahtjevi za ponudu",
-   "classification": "A (uslovno)"
+   "classification": "A (uslovno)",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "16",
@@ -375,7 +403,9 @@ window.EB_DATA = {
    "seo": "8",
    "compliance": "Samo u okviru postojeće dozvole",
    "kpi": "Upiti",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "17",
@@ -389,18 +419,20 @@ window.EB_DATA = {
    "nav_order": "4",
    "segment": "B,D,G",
    "intent": "Šta se dešava na tržištu",
-   "message": "Pregled tržišta i komentar, bez individualne preporuke",
-   "goal": "Dokazati stručnost koja se obnavlja",
+   "message": "Analize za bolje razumijevanje tržišta",
+   "goal": "Pratimo ključna kretanja i izdvajamo informacije važne investitorima.",
    "primary_cta": "Prijava na mjesečni pregled",
    "primary_cta_link": "kontakt",
    "secondary_cta": "",
    "secondary_cta_link": "",
    "related": "svjetska-trzista,edukacija",
    "documents": "",
-   "seo": "9,10",
+   "seo": "",
    "compliance": "Opšti tržišni pregled; ne predstavlja individualnu preporuku",
    "kpi": "Prijave; posjete",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "18",
@@ -414,8 +446,8 @@ window.EB_DATA = {
    "nav_order": "5",
    "segment": "A,B",
    "intent": "Kako da počnem",
-   "message": "Prvi koraci, vodiči i webinari",
-   "goal": "Edukacija kao akvizicioni kanal",
+   "message": "Znanje za bolje investicione odluke",
+   "goal": "Vodiči, edukativni sadržaji i webinari koji vam pomažu da razumijete tržišta, mogućnosti i rizike.",
    "primary_cta": "Prijava na webinar",
    "primary_cta_link": "kontakt",
    "secondary_cta": "",
@@ -425,7 +457,9 @@ window.EB_DATA = {
    "seo": "1-10",
    "compliance": "Razgraničenje edukacije od investicione preporuke",
    "kpi": "Prijave na webinar; preuzimanja",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "19",
@@ -439,8 +473,8 @@ window.EB_DATA = {
    "nav_order": "6",
    "segment": "D,F,G",
    "intent": "Ko stoji iza sajta",
-   "message": "Licencirano društvo tržišta kapitala iz Banje Luke",
-   "goal": "Nosilac povjerenja: dozvole, ljudi, regulatorni status",
+   "message": "Poznavanje tržišta. Odgovornost prema klijentu.",
+   "goal": "Profesionalne brokerske i investicione usluge zasnovane na iskustvu i povjerenju",
    "primary_cta": "Otvorite račun",
    "primary_cta_link": "otvorite-racun",
    "secondary_cta": "Kontakt",
@@ -450,7 +484,9 @@ window.EB_DATA = {
    "seo": "",
    "compliance": "Identifikacioni podaci i nadzorni organ",
    "kpi": "Posjete reputacionih stranica",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "20",
@@ -475,11 +511,13 @@ window.EB_DATA = {
    "seo": "",
    "compliance": "Sadržaj potvrđuje funkcija usklađenosti prije objave",
    "kpi": "Posjete institucionalnih segmenata",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "21",
-   "level": "U",
+   "level": "",
    "parent": "",
    "slug": "cjenovnik",
    "title": "Cjenovnik",
@@ -500,7 +538,9 @@ window.EB_DATA = {
    "seo": "",
    "compliance": "Objavljuje se tek po usvajanju; svaka stavka ima datum primjene",
    "kpi": "Klikovi sa uslužnih stranica",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "22",
@@ -525,7 +565,9 @@ window.EB_DATA = {
    "seo": "",
    "compliance": "Obavezno evidentiranje izvora akvizicije",
    "kpi": "Popunjeni obrasci",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "23",
@@ -550,7 +592,9 @@ window.EB_DATA = {
    "seo": "",
    "compliance": "Ugovoreni rok odziva: jedan radni dan",
    "kpi": "Poslati obrasci",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "24",
@@ -575,7 +619,9 @@ window.EB_DATA = {
    "seo": "",
    "compliance": "Bez objave povjerljivih grupnih aranžmana",
    "kpi": "Upiti sa partnerske stranice",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "",
+   "subtitle": ""
   },
   {
    "id": "25",
@@ -600,7 +646,9 @@ window.EB_DATA = {
    "seo": "",
    "compliance": "Svaki dokument ima verziju i datum",
    "kpi": "Preuzimanja",
-   "classification": "A"
+   "classification": "A",
+   "eyebrow": "",
+   "subtitle": ""
   }
  ],
  "cjenovnik": [
