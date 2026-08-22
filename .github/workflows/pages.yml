@@ -34,7 +34,7 @@ jobs:
       - name: Assemble site (+ base path + SPA 404 fallback)
         run: |
           mkdir -p _site
-          rsync -a --exclude='.git' --exclude='.github' --exclude='_site' ./ _site/
+          rsync -a --exclude='.git' --exclude='.github' --exclude='_site' --exclude='backend' ./ _site/
           # Pages servira projekat na /<repo>/ — prepiši base putanju
           sed -i 's#<base href="/">#<base href="/${{ github.event.repository.name }}/">#' _site/index.html
           cp _site/index.html _site/404.html

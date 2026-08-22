@@ -146,18 +146,30 @@
     var results = search(q, index);
     if (window.EB && EB.track) EB.track("assistant_query", { q: q.slice(0, 120), hits: results.length });
 
-    // LLM hook (ako je backend konfigurisan)
+    // LLM hook (ako je backend konfigurisan): generativni odgovor
     if (CFG.llmEndpoint) {
       var typing = bubble("bot", '<span class="ebasst-typing">•••</span>');
       var ctx = results.slice(0, CFG.maxResults || 3).map(function (r) { return r.e.title + ": " + r.e.text; }).join("\n\n");
       fetch(CFG.llmEndpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ question: q, context: ctx, lang: lang() }) })
         .then(function (r) { return r.json(); })
-        .then(function (d) { typing.innerHTML = esc((d && (d.answer || d.text)) || t("nomatch")); msgs.scrollTop = msgs.scrollHeight; })
+        .then(function (d) {
+          if (d && d.answer) { typing.innerHTML = renderLLM(d.answer, results); }
+          else { typing.innerHTML = results.length ? answerHtml(results) : localFallback(); wireRel(typing); }
+          msgs.scrollTop = msgs.scrollHeight;
+        })
         .catch(function () { typing.innerHTML = results.length ? answerHtml(results) : localFallback(); wireRel(typing); });
       return;
     }
     var b = bubble("bot", results.length ? answerHtml(results) : localFallback());
     wireRel(b);
+  }
+  function fmt(txt) { return esc(txt).replace(/\n{2,}/g, "</p><p>").replace(/\n/g, "<br>"); }
+  function renderLLM(answer, results) {
+    var html = '<p>' + fmt(answer) + '</p>';
+    var srcs = [], seen = {};
+    (results || []).slice(0, CFG.maxResults || 3).forEach(function (r) { if (!seen[r.e.source]) { seen[r.e.source] = 1; srcs.push(r.e.source); } });
+    if (srcs.length) html += '<div class="ebasst-src">' + esc(t("source")) + ': <b>' + srcs.map(esc).join(", ") + '</b></div>';
+    return html;
   }
   function localFallback() {
     var link = (window.EB ? "#/kontakt" : "/kontakt/");
