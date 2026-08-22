@@ -9,20 +9,30 @@
   var esc = function (s) { return (s == null ? "" : String(s)).replace(/[&<>"]/g, function (m) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[m]; }); };
 
   var T = {
-    sr: { open: "Pitajte nas", title: "Eurobroker asistent", sub: "Baza znanja", ph: "Pitanje o uslugama, računu, tržištima…",
-      greet: "Zdravo! Postavite pitanje pa ću pretražiti bazu znanja Eurobrokera.",
-      nomatch: "Nemam siguran odgovor na to. Najbolje je da nas kontaktirate — javljamo se u jednom radnom danu.",
-      source: "Izvor", related: "Povezano", contact: "Kontakt", send: "Pošalji",
-      disc: "Odgovori iz baze znanja; ne predstavljaju investicionu preporuku.",
-      chips: ["Kako da otvorim račun?", "Kako se kupuju obveznice RS?", "Šta je eTrader?", "Ko je Eurobroker?"] },
-    en: { open: "Ask us", title: "Eurobroker assistant", sub: "Knowledge base", ph: "Ask about services, accounts, markets…",
-      greet: "Hi! Ask a question and I'll search the Eurobroker knowledge base.",
-      nomatch: "I'm not sure about that. It's best to contact us — we reply within one business day.",
-      source: "Source", related: "Related", contact: "Contact", send: "Send",
-      disc: "Answers from the knowledge base; not investment advice.",
-      chips: ["How do I open an account?", "How are RS bonds bought?", "What is eTrader?", "Who is Eurobroker?"] }
+    sr: { open: "Pitajte nas", title: "Eurobroker — stručni asistent", sub: "Tržište kapitala", ph: "Pitanje o uslugama, računu, tržištima…",
+      greet: "Dobar dan. Ja sam stručni asistent Eurobrokera za tržište kapitala. Postavite pitanje — odgovaram sažeto, analitički i uz izvor.",
+      nomatch: "Za to pitanje nemam pouzdan izvor u bazi znanja, pa neću nagađati. Predlažem da se obratite timu Eurobrokera — javljamo se u jednom radnom danu.",
+      source: "Izvor", related: "Povezano", context: "Analitički kontekst", contact: "Kontakt", send: "Pošalji",
+      disc: "Odgovori se temelje na bazi znanja; opšta informacija, ne individualna investiciona preporuka.",
+      chips: ["Kredit ili emisija obveznica?", "Kako funkcioniše investiciono savjetovanje?", "Koji su rizici ulaganja?", "Kako se kupuju obveznice RS?"] },
+    en: { open: "Ask us", title: "Eurobroker — expert assistant", sub: "Capital markets", ph: "Ask about services, accounts, markets…",
+      greet: "Good day. I'm Eurobroker's capital-markets expert assistant. Ask a question — I answer concisely, analytically and with a source.",
+      nomatch: "I don't have a reliable source in the knowledge base for that, so I won't guess. I suggest contacting the Eurobroker team — we reply within one business day.",
+      source: "Source", related: "Related", context: "Analytical context", contact: "Contact", send: "Send",
+      disc: "Answers are based on the knowledge base; general information, not individual investment advice.",
+      chips: ["Loan or a bond issue?", "How does investment advice work?", "What are the investment risks?", "How are RS bonds bought?"] }
   };
   var t = function (k) { return (T[lang()] || T.sr)[k]; };
+  var LEADS = {
+    sr: ["Sa stanovišta tržišta kapitala:", "Stručno i sažeto:", "Analitički gledano:", "Profesionalna orijentacija:"],
+    en: ["From a capital-markets perspective:", "Concisely and professionally:", "Analytically:", "A professional orientation:"]
+  };
+  var CLOSE = {
+    sr: ["Za primjenu na vaš konkretan slučaj i obavezujuće uslove, predlažem inicijalni razgovor ili ugovoreno savjetovanje.", "Ovo je opšta orijentacija; za uslove prilagođene vašoj situaciji obratite se timu — javljamo se u jednom radnom danu.", "Odluku vrijedi donijeti na osnovu vašeg cilja, horizonta i profila rizika; rado to razradimo u razgovoru."],
+    en: ["To apply this to your specific case and binding terms, I suggest an initial conversation or contracted advice.", "This is a general orientation; for terms tailored to your situation, contact the team — we reply within one business day.", "The decision is best made on your goal, horizon and risk profile; we're glad to work through it with you."]
+  };
+  var pick = function (a) { return a[Math.floor(Math.random() * a.length)]; };
+  var sentence = function (txt, max) { if (txt.length <= max) return txt; var c = txt.slice(0, max); var p = c.lastIndexOf(". "); return p > 60 ? c.slice(0, p + 1) : c.trim() + "…"; };
 
   /* ---------- indeks ---------- */
   function buildIndex() {
@@ -106,14 +116,26 @@
     });
   }
   function answerHtml(results) {
-    var top = results[0].e;
-    var html = '<p>' + esc(top.text) + '</p>' +
-      '<div class="ebasst-src">' + esc(t("source")) + ': <b>' + esc(top.source) + '</b></div>';
-    var rel = results.slice(1, 3);
+    var L = lang(), top = results[0];
+    var html = '<p class="ebasst-lead">' + esc(pick(LEADS[L] || LEADS.sr)) + '</p>' +
+      '<p>' + esc(top.e.text) + '</p>' +
+      '<div class="ebasst-src">' + esc(t("source")) + ': <b>' + esc(top.e.source) + '</b></div>';
+    // analitički kontekst — dodatni relevantni izvori (prag: 55% najboljeg skora, različit tekst)
+    var thr = top.score * 0.55, seen = {}; seen[top.e.text] = 1;
+    var extra = results.slice(1).filter(function (r) {
+      if (r.score < thr || seen[r.e.text]) return false; seen[r.e.text] = 1; return true;
+    }).slice(0, 2);
+    if (extra.length) {
+      html += '<div class="ebasst-extra"><span>' + esc(t("context")) + '</span><ul>' +
+        extra.map(function (r) { return '<li>' + esc(sentence(r.e.text, 210)) + ' <em>(' + esc(r.e.source) + ')</em></li>'; }).join("") + '</ul></div>';
+    }
+    // povezane teme (za dalje istraživanje)
+    var rel = results.slice(1, 4).filter(function (r) { return r.e.text !== top.e.text; }).slice(0, 3);
     if (rel.length) {
       html += '<div class="ebasst-rel"><span>' + esc(t("related")) + ':</span> ' +
         rel.map(function (r) { return '<button class="ebasst-chip" data-t="' + esc(r.e.text).replace(/"/g, "&quot;") + '">' + esc(r.e.title) + '</button>'; }).join(" ") + '</div>';
     }
+    html += '<p class="ebasst-close">' + esc(pick(CLOSE[L] || CLOSE.sr)) + '</p>';
     return html;
   }
   function ask(q) {
