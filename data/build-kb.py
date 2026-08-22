@@ -11,7 +11,8 @@ def parse(path):
     title = os.path.splitext(os.path.basename(path))[0].replace("-", " ").title()
     tags, lang = [], "sr"
     body = raw
-    m = re.match(r"^---\s*\n(.*?)\n---\s*\n?(.*)$", raw, re.S)
+    # toleriši BOM i prazne/uvučene redove prije frontmatter bloka (čest kod web-uploada)
+    m = re.match(r"^﻿?\s*---\s*\n(.*?)\n---\s*\n?(.*)$", raw, re.S)
     if m:
         fm, body = m.group(1), m.group(2)
         for line in fm.splitlines():
