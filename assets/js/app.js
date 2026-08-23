@@ -448,7 +448,7 @@
     return `<section class="pagehero pagehero--${section}"><div class="wrap">
       ${crumb}
       <span class="tag">${esc(p.type || "Usluga")}</span>
-      <h1>${esc(pMsg(p))}</h1>
+      <h1>${heroAccent(pMsg(p))}</h1>
       <p>${esc(pGoal(p))}</p>
     </div></section>`;
   }
