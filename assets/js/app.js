@@ -23,8 +23,15 @@
     return sr;
   };
   const isEN = () => EB.lang === "en";
-  // hero naslov iz tabele: dio omeđen *zvjezdicama* dobija zlatni naglasak
-  const heroAccent = (s) => esc(s || "").replace(/\*([^*]+)\*/g, '<span class="accent">$1</span>');
+  // hero naslov iz tabele: *zvjezdice* daju zlatni naglasak; bez njih se pozlati druga polovina
+  const heroAccent = (s) => {
+    s = (s || "").trim();
+    if (s.indexOf("*") !== -1) return esc(s).replace(/\*([^*]+)\*/g, '<span class="accent">$1</span>');
+    const w = s.split(/\s+/);
+    if (w.length < 2) return esc(s);
+    const cut = Math.floor(w.length / 2);
+    return esc(w.slice(0, cut).join(" ")) + ' <span class="accent">' + esc(w.slice(cut).join(" ")) + "</span>";
+  };
   const i18 = (bucket, slug) => (isEN() && window.EB_I18N && EB_I18N[bucket] && EB_I18N[bucket][slug]) || null;
   const pTitle = (p) => p ? (i18("titles", p.slug) || p.title) : "";
   const pMsg = (p) => p ? (i18("messages", p.slug) || p.message || p.title) : "";
