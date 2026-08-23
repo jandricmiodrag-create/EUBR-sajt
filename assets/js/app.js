@@ -772,6 +772,17 @@
     return seg || "pocetna";
   }
   // pretvori sve `#/slug` linkove (iz šablona) u prave putanje
+  // Pauzira suptilnu animaciju pozadine dok hero/pagehero nisu u vidnom polju (ušteda GPU/baterije).
+  function observeWorldFx() {
+    if (!("IntersectionObserver" in window)) return;
+    const els = document.querySelectorAll(".hero, .pagehero");
+    if (!els.length) return;
+    if (EB._fxIO) EB._fxIO.disconnect();
+    EB._fxIO = new IntersectionObserver((ents) => {
+      ents.forEach((e) => e.target.classList.toggle("is-paused", !e.isIntersecting));
+    }, { rootMargin: "120px" });
+    els.forEach((el) => EB._fxIO.observe(el));
+  }
   function finalizeLinks(root) {
     root.querySelectorAll('a[href^="#/"]').forEach(a => {
       const slug = a.getAttribute("href").replace(/^#\//, "").replace(/\/$/, "") || "pocetna";
@@ -817,6 +828,7 @@
     window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
     setActiveNav(slug, p);
     bindPage();
+    observeWorldFx();
     if (slug === "procjena-spremnosti") initTool();
     if (EB.track) {
       EB.track(EB.EVENTS.PAGE_VIEW, { page_slug: slug, page_title: document.title });

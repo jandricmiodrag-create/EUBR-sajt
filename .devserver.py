@@ -14,7 +14,9 @@ class H(http.server.SimpleHTTPRequestHandler):
         if not os.path.exists(fs) and "." not in os.path.basename(p.rstrip("/")):
             self.path = "/index.html"
         return super().do_GET()
-socketserver.TCPServer.allow_reuse_address = True
-with socketserver.TCPServer(("127.0.0.1", PORT), H) as httpd:
+class Server(socketserver.ThreadingTCPServer):
+    daemon_threads = True
+    allow_reuse_address = True
+with Server(("127.0.0.1", PORT), H) as httpd:
     print("Serving on http://127.0.0.1:%d/ (no-cache, SPA fallback)" % PORT)
     httpd.serve_forever()

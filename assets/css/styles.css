@@ -8,6 +8,8 @@
   --navy-700: #163f6b;
   --gold: #c8a24c;
   --gold-soft: #e8d9b0;
+  /* Referentni bijelo-champagne-zlatni gradijent naslova (mijenja se na jednom mjestu). */
+  --grad-gold: linear-gradient(92deg, #ffffff 2%, var(--gold-soft) 46%, var(--gold) 100%);
   --teal: #0e8a7d;
   --teal-soft: #d5efec;
   --ink: #17222e;
@@ -41,6 +43,16 @@ body {
   overflow-x: hidden;
 }
 h1,h2,h3,h4 { font-family: var(--ff-head); line-height: 1.15; color: var(--navy); font-weight: 700; letter-spacing: -.01em; }
+/* Bijelo-zlatni gradijent naslova — jedna reusable klasa za cijeli sajt (vidi --grad-gold). */
+.accent, .grad-gold {
+  background: var(--grad-gold);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+}
+/* Fallback: pregledači bez background-clip:text prikazuju čvrsto zlato umjesto nevidljivog teksta. */
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .accent, .grad-gold { color: var(--gold); -webkit-text-fill-color: var(--gold); background: none; }
+}
 a { color: inherit; text-decoration: none; }
 img,svg { max-width: 100%; display: block; }
 button { font-family: inherit; cursor: pointer; }
@@ -108,25 +120,31 @@ a svg, button svg, .link-arrow svg, .mq-val svg, .chip svg, .svc__no svg { width
 .hamburger span { display: block; width: 20px; height: 2px; background: var(--navy); margin: 4px auto; transition: var(--t); }
 
 /* ---------- Hero ---------- */
-.hero { position: relative; color: #eaf1f8; overflow: hidden; background-color: #0a2540;
-  background-image:
-    linear-gradient(102deg, rgba(8,29,51,.95) 0%, rgba(10,37,64,.82) 46%, rgba(18,58,94,.50) 100%),
-    url("../img/hero-map.png");
-  background-size: cover, cover;
-  background-position: center, center right;
-  background-repeat: no-repeat, no-repeat; }
-.hero::before { content: ""; position: absolute; inset: 0;
+.hero { position: relative; color: #eaf1f8; overflow: hidden; background-color: #0a2540; }
+/* Animirani sloj sa mapom svijeta (spor Ken Burns pan/zoom, GPU transform). */
+.hero::after { content: ""; position: absolute; inset: -3.5%; z-index: 0;
+  background: url("../img/hero-map.png") center right / cover no-repeat;
+  transform: scale(1.04) translate3d(0,0,0);
+  animation: eb-kenburns 78s ease-in-out infinite alternate;
+  will-change: transform; }
+/* Zatamnjenje + sjaj IZNAD mape (čuva čitljivost teksta i originalnu kompoziciju boja). */
+.hero::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
+    linear-gradient(102deg, rgba(8,29,51,.95) 0%, rgba(10,37,64,.82) 46%, rgba(18,58,94,.50) 100%),
     radial-gradient(700px 380px at 82% 8%, rgba(200,162,76,.22), transparent 60%),
-    radial-gradient(600px 420px at 12% 92%, rgba(14,138,125,.20), transparent 60%);
-  pointer-events: none; }
-.hero__grid { position: absolute; inset: 0; opacity: .12;
+    radial-gradient(600px 420px at 12% 92%, rgba(14,138,125,.20), transparent 60%); }
+.hero__grid { position: absolute; inset: 0; z-index: 1; opacity: .12; pointer-events: none;
   background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
   background-size: 46px 46px; mask-image: radial-gradient(circle at 70% 30%, #000, transparent 75%); }
-.hero .wrap { position: relative; display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; padding: 88px 24px 96px; }
+/* Dva veoma diskretna svjetlosna impulsa koja sporo klize preko mape (utisak protoka podataka). */
+.hero__grid::before, .hero__grid::after { content: ""; position: absolute; top: -10%; bottom: -10%; width: 34%; opacity: 0;
+  background: linear-gradient(90deg, transparent, rgba(220,235,255,.05) 42%, rgba(232,217,176,.10) 56%, transparent);
+  filter: blur(6px); mix-blend-mode: screen;
+  animation: eb-flow 19s linear infinite; }
+.hero__grid::after { animation-duration: 26s; animation-delay: 9.5s; }
+.hero .wrap { position: relative; z-index: 2; display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; padding: 88px 24px 96px; }
 .hero__eyebrow { color: var(--gold-soft); }
 .hero h1 { color: #fff; font-size: clamp(2.1rem, 4.8vw, 3.5rem); margin: 16px 0 20px; }
-.hero h1 .accent { background: linear-gradient(90deg,#e8d9b0,#c8a24c); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero__sub { font-size: 1.18rem; color: #c3d2e2; max-width: 560px; }
 .hero__actions { display: flex; gap: 14px; margin: 30px 0 34px; flex-wrap: wrap; }
 .hero__proofs { display: flex; gap: 14px; flex-wrap: wrap; }
@@ -216,7 +234,9 @@ a svg, button svg, .link-arrow svg, .mq-val svg, .chip svg, .svc__no svg { width
 /* ---------- Final CTA ---------- */
 .finalcta { background: linear-gradient(150deg, #0a2540, #163f6b); border-radius: 24px; padding: 56px; text-align: center; color: #fff; position: relative; overflow: hidden; }
 .finalcta::before { content: ""; position: absolute; inset: 0; background: radial-gradient(500px 300px at 50% 0%, rgba(200,162,76,.2), transparent 70%); }
-.finalcta h2 { color: #fff; font-size: clamp(1.7rem,3.4vw,2.4rem); margin-bottom: 12px; position: relative; }
+.finalcta h2 { font-size: clamp(1.7rem,3.4vw,2.4rem); margin-bottom: 12px; position: relative;
+  background: var(--grad-gold); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) { .finalcta h2 { color: #fff; -webkit-text-fill-color: #fff; background: none; } }
 .finalcta p { color: #c3d2e2; margin-bottom: 26px; position: relative; }
 .finalcta .hero__actions { justify-content: center; position: relative; }
 
@@ -238,10 +258,16 @@ a svg, button svg, .link-arrow svg, .mq-val svg, .chip svg, .svc__no svg { width
 .reveal.in { opacity: 1; transform: none; }
 
 /* ---------- Breadcrumb / inner hero ---------- */
-.pagehero { --glow: rgba(200,162,76,.20); color: #eaf1f8; padding: 54px 0 46px; position: relative; overflow: hidden; background-color: #0a2540;
-  background-image: linear-gradient(102deg, rgba(8,29,51,.95) 0%, rgba(10,37,64,.86) 50%, rgba(18,58,94,.64) 100%), url("../img/hero-map.png");
-  background-size: cover, cover; background-position: center, center right; background-repeat: no-repeat, no-repeat; }
-.pagehero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(620px 320px at 86% 0%, var(--glow), transparent 66%); pointer-events: none; }
+.pagehero { --glow: rgba(200,162,76,.20); color: #eaf1f8; padding: 54px 0 46px; position: relative; overflow: hidden; background-color: #0a2540; }
+/* Animirani sloj sa mapom (sporiji i suzdržaniji nego na Početnoj). */
+.pagehero::after { content: ""; position: absolute; inset: -3%; z-index: 0;
+  background: url("../img/hero-map.png") center right / cover no-repeat;
+  transform: scale(1.05) translate3d(0,0,0);
+  animation: eb-kenburns 96s ease-in-out infinite alternate;
+  will-change: transform; }
+.pagehero::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(102deg, rgba(8,29,51,.95) 0%, rgba(10,37,64,.86) 50%, rgba(18,58,94,.64) 100%), radial-gradient(620px 320px at 86% 0%, var(--glow), transparent 66%); }
+.pagehero .wrap { position: relative; z-index: 2; }
 .pagehero--investiranje { --glow: rgba(14,138,125,.30); }
 .pagehero--za-kompanije { --glow: rgba(200,162,76,.30); }
 .pagehero--institucionalni-klijenti { --glow: rgba(90,140,200,.28); }
@@ -471,7 +497,26 @@ table.price .fee { font-family: var(--ff-head); font-weight: 700; color: var(--n
   .wrap { padding: 0 18px; }
   .hero .wrap { padding-top: 60px; }
 }
+/* ---------- Suptilna animacija globalne pozadine ---------- */
+@keyframes eb-kenburns {
+  from { transform: scale(1.04) translate3d(0, 0, 0); }
+  to   { transform: scale(1.09) translate3d(-1.4%, -1.1%, 0); }
+}
+@keyframes eb-flow {
+  0%   { transform: translate3d(-45%, 0, 0); opacity: 0; }
+  12%  { opacity: .7; }
+  50%  { opacity: .5; }
+  88%  { opacity: .6; }
+  100% { transform: translate3d(320%, 0, 0); opacity: 0; }
+}
+/* Ne troši GPU dok je hero van vidnog polja (postavlja IntersectionObserver u app.js). */
+.hero.is-paused::after, .pagehero.is-paused::after,
+.hero.is-paused .hero__grid::before, .hero.is-paused .hero__grid::after { animation-play-state: paused; }
+
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; }
+  /* Mapa ostaje mirna i puna (bez pomjeranja), impulsi ugašeni. */
+  .hero::after, .pagehero::after { transform: none; inset: 0; }
+  .hero__grid::before, .hero__grid::after { display: none; }
 }
