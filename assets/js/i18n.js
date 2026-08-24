@@ -56,8 +56,9 @@ window.EB_I18N = {
     "cta.replyNote": { sr: "Javljamo se u jednom radnom danu.", en: "We reply within one business day." },
     "home.whatNeed": { sr: "Šta vam je potrebno?", en: "What do you need?" },
 
-    "home.segTitle": { sr: "Četiri puta, jedna licencirana kuća", en: "Four paths, one licensed firm" },
-    "home.segSub": { sr: "Razdvajamo potpuno različite potrebe prije nego što potrošite i minut na pogrešnu stranicu.", en: "We separate very different needs before you spend a minute on the wrong page." },
+    "home.segEyebrow": { sr: "Naše usluge", en: "Our services" },
+    "home.segTitle": { sr: "Sve što vam je potrebno za tržište kapitala", en: "Everything you need for the capital market" },
+    "home.segSub": { sr: "Širok spektar usluga za investitore i kompanije uz stručnu podršku našeg tima", en: "A broad range of services for investors and companies, with expert support from our team" },
     "seg.A": { sr: "Želim da ulažem", en: "I want to invest" },
     "seg.D": { sr: "Treba mi savjet", en: "I need advice" },
     "seg.F": { sr: "Kompaniji treba kapital", en: "My company needs capital" },

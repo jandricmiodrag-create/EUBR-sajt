@@ -246,7 +246,7 @@
 
     <section class="section">
       <div class="wrap">
-        <div class="section-head center"><span class="eyebrow">${T("home.whatNeed")}</span><h2>${T("home.segTitle")}</h2><p>${T("home.segSub")}</p></div>
+        <div class="section-head center"><span class="eyebrow">${T("home.segEyebrow")}</span><h2>${T("home.segTitle")}</h2><p>${T("home.segSub")}</p></div>
         <div class="grid grid-4">${segCards}</div>
       </div>
     </section>
