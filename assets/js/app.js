@@ -776,12 +776,19 @@
   function observeWorldFx() {
     const vid = document.querySelector(".hero__video");
     if (vid) {
-      // Pouzdan autoplay za dinamički umetnut <video>: muted kao SVOJSTVO + eksplicitni play uz retry.
-      vid.muted = true; vid.defaultMuted = true;
+      // Dinamički umetnut <video> (preko innerHTML) ne pali autoplay pouzdano zbog utrke sa 'canplay'.
+      // Zato: muted kao SVOJSTVO + retry petlja koja zove play() dok video stvarno ne krene.
+      vid.muted = true; vid.defaultMuted = true; vid.autoplay = true;
       const kick = () => { const p = vid.play && vid.play(); if (p && p.catch) p.catch(() => {}); };
+      let tries = 0;
+      const ensure = () => {
+        if (!vid.paused || tries >= 15) return;      // krenuo je ili odustajemo nakon ~6s
+        tries++; kick(); setTimeout(ensure, 400);
+      };
       kick();
       vid.addEventListener("loadeddata", kick, { once: true });
       vid.addEventListener("canplay", kick, { once: true });
+      setTimeout(ensure, 300);
     }
     if (!("IntersectionObserver" in window)) return;
     const els = document.querySelectorAll(".hero, .pagehero");
