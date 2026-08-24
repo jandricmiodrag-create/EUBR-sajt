@@ -121,6 +121,11 @@ a svg, button svg, .link-arrow svg, .mq-val svg, .chip svg, .svc__no svg { width
 
 /* ---------- Hero ---------- */
 .hero { position: relative; color: #eaf1f8; overflow: hidden; background-color: #0a2540; }
+/* Video podloga (samo Početna). Sjedi na istom nivou kao mapa (z-index 0), zatamnjenje je iznad. */
+.hero__video { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; object-position: center right; pointer-events: none; background-color: #0a2540; }
+/* Kad je video prisutan, sakrij animiranu PNG mapu i „flow" impulse da se efekti ne dupliraju. */
+.hero--video::after { display: none; }
+.hero--video .hero__grid::before, .hero--video .hero__grid::after { display: none; }
 /* Animirani sloj sa mapom svijeta (spor Ken Burns pan/zoom, GPU transform). */
 .hero::after { content: ""; position: absolute; inset: -3.5%; z-index: 0;
   background: url("../img/hero-map.png") center right / cover no-repeat;
@@ -512,6 +517,12 @@ table.price .fee { font-family: var(--ff-head); font-weight: 700; color: var(--n
 /* Ne troši GPU dok je hero van vidnog polja (postavlja IntersectionObserver u app.js). */
 .hero.is-paused::after, .pagehero.is-paused::after,
 .hero.is-paused .hero__grid::before, .hero.is-paused .hero__grid::after { animation-play-state: paused; }
+/* Mobilni: ne učitavaj/prikazuj video (ušteda podataka i baterije) — vrati laganu animiranu mapu. */
+@media (max-width: 760px) {
+  .hero--video .hero__video { display: none; }
+  .hero--video::after { display: block; }
+  .hero--video .hero__grid::before, .hero--video .hero__grid::after { display: block; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto; }
