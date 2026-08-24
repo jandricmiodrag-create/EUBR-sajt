@@ -223,7 +223,7 @@
     const heroSub = en ? c.heroSub : (poc.subtitle || "Domaća berza i svjetska tržišta, investiciono savjetovanje i usluge za kompanije.");
 
     return `
-    <section class="hero hero--video"><video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="assets/img/hero-map.png" aria-hidden="true" tabindex="-1"><source src="assets/video/hero.webm" type="video/webm"><source src="assets/video/hero.mp4" type="video/mp4"></video><div class="hero__grid"></div><div class="wrap">
+    <section class="hero hero--video"><video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/img/hero-map.png" aria-hidden="true" tabindex="-1"><source src="assets/video/hero.webm" type="video/webm"><source src="assets/video/hero.mp4" type="video/mp4"></video><div class="hero__grid"></div><div class="wrap">
       <div>
         <span class="eyebrow hero__eyebrow">${esc(heroTag)}</span>
         <h1>${heroTitle}</h1>
@@ -774,12 +774,15 @@
   // pretvori sve `#/slug` linkove (iz šablona) u prave putanje
   // Pauzira suptilnu animaciju pozadine dok hero/pagehero nisu u vidnom polju (ušteda GPU/baterije).
   function observeWorldFx() {
-    const mm = window.matchMedia || null;
-    const reduce = mm && mm("(prefers-reduced-motion: reduce)").matches;
-    const small = mm && mm("(max-width: 760px)").matches;
-    const noVideo = reduce || small; // na mobilnom/reduced-motion se koristi mirna mapa (poster), ne video
     const vid = document.querySelector(".hero__video");
-    if (vid && noVideo) { vid.removeAttribute("autoplay"); try { vid.pause(); } catch (e) {} }
+    if (vid) {
+      // Pouzdan autoplay za dinamički umetnut <video>: muted kao SVOJSTVO + eksplicitni play uz retry.
+      vid.muted = true; vid.defaultMuted = true;
+      const kick = () => { const p = vid.play && vid.play(); if (p && p.catch) p.catch(() => {}); };
+      kick();
+      vid.addEventListener("loadeddata", kick, { once: true });
+      vid.addEventListener("canplay", kick, { once: true });
+    }
     if (!("IntersectionObserver" in window)) return;
     const els = document.querySelectorAll(".hero, .pagehero");
     if (!els.length) return;
@@ -788,8 +791,8 @@
       ents.forEach((e) => {
         e.target.classList.toggle("is-paused", !e.isIntersecting);
         const v = e.target.querySelector(".hero__video");
-        if (v && !noVideo) {
-          if (e.isIntersecting) { const pr = v.play && v.play(); if (pr && pr.catch) pr.catch(() => {}); }
+        if (v) {
+          if (e.isIntersecting) { const p = v.play && v.play(); if (p && p.catch) p.catch(() => {}); }
           else if (v.pause) { v.pause(); }
         }
       });

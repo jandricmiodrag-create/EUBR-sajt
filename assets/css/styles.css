@@ -517,12 +517,6 @@ table.price .fee { font-family: var(--ff-head); font-weight: 700; color: var(--n
 /* Ne troši GPU dok je hero van vidnog polja (postavlja IntersectionObserver u app.js). */
 .hero.is-paused::after, .pagehero.is-paused::after,
 .hero.is-paused .hero__grid::before, .hero.is-paused .hero__grid::after { animation-play-state: paused; }
-/* Mobilni: ne učitavaj/prikazuj video (ušteda podataka i baterije) — vrati laganu animiranu mapu. */
-@media (max-width: 760px) {
-  .hero--video .hero__video { display: none; }
-  .hero--video::after { display: block; }
-  .hero--video .hero__grid::before, .hero--video .hero__grid::after { display: block; }
-}
 
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto; }
