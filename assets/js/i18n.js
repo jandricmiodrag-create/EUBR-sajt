@@ -125,7 +125,7 @@ window.EB_I18N = {
   /* --- EN proza po stranici (ista struktura kao window.EB_CONTENT) --- */
   content: {
     pocetna: {
-      heroTag: "Licensed capital-markets firm · Banja Luka",
+      heroTag: "25 years in the capital market",
       heroTitleA: "The world of investing", heroTitleB: "in one place",
       heroSub: "The domestic exchange and world markets, investment advice and corporate services.",
       heroProofs: [

@@ -217,7 +217,7 @@
       </div>`;
 
     const poc = EB.page("pocetna") || {};
-    const heroTag = en ? c.heroTag : (poc.eyebrow || "Licencirana kuća tržišta kapitala · Banja Luka");
+    const heroTag = en ? c.heroTag : (poc.eyebrow || "25 godina na tržištu kapitala");
     const pocMsg = poc.message || "Svijet investicija *na jednom mjestu*";
     const heroTitle = en ? `${esc(c.heroTitleA)} <span class="accent">${esc(c.heroTitleB)}</span>` : heroAccent(pocMsg);
     const heroSub = en ? c.heroSub : (poc.subtitle || "Domaća berza i svjetska tržišta, investiciono savjetovanje i usluge za kompanije.");
