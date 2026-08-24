@@ -152,10 +152,10 @@ a svg, button svg, .link-arrow svg, .mq-val svg, .chip svg, .svc__no svg { width
 .hero h1 { color: #fff; font-size: clamp(2.1rem, 4.8vw, 3.5rem); margin: 16px 0 20px; }
 .hero__sub { font-size: 1.18rem; color: #c3d2e2; max-width: 560px; }
 .hero__actions { display: flex; gap: 14px; margin: 30px 0 34px; flex-wrap: wrap; }
-.hero__proofs { display: flex; gap: 14px; flex-wrap: wrap; }
-.proof { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; padding: 12px 16px; backdrop-filter: blur(4px); }
-.proof b { display: block; font-family: var(--ff-head); font-size: 1.15rem; color: #fff; }
-.proof span { font-size: .82rem; color: #a9bccf; }
+.hero__proofs { display: flex; gap: 10px; flex-wrap: wrap; }
+.proof { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; padding: 10px 12px; backdrop-filter: blur(4px); }
+.proof b { display: block; font-family: var(--ff-head); font-size: 1.02rem; color: #fff; letter-spacing: .005em; }
+.proof span { font-size: .78rem; color: #a9bccf; }
 
 /* Hero visual card */
 .hero__card { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); border-radius: 20px; padding: 26px; backdrop-filter: blur(8px); box-shadow: var(--shadow-lg); }
