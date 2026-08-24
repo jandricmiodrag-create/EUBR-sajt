@@ -223,7 +223,7 @@
     const heroSub = en ? c.heroSub : (poc.subtitle || "Domaća berza i svjetska tržišta, investiciono savjetovanje i usluge za kompanije.");
 
     return `
-    <section class="hero hero--video"><video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="assets/img/hero-map.png" aria-hidden="true" tabindex="-1"><source src="assets/video/hero.mp4" type="video/mp4"></video><div class="hero__grid"></div><div class="wrap">
+    <section class="hero hero--video"><video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="assets/img/hero-map.png" aria-hidden="true" tabindex="-1"><source src="assets/video/hero.webm" type="video/webm"><source src="assets/video/hero.mp4" type="video/mp4"></video><div class="hero__grid"></div><div class="wrap">
       <div>
         <span class="eyebrow hero__eyebrow">${esc(heroTag)}</span>
         <h1>${heroTitle}</h1>
