@@ -5,9 +5,9 @@ window.EB_CONTENT = {
 
   pocetna: {
     heroProofs: [
-      { k: "20+", v: "godina poslovanja", note: "provjeriti tačnu godinu osnivanja" },
-      { k: "KHOV RS", v: "licencirano društvo", note: "pod nadzorom Komisije za HOV RS" },
-      { k: "Domaće + svjetska", v: "tržišta na jednom mjestu", note: "Banjalučka berza i globalna tržišta" }
+      { k: "25 GODINA", v: "na tržištu kapitala" },
+      { k: "LICENCIRANI TIM", v: "brokera i investicionih savjetnika" },
+      { k: "STRUČNOST I INTEGRITET", v: "temelj poslovanja" }
     ],
     zasto: [
       { t: "Pun set dozvola pod jednim krovom", d: "Brokersko-dilerski poslovi, poslovi agenta emisije, investiciono savjetovanje i kastodi poslovi — kombinacija koju u Republici Srpskoj ima mali broj društava." },

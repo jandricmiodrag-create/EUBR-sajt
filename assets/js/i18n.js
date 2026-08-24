@@ -129,9 +129,9 @@ window.EB_I18N = {
       heroTitleA: "The world of investing", heroTitleB: "in one place",
       heroSub: "The domestic exchange and world markets, investment advice and corporate services.",
       heroProofs: [
-        { k: "20+", v: "years in business" },
-        { k: "SEC RS", v: "licensed firm" },
-        { k: "Local + global", v: "markets in one place" }
+        { k: "25 YEARS", v: "in the capital market" },
+        { k: "LICENSED TEAM", v: "of brokers and investment advisers" },
+        { k: "EXPERTISE & INTEGRITY", v: "the foundation of our work" }
       ],
       zasto: [
         { t: "A full set of licences under one roof", d: "Broker-dealer operations, issue-agent services, investment advice and custody — a combination held by few firms in Republika Srpska." },
