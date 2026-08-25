@@ -259,6 +259,23 @@ window.EB_I18N = {
       what: "Eurobroker operates as a licensed capital-markets firm supervised by the Securities and Exchange Commission of Republika Srpska. Here, in one place, are the licences and basic identification details.",
       napomena: "Exact licence numbers, validity dates and identification details are confirmed by the compliance function before publication. Fields marked “to be entered” are filled with verified data."
     },
+    "prikupljanje-kapitala": {
+      sections: [
+        { t: "Bond issue", link: "emisija-obveznica", p: [
+          "Through a bond issue, a company borrows funds directly from investors, on terms defined in advance. The issue amount, maturity, interest rate and repayment method can be structured to suit the issuer's needs and capabilities.",
+          "Eurobroker helps you assess whether this form of financing is justified, define the basic elements of the issue, prepare the necessary documentation and carry out the process through to completion."
+        ] },
+        { t: "Share issue", link: "emisija-akcija-i-dokapitalizacija", p: [
+          "When a company wants to raise additional capital without increasing its debt, one option is to issue new shares. Funds are then secured through equity and can be used for investment, business expansion and other development needs.",
+          "We assist you in preparing and carrying out recapitalisation and share issues, with support through the regulatory and operational steps of the process."
+        ] },
+        { t: "Issue agent", p: [
+          "A securities issue involves a range of formal, regulatory and operational activities. As the issue agent, Eurobroker takes on the tasks related to preparing and carrying out the issue and coordinates the key activities among the participants in the process.",
+          "For the company this means a single expert point of contact who follows the process and makes sure the required steps are carried out correctly and on time."
+        ] }
+      ],
+      consult: { t: "Not sure which model suits your company?", p: "Before deciding on an issue, it is necessary to review the company's financial position, its capital needs and the options the market offers. Talk to our team about what you want to achieve.", cta: "Book an initial call" }
+    },
     "otvorite-racun": {
       what: "Opening an account is the first step to trading. In Phase 1 the process is combined (form + signature), aiming for at most two business days.",
       steps: [
@@ -357,6 +374,7 @@ window.EB_I18N = {
     "investiciono-savjetovanje": "Investment advice",
     "za-kompanije": "For companies",
     "finansiranje-putem-trzista-kapitala": "Capital-markets financing",
+    "prikupljanje-kapitala": "Raising capital",
     "emisija-obveznica": "Bond issue",
     "emisija-akcija-i-dokapitalizacija": "Share issue & recapitalisation",
     "priprema-za-trziste-kapitala": "Preparing for the capital markets",
@@ -380,6 +398,7 @@ window.EB_I18N = {
   messages: {
     "za-kompanije": "Capital does not have to come from a loan alone",
     "finansiranje-putem-trzista-kapitala": "Loan and capital markets — a factual comparison",
+    "prikupljanje-kapitala": "Capital doesn't have to come from a loan alone",
     "emisija-obveznica": "We run the issue from readiness assessment to listing",
     "emisija-akcija-i-dokapitalizacija": "Recapitalisation as an alternative to debt",
     "priprema-za-trziste-kapitala": "We prepare your company for a future issue",
@@ -405,6 +424,7 @@ window.EB_I18N = {
   },
   goals: {
     "za-kompanije": "Turn “we need money” into an initial conversation.",
+    "prikupljanje-kapitala": "Explore the options for financing through the capital market and find the model that suits your company's needs and plans.",
     "emisija-obveznica": "A clear path for companies raising capital.",
     "institucionalni-klijenti": "A serious institutional programme, without marketing tone.",
     "o-nama": "Eurobroker combines long-standing capital-markets experience with a professional and responsible relationship with every client.",

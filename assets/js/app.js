@@ -456,12 +456,12 @@
       analiza: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 17v-3M12 17v-5M16 17v-2"/></svg>'
     };
     const lines = en ? [
-      { slug: "finansiranje-putem-trzista-kapitala", icon: "kapital", t: "Raising capital", d: "Share and bond issues, recapitalisation, issue-agent services and other solutions for accessing capital.", cta: "Learn more" },
+      { slug: "prikupljanje-kapitala", icon: "kapital", t: "Raising capital", d: "Share and bond issues, recapitalisation, issue-agent services and other solutions for accessing capital.", cta: "Learn more" },
       { slug: "kontakt", icon: "savjet", t: "Business and financial advisory", d: "Advice on capital structure, business strategy and corporate governance, tailored to your company's needs and goals.", cta: "Learn more" },
       { slug: "priprema-za-trziste-kapitala", icon: "korp", t: "Corporate services", d: "Company restructuring, status changes, preparation of legal and other documents, and support in complex corporate procedures.", cta: "Learn more" },
       { slug: "kontakt", icon: "analiza", t: "Analyses and business plans", d: "Financial, fundamental, technical and other analyses, investment research and the preparation of business plans.", cta: "Learn more" }
     ] : [
-      { slug: "finansiranje-putem-trzista-kapitala", icon: "kapital", t: "Prikupljanje kapitala", d: "Emisije akcija i obveznica, dokapitalizacija, poslovi agenta emisije i druga rješenja za pristup kapitalu.", cta: "Saznajte više" },
+      { slug: "prikupljanje-kapitala", icon: "kapital", t: "Prikupljanje kapitala", d: "Emisije akcija i obveznica, dokapitalizacija, poslovi agenta emisije i druga rješenja za pristup kapitalu.", cta: "Saznajte više" },
       { slug: "kontakt", icon: "savjet", t: "Poslovno i finansijsko savjetovanje", d: "Savjetovanje o strukturi kapitala, poslovnoj strategiji i korporativnom upravljanju, prilagođeno potrebama i ciljevima vaše kompanije.", cta: "Saznajte više" },
       { slug: "priprema-za-trziste-kapitala", icon: "korp", t: "Korporativni poslovi", d: "Preoblikovanje društava, statusne promjene, priprema pravnih i drugih akata i podrška u složenim korporativnim postupcima.", cta: "Saznajte više" },
       { slug: "kontakt", icon: "analiza", t: "Analize i poslovni planovi", d: "Finansijske, fundamentalne, tehničke i druge analize, istraživanja iz oblasti investiranja i izrada poslovnih planova.", cta: "Saznajte više" }
@@ -485,6 +485,27 @@
       <div class="grid grid-2 biz-lines">${cards}</div>
       ${consult}
     </div></section>`;
+  }
+
+  /* ---------------- PRIKUPLJANJE KAPITALA (uslužna, namjenska) ---------------- */
+  function renderPrikupljanjeKapitala(p) {
+    const en = isEN();
+    const c = content("prikupljanje-kapitala");
+    const more = en ? "Learn more" : "Saznajte više";
+    let inner = "";
+    (c.sections || []).forEach((s, i) => {
+      const paras = (s.p || []).map(t => `<p>${esc(t)}</p>`).join("");
+      const link = s.link && EB.page(s.link) ? `<a class="link-arrow" href="#/${s.link}">${more} ${I.arrow}</a>` : "";
+      inner += qb(s.t, "0" + (i + 1), paras + link);
+    });
+    const con = c.consult;
+    const consult = con ? `<div class="zk-consult reveal"><h2>${esc(con.t)}</h2><p>${esc(con.p)}</p><a class="btn btn--primary" href="#/kontakt">${esc(con.cta)} ${I.arrow}</a></div>` : "";
+    return pagehero(p) + `
+    <section class="section"><div class="wrap"><div class="pglayout">
+      <div class="prose">${inner}</div>
+      ${serviceSidebar(p)}
+    </div></div></section>
+    <section class="section section--soft"><div class="wrap">${consult}</div></section>`;
   }
 
   /* ---------------- HUB ---------------- */
@@ -1059,6 +1080,7 @@
     else if (slug === "o-nama") html = renderONama(p);
     else if (slug === "investiranje") html = renderInvestiranje(p);
     else if (slug === "za-kompanije") html = renderZaKompanije(p);
+    else if (slug === "prikupljanje-kapitala") html = renderPrikupljanjeKapitala(p);
     else if (["regulatorni-status", "partneri", "dokumenti"].includes(slug)) html = renderSimple(p);
     else if (slug === "investiranje-iz-dijaspore") html = renderService(p);
     else if (slug === "kastodi-poslovi") html = renderKastodi(p);

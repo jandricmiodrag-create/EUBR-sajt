@@ -183,6 +183,28 @@ window.EB_CONTENT = {
     ]
   },
 
+  "prikupljanje-kapitala": {
+    sections: [
+      { t: "Emisija obveznica", link: "emisija-obveznica", p: [
+        "Emisijom obveznica kompanija pozajmljuje sredstva direktno od investitora, pod unaprijed definisanim uslovima. Iznos emisije, rok dospijeća, kamatna stopa i način otplate mogu se strukturirati u skladu sa potrebama i mogućnostima emitenta.",
+        "Eurobroker vam pomaže da procijenite opravdanost ovog načina finansiranja, definišete osnovne elemente emisije, pripremite potrebnu dokumentaciju i sprovedete postupak do njegove realizacije."
+      ] },
+      { t: "Emisija akcija", link: "emisija-akcija-i-dokapitalizacija", p: [
+        "Kada kompanija želi da pribavi dodatni kapital bez povećanja zaduženosti, jedna od mogućnosti je emisija novih akcija. Na taj način sredstva se obezbjeđuju kroz vlasnički kapital i mogu se koristiti za investicije, širenje poslovanja i druge razvojne potrebe.",
+        "Pomažemo vam u pripremi i sprovođenju dokapitalizacije i emisije akcija, uz podršku kroz regulatorne i operativne korake postupka."
+      ] },
+      { t: "Agent emisije", p: [
+        "Emisija hartija od vrijednosti podrazumijeva niz formalnih, regulatornih i operativnih aktivnosti. Kao agent emisije, Eurobroker preuzima poslove povezane sa pripremom i sprovođenjem emisije i koordinira ključne aktivnosti između učesnika u postupku.",
+        "Za kompaniju to znači jednog stručnog sagovornika koji prati proces i vodi računa da potrebni koraci budu pravilno i pravovremeno sprovedeni."
+      ] }
+    ],
+    consult: {
+      t: "Niste sigurni koji model odgovara vašoj kompaniji?",
+      p: "Prije odluke o emisiji potrebno je sagledati finansijsku poziciju kompanije, potrebe za kapitalom i mogućnosti koje tržište pruža. Razgovarajte sa našim timom o tome šta želite postići.",
+      cta: "Zakažite inicijalni razgovor"
+    }
+  },
+
   partneri: {
     what: "Preporuke su najjači kanal našeg rasta. Ovdje formalizujemo saradnju sa partnerima — bankama, računovođama, advokatima i posrednicima — uz materijale i jasan model upućivanja.",
     whoFor: ["Računovodstvene i konsultantske kuće", "Advokatske kancelarije", "Poslovni posrednici i preporučioci"]

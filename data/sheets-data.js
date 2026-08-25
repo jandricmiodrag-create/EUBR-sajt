@@ -15,7 +15,7 @@ window.EB_DATA = {
    "segment": "A,B",
    "intent": "Ko je Eurobroker i da li rješava moj problem",
    "message": "Svijet investicija na jednom mjestu",
-   "goal": "Usmjeriti posjetioca u ispravan segmentni ulaz u 15 sekundi",
+   "goal": "Domaća berza i svjetska tržišta, investiciono savjetovanje i usluge za kompanije.",
    "primary_cta": "Otvorite račun",
    "primary_cta_link": "otvorite-racun",
    "secondary_cta": "Zakažite razgovor",
@@ -26,8 +26,7 @@ window.EB_DATA = {
    "compliance": "Upozorenje o riziku i identifikacioni podaci u podnožju",
    "kpi": "Udio ulazaka u segmentni tok",
    "classification": "A",
-   "eyebrow": "Licencirana kuća tržišta kapitala · Banja Luka",
-   "subtitle": "Domaća berza i svjetska tržišta, investiciono savjetovanje i usluge za kompanije."
+   "eyebrow": "25 godina na tržištu kapitala"
   },
   {
    "id": "2",
@@ -41,8 +40,8 @@ window.EB_DATA = {
    "nav_order": "1",
    "segment": "A,B",
    "intent": "Šta su moje opcije za ulaganje",
-   "message": "Ulažete sami ili uz savjet",
-   "goal": "Izaberite tržište i nivo podrške",
+   "message": "Vaš pristup domaćim i svjetskim tržištima ",
+   "goal": "Investirajte u različite vrste hartija od vrijednosti na domaćem i stranim tržištima - samostalno ili uz stručnu podršku našeg tima",
    "primary_cta": "Otvorite račun",
    "primary_cta_link": "otvorite-racun",
    "secondary_cta": "Zakažite razgovor",
@@ -53,8 +52,7 @@ window.EB_DATA = {
    "compliance": "Bez tvrdnji o prinosu",
    "kpi": "Prelazak na uslužnu stranicu",
    "classification": "A",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "3",
@@ -68,8 +66,8 @@ window.EB_DATA = {
    "nav_order": "",
    "segment": "A",
    "intent": "Kako da prodam ili kupim akcije",
-   "message": "Nalog na Banjalučkoj berzi uz brokera koji objašnjava",
-   "goal": "Zadržavanje i reaktivacija postojeće baze",
+   "message": "Vaš broker za domaće tržište",
+   "goal": "Kada želite da kupite ili prodate hartije od vrijednosti na Banjalučkoj berzi, imate direktan kontakt sa brokerom koji vodi nalog i odgovara na vaša pitanja.",
    "primary_cta": "Otvorite račun",
    "primary_cta_link": "otvorite-racun",
    "secondary_cta": "Upit o postojećim hartijama",
@@ -80,8 +78,7 @@ window.EB_DATA = {
    "compliance": "Usklađenost sa Pravilima poslovanja i pravilima berze",
    "kpi": "Upiti; preuzimanja obrazaca",
    "classification": "A",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "4",
@@ -95,8 +92,8 @@ window.EB_DATA = {
    "nav_order": "",
    "segment": "B",
    "intent": "Mogu li kupiti globalne akcije iz BiH",
-   "message": "Globalne akcije, ETF-ovi i fjučersi preko domaćeg licenciranog društva",
-   "goal": "Najvažnija akviziciona stranica; novi računi",
+   "message": "Više od 100 tržišta. Jedan brokerski račun",
+   "goal": "Akcije, ETF-ovi i drugi dostupni instrumenti na vodećim svjetskim tržištima, uz jedan račun i podršku Eurobrokera.",
    "primary_cta": "Otvorite račun za svjetska tržišta",
    "primary_cta_link": "otvorite-racun",
    "secondary_cta": "Prijava na mjesečni pregled",
@@ -107,8 +104,7 @@ window.EB_DATA = {
    "compliance": "Naziv platforme samo ako je ugovorno dozvoljeno",
    "kpi": "Pokrenuti procesi; prva transakcija u 90 dana",
    "classification": "A",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "5",
@@ -122,8 +118,8 @@ window.EB_DATA = {
    "nav_order": "",
    "segment": "A",
    "intent": "Kako se kupuju obveznice RS",
-   "message": "Obveznice se kupuju preko brokera, ne u banci",
-   "goal": "Ulazna tačka za nove klijente kroz najrazumljiviji instrument",
+   "message": "Do obveznica Republike Srpske u nekoliko koraka",
+   "goal": "Ne morate unaprijed poznavati berzanske procedure. Objasnićemo vam kako funkcioniše trgovanje, šta vam je potrebno za otvaranje računa i kako se daje prvi nalog.",
    "primary_cta": "Zatražite informaciju o obveznicama",
    "primary_cta_link": "kontakt",
    "secondary_cta": "Preuzmite vodič",
@@ -134,8 +130,7 @@ window.EB_DATA = {
    "compliance": "Bez tvrdnji o zagarantovanom prinosu",
    "kpi": "Upiti; preuzimanja; prijave na webinar",
    "classification": "A",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "6",
@@ -149,8 +144,8 @@ window.EB_DATA = {
    "nav_order": "",
    "segment": "D",
    "intent": "Da li je moj portfelj dobro postavljen",
-   "message": "Pisana preporuka zasnovana na vašem cilju i riziku",
-   "goal": "Pretvoriti znanje u ugovorenu uslugu",
+   "message": "Investicione odluke uz stručnu podršku",
+   "goal": "Investiciono savjetovanje povezuje vaše ciljeve, finansijsku situaciju i odnos prema riziku sa stručnom analizom i pisanom investicionom preporukom prilagođenom vašem profilu.",
    "primary_cta": "Zakažite razgovor sa savjetnikom",
    "primary_cta_link": "kontakt",
    "secondary_cta": "Zatražite pregled portfelja",
@@ -161,8 +156,7 @@ window.EB_DATA = {
    "compliance": "Ne objavljuje se cijena prije usvajanja internih akata",
    "kpi": "Zahtjevi; sastanci; ugovoreni paketi",
    "classification": "A (uslovno)",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "8",
@@ -176,8 +170,8 @@ window.EB_DATA = {
    "nav_order": "2",
    "segment": "F",
    "intent": "Postoji li alternativa kreditu",
-   "message": "Kapital ne mora doći samo iz kredita",
-   "goal": "Od potrebe za kapitalom do rješenja na tržištu kapitala",
+   "message": "Podrška kroz sve faze poslovanja",
+   "goal": "Pomažemo kompanijama da donose kvalitetne poslovne odluke, prepoznaju nove mogućnosti i svoje planove uspješno sprovedu u djelo. ",
    "primary_cta": "Provjerite spremnost kompanije",
    "primary_cta_link": "procjena-spremnosti",
    "secondary_cta": "Zakažite inicijalni razgovor",
@@ -188,8 +182,7 @@ window.EB_DATA = {
    "compliance": "Bez utiska da je emisija unaprijed odobrena",
    "kpi": "Popunjeni upitnici; sastanci",
    "classification": "A",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "9",
@@ -203,8 +196,8 @@ window.EB_DATA = {
    "nav_order": "",
    "segment": "F",
    "intent": "Koje su opcije osim banke",
-   "message": "Kredit i tržište kapitala - činjenično poređenje",
-   "goal": "Uhvatiti kompaniju prije nego što zna za emisiju",
+   "message": "Kredit nije jedini način finansiranja",
+   "goal": "Banke su važan izvor finansiranja, ali nisu jedini. Saznajte kako se finansiranje putem tržišta kapitala razlikuje od tradicionalnog kredita i kada ga vrijedi razmotriti.",
    "primary_cta": "Preuzmite vodič „Kredit ili obveznica\"",
    "primary_cta_link": "kontakt",
    "secondary_cta": "Zakažite razgovor",
@@ -215,8 +208,7 @@ window.EB_DATA = {
    "compliance": "Bez omalovažavanja bankarskih proizvoda",
    "kpi": "Preuzimanja; prelazak na uslužnu stranicu",
    "classification": "A",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "10",
@@ -242,8 +234,7 @@ window.EB_DATA = {
    "compliance": "Opisuje uslugu, ne pojedinačnu emisiju; nema poziva na upis",
    "kpi": "Upiti; prilike u registru",
    "classification": "A",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "11",
@@ -269,8 +260,7 @@ window.EB_DATA = {
    "compliance": "Ista pravila kao za emisiju obveznica",
    "kpi": "Upiti",
    "classification": "A",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "12",
@@ -284,8 +274,8 @@ window.EB_DATA = {
    "nav_order": "",
    "segment": "F",
    "intent": "Šta nam nedostaje",
-   "message": "Pripremamo društvo za buduću emisiju",
-   "goal": "Zadržati kompaniju koja još nije spremna",
+   "message": "Pripremite kompaniju za izlazak na tržište kapitala",
+   "goal": "Emisija počinje mnogo prije njenog formalnog pokretanja. Pomažemo kompanijama da unaprijed urede ključne finansijske, organizacione i dokumentacione pretpostavke za buduće finansiranje putem tržišta kapitala.",
    "primary_cta": "Zatražite procjenu",
    "primary_cta_link": "procjena-spremnosti",
    "secondary_cta": "",
@@ -296,8 +286,7 @@ window.EB_DATA = {
    "compliance": "Pomoćni poslovi u okviru dozvole",
    "kpi": "Upiti; prilike u registru",
    "classification": "A",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "13",
@@ -311,8 +300,8 @@ window.EB_DATA = {
    "nav_order": "",
    "segment": "F",
    "intent": "Da li smo uopšte kandidat",
-   "message": "Deset pitanja i tri minuta",
-   "goal": "Glavna konverzija korporativnog puta",
+   "message": "Da li je vaša kompanija spremna za emisiju?",
+   "goal": "Odgovorite na nekoliko ključnih pitanja i dobijte početnu procjenu spremnosti vaše kompanije za finansiranje putem emisije hartija od vrijednosti.",
    "primary_cta": "Pošaljite rezultat i zakažite razgovor",
    "primary_cta_link": "kontakt",
    "secondary_cta": "Preuzmite rezultat",
@@ -323,8 +312,7 @@ window.EB_DATA = {
    "compliance": "Rezultat je opšta orijentaciona procjena, ne savjet",
    "kpi": "Započeti i završeni upitnici",
    "classification": "A",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "14",
@@ -350,8 +338,7 @@ window.EB_DATA = {
    "compliance": "Bez objavljenih rokova dok nisu izvodljivi",
    "kpi": "Zahtjevi za ponudu",
    "classification": "A (uslovno)",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "15",
@@ -365,8 +352,8 @@ window.EB_DATA = {
    "nav_order": "",
    "segment": "G",
    "intent": "Kakav nivo usluge dobijam",
-   "message": "Tri nivoa usluge sa jasnim obavezama",
-   "goal": "Formalizovati institucionalnu ponudu",
+   "message": "Brokerska podrška prilagođena institucionalnim zahtjevima",
+   "goal": "Institucionalni program Eurobrokera objedinjuje pristup tržištima, izvršenje naloga i direktnu stručnu podršku kroz jasno definisan model saradnje prilagođen potrebama profesionalnih i institucionalnih klijenata.",
    "primary_cta": "Zatražite formalnu ponudu",
    "primary_cta_link": "kontakt",
    "secondary_cta": "",
@@ -377,8 +364,7 @@ window.EB_DATA = {
    "compliance": "Rokovi se objavljuju tek kada su operativno izvodljivi",
    "kpi": "Zahtjevi za ponudu",
    "classification": "A (uslovno)",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "16",
@@ -392,8 +378,8 @@ window.EB_DATA = {
    "nav_order": "",
    "segment": "G",
    "intent": "Kako izvršiti veliki nalog",
-   "message": "Veliki nalozi uz kontrolu uticaja na cijenu",
-   "goal": "Institucionalno izvršenje u okviru postojeće dozvole",
+   "message": "Veliki nalozi zahtijevaju pažljivo izvršenje",
+   "goal": "Kod transakcija većeg obima važni su likvidnost, tržišni uslovi i način izvršenja. Eurobroker pruža brokersku podršku institucionalnim klijentima u realizaciji blok-transakcija i drugih naloga većeg obima, u skladu sa pravilima tržišta.",
    "primary_cta": "Zatražite razgovor",
    "primary_cta_link": "kontakt",
    "secondary_cta": "",
@@ -404,8 +390,7 @@ window.EB_DATA = {
    "compliance": "Samo u okviru postojeće dozvole",
    "kpi": "Upiti",
    "classification": "A",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "17",
@@ -431,8 +416,7 @@ window.EB_DATA = {
    "compliance": "Opšti tržišni pregled; ne predstavlja individualnu preporuku",
    "kpi": "Prijave; posjete",
    "classification": "A",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "18",
@@ -458,8 +442,7 @@ window.EB_DATA = {
    "compliance": "Razgraničenje edukacije od investicione preporuke",
    "kpi": "Prijave na webinar; preuzimanja",
    "classification": "A",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "19",
@@ -473,8 +456,8 @@ window.EB_DATA = {
    "nav_order": "6",
    "segment": "D,F,G",
    "intent": "Ko stoji iza sajta",
-   "message": "Poznavanje tržišta. Odgovornost prema klijentu.",
-   "goal": "Profesionalne brokerske i investicione usluge zasnovane na iskustvu i povjerenju",
+   "message": "Iskustvo na tržištu. Povjerenje koje se gradi.",
+   "goal": "Eurobroker povezuje dugogodišnje iskustvo na tržištu kapitala sa profesionalnim i odgovornim odnosom prema svakom klijentu.",
    "primary_cta": "Otvorite račun",
    "primary_cta_link": "otvorite-racun",
    "secondary_cta": "Kontakt",
@@ -485,8 +468,7 @@ window.EB_DATA = {
    "compliance": "Identifikacioni podaci i nadzorni organ",
    "kpi": "Posjete reputacionih stranica",
    "classification": "A",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "20",
@@ -512,8 +494,7 @@ window.EB_DATA = {
    "compliance": "Sadržaj potvrđuje funkcija usklađenosti prije objave",
    "kpi": "Posjete institucionalnih segmenata",
    "classification": "A",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "21",
@@ -539,8 +520,7 @@ window.EB_DATA = {
    "compliance": "Objavljuje se tek po usvajanju; svaka stavka ima datum primjene",
    "kpi": "Klikovi sa uslužnih stranica",
    "classification": "A",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "22",
@@ -566,8 +546,7 @@ window.EB_DATA = {
    "compliance": "Obavezno evidentiranje izvora akvizicije",
    "kpi": "Popunjeni obrasci",
    "classification": "A",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "23",
@@ -581,8 +560,8 @@ window.EB_DATA = {
    "nav_order": "",
    "segment": "svi",
    "intent": "Kako da vas dobijem",
-   "message": "Imenovana osoba i rok odziva",
-   "goal": "Konverzija u imenovani kontakt",
+   "message": "Razgovarajte direktno sa našim timom",
+   "goal": "Bilo da želite da otvorite račun, investirate na domaćem ili stranom tržištu ili saznate više o našim uslugama, javite nam se. Povezaćemo vas sa pravom osobom iz našeg tima.",
    "primary_cta": "Pošaljite poruku",
    "primary_cta_link": "",
    "secondary_cta": "",
@@ -593,8 +572,7 @@ window.EB_DATA = {
    "compliance": "Ugovoreni rok odziva: jedan radni dan",
    "kpi": "Poslati obrasci",
    "classification": "A",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "24",
@@ -620,8 +598,7 @@ window.EB_DATA = {
    "compliance": "Bez objave povjerljivih grupnih aranžmana",
    "kpi": "Upiti sa partnerske stranice",
    "classification": "A",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
   },
   {
    "id": "25",
@@ -635,8 +612,8 @@ window.EB_DATA = {
    "nav_order": "",
    "segment": "svi",
    "intent": "Gdje su obrasci i pravila",
-   "message": "Svi dokumenti sa verzijom i datumom",
-   "goal": "Podrška klijentima i rasterećenje brokera",
+   "message": "Svi dokumenti na jednom mjestu",
+   "goal": "Podrška klijentima, od otvaranje računa do trgovanja",
    "primary_cta": "Kontakt",
    "primary_cta_link": "kontakt",
    "secondary_cta": "",
@@ -647,8 +624,33 @@ window.EB_DATA = {
    "compliance": "Svaki dokument ima verziju i datum",
    "kpi": "Preuzimanja",
    "classification": "A",
-   "eyebrow": "",
-   "subtitle": ""
+   "eyebrow": ""
+  },
+  {
+   "id": "25",
+   "level": "2",
+   "parent": "za-kompanije",
+   "slug": "prikupljanje-kapitala",
+   "title": "Prikupljanje kapitala",
+   "url": "/za-kompanije/prikupljanje-kapitala/",
+   "type": "Uslužna",
+   "phase": "1",
+   "nav_order": "",
+   "segment": "F",
+   "intent": "Kako da pribavim kapital za kompaniju",
+   "message": "Kapital ne mora doći samo iz kredita",
+   "goal": "Istražite mogućnosti finansiranja putem tržišta kapitala i pronađite model koji odgovara potrebama i planovima vaše kompanije.",
+   "primary_cta": "Zakažite razgovor",
+   "primary_cta_link": "kontakt",
+   "secondary_cta": "",
+   "secondary_cta_link": "",
+   "related": "finansiranje-putem-trzista-kapitala,emisija-obveznica,emisija-akcija-i-dokapitalizacija",
+   "documents": "",
+   "seo": "",
+   "compliance": "",
+   "kpi": "",
+   "classification": "A",
+   "eyebrow": "Prikupljanje kapitala"
   }
  ],
  "cjenovnik": [
