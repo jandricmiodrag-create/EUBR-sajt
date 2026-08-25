@@ -10,9 +10,9 @@ window.EB_CONTENT = {
       { k: "STRUČNOST I INTEGRITET", v: "temelj poslovanja" }
     ],
     zasto: [
-      { t: "Pun set dozvola pod jednim krovom", d: "Brokersko-dilerski poslovi, poslovi agenta emisije, investiciono savjetovanje i kastodi poslovi — kombinacija koju u Republici Srpskoj ima mali broj društava." },
-      { t: "Domaća i svjetska tržišta na istom mjestu", d: "Banjalučka berza, obveznice Republike Srpske, globalne akcije, ETF-ovi i fjučersi — sve preko jednog domaćeg sagovornika." },
-      { t: "Imenovana osoba i objavljen rok odziva", d: "Svaki klijent zna ko je odgovoran za njegov odnos i u kom roku dobija odgovor. Javljamo se u jednom radnom danu." }
+      { t: "Više usluga tržišta kapitala na jednom mjestu", d: "Brokersko posredovanje, investiciono savjetovanje, korporativne finansije i poslovi agenta emisije te kastodi poslovi — povezane usluge za investitore, kompanije i institucije." },
+      { t: "Domaće i svjetska tržišta kroz jedan odnos", d: "Od Banjalučke berze i domaćih hartija od vrijednosti do globalnih akcija, ETF-ova i fjučersa — uz jedan odnos sa Eurobrokerom i stručnu podršku našeg tima." },
+      { t: "Znate ko je zadužen za vas", d: "Iza odnosa sa klijentom stoji imenovana osoba. Znate kome se obraćate, ko prati vaš zahtjev i kada možete očekivati odgovor." }
     ]
   },
 

@@ -95,8 +95,8 @@ window.EB_I18N = {
     "svc.cust": { sr: "Kastodi poslovi", en: "Custody services" },
     "svc.cust.d": { sr: "Čuvanje, administriranje i ostvarivanje prava iz hartija od vrijednosti uz profesionalnu kastodi podršku.", en: "Safekeeping, administration and exercise of securities rights with professional custody support." },
     "home.whyEyebrow": { sr: "Zašto Eurobroker", en: "Why Eurobroker" },
-    "home.whyTitle": { sr: "Tri provjerljiva razloga", en: "Three verifiable reasons" },
-    "home.whySub": { sr: "Bez superlativa i bez neprovjerljivih brojki.", en: "No superlatives, no unverifiable numbers." },
+    "home.whyTitle": { sr: "Tri razloga za dugoročan odnos", en: "Three reasons for a long-term relationship" },
+    "home.whySub": { sr: "Licencirane usluge. Pristup domaćim i svjetskim tržištima. Lična odgovornost prema klijentu.", en: "Licensed services. Access to domestic and world markets. Personal responsibility to the client." },
     "home.mktEyebrow": { sr: "Domaće i svjetska tržišta", en: "Domestic and world markets" },
     "home.mktTitle": { sr: "Birate — i oboje je dostupno", en: "You choose — and both are available" },
     "home.domH": { sr: "Domaće tržište", en: "Domestic market" },
@@ -149,9 +149,9 @@ window.EB_I18N = {
         { k: "EXPERTISE & INTEGRITY", v: "the foundation of our work" }
       ],
       zasto: [
-        { t: "A full set of licences under one roof", d: "Broker-dealer operations, issue-agent services, investment advice and custody — a combination held by few firms in Republika Srpska." },
-        { t: "Domestic and world markets in one place", d: "The Banja Luka Stock Exchange, Republika Srpska bonds, global equities, ETFs and futures — through one local partner." },
-        { t: "A named person and a published response time", d: "Every client knows who is responsible for their relationship and by when they get an answer. We reply within one business day." }
+        { t: "More capital-markets services in one place", d: "Brokerage, investment advice, corporate finance and issue-agent services, plus custody — connected services for investors, companies and institutions." },
+        { t: "Domestic and world markets through one relationship", d: "From the Banja Luka Stock Exchange and domestic securities to global equities, ETFs and futures — through a single relationship with Eurobroker and expert support from our team." },
+        { t: "You know who is responsible for you", d: "Behind the client relationship stands a named person. You know who to contact, who follows your request, and when to expect an answer." }
       ]
     },
 
