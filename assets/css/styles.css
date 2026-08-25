@@ -254,6 +254,12 @@ a svg, button svg, .link-arrow svg, .mq-val svg, .chip svg, .svc__no svg { width
 .invhub .segcard { display: flex; flex-direction: column; }
 .invhub .segcard .link-arrow { margin-top: auto; align-self: flex-start; }
 
+/* Početna — „Naše usluge" / poslovne linije: numeracija 01–04 + CTA pri dnu. Scoped. */
+.biz-lines { max-width: 1040px; grid-auto-rows: 1fr; }
+.biz-lines .segcard { display: flex; flex-direction: column; }
+.biz-lines .segcard .link-arrow { margin-top: auto; align-self: flex-start; }
+.biz-lines .segcard__no { position: absolute; top: 22px; right: 24px; font-family: var(--ff-head); font-weight: 700; font-size: 1.9rem; line-height: 1; color: var(--bg-softer); pointer-events: none; }
+
 /* ---------- Advisory band ---------- */
 .band { background: linear-gradient(120deg, #fbf7ee, #fff); border: 1px solid var(--gold-soft); border-radius: 22px; padding: 42px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; align-items: center; }
 .band h2 { font-size: 1.8rem; margin-bottom: 12px; }

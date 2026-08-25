@@ -214,19 +214,31 @@
     const c = content("pocetna");
     const en = isEN();
     const proofs = (c.heroProofs || []).map(p => `<div class="proof"><b>${esc(p.k)}</b><span>${esc(p.v)}</span></div>`).join("");
-    // Četiri korisničke namjere — sadržaj i linkovi centralizovani (i18n), isti .segcard izgled.
-    const seg4 = [
-      { o: "A", link: "investiranje" },
-      { o: "D", link: "investiciono-savjetovanje" },
-      { o: "F", link: "za-kompanije" },
-      { o: "G", link: "institucionalni-klijenti" }
+    // Naše usluge — četiri poslovne linije Eurobrokera (kod-vođen sadržaj, isti .segcard izgled + numeracija).
+    const bizIcon = {
+      broker: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/><path d="M16 8h4v4"/></svg>',
+      advice: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/><path d="M8.5 10l2.3 2.3L16 8"/></svg>',
+      corp: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V6l7-3v18"/><path d="M12 21V10l6 3v8"/><path d="M8 8h1M8 12h1M8 16h1"/></svg>',
+      custody: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="12" r="3.4"/><path d="M12 8.6v.01M12 15.4v.01M8.6 12h.01M15.4 12h.01"/><path d="M6 20v1M18 20v1"/></svg>'
+    };
+    const bizLines = en ? [
+      { slug: "investiranje", icon: "broker", t: "Brokerage services", d: "Trading securities on domestic and world markets.", cta: "Explore options" },
+      { slug: "investiciono-savjetovanje", icon: "advice", t: "Investment advice", d: "Expert advice in making investment decisions, aligned with your goals and your attitude to risk.", cta: "Talk to an adviser" },
+      { slug: "za-kompanije", icon: "corp", t: "Corporate finance", d: "Raising capital, restructuring and support across the stages of a company's development.", cta: "Solutions for companies" },
+      { slug: "kastodi-poslovi", icon: "custody", t: "Custody services", d: "Safekeeping and administration of securities, account keeping and execution of tasks related to securities rights.", cta: "Custody services" }
+    ] : [
+      { slug: "investiranje", icon: "broker", t: "Brokerske usluge", d: "Trgovanje hartijama od vrijednosti na domaćim i svjetskim tržištima.", cta: "Istražite mogućnosti" },
+      { slug: "investiciono-savjetovanje", icon: "advice", t: "Investiciono savjetovanje", d: "Stručno savjetovanje pri donošenju investicionih odluka, u skladu sa vašim ciljevima i odnosom prema riziku.", cta: "Razgovarajte sa savjetnikom" },
+      { slug: "za-kompanije", icon: "corp", t: "Korporativne finansije", d: "Prikupljanje kapitala, restrukturiranje i podrška kroz različite faze razvoja kompanije.", cta: "Rješenja za kompanije" },
+      { slug: "kastodi-poslovi", icon: "custody", t: "Kastodi poslovi", d: "Čuvanje i administriranje hartija od vrijednosti, vođenje računa i izvršavanje poslova povezanih sa pravima iz hartija od vrijednosti.", cta: "Kastodi usluge" }
     ];
-    const segCards = seg4.map(s => `
-      <a class="segcard reveal" href="#/${s.link}">
-        <div class="segcard__icon">${segIcon[s.o] || I.invest}</div>
-        <h3>${esc(T("seg." + s.o + ".title"))}</h3>
-        <p>${esc(T("seg." + s.o + ".desc"))}</p>
-        <span class="link-arrow">${esc(T("seg." + s.o + ".cta"))} ${I.arrow}</span>
+    const segCards = bizLines.map((b, i) => `
+      <a class="segcard reveal" href="#/${b.slug}">
+        <span class="segcard__no">0${i + 1}</span>
+        <div class="segcard__icon">${bizIcon[b.icon]}</div>
+        <h3>${esc(b.t)}</h3>
+        <p>${esc(b.d)}</p>
+        <span class="link-arrow">${esc(b.cta)} ${I.arrow}</span>
       </a>`).join("");
 
     const svc = [
@@ -284,7 +296,7 @@
     <section class="section">
       <div class="wrap">
         <div class="section-head center"><span class="eyebrow">${T("home.segEyebrow")}</span><h2>${T("home.segTitle")}</h2><p>${T("home.segSub")}</p></div>
-        <div class="grid grid-4">${segCards}</div>
+        <div class="grid grid-2 biz-lines">${segCards}</div>
       </div>
     </section>
 

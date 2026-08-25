@@ -57,8 +57,8 @@ window.EB_I18N = {
     "home.whatNeed": { sr: "Šta vam je potrebno?", en: "What do you need?" },
 
     "home.segEyebrow": { sr: "Naše usluge", en: "Our services" },
-    "home.segTitle": { sr: "Za svaki cilj na tržištu kapitala", en: "For every goal in the capital market" },
-    "home.segSub": { sr: "Investiranje, savjetovanje, finansiranje kompanija i institucionalne usluge uz stručnu podršku našeg tima.", en: "Investing, advice, corporate financing and institutional services, with expert support from our team." },
+    "home.segTitle": { sr: "Sve što vam je potrebno za tržište kapitala", en: "Everything you need for the capital market" },
+    "home.segSub": { sr: "Širok spektar usluga za investitore i kompanije uz stručnu podršku našeg tima.", en: "A broad range of services for investors and companies, with expert support from our team." },
     "seg.A": { sr: "Želim da ulažem", en: "I want to invest" },
     "seg.D": { sr: "Treba mi savjet", en: "I need advice" },
     "seg.F": { sr: "Kompaniji treba kapital", en: "My company needs capital" },
