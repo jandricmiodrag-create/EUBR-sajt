@@ -31,7 +31,7 @@
   window.EB_SHEETS_CONFIG = {
     stranice:      { source: src, file: "gsheet/stranice.csv",       url: csv("1lOr5zOBzT71YkqBHHgvOJME4qlWTCdDfa-2gtjcOAv0") },
     cjenovnik:     { source: src, file: "gsheet/cjenovnik.csv",      url: csv("1jybJiqU2b47cktaH6PqejiwoewS9M5TkMO5Ke7ARYjE") },
-    urednickiPlan: { source: src, file: "gsheet/urednicki-plan.csv", url: csv("1lVitdl9uvjID1VghL9O600guHsyFE26CWnOyI6yTHMs") },
+    urednickiPlan: { source: src, file: "gsheet/urednicki-plan.csv", url: csv("1iu41K45917wFqyAfrUCOiEGRy7vyOC9mC9UhkqkRIDQ") },
     segmenti:      { source: src, file: "gsheet/segmenti.csv",       url: csv("1dHRDSJCgYBgxiAZ4erOTlBnMCxsCE37_YJlDqDwGYv4") },
     klasifikacija: { source: src, file: "gsheet/klasifikacija.csv",  url: csv("1rXoIDjp_AT5TXZ9l3_lkHt9zugHl0T0daVzv99Ym6Tc") },
     faq:           { source: src, file: "gsheet/faq.csv",            url: csv("1u3abhAluksimNRmLixWjxpt4xGX3fZMeQRUUb60rCSE") },
@@ -48,7 +48,7 @@
     folder:        "https://drive.google.com/drive/folders/1a85KKlnBy7vfiauHk0_PFRH_mzdAWfar",
     stranice:      "https://docs.google.com/spreadsheets/d/1lOr5zOBzT71YkqBHHgvOJME4qlWTCdDfa-2gtjcOAv0/edit",
     cjenovnik:     "https://docs.google.com/spreadsheets/d/1jybJiqU2b47cktaH6PqejiwoewS9M5TkMO5Ke7ARYjE/edit",
-    urednickiPlan: "https://docs.google.com/spreadsheets/d/1lVitdl9uvjID1VghL9O600guHsyFE26CWnOyI6yTHMs/edit",
+    urednickiPlan: "https://docs.google.com/spreadsheets/d/1iu41K45917wFqyAfrUCOiEGRy7vyOC9mC9UhkqkRIDQ/edit",
     segmenti:      "https://docs.google.com/spreadsheets/d/1dHRDSJCgYBgxiAZ4erOTlBnMCxsCE37_YJlDqDwGYv4/edit",
     klasifikacija: "https://docs.google.com/spreadsheets/d/1rXoIDjp_AT5TXZ9l3_lkHt9zugHl0T0daVzv99Ym6Tc/edit",
     faq:           "https://docs.google.com/spreadsheets/d/1u3abhAluksimNRmLixWjxpt4xGX3fZMeQRUUb60rCSE/edit",
