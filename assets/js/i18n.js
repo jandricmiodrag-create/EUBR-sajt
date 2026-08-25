@@ -275,7 +275,7 @@ window.EB_I18N = {
     },
 
     investiranje: {
-      what: "Investing with Eurobroker means access to the domestic and world markets through a local licensed intermediary. You choose how much support you want — from executing your own orders to a contracted advisory relationship.",
+      what: "Invest on your own through a brokerage account, or use investment advice when you want expert support in making decisions.",
       whoFor: ["Savers who want more than a deposit", "Experienced investors for global markets", "Clients from the diaspora", "Larger-portfolio owners seeking advice"]
     },
     "domace-trziste": {
@@ -398,7 +398,7 @@ window.EB_I18N = {
     "regulatorni-status": "Licences and the supervisory authority in one place",
     "otvorite-racun": "Three steps to an active account",
     "kontakt": "A named person and a response time",
-    "investiranje": "Invest on your own or with advice",
+    "investiranje": "Your access to domestic and world markets",
     "domace-trziste": "An order on the Banja Luka exchange, with a broker who explains",
     "svjetska-trzista": "Global equities, ETFs and futures through a local licensed firm",
     "obveznice-rs": "Bonds are bought through a broker, not at a bank",
@@ -417,7 +417,7 @@ window.EB_I18N = {
     "kastodi-poslovi": "Eurobroker provides custody services within its Commission licence — account keeping, administration of securities rights and operational support for clients in exercising those rights.",
     "otvorite-racun": "The primary conversion — start in one business day.",
     "kontakt": "We reply within one business day.",
-    "investiranje": "Separating visitors by market and level of support.",
+    "investiranje": "Invest in different types of securities on the domestic and foreign markets — on your own or with expert support from our team.",
     "domace-trziste": "Retaining and reactivating the existing base.",
     "svjetska-trzista": "New accounts and access to global markets.",
     "obveznice-rs": "An entry point through the most understandable instrument.",

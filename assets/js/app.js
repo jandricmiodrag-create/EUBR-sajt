@@ -379,6 +379,45 @@
   }
   function segHeadline(o) { return ({ A: "Želim da ulažem", D: "Treba mi savjet", F: "Kompaniji treba kapital", G: "Institucija smo" })[o] || ""; }
 
+  /* ---------------- INVESTIRANJE (hub, namjenski) ---------------- */
+  function renderInvestiranje(p) {
+    const en = isEN();
+    const cont = content("investiranje");
+    const hero = pagehero(Object.assign({}, p, {
+      message: en ? "Your access to domestic and world markets" : "Vaš pristup domaćim i svjetskim tržištima",
+      goal: en
+        ? "Invest in different types of securities on the domestic and foreign markets — on your own or with expert support from our team."
+        : "Investirajte u različite vrste hartija od vrijednosti na domaćem i stranim tržištima — samostalno ili uz stručnu podršku našeg tima."
+    }));
+    const copy = en ? {
+      "domace-trziste": { d: "Trade shares, bonds and other securities on the Banja Luka Stock Exchange with the support of licensed brokers.", cta: "Explore the domestic market" },
+      "svjetska-trzista": { d: "Access the world's leading exchanges and invest in global equities, ETFs, bonds and other financial instruments.", cta: "Explore world markets" },
+      "investiciono-savjetovanje": { d: "If you want expert support when investing, our licensed investment advisers will help you weigh the options, assess risk and make decisions aligned with your goals.", cta: "Investment advice" }
+    } : {
+      "domace-trziste": { d: "Trgujte akcijama, obveznicama i drugim hartijama od vrijednosti na Banjalučkoj berzi uz podršku licenciranih brokera.", cta: "Istražite domaće tržište" },
+      "svjetska-trzista": { d: "Pristupite vodećim svjetskim berzama i investirajte u globalne akcije, ETF-ove, obveznice i druge finansijske instrumente.", cta: "Istražite svjetska tržišta" },
+      "investiciono-savjetovanje": { d: "Ako želite stručnu podršku pri ulaganju, naši licencirani investicioni savjetnici pomoći će vam da sagledate mogućnosti, procijenite rizik i donesete odluke usklađene sa svojim ciljevima.", cta: "Investiciono savjetovanje" }
+    };
+    // Tri glavne kartice (obveznice-rs namjerno izostavljene sa huba — stranica i ruta ostaju).
+    const order = ["domace-trziste", "svjetska-trzista", "investiciono-savjetovanje"];
+    const cards = order.map(slug => {
+      const k = EB.page(slug); if (!k) return "";
+      const cc = copy[slug];
+      return `<a class="segcard reveal" href="#/${slug}">
+        <div class="segcard__icon">${pageIcon[slug] || I.invest}</div>
+        <h3>${esc(pTitle(k))}</h3>
+        <p>${esc(cc.d)}</p>
+        <span class="link-arrow">${esc(cc.cta)} ${I.arrow}</span>
+      </a>`;
+    }).join("");
+    return hero + `
+    <section class="section"><div class="wrap">
+      ${cont.what ? `<div class="section-head" style="max-width:820px"><p class="lead">${esc(cont.what)}</p></div>` : ""}
+      <div class="grid grid-3 invhub">${cards}</div>
+    </div></section>
+    ${ctaBand(p)}`;
+  }
+
   /* ---------------- HUB ---------------- */
   function renderHub(p) {
     const cont = content(p.slug);
@@ -946,6 +985,7 @@
     else if (slug === "otvorite-racun") html = renderForm(p, "racun");
     else if (slug === "kontakt") html = renderForm(p, "kontakt");
     else if (slug === "o-nama") html = renderONama(p);
+    else if (slug === "investiranje") html = renderInvestiranje(p);
     else if (["regulatorni-status", "partneri", "dokumenti"].includes(slug)) html = renderSimple(p);
     else if (slug === "investiranje-iz-dijaspore") html = renderService(p);
     else if (slug === "kastodi-poslovi") html = renderKastodi(p);

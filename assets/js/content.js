@@ -17,7 +17,7 @@ window.EB_CONTENT = {
   },
 
   investiranje: {
-    what: "Investiranje kod Eurobrokera znači pristup domaćem i svjetskim tržištima uz domaćeg licenciranog posrednika. Vi birate koliko podrške želite — od samostalnog izvršenja naloga do ugovorenog savjetovanja.",
+    what: "Investirajte samostalno putem brokerskog računa ili koristite investiciono savjetovanje kada želite stručnu podršku pri donošenju odluka.",
     whoFor: ["Građani koji žele više od depozita", "Iskusniji investitori za globalna tržišta", "Klijenti iz dijaspore", "Vlasnici većih portfelja koji traže savjet"]
   },
 

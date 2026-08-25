@@ -233,6 +233,10 @@ a svg, button svg, .link-arrow svg, .mq-val svg, .chip svg, .svc__no svg { width
 .onama__principles { margin: 36px 0 0; max-width: 1040px; }
 .onama__nav { max-width: 760px; margin-top: 28px; }
 
+/* Hub /investiranje/ — CTA (link-arrow) poravnat pri dnu bez obzira na dužinu opisa. Scoped. */
+.invhub .segcard { display: flex; flex-direction: column; }
+.invhub .segcard .link-arrow { margin-top: auto; align-self: flex-start; }
+
 /* ---------- Advisory band ---------- */
 .band { background: linear-gradient(120deg, #fbf7ee, #fff); border: 1px solid var(--gold-soft); border-radius: 22px; padding: 42px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; align-items: center; }
 .band h2 { font-size: 1.8rem; margin-bottom: 12px; }
