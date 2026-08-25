@@ -235,6 +235,10 @@
 
     const why = (c.zasto || []).map((z, i) => `<div class="why__item reveal"><span class="why__num">0${i + 1}</span><h3>${esc(z.t)}</h3><p>${esc(z.d)}</p></div>`).join("");
 
+    // Tanke line-ikone samo za blok "Domaće i svjetska tržišta" (scoped, ne diraju globalne I.*).
+    const mktDomIcon = '<svg class="split__glyph" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6v20h20"/><path d="M11 19l5-5 4 4 6-8"/><path d="M22 10h4v4"/></svg>';
+    const mktWorldIcon = '<svg class="split__glyph" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="16" cy="16" r="11.5"/><path d="M4.5 16h23M16 4.5v23"/><ellipse cx="16" cy="16" rx="5.5" ry="11.5"/></svg>';
+
     const ed = EB.data.urednickiPlan || [];
     const m1 = ed[0] || {};
     const insight = `
@@ -294,19 +298,21 @@
     </section>
 
     <section class="section section--soft"><div class="wrap">
-      <div class="section-head center"><span class="eyebrow">${T("home.mktEyebrow")}</span><h2>${T("home.mktTitle")}</h2></div>
-      <div class="split">
+      <div class="section-head center"><span class="eyebrow">${T("home.mktEyebrow")}</span><h2>${T("home.mktTitle")}</h2><p>${T("home.mktSub")}</p></div>
+      <div class="split split--mkt">
         <div class="split__col dom reveal">
-          <h3>${I.invest} ${T("home.domH")}</h3>
+          <div class="split__icon">${mktDomIcon}</div>
+          <h3>${T("home.domH")}</h3>
           <p>${T("home.domP")}</p>
           <ul><li>${T("home.domL1")}</li><li>${T("home.domL2")}</li><li>${T("home.domL3")}</li></ul>
-          <a class="btn btn--primary" href="#/domace-trziste">${T("home.domH")} ${I.arrow}</a>
+          <a class="btn btn--primary split__cta" href="#/domace-trziste">${T("home.domCta")} ${I.arrow}</a>
         </div>
         <div class="split__col world reveal">
-          <h3>${I.globe} ${T("home.worldH")}</h3>
+          <div class="split__icon">${mktWorldIcon}</div>
+          <h3>${T("home.worldH")}</h3>
           <p>${T("home.worldP")}</p>
           <ul><li>${T("home.worldL1")}</li><li>${T("home.worldL2")}</li><li>${T("home.worldL3")}</li></ul>
-          <a class="btn btn--ghost-light" href="#/svjetska-trzista">${T("home.worldH")} ${I.arrow}</a>
+          <a class="btn btn--primary split__cta" href="#/svjetska-trzista">${T("home.worldCta")} ${I.arrow}</a>
         </div>
       </div>
     </div></section>

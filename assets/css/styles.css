@@ -208,7 +208,20 @@ a svg, button svg, .link-arrow svg, .mq-val svg, .chip svg, .svc__no svg { width
 .split__col p { color: rgba(255,255,255,.85); margin-bottom: 20px; }
 .split__col ul { list-style: none; margin-bottom: 24px; }
 .split__col li { padding: 7px 0 7px 26px; position: relative; color: #eaf1f8; font-size: .95rem; }
-.split__col li::before { content: ""; position: absolute; left: 0; top: 14px; width: 12px; height: 12px; border: 2px solid var(--gold); border-radius: 3px; }
+.split__col li::before { content: ""; position: absolute; left: 0; top: 15px; width: 10px; height: 10px; border: 1.5px solid var(--gold); border-radius: 3px; }
+/* Kategorijski marker (tanka line-ikona) — scoped samo na ovaj blok, ne dira globalne SVG ikone. */
+.split__icon { width: 60px; height: 60px; border-radius: 15px; display: grid; place-items: center; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16); margin-bottom: 20px; }
+.split__glyph { width: 30px; height: 30px; display: block; color: var(--gold-soft); }
+.split--mkt .split__col { transition: transform .28s ease, box-shadow .28s ease; }
+.split__cta svg { transition: transform .25s ease; }
+@media (hover: hover) {
+  .split--mkt .split__col:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(10,37,64,.22); }
+  .split__cta:hover svg { transform: translateX(3px); }
+}
+@media (max-width: 640px) {
+  .split__icon { width: 52px; height: 52px; border-radius: 13px; margin-bottom: 16px; }
+  .split__glyph { width: 26px; height: 26px; }
+}
 
 /* ---------- Advisory band ---------- */
 .band { background: linear-gradient(120deg, #fbf7ee, #fff); border: 1px solid var(--gold-soft); border-radius: 22px; padding: 42px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; align-items: center; }
