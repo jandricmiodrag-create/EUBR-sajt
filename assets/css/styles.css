@@ -277,6 +277,7 @@ a svg, button svg, .link-arrow svg, .mq-val svg, .chip svg, .svc__no svg { width
 .icard__top.webinar { background: var(--teal); }
 .icard__top.vodic { background: var(--gold); color: var(--navy); }
 .icard__body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+.icard__date { display: block; font-size: .76rem; color: var(--muted); margin-bottom: 6px; letter-spacing: .01em; }
 .icard__body h3 { font-size: 1.05rem; margin-bottom: 8px; }
 .icard__body p { color: var(--muted); font-size: .88rem; margin-bottom: 14px; }
 .icard__body .link-arrow { margin-top: auto; }

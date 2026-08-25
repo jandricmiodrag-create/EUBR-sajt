@@ -117,9 +117,9 @@ window.EB_I18N = {
     "home.instH": { sr: "Usluge prilagođene institucionalnim zahtjevima", en: "Services tailored to institutional requirements" },
     "home.instP": { sr: "Brokerske, kastodi i druge usluge za institucionalne klijente — uz direktnu stručnu podršku i jasno definisan model saradnje.", en: "Brokerage, custody and other services for institutional clients — with direct expert support and a clearly defined model of cooperation." },
     "home.instCta": { sr: "Istražite institucionalne usluge", en: "Explore institutional services" },
-    "home.insEyebrow": { sr: "Najnovije analize i edukacija", en: "Latest insights and learning" },
-    "home.insTitle": { sr: "Sadržaj koji se obnavlja", en: "Content that keeps refreshing" },
-    "home.insSub": { sr: "Dokaz da iza sajta neko stoji — i mekan prvi korak za one koji još ne kupuju.", en: "Proof that someone stands behind the site — and a soft first step for those not yet buying." },
+    "home.insEyebrow": { sr: "Analize i edukacija", en: "Insights and learning" },
+    "home.insTitle": { sr: "Znanje za bolje razumijevanje tržišta", en: "Knowledge for a better understanding of the markets" },
+    "home.insSub": { sr: "Pratite tržišne preglede, praktične vodiče i edukativne sadržaje koji vam pomažu da bolje razumijete tržišta kapitala, instrumente i proces investiranja.", en: "Follow market overviews, practical guides and educational content that help you better understand the capital markets, instruments and the investment process." },
     "home.trustEyebrow": { sr: "Elementi povjerenja", en: "Trust signals" },
     "home.trustTitle": { sr: "Rizik saradnje je mali i provjerljiv", en: "The risk of working with us is small and verifiable" },
     "trust.licence": { sr: "Dozvole KHOV RS", en: "SEC RS licences" },
@@ -129,12 +129,6 @@ window.EB_I18N = {
     "trust.complaints": { sr: "Postupak po prigovorima", en: "Complaints procedure" },
     "home.finalTitle": { sr: "Naredni korak je jednostavan i neobavezujući", en: "The next step is simple and without obligation" },
     "home.finalSub": { sr: "Otvorite račun ili zakažite razgovor — javljamo se u jednom radnom danu.", en: "Open an account or book a call — we reply within one business day." },
-    "card.analiza": { sr: "Analiza · tržišni pregled", en: "Insight · market review" },
-    "card.webinar": { sr: "Webinar · uskoro", en: "Webinar · soon" },
-    "card.vodic": { sr: "Vodič · edukacija", en: "Guide · learning" },
-    "card.read": { sr: "Pročitajte", en: "Read" },
-    "card.signup": { sr: "Prijavite se", en: "Sign up" },
-    "card.download": { sr: "Preuzmite", en: "Download" }
   },
 
   /* --- EN proza po stranici (ista struktura kao window.EB_CONTENT) --- */

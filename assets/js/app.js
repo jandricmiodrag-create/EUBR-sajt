@@ -209,6 +209,39 @@
     </div>`;
   }
 
+  /* ---------------- Sekcija "Analize i edukacija" (data-adapter + fallback) ----------------
+     Bira stvarno objavljen sadržaj iz data modela; kada nema potrebnih polja, koristi profesionalni fallback.
+     NEDOSTAJE za punu dinamiku: tabela urednicki-plan nema kolone datuma/statusa/URL-a/featured
+     (npr. analiza_datum, analiza_url, analiza_status, webinar_datum, webinar_vrijeme, webinar_prijava,
+      vodic_url, vodic_datum, vodic_featured). Čim se dodaju, adapter ih automatski koristi. */
+  const MJESECI = ["januar","februar","mart","april","maj","jun","jul","avgust","septembar","oktobar","novembar","decembar"];
+  function fmtDateSR(s) { const d = new Date(s); return isNaN(d) ? "" : (d.getDate() + ". " + MJESECI[d.getMonth()] + " " + d.getFullYear() + "."); }
+  function insightData(en) {
+    const t = (sr, e) => en ? e : sr;
+    const rows = (EB.data && EB.data.urednickiPlan) || [];
+    const ts = (v) => { const d = Date.parse(v); return isNaN(d) ? NaN : d; };
+    // 1) Analiza — najnovija objavljena (traži datum + URL; status "objavljeno" ako polje postoji)
+    const analize = rows.filter(r => r.analiza_url && r.analiza_datum && (!r.analiza_status || /objav/i.test(r.analiza_status)))
+      .sort((a, b) => ts(b.analiza_datum) - ts(a.analiza_datum));
+    const analiza = analize[0]
+      ? { eyebrow: t("Analize · Tržišta", "Insights · Markets"), title: analize[0].analiza, desc: analize[0].analiza_opis || "", date: analize[0].analiza_datum, href: analize[0].analiza_url, ext: true, cls: "analiza", cta: t("Pogledajte analize", "See insights") }
+      : { eyebrow: t("Analize · Tržišta", "Insights · Markets"), title: t("Pregled svjetskih tržišta", "World markets overview"), desc: t("Kretanja na vodećim svjetskim tržištima, ključni događaji i teme koje vrijedi pratiti.", "Movements on the world's leading markets, the key events and themes worth following."), href: "#/analize", cls: "analiza", cta: t("Pogledajte analize", "See insights") };
+    // 2) Webinar — naredni budući sa validnom prijavom; inače fallback edukativna kartica
+    const now = Date.now();
+    const webinari = rows.filter(r => r.webinar_datum && r.webinar_prijava && ts(r.webinar_datum) >= now)
+      .sort((a, b) => ts(a.webinar_datum) - ts(b.webinar_datum));
+    const webinar = webinari[0]
+      ? { eyebrow: t("Edukacija · Webinar", "Learning · Webinar"), title: webinari[0].webinar, desc: webinari[0].webinar_opis || "", date: webinari[0].webinar_datum, time: webinari[0].webinar_vrijeme || "", href: webinari[0].webinar_prijava, ext: true, cls: "webinar", cta: t("Prijavite se", "Sign up") }
+      : { eyebrow: t("Edukacija · Webinar", "Learning · Webinar"), title: t("Prvi koraci na svjetskim tržištima", "First steps on the world markets"), desc: t("Upoznajte se sa načinom pristupa svjetskim tržištima, vrstama instrumenata i osnovama procesa trgovanja.", "Get to know how to access world markets, the types of instruments and the basics of trading."), href: "#/edukacija", cls: "webinar", cta: t("Pogledajte edukaciju", "See learning") };
+    // 3) Vodič — featured, pa najnoviji sa URL-om
+    const vodici = rows.filter(r => r.vodic_url)
+      .sort((a, b) => ((b.vodic_featured ? 1 : 0) - (a.vodic_featured ? 1 : 0)) || (ts(b.vodic_datum) - ts(a.vodic_datum)));
+    const vodic = vodici[0]
+      ? { eyebrow: t("Vodič · Početak investiranja", "Guide · Getting started"), title: vodici[0].vodic, desc: vodici[0].vodic_opis || "", date: vodici[0].vodic_datum, href: vodici[0].vodic_url, ext: true, cls: "vodic", cta: t("Pogledajte vodič", "See guide") }
+      : { eyebrow: t("Vodič · Početak investiranja", "Guide · Getting started"), title: t("Kako otvoriti brokerski račun", "How to open a brokerage account"), desc: t("Jasan vodič kroz dokumentaciju, otvaranje računa i korake do prvog naloga.", "A clear guide through the paperwork, opening an account and the steps to your first order."), href: "#/edukacija", cls: "vodic", cta: t("Pogledajte vodič", "See guide") };
+    return [analiza, webinar, vodic];
+  }
+
   /* ---------------- HOME ---------------- */
   function renderHome() {
     const c = content("pocetna");
@@ -248,14 +281,12 @@
     const mktDomIcon = '<svg class="split__glyph" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6v20h20"/><path d="M11 19l5-5 4 4 6-8"/><path d="M22 10h4v4"/></svg>';
     const mktWorldIcon = '<svg class="split__glyph" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="16" cy="16" r="11.5"/><path d="M4.5 16h23M16 4.5v23"/><ellipse cx="16" cy="16" rx="5.5" ry="11.5"/></svg>';
 
-    const ed = EB.data.urednickiPlan || [];
-    const m1 = ed[0] || {};
     const insight = `
-      <div class="grid grid-3">
-        <div class="icard reveal"><div class="icard__top analiza">${T("card.analiza")}</div><div class="icard__body"><h3>${esc(m1.analiza || "Prvi pregled svjetskih tržišta")}</h3><p>${en ? "General market review, not individual advice." : "Opšti tržišni pregled bez individualne preporuke."}</p><a class="link-arrow" href="#/analize">${T("card.read")} ${I.arrow}</a></div></div>
-        <div class="icard reveal"><div class="icard__top webinar">${T("card.webinar")}</div><div class="icard__body"><h3>${esc(m1.webinar || "Prvi koraci na stranim tržištima")}</h3><p>${en ? "A free introductory webinar with sign-up." : "Besplatan uvodni webinar uz prijavu."}</p><a class="link-arrow" href="#/edukacija">${T("card.signup")} ${I.arrow}</a></div></div>
-        <div class="icard reveal"><div class="icard__top vodic">${T("card.vodic")}</div><div class="icard__body"><h3>${esc(m1.vodic || "Kako otvoriti brokerski račun")}</h3><p>${en ? "Step by step, for your first account." : "Korak po korak, za prvi račun."}</p><a class="link-arrow" href="#/edukacija">${T("card.download")} ${I.arrow}</a></div></div>
-      </div>`;
+      <div class="grid grid-3">${insightData(en).map(it => {
+        const dateHtml = it.date ? `<time class="icard__date" datetime="${esc(it.date)}">${esc(fmtDateSR(it.date) + (it.time ? (", " + it.time) : ""))}</time>` : "";
+        const linkAttrs = it.ext ? `href="${esc(it.href)}" target="_blank" rel="noopener"` : `href="${esc(it.href)}"`;
+        return `<div class="icard reveal"><div class="icard__top ${it.cls}">${esc(it.eyebrow)}</div><div class="icard__body">${dateHtml}<h3>${esc(it.title)}</h3><p>${esc(it.desc)}</p><a class="link-arrow" ${linkAttrs}>${esc(it.cta)} ${I.arrow}</a></div></div>`;
+      }).join("")}</div>`;
 
     const poc = EB.page("pocetna") || {};
     const heroTag = en ? c.heroTag : (poc.eyebrow || "25 godina na tržištu kapitala");
