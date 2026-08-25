@@ -241,14 +241,6 @@
         <span class="link-arrow">${esc(b.cta)} ${I.arrow}</span>
       </a>`).join("");
 
-    const svc = [
-      ["domace-trziste", T("svc.dom"), T("svc.dom.d")],
-      ["svjetska-trzista", T("svc.world"), T("svc.world.d")],
-      ["investiciono-savjetovanje", T("svc.adv"), T("svc.adv.d")],
-      ["za-kompanije", T("svc.corp"), T("svc.corp.d")],
-      ["institucionalni-klijenti", T("svc.inst"), T("svc.inst.d")],
-      ["kastodi-poslovi", T("svc.cust"), T("svc.cust.d")]
-    ].map((s, i) => `<a class="svc reveal" href="#/${s[0]}"><span class="svc__no">0${i + 1}</span><div><h3>${esc(s[1])}</h3><p>${esc(s[2])}</p><span class="link-arrow">${T("btn.saznajteVise")} ${I.arrow}</span></div></a>`).join("");
 
     const why = (c.zasto || []).map((z, i) => `<div class="why__item reveal"><span class="why__num">0${i + 1}</span><h3>${esc(z.t)}</h3><p>${esc(z.d)}</p></div>`).join("");
 
@@ -297,13 +289,6 @@
       <div class="wrap">
         <div class="section-head center"><span class="eyebrow">${T("home.segEyebrow")}</span><h2>${T("home.segTitle")}</h2><p>${T("home.segSub")}</p></div>
         <div class="grid grid-2 biz-lines">${segCards}</div>
-      </div>
-    </section>
-
-    <section class="section section--soft">
-      <div class="wrap">
-        <div class="section-head"><span class="eyebrow">${T("home.svcEyebrow")}</span><h2>${T("home.svcTitle")}</h2><p>${T("home.svcSub")}</p></div>
-        <div class="grid grid-3">${svc}</div>
       </div>
     </section>
 
