@@ -446,6 +446,47 @@
     ${ctaBand(p)}`;
   }
 
+  /* ---------------- ZA KOMPANIJE (hub, namjenski: 4 poslovne cjeline + konsultativni CTA) ---------------- */
+  function renderZaKompanije(p) {
+    const en = isEN();
+    const zkIcon = {
+      kapital: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 2 6-7"/><path d="M16 6h4v4"/></svg>',
+      savjet: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/><path d="M8.5 10l2.3 2.3L16 8"/></svg>',
+      korp: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V6l7-3v18"/><path d="M12 21V10l6 3v8"/><path d="M8 8h1M8 12h1M8 16h1"/></svg>',
+      analiza: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 17v-3M12 17v-5M16 17v-2"/></svg>'
+    };
+    const lines = en ? [
+      { slug: "finansiranje-putem-trzista-kapitala", icon: "kapital", t: "Raising capital", d: "Share and bond issues, recapitalisation, issue-agent services and other solutions for accessing capital.", cta: "Learn more" },
+      { slug: "kontakt", icon: "savjet", t: "Business and financial advisory", d: "Advice on capital structure, business strategy and corporate governance, tailored to your company's needs and goals.", cta: "Learn more" },
+      { slug: "priprema-za-trziste-kapitala", icon: "korp", t: "Corporate services", d: "Company restructuring, status changes, preparation of legal and other documents, and support in complex corporate procedures.", cta: "Learn more" },
+      { slug: "kontakt", icon: "analiza", t: "Analyses and business plans", d: "Financial, fundamental, technical and other analyses, investment research and the preparation of business plans.", cta: "Learn more" }
+    ] : [
+      { slug: "finansiranje-putem-trzista-kapitala", icon: "kapital", t: "Prikupljanje kapitala", d: "Emisije akcija i obveznica, dokapitalizacija, poslovi agenta emisije i druga rješenja za pristup kapitalu.", cta: "Saznajte više" },
+      { slug: "kontakt", icon: "savjet", t: "Poslovno i finansijsko savjetovanje", d: "Savjetovanje o strukturi kapitala, poslovnoj strategiji i korporativnom upravljanju, prilagođeno potrebama i ciljevima vaše kompanije.", cta: "Saznajte više" },
+      { slug: "priprema-za-trziste-kapitala", icon: "korp", t: "Korporativni poslovi", d: "Preoblikovanje društava, statusne promjene, priprema pravnih i drugih akata i podrška u složenim korporativnim postupcima.", cta: "Saznajte više" },
+      { slug: "kontakt", icon: "analiza", t: "Analize i poslovni planovi", d: "Finansijske, fundamentalne, tehničke i druge analize, istraživanja iz oblasti investiranja i izrada poslovnih planova.", cta: "Saznajte više" }
+    ];
+    const cards = lines.map((b, i) => `
+      <a class="segcard reveal" href="#/${b.slug}">
+        <span class="segcard__no">0${i + 1}</span>
+        <div class="segcard__icon">${zkIcon[b.icon]}</div>
+        <h3>${esc(b.t)}</h3>
+        <p>${esc(b.d)}</p>
+        <span class="link-arrow">${esc(b.cta)} ${I.arrow}</span>
+      </a>`).join("");
+    const consult = `
+      <div class="zk-consult reveal">
+        <h2>${en ? "Need a solution that isn't on the list?" : "Treba vam rješenje koje nije na listi?"}</h2>
+        <p>${en ? "Companies' needs are not always standard. If you are facing a complex financial or corporate task, talk to our team. We will assess the situation and the options and help you define the next steps." : "Potrebe kompanija nisu uvijek standardne. Ako je pred vama složen finansijski ili korporativni posao, razgovarajte sa našim timom. Sagledaćemo situaciju i mogućnosti i pomoći vam da definišete naredne korake."}</p>
+        <a class="btn btn--primary" href="#/kontakt">${en ? "Book a call" : "Zakažite razgovor"} ${I.arrow}</a>
+      </div>`;
+    return pagehero(p) + `
+    <section class="section"><div class="wrap">
+      <div class="grid grid-2 biz-lines">${cards}</div>
+      ${consult}
+    </div></section>`;
+  }
+
   /* ---------------- HUB ---------------- */
   function renderHub(p) {
     const cont = content(p.slug);
@@ -1017,6 +1058,7 @@
     else if (slug === "kontakt") html = renderForm(p, "kontakt");
     else if (slug === "o-nama") html = renderONama(p);
     else if (slug === "investiranje") html = renderInvestiranje(p);
+    else if (slug === "za-kompanije") html = renderZaKompanije(p);
     else if (["regulatorni-status", "partneri", "dokumenti"].includes(slug)) html = renderSimple(p);
     else if (slug === "investiranje-iz-dijaspore") html = renderService(p);
     else if (slug === "kastodi-poslovi") html = renderKastodi(p);

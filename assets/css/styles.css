@@ -260,6 +260,13 @@ a svg, button svg, .link-arrow svg, .mq-val svg, .chip svg, .svc__no svg { width
 .biz-lines .segcard .link-arrow { margin-top: auto; align-self: flex-start; }
 .biz-lines .segcard__no { position: absolute; top: 22px; right: 24px; font-family: var(--ff-head); font-weight: 700; font-size: 1.9rem; line-height: 1; color: var(--bg-softer); pointer-events: none; }
 
+/* /za-kompanije/ — konsultativni CTA blok (scoped, diskretan navy panel sa tankim zlatnim detaljem). */
+.zk-consult { position: relative; overflow: hidden; max-width: 1040px; margin: 26px 0 0; padding: 34px 36px; border-radius: 18px; color: #fff; background: linear-gradient(150deg, var(--navy) 0%, var(--navy-700) 100%); border: 1px solid rgba(232,217,176,.20); }
+.zk-consult::before { content: ""; position: absolute; left: 0; top: 0; height: 3px; width: 100%; background: linear-gradient(90deg, var(--gold), rgba(200,162,76,0)); }
+.zk-consult h2 { color: #fff; font-size: 1.5rem; margin-bottom: 10px; }
+.zk-consult p { color: rgba(255,255,255,.85); max-width: 720px; margin-bottom: 22px; }
+@media (max-width: 640px) { .zk-consult { padding: 26px 22px; } }
+
 /* ---------- Advisory band ---------- */
 .band { background: linear-gradient(120deg, #fbf7ee, #fff); border: 1px solid var(--gold-soft); border-radius: 22px; padding: 42px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; align-items: center; }
 .band h2 { font-size: 1.8rem; margin-bottom: 12px; }
