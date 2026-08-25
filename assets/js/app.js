@@ -44,6 +44,28 @@
       related: "svjetska-trzista,edukacija,investiciono-savjetovanje", documents: "", classification: "A", compliance: "" };
   }
 
+  // Stranice definisane u kodu (nisu u Google tabeli): ubacuju se u data model pri boot-u.
+  // Time su prvorazredni članovi modela (rute, breadcrumb, related, hub-djeca, SEO) neovisno o tabeli.
+  const EXTRA_PAGES = [{
+    id: "K1", level: "2", parent: "institucionalni-klijenti", slug: "kastodi-poslovi",
+    title: "Kastodi poslovi", url: "/institucionalni-klijenti/kastodi-poslovi/",
+    type: "Uslužna", phase: "1", nav_order: "", segment: "G,F",
+    intent: "Da li Eurobroker može čuvati i administrirati moje hartije od vrijednosti",
+    message: "Sigurno vođenje i administriranje hartija od vrijednosti",
+    goal: "Eurobroker pruža kastodi usluge u okviru dozvole Komisije, uključujući vođenje računa, administriranje prava iz hartija od vrijednosti i operativnu podršku klijentima u ostvarivanju njihovih prava.",
+    primary_cta: "Razgovarajte o kastodi usluzi", primary_cta_link: "kontakt",
+    secondary_cta: "Kontaktirajte naš tim", secondary_cta_link: "kontakt",
+    related: "institucionalni-program,blok-transakcije,domace-trziste,za-kompanije",
+    documents: "", seo: "", compliance: "Sadržaj u okviru dozvole Komisije za HOV RS; provjerava ga funkcija usklađenosti prije objave.",
+    kpi: "Institucionalni i profesionalni upiti za kastodi", classification: "A", eyebrow: "", subtitle: ""
+  }];
+  function ensureExtraPages() {
+    const rows = (EB.data && EB.data.stranice) || [];
+    EXTRA_PAGES.forEach(pg => { if (!rows.some(r => r.slug === pg.slug)) rows.push(pg); });
+    if (EB.data) EB.data.stranice = rows;
+    _pathIndex = null; // poništi keš indeksa ruta da uključi nove stranice
+  }
+
   /* ---------------- Icons ---------------- */
   const I = {
     invest: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>',
@@ -202,7 +224,8 @@
       ["svjetska-trzista", T("svc.world"), T("svc.world.d")],
       ["investiciono-savjetovanje", T("svc.adv"), T("svc.adv.d")],
       ["za-kompanije", T("svc.corp"), T("svc.corp.d")],
-      ["institucionalni-klijenti", T("svc.inst"), T("svc.inst.d")]
+      ["institucionalni-klijenti", T("svc.inst"), T("svc.inst.d")],
+      ["kastodi-poslovi", T("svc.cust"), T("svc.cust.d")]
     ].map((s, i) => `<a class="svc reveal" href="#/${s[0]}"><span class="svc__no">0${i + 1}</span><div><h3>${esc(s[1])}</h3><p>${esc(s[2])}</p><span class="link-arrow">${T("btn.saznajteVise")} ${I.arrow}</span></div></a>`).join("");
 
     const why = (c.zasto || []).map((z, i) => `<div class="why__item reveal"><span class="why__num">0${i + 1}</span><h3>${esc(z.t)}</h3><p>${esc(z.d)}</p></div>`).join("");
@@ -405,6 +428,54 @@
     </div></div></section>`;
   }
   function qb(title, n, inner) { return `<div class="qblock"><span class="qn">${T("q.label")} ${n}</span><h2>${esc(title)}</h2>${inner}</div>`; }
+
+  /* ---------------- KASTODI (namjenska uslužna stranica) ---------------- */
+  function renderKastodi(p) {
+    const en = isEN();
+    const K = en ? {
+      q: ["What are custody services?", "Who is the service for?", "What can Eurobroker do?", "How does the engagement work?", "Which rights and corporate actions can be covered?", "How are records kept?", "Fees", "Risks and important notes"],
+      a01: ["Custody services cover the holding and administration of securities for a client's account, the execution of orders related to securities rights, and operational support in exercising the rights of securities holders.", "Eurobroker performs these activities within the relevant licence issued by the Securities Commission of Republika Srpska."],
+      who: ["Institutional investors", "Legal entities", "Investors with larger portfolios", "Domestic and foreign clients", "Clients needing support in exercising securities rights"],
+      jobs: ["Opening and keeping custody accounts in the client's name", "Keeping omnibus custody accounts, where applicable", "Executing orders to transfer securities rights", "Registering third-party rights over securities", "Collecting due receivables, interest and dividends for the client's account", "Support in exercising other rights arising from securities", "Notifying clients of shareholder meetings and, where contracted and legally permitted, representation at them", "Notifying clients of rights and of legal changes that affect them", "Support regarding tax obligations related to securities", "Other contracted custody services not contrary to law"],
+      jobsNote: "Securities lending and certain advanced services may be available depending on the contract, the market and operational conditions.",
+      steps: [["Initial conversation", "Identifying the client's needs."], ["Checking conditions", "The regulatory and operational framework."], ["Contracting", "The custody agreement and terms of cooperation."], ["Opening accounts", "The appropriate custody accounts."], ["Ongoing operation", "Administration and execution of orders."], ["Reporting and support", "In exercising rights."]],
+      rights: ["Dividends", "Interest", "Securities maturity", "Shareholder meetings", "Changes in capital", "Other rights arising from securities ownership"],
+      rightsNote: "The exact scope depends on the type of security, the market, the contract and the applicable rules.",
+      a06: ["Accounts and records are kept in line with regulations and the rules of the competent capital-market institutions (the Securities Registry and other relevant institutions).", "Records are kept separately for each client, in accordance with the contract and the applicable rules."],
+      a07: "Custody fees depend on the type of service, the volume of activity and the agreed model of cooperation. See the current price list or contact our team for a specific figure.",
+      seeFees: "See the price list",
+      a08: ["As a custody-service provider, Eurobroker does not guarantee the market value of securities, any return, or the issuer's performance of its obligations.", "The custody service concerns administration, safekeeping, order execution and support in exercising rights, within the law and the contract."]
+    } : {
+      q: ["Šta su kastodi poslovi?", "Kome je usluga namijenjena?", "Koje poslove Eurobroker može obavljati?", "Kako izgleda saradnja?", "Koja prava i korporativne akcije mogu biti obuhvaćene?", "Kako se vodi evidencija?", "Naknade", "Rizici i važne napomene"],
+      a01: ["Kastodi poslovi obuhvataju vođenje i administriranje hartija od vrijednosti za račun klijenta, izvršavanje naloga povezanih sa pravima iz hartija od vrijednosti i operativnu podršku u ostvarivanju prava vlasnika hartija od vrijednosti.", "Eurobroker ove poslove obavlja u okviru odgovarajuće dozvole Komisije za hartije od vrijednosti Republike Srpske."],
+      who: ["Institucionalni investitori", "Pravna lica", "Investitori sa većim portfeljima", "Domaći i strani klijenti", "Klijenti kojima treba podrška u ostvarivanju prava"],
+      jobs: ["Otvaranje i vođenje kastodi računa na ime klijenta", "Vođenje zbirnih (omnibus) kastodi računa, kada je primjenjivo", "Izvršavanje naloga za prenos prava iz hartija od vrijednosti", "Upis prava trećih lica na hartijama od vrijednosti", "Naplata dospjelih potraživanja, kamata i dividendi za račun klijenta", "Podrška u ostvarivanju drugih prava iz hartija od vrijednosti", "Obavještavanje o skupštinama akcionara i, kada je ugovoreno i pravno dopušteno, zastupanje na njima", "Obavještavanje o pravima i o zakonskim promjenama koje se tiču klijenta", "Podrška u vezi sa poreskim obavezama povezanim sa hartijama od vrijednosti", "Druge ugovorene kastodi usluge koje nisu u suprotnosti sa zakonom"],
+      jobsNote: "Pozajmljivanje hartija od vrijednosti i pojedine napredne usluge mogu biti dostupni u zavisnosti od ugovora, tržišta i operativnih uslova.",
+      steps: [["Inicijalni razgovor", "Identifikacija potreba klijenta."], ["Provjera uslova", "Regulatorni i operativni okvir."], ["Ugovaranje", "Kastodi ugovor i uslovi saradnje."], ["Otvaranje računa", "Odgovarajući kastodi računi."], ["Operativno vođenje", "Administriranje i izvršenje naloga."], ["Izvještavanje i podrška", "U ostvarivanju prava."]],
+      rights: ["Dividende", "Kamate", "Dospijeće hartija od vrijednosti", "Skupštine akcionara", "Promjene kapitala", "Druga prava iz vlasništva nad hartijama od vrijednosti"],
+      rightsNote: "Konkretan obuhvat zavisi od vrste hartije, tržišta, ugovora i važećih pravila.",
+      a06: ["Računi i evidencije vode se u skladu sa propisima i pravilima nadležnih institucija tržišta kapitala (Registar hartija od vrijednosti i druge relevantne institucije).", "Evidencija se vodi odvojeno za svakog klijenta, u skladu sa ugovorom i važećim pravilima."],
+      a07: "Naknade za kastodi usluge zavise od vrste usluge, obima aktivnosti i ugovorenog modela saradnje. Pogledajte važeći Cjenovnik ili kontaktirajte naš tim za konkretnu informaciju.",
+      seeFees: "Pogledajte cjenovnik",
+      a08: ["Eurobroker kao pružalac kastodi usluge ne garantuje tržišnu vrijednost hartija od vrijednosti, prinos niti izvršenje obaveza emitenta.", "Kastodi usluga odnosi se na administriranje, vođenje, izvršenje naloga i podršku u ostvarivanju prava, u okviru zakona i ugovora."]
+    };
+    let body = "";
+    body += qb(K.q[0], "01", K.a01.map(t => `<p>${esc(t)}</p>`).join(""));
+    body += qb(K.q[1], "02", `<div class="chips">${K.who.map(w => `<span class="chip">${esc(w)}</span>`).join("")}</div>`);
+    body += qb(K.q[2], "03", `<ul class="risklist">${K.jobs.map(j => `<li>${esc(j)}</li>`).join("")}</ul><div class="notebox">${esc(K.jobsNote)}</div>`);
+    body += qb(K.q[3], "04", `<div class="steps">${K.steps.map(s => `<div class="step"><div><h4>${esc(s[0])}</h4><p>${esc(s[1])}</p></div></div>`).join("")}</div>`);
+    body += qb(K.q[4], "05", `<ul class="risklist">${K.rights.map(r => `<li>${esc(r)}</li>`).join("")}</ul><div class="notebox">${esc(K.rightsNote)}</div>`);
+    body += qb(K.q[5], "06", K.a06.map(t => `<p>${esc(t)}</p>`).join(""));
+    body += qb(K.q[6], "07", `<p>${esc(K.a07)}</p><a class="link-arrow" href="#/cjenovnik">${esc(K.seeFees)} ${I.arrow}</a>`);
+    body += qb(K.q[7], "08", K.a08.map(t => `<p>${esc(t)}</p>`).join("") + `<div class="notebox notebox--reg">${T("side.riskNote")}</div>`);
+    const faqs = EB.faqFor(p.slug);
+    if (faqs.length) body += `<div class="qblock"><span class="qn">${T("q.faq")}</span><h2>${T("q.faqTitle")}</h2>${renderFaq(faqs)}</div>`;
+    return pagehero(p) + `
+    <section class="section"><div class="wrap"><div class="pglayout">
+      <div class="prose">${body}</div>
+      ${serviceSidebar(p)}
+    </div></div></section>`;
+  }
 
   function serviceSidebar(p) {
     const related = String(p.related || "").split(",").map(s => s.trim()).filter(Boolean)
@@ -837,6 +908,7 @@
     else if (slug === "kontakt") html = renderForm(p, "kontakt");
     else if (["regulatorni-status", "o-nama", "partneri", "dokumenti"].includes(slug)) html = renderSimple(p);
     else if (slug === "investiranje-iz-dijaspore") html = renderService(p);
+    else if (slug === "kastodi-poslovi") html = renderKastodi(p);
     else if ((p.type || "").toLowerCase().includes("hub")) html = renderHub(p);
     else html = renderService(p);
 
@@ -989,6 +1061,7 @@
   /* ---------------- Boot ---------------- */
   async function boot() {
     await EB.loadAll();
+    ensureExtraPages();
     const root = document.getElementById("app");
     root.innerHTML = renderHeader() + '<main id="main"></main>' + renderFooter();
     bindGlobal();
