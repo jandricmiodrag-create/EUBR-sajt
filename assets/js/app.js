@@ -334,7 +334,7 @@
     </div></section>`}
 
     <section class="section ${en ? "section--soft" : ""}"><div class="wrap">
-      <div class="split">
+      <div class="split split--entry">
         <div class="split__col dom reveal" style="background:linear-gradient(150deg,#5a3d0e,#8a6417)">
           <span class="eyebrow" style="color:#f0e3c2">${T("home.corpEyebrow")}</span>
           <h3 style="margin-top:10px">${T("home.corpH")}</h3>
