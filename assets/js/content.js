@@ -170,13 +170,16 @@ window.EB_CONTENT = {
   },
 
   "o-nama": {
-    what: "Danas razvijamo Eurobroker kao savremeno brokersko-dilersko društvo koje povezuje investitore, kompanije i institucije sa domaćim i svjetskim tržištima kapitala. Uz brokerske usluge, investiciono savjetovanje, korporativne finansije i kastodi poslove gradimo povezanu ponudu koja klijentima omogućava da različite potrebe na tržištu kapitala rješavaju sa jednim stručnim timom.",
-    cilj: "Naš cilj je jasan: učiniti tržište kapitala dostupnijim, razumljivijim i bližim investitorima i kompanijama, uz stručnost, odgovornost i lični pristup koji ostaju u osnovi našeg poslovanja.",
-    promise: "Želimo da Eurobroker bude više od mjesta na kojem investirate — partner kojem se možete obratiti sa idejom, pitanjem ili poslovnim izazovom i znati da ćete dobiti stručan odgovor i odgovoran pristup.",
+    what: "Eurobroker je jedna od prvih brokerskih kuća u Republici Srpskoj, prisutna na tržištu kapitala od 2001. godine. Više od dvije decenije iskustva donijele su nam duboko poznavanje tržišta, razumijevanje potreba klijenata i povjerenje koje gradimo dugoročnim i odgovornim pristupom.",
+    danas: "Danas je Eurobroker savremena investiciona kompanija koja investitorima i kompanijama otvara nove mogućnosti na tržištu kapitala. Pored brokerskih usluga, razvijamo investiciono savjetovanje, korporativne finansije i kastodi poslove, kako biste sve što vam je potrebno imali na jednom mjestu.",
+    cilj: "Naš cilj je jednostavan: učiniti tržište kapitala dostupnim, razumljivijim i bližim investitorima i kompanijama, uz stručnost i lični pristup koji ostaju u osnovi našeg poslovanja.",
+    mission: { label: "Naša misija", msg: "Otvaramo mogućnosti tržišta kapitala investitorima i kompanijama.", desc: "Kroz stručnu podršku, savremena rješenja i pristup domaćim i globalnim tržištima, želimo da klijentima omogućimo da donose informisane finansijske odluke i koriste tržište kapitala kao prostor za investiranje, rast i razvoj." },
+    vision: { label: "Naša vizija", msg: "Eurobroker kao prvi izbor za tržište kapitala.", desc: "Investiciona kompanija koja spaja dugogodišnje iskustvo sa savremenim pristupom investiranju — prepoznatljiva po stručnosti, pouzdanosti, brzini i posvećenosti pronalaženju najboljeg rješenja za svakog klijenta." },
+    promise: "Želimo da Eurobroker bude više od mjesta na kojem investirate — partner kojem se možete obratiti sa idejom, pitanjem ili izazovom i znati da ćemo zajedno pronaći najbolje rješenje.",
     vrijednosti: [
-      { t: "Transparentnost", d: "Govorimo jasno i otvoreno o mogućnostima, uslovima, troškovima i rizicima kako biste imali informacije potrebne za donošenje odluka." },
-      { t: "Integritet", d: "Odnos sa klijentima gradimo na povjerenju, profesionalnim standardima i odgovornom postupanju. Interese klijenta stavljamo u središte načina na koji pružamo naše usluge." },
-      { t: "Inicijativa", d: "Razmišljamo unaprijed, pratimo promjene na tržištu i tražimo nove mogućnosti za naše klijente. Ideje pretvaramo u konkretna rješenja i kontinuirano unapređujemo način na koji radimo." }
+      { t: "Transparentnost", d: "Govorimo jasno i otvoreno o mogućnostima, troškovima i rizicima, kako biste mogli donositi informisane odluke." },
+      { t: "Integritet", d: "Interese klijenata stavljamo na prvo mjesto i odluke donosimo odgovorno, u skladu sa profesionalnim standardima." },
+      { t: "Inicijativa", d: "Razmišljamo unaprijed i brzo pretvaramo ideje u rješenja. Pratimo promjene, prepoznajemo prilike i stalno tražimo načine da unaprijedimo ono što nudimo." }
     ]
   },
 

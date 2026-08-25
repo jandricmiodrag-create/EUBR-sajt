@@ -252,13 +252,16 @@ window.EB_I18N = {
       risks: ["Currency risk when investing in a foreign currency.", "Tax obligations depend on your residence — we give general information, not tax advice.", "Market risk of the chosen instruments."]
     },
     "o-nama": {
-      what: "Today we are developing Eurobroker as a modern broker-dealer that connects investors, companies and institutions with domestic and world capital markets. Alongside brokerage, investment advice, corporate finance and custody services, we are building a connected offering that lets clients meet different capital-markets needs with a single expert team.",
-      cilj: "Our goal is clear: to make the capital market more accessible, more understandable and closer to investors and companies, with the expertise, responsibility and personal approach that remain at the core of our business.",
-      promise: "We want Eurobroker to be more than a place where you invest — a partner you can approach with an idea, a question or a business challenge, knowing you will receive an expert answer and a responsible approach.",
+      what: "Eurobroker is one of the first brokerage houses in Republika Srpska, present in the capital market since 2001. More than two decades of experience have given us a deep understanding of the market, an understanding of clients' needs, and trust we build through a long-term, responsible approach.",
+      danas: "Today Eurobroker is a modern investment company that opens new opportunities in the capital market for investors and companies. Alongside brokerage services, we are developing investment advice, corporate finance and custody services, so that everything you need is in one place.",
+      cilj: "Our goal is simple: to make the capital market accessible, more understandable and closer to investors and companies, with the expertise and personal approach that remain at the core of our business.",
+      mission: { label: "Our mission", msg: "We open the possibilities of the capital market to investors and companies.", desc: "Through expert support, modern solutions and access to domestic and global markets, we want to enable clients to make informed financial decisions and use the capital market as a space for investing, growth and development." },
+      vision: { label: "Our vision", msg: "Eurobroker as the first choice for the capital market.", desc: "An investment company that combines long-standing experience with a modern approach to investing — recognised for expertise, reliability, speed and dedication to finding the best solution for every client." },
+      promise: "We want Eurobroker to be more than a place where you invest — a partner you can approach with an idea, a question or a challenge, knowing that together we will find the best solution.",
       vrijednosti: [
-        { t: "Transparency", d: "We speak clearly and openly about options, terms, costs and risks so you have the information you need to make decisions." },
-        { t: "Integrity", d: "We build client relationships on trust, professional standards and responsible conduct. We place the client's interests at the centre of how we provide our services." },
-        { t: "Initiative", d: "We think ahead, follow market developments and seek new opportunities for our clients. We turn ideas into concrete solutions and continuously improve the way we work." }
+        { t: "Transparency", d: "We speak clearly and openly about options, costs and risks, so you can make informed decisions." },
+        { t: "Integrity", d: "We put clients' interests first and make decisions responsibly, in line with professional standards." },
+        { t: "Initiative", d: "We think ahead and quickly turn ideas into solutions. We follow changes, spot opportunities and constantly seek ways to improve what we offer." }
       ]
     },
     "regulatorni-status": {

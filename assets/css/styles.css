@@ -230,8 +230,25 @@ a svg, button svg, .link-arrow svg, .mq-val svg, .chip svg, .svc__no svg { width
 .onama__prose { max-width: 760px; }
 .onama__prose p { color: var(--ink); line-height: 1.7; margin-bottom: 18px; }
 .onama__promise { max-width: 760px; margin: 28px 0 4px; padding: 18px 24px; border-left: 3px solid var(--gold); background: rgba(232,217,176,.12); border-radius: 8px; font-size: 1.14rem; line-height: 1.6; font-weight: 500; color: var(--ink); }
-.onama__principles { margin: 36px 0 0; max-width: 1040px; }
+.onama__principles { margin: 12px 0 0; max-width: 1040px; }
 .onama__nav { max-width: 760px; margin-top: 28px; }
+/* O nama — Misija i vizija (premium, scoped na ovu stranicu) */
+.about-mv-section { margin: 44px 0 0; }
+.about-mv__title { font-size: 1.6rem; margin: 0 0 20px; color: var(--navy); }
+.about-mission-vision { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; max-width: 1040px; }
+.about-mv { position: relative; overflow: hidden; display: flex; flex-direction: column;
+  background: linear-gradient(155deg, var(--navy) 0%, var(--navy-700) 100%);
+  border: 1px solid rgba(232,217,176,.22); border-radius: 16px; padding: 34px 32px; color: #fff; }
+.about-mv::before { content: ""; position: absolute; left: 0; top: 0; height: 3px; width: 100%;
+  background: linear-gradient(90deg, var(--gold), rgba(200,162,76,0)); }
+.about-vision::before { background: linear-gradient(90deg, rgba(200,162,76,0), var(--gold)); }
+.about-mv__deco { position: absolute; top: 14px; right: 14px; width: 116px; height: 116px; color: var(--gold-soft); opacity: .16; pointer-events: none; }
+.about-mv__label { position: relative; font-family: var(--ff-head); text-transform: uppercase; letter-spacing: .16em; font-size: .72rem; font-weight: 600; color: var(--gold-soft); }
+.about-mv__msg { position: relative; font-family: var(--ff-head); font-size: 1.22rem; font-weight: 600; color: #fff; line-height: 1.32; margin: 12px 0; max-width: 88%; }
+.about-mv__desc { position: relative; color: rgba(255,255,255,.82); font-size: .98rem; line-height: 1.62; margin: 0; }
+.onama__principles-h { font-size: 1.18rem; color: var(--navy); margin: 40px 0 0; }
+.about-brand-statement { margin-top: 36px; }
+@media (max-width: 760px) { .about-mission-vision { grid-template-columns: 1fr; } }
 
 /* Hub /investiranje/ — CTA (link-arrow) poravnat pri dnu bez obzira na dužinu opisa. Scoped. */
 .invhub .segcard { display: flex; flex-direction: column; }

@@ -814,13 +814,21 @@
     };
     const navCards = EB.children("o-nama").concat([EB.page("cjenovnik")]).filter(Boolean)
       .map(k => `<a class="svc" href="#/${k.slug}"><span class="svc__no">${I.arrow}</span><div><h3>${esc(pTitle(k))}</h3><p>${esc(navDesc[k.slug] || k.intent || "")}</p></div></a>`).join("");
+    const netDeco = '<svg class="about-mv__deco" viewBox="0 0 120 120" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1"><path d="M18 30l34 14 26-20 24 30"/><path d="M52 44l-8 34 34 8"/></g><g fill="currentColor"><circle cx="18" cy="30" r="2.4"/><circle cx="52" cy="44" r="2.4"/><circle cx="78" cy="24" r="2.4"/><circle cx="102" cy="54" r="2.4"/><circle cx="44" cy="78" r="2.4"/><circle cx="78" cy="86" r="2.4"/></g></svg>';
+    const mvCard = (cls, o) => o ? `<div class="about-mv ${cls}">${netDeco}<span class="about-mv__label">${esc(o.label)}</span><p class="about-mv__msg">${esc(o.msg)}</p><p class="about-mv__desc">${esc(o.desc)}</p></div>` : "";
     return hero + `
     <section class="section"><div class="wrap onama">
       <div class="onama__prose">
         <p class="lead">${esc(c.what)}</p>
+        ${c.danas ? `<p>${esc(c.danas)}</p>` : ""}
         ${c.cilj ? `<p>${esc(c.cilj)}</p>` : ""}
-        ${c.promise ? `<div class="onama__promise">${esc(c.promise)}</div>` : ""}
       </div>
+      ${(c.mission || c.vision) ? `<div class="about-mv-section">
+        <h2 class="about-mv__title">${en ? "Mission and vision" : "Misija i vizija"}</h2>
+        <div class="about-mission-vision">${mvCard("about-mission", c.mission)}${mvCard("about-vision", c.vision)}</div>
+      </div>` : ""}
+      ${c.promise ? `<div class="onama__promise about-brand-statement">${esc(c.promise)}</div>` : ""}
+      <h3 class="onama__principles-h">${en ? "Principles we follow" : "Principi kojima se vodimo"}</h3>
       <div class="why onama__principles">${principles}</div>
       <div class="grid grid-2 onama__nav">${navCards}</div>
     </div></section>${ctaBand(p)}`;
