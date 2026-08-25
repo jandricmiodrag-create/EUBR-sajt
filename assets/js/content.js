@@ -170,11 +170,13 @@ window.EB_CONTENT = {
   },
 
   "o-nama": {
-    what: "Eurobroker je akcionarsko društvo iz Banje Luke, licencirano za poslove na tržištu kapitala. Više od dvije decenije posreduje između investitora i tržišta — domaćeg i svjetskih.",
+    what: "Danas razvijamo Eurobroker kao savremeno brokersko-dilersko društvo koje povezuje investitore, kompanije i institucije sa domaćim i svjetskim tržištima kapitala. Uz brokerske usluge, investiciono savjetovanje, korporativne finansije i kastodi poslove gradimo povezanu ponudu koja klijentima omogućava da različite potrebe na tržištu kapitala rješavaju sa jednim stručnim timom.",
+    cilj: "Naš cilj je jasan: učiniti tržište kapitala dostupnijim, razumljivijim i bližim investitorima i kompanijama, uz stručnost, odgovornost i lični pristup koji ostaju u osnovi našeg poslovanja.",
+    promise: "Želimo da Eurobroker bude više od mjesta na kojem investirate — partner kojem se možete obratiti sa idejom, pitanjem ili poslovnim izazovom i znati da ćete dobiti stručan odgovor i odgovoran pristup.",
     vrijednosti: [
-      { t: "Provjerljivost", d: "Objavljujemo samo ono što se može potvrditi — dozvole, cjenovnik, procedure." },
-      { t: "Odgovornost", d: "Svaki klijent ima imenovanog sagovornika i objavljen rok odziva." },
-      { t: "Jasnoća", d: "Cijena, proces i rizik navedeni su prije nego što nešto potpišete." }
+      { t: "Transparentnost", d: "Govorimo jasno i otvoreno o mogućnostima, uslovima, troškovima i rizicima kako biste imali informacije potrebne za donošenje odluka." },
+      { t: "Integritet", d: "Odnos sa klijentima gradimo na povjerenju, profesionalnim standardima i odgovornom postupanju. Interese klijenta stavljamo u središte načina na koji pružamo naše usluge." },
+      { t: "Inicijativa", d: "Razmišljamo unaprijed, pratimo promjene na tržištu i tražimo nove mogućnosti za naše klijente. Ideje pretvaramo u konkretna rješenja i kontinuirano unapređujemo način na koji radimo." }
     ]
   },
 

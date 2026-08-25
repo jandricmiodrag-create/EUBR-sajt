@@ -252,11 +252,13 @@ window.EB_I18N = {
       risks: ["Currency risk when investing in a foreign currency.", "Tax obligations depend on your residence — we give general information, not tax advice.", "Market risk of the chosen instruments."]
     },
     "o-nama": {
-      what: "Eurobroker is a joint-stock company from Banja Luka, licensed for capital-markets operations. For more than two decades it has intermediated between investors and the markets — domestic and global.",
+      what: "Today we are developing Eurobroker as a modern broker-dealer that connects investors, companies and institutions with domestic and world capital markets. Alongside brokerage, investment advice, corporate finance and custody services, we are building a connected offering that lets clients meet different capital-markets needs with a single expert team.",
+      cilj: "Our goal is clear: to make the capital market more accessible, more understandable and closer to investors and companies, with the expertise, responsibility and personal approach that remain at the core of our business.",
+      promise: "We want Eurobroker to be more than a place where you invest — a partner you can approach with an idea, a question or a business challenge, knowing you will receive an expert answer and a responsible approach.",
       vrijednosti: [
-        { t: "Verifiability", d: "We publish only what can be confirmed — licences, price list, procedures." },
-        { t: "Accountability", d: "Every client has a named contact and a published response time." },
-        { t: "Clarity", d: "Price, process and risk are stated before you sign anything." }
+        { t: "Transparency", d: "We speak clearly and openly about options, terms, costs and risks so you have the information you need to make decisions." },
+        { t: "Integrity", d: "We build client relationships on trust, professional standards and responsible conduct. We place the client's interests at the centre of how we provide our services." },
+        { t: "Initiative", d: "We think ahead, follow market developments and seek new opportunities for our clients. We turn ideas into concrete solutions and continuously improve the way we work." }
       ]
     },
     "regulatorni-status": {
@@ -392,7 +394,7 @@ window.EB_I18N = {
     "institucionalni-program": "Three service levels with clear obligations",
     "blok-transakcije": "Large orders while controlling price impact",
     "kastodi-poslovi": "Secure holding and administration of securities",
-    "o-nama": "A licensed capital-markets firm from Banja Luka",
+    "o-nama": "Experience in the market. Eyes on the future.",
     "regulatorni-status": "Licences and the supervisory authority in one place",
     "otvorite-racun": "Three steps to an active account",
     "kontakt": "A named person and a response time",
@@ -411,6 +413,7 @@ window.EB_I18N = {
     "za-kompanije": "Turn “we need money” into an initial conversation.",
     "emisija-obveznica": "A clear path for companies raising capital.",
     "institucionalni-klijenti": "A serious institutional programme, without marketing tone.",
+    "o-nama": "Eurobroker is a broker-dealer from Banja Luka, present in the capital market since 2001. More than two decades of experience have given us a deep understanding of the market, an understanding of clients' needs, and the trust we build through a long-term, responsible relationship.",
     "kastodi-poslovi": "Eurobroker provides custody services within its Commission licence — account keeping, administration of securities rights and operational support for clients in exercising those rights.",
     "otvorite-racun": "The primary conversion — start in one business day.",
     "kontakt": "We reply within one business day.",

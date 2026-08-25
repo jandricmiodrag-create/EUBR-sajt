@@ -760,14 +760,42 @@
   }
 
   /* ---------------- SIMPLE PAGES (regulatorni, o-nama, partneri, dokumenti) ---------------- */
+  // Stranica /o-nama/ — namjenski render (hero naslov/podnaslov fiksirani u kodu, restrukturiran sadržaj). Scoped CSS: .onama*.
+  function renderONama(p) {
+    const en = isEN();
+    const c = content("o-nama");
+    const hero = pagehero(Object.assign({}, p, {
+      message: en ? "Experience in the market. Eyes on the future." : "Iskustvo na tržištu. Pogled usmjeren naprijed.",
+      goal: en
+        ? "Eurobroker is a broker-dealer from Banja Luka, present in the capital market since 2001. More than two decades of experience have given us a deep understanding of the market, an understanding of clients' needs, and the trust we build through a long-term, responsible relationship."
+        : "Eurobroker je brokersko-dilersko društvo iz Banje Luke, prisutno na tržištu kapitala od 2001. godine. Više od dvije decenije iskustva donijele su nam duboko poznavanje tržišta, razumijevanje potreba klijenata i povjerenje koje gradimo dugoročnim i odgovornim odnosom."
+    }));
+    const principles = (c.vrijednosti || []).map((v, i) => `<div class="why__item reveal"><span class="why__num">0${i + 1}</span><h3>${esc(v.t)}</h3><p>${esc(v.d)}</p></div>`).join("");
+    const navDesc = en ? {
+      "regulatorni-status": "Check Eurobroker's regulatory status, supervision and licences for operating in the capital market.",
+      "cjenovnik": "An overview of fees and other costs related to Eurobroker's services."
+    } : {
+      "regulatorni-status": "Provjerite regulatorni status Eurobrokera, nadzor i dozvole za obavljanje poslova na tržištu kapitala.",
+      "cjenovnik": "Pregled naknada i drugih troškova povezanih sa uslugama Eurobrokera."
+    };
+    const navCards = EB.children("o-nama").concat([EB.page("cjenovnik")]).filter(Boolean)
+      .map(k => `<a class="svc" href="#/${k.slug}"><span class="svc__no">${I.arrow}</span><div><h3>${esc(pTitle(k))}</h3><p>${esc(navDesc[k.slug] || k.intent || "")}</p></div></a>`).join("");
+    return hero + `
+    <section class="section"><div class="wrap onama">
+      <div class="onama__prose">
+        <p class="lead">${esc(c.what)}</p>
+        ${c.cilj ? `<p>${esc(c.cilj)}</p>` : ""}
+        ${c.promise ? `<div class="onama__promise">${esc(c.promise)}</div>` : ""}
+      </div>
+      <div class="why onama__principles">${principles}</div>
+      <div class="grid grid-2 onama__nav">${navCards}</div>
+    </div></section>${ctaBand(p)}`;
+  }
+
   function renderSimple(p) {
     const c = content(p.slug);
     let inner = "";
     if (c.what) inner += `<p class="lead" style="margin-bottom:24px">${esc(c.what)}</p>`;
-    if (p.slug === "o-nama" && c.vrijednosti) {
-      inner += `<div class="why" style="margin:26px 0">${c.vrijednosti.map((v, i) => `<div class="why__item reveal"><span class="why__num">0${i + 1}</span><h3>${esc(v.t)}</h3><p>${esc(v.d)}</p></div>`).join("")}</div>`;
-      inner += `<div class="grid grid-3" style="margin-top:26px">${EB.children("o-nama").concat([EB.page("cjenovnik")]).filter(Boolean).map(k => `<a class="svc" href="#/${k.slug}"><span class="svc__no">${I.arrow}</span><div><h3>${esc(pTitle(k))}</h3><p>${esc(k.intent || "")}</p></div></a>`).join("")}</div>`;
-    }
     if (p.slug === "regulatorni-status") {
       const d = EB.drustvo();
       const L = isEN()
@@ -917,7 +945,8 @@
     else if (slug === "procjena-spremnosti") html = renderTool(p);
     else if (slug === "otvorite-racun") html = renderForm(p, "racun");
     else if (slug === "kontakt") html = renderForm(p, "kontakt");
-    else if (["regulatorni-status", "o-nama", "partneri", "dokumenti"].includes(slug)) html = renderSimple(p);
+    else if (slug === "o-nama") html = renderONama(p);
+    else if (["regulatorni-status", "partneri", "dokumenti"].includes(slug)) html = renderSimple(p);
     else if (slug === "investiranje-iz-dijaspore") html = renderService(p);
     else if (slug === "kastodi-poslovi") html = renderKastodi(p);
     else if ((p.type || "").toLowerCase().includes("hub")) html = renderHub(p);
