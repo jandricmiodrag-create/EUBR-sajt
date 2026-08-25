@@ -208,15 +208,20 @@
   function renderHome() {
     const c = content("pocetna");
     const en = isEN();
-    const segs = EB.data.segmenti || [];
     const proofs = (c.heroProofs || []).map(p => `<div class="proof"><b>${esc(p.k)}</b><span>${esc(p.v)}</span></div>`).join("");
-    const segSub = { A: T("seg.A.sub"), D: T("seg.D.sub"), F: T("seg.F.sub"), G: T("seg.G.sub") };
-    const segCards = segs.filter(s => ["A", "D", "F", "G"].includes(s.oznaka)).map(s => `
-      <a class="segcard reveal" href="#/${esc(s.link)}">
-        <div class="segcard__icon">${segIcon[s.oznaka] || I.invest}</div>
-        <h3>${esc(T("seg." + s.oznaka))}</h3>
-        <p>${esc(en ? segSub[s.oznaka] : s.potreba)}</p>
-        <span class="link-arrow">${esc(en ? T("btn.saznajteVise") : s.cta)} ${I.arrow}</span>
+    // Četiri korisničke namjere — sadržaj i linkovi centralizovani (i18n), isti .segcard izgled.
+    const seg4 = [
+      { o: "A", link: "investiranje" },
+      { o: "D", link: "investiciono-savjetovanje" },
+      { o: "F", link: "za-kompanije" },
+      { o: "G", link: "institucionalni-klijenti" }
+    ];
+    const segCards = seg4.map(s => `
+      <a class="segcard reveal" href="#/${s.link}">
+        <div class="segcard__icon">${segIcon[s.o] || I.invest}</div>
+        <h3>${esc(T("seg." + s.o + ".title"))}</h3>
+        <p>${esc(T("seg." + s.o + ".desc"))}</p>
+        <span class="link-arrow">${esc(T("seg." + s.o + ".cta"))} ${I.arrow}</span>
       </a>`).join("");
 
     const svc = [
