@@ -33,9 +33,14 @@
     return esc(w.slice(0, cut).join(" ")) + ' <span class="accent">' + esc(w.slice(cut).join(" ")) + "</span>";
   };
   const i18 = (bucket, slug) => (isEN() && window.EB_I18N && EB_I18N[bucket] && EB_I18N[bucket][slug]) || null;
-  const pTitle = (p) => p ? (i18("titles", p.slug) || p.title) : "";
-  const pMsg = (p) => p ? (i18("messages", p.slug) || p.message || p.title) : "";
-  const pGoal = (p) => p ? (i18("goals", p.slug) || p.goal || p.intent || "") : "";
+  // Normalizacija vrijednosti iz tabele: trim (bez sadržajne izmjene teksta).
+  const _s = (v) => (typeof v === "string" ? v.trim() : (v == null ? "" : String(v)));
+  // Centralizovani mapping kolona tabele EB·stranice -> render polja (EN prevod ima prednost samo na EN sajtu).
+  const pTitle = (p) => p ? (i18("titles", p.slug) || _s(p.title)) : "";
+  const pMsg = (p) => p ? (i18("messages", p.slug) || _s(p.message) || _s(p.title)) : "";
+  const pGoal = (p) => p ? (i18("goals", p.slug) || _s(p.goal) || _s(p.intent)) : "";
+  // eyebrow (nadnaslov/tag): kolona `eyebrow` je primarni izvor, `type` je fallback.
+  const pEyebrow = (p) => p ? (_s(p.eyebrow) || _s(p.type)) : "";
   function synthPage(slug) {
     const m = (window.EB_I18N && EB_I18N.pagemeta && EB_I18N.pagemeta[slug]) || {};
     const meta = m[EB.lang] || m.sr || {};
@@ -252,7 +257,7 @@
     const heroTag = en ? c.heroTag : (poc.eyebrow || "25 godina na tržištu kapitala");
     const pocMsg = poc.message || "Svijet investicija *na jednom mjestu*";
     const heroTitle = en ? `${esc(c.heroTitleA)} <span class="accent">${esc(c.heroTitleB)}</span>` : heroAccent(pocMsg);
-    const heroSub = en ? c.heroSub : (poc.subtitle || "Domaća berza i svjetska tržišta, investiciono savjetovanje i usluge za kompanije.");
+    const heroSub = en ? c.heroSub : (poc.subtitle || poc.goal || "Domaća berza i svjetska tržišta, investiciono savjetovanje i usluge za kompanije.");
 
     return `
     <section class="hero hero--video"><video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/img/hero-map.png" aria-hidden="true" tabindex="-1"><source src="assets/video/hero.webm" type="video/webm"><source src="assets/video/hero.mp4" type="video/mp4"></video><div class="hero__grid"></div><div class="wrap">
@@ -383,12 +388,7 @@
   function renderInvestiranje(p) {
     const en = isEN();
     const cont = content("investiranje");
-    const hero = pagehero(Object.assign({}, p, {
-      message: en ? "Your access to domestic and world markets" : "Vaš pristup domaćim i svjetskim tržištima",
-      goal: en
-        ? "Invest in different types of securities on the domestic and foreign markets — on your own or with expert support from our team."
-        : "Investirajte u različite vrste hartija od vrijednosti na domaćem i stranim tržištima — samostalno ili uz stručnu podršku našeg tima."
-    }));
+    const hero = pagehero(p); // hero (message/goal/eyebrow) iz tabele EB·stranice
     const copy = en ? {
       "domace-trziste": { d: "Trade shares, bonds and other securities on the Banja Luka Stock Exchange with the support of licensed brokers.", cta: "Explore the domestic market" },
       "svjetska-trzista": { d: "Access the world's leading exchanges and invest in global equities, ETFs, bonds and other financial instruments.", cta: "Explore world markets" },
@@ -568,7 +568,7 @@
     const crumb = `<div class="crumb"><a href="#/">${T("crumb.home")}</a> <span>/</span> ${parent ? `<a href="#/${parent.slug}">${esc(pTitle(parent))}</a> <span>/</span> ` : ""}${esc(pTitle(p))}</div>`;
     return `<section class="pagehero pagehero--${section}"><div class="wrap">
       ${crumb}
-      <span class="tag">${esc(p.type || "Usluga")}</span>
+      <span class="tag">${esc(pEyebrow(p) || "Usluga")}</span>
       <h1>${heroAccent(pMsg(p))}</h1>
       <p>${esc(pGoal(p))}</p>
     </div></section>`;
@@ -803,12 +803,7 @@
   function renderONama(p) {
     const en = isEN();
     const c = content("o-nama");
-    const hero = pagehero(Object.assign({}, p, {
-      message: en ? "Experience in the market. Eyes on the future." : "Iskustvo na tržištu. Pogled usmjeren naprijed.",
-      goal: en
-        ? "Eurobroker is a broker-dealer from Banja Luka, present in the capital market since 2001. More than two decades of experience have given us a deep understanding of the market, an understanding of clients' needs, and the trust we build through a long-term, responsible relationship."
-        : "Eurobroker je brokersko-dilersko društvo iz Banje Luke, prisutno na tržištu kapitala od 2001. godine. Više od dvije decenije iskustva donijele su nam duboko poznavanje tržišta, razumijevanje potreba klijenata i povjerenje koje gradimo dugoročnim i odgovornim odnosom."
-    }));
+    const hero = pagehero(p); // hero (message/goal/eyebrow) iz tabele EB·stranice
     const principles = (c.vrijednosti || []).map((v, i) => `<div class="why__item reveal"><span class="why__num">0${i + 1}</span><h3>${esc(v.t)}</h3><p>${esc(v.d)}</p></div>`).join("");
     const navDesc = en ? {
       "regulatorni-status": "Check Eurobroker's regulatory status, supervision and licences for operating in the capital market.",
