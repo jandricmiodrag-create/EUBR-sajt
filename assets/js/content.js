@@ -284,8 +284,97 @@ window.EB_CONTENT = {
   },
 
   partneri: {
-    what: "Preporuke su najjači kanal našeg rasta. Ovdje formalizujemo saradnju sa partnerima — bankama, računovođama, advokatima i posrednicima — uz materijale i jasan model upućivanja.",
-    whoFor: ["Računovodstvene i konsultantske kuće", "Advokatske kancelarije", "Poslovni posrednici i preporučioci"]
+    network: {
+      eyebrow: "Partnerska mreža",
+      t: "Partnerstvo koje dopunjuje vaše usluge",
+      lead: "Sarađujemo sa profesionalcima i organizacijama koji u svom radu prepoznaju potrebe klijenata iz oblasti investiranja, finansiranja i tržišta kapitala.",
+      cards: [
+        { t: "Računovodstvene i konsultantske kuće", d: "Za klijente kojima su potrebni kapital, finansijska analiza, poslovni plan ili podrška u razvojnim projektima." },
+        { t: "Advokatske kancelarije", d: "Za transakcije koje, pored pravnog dijela, zahtijevaju brokersku, tržišnu ili corporate finance ekspertizu." },
+        { t: "Finansijski i poslovni savjetnici", d: "Za klijente kojima je potrebna specijalizovana podrška na tržištu kapitala." },
+        { t: "Banke i finansijske institucije", d: "Za oblasti u kojima se usluge i stručne kompetencije mogu međusobno dopunjavati." },
+        { t: "Poslovna udruženja i komore", d: "Za edukaciju kompanija, razmjenu stručnih znanja i razvoj pristupa tržištu kapitala." },
+        { t: "Drugi profesionalni partneri", d: "Za saradnju na konkretnim poslovima gdje Eurobroker može dopuniti postojeću ekspertizu partnera." }
+      ]
+    },
+    when: {
+      eyebrow: "Prepoznajte potrebu",
+      t: "Kada možemo pomoći vašem klijentu",
+      lead: "Potreba za tržištem kapitala često se pojavi prije nego što klijent zna koja mu je konkretna usluga potrebna. Ovo su situacije u kojima ima smisla uključiti naš tim.",
+      cases: [
+        { t: "Klijent želi investirati", d: "Brokerske usluge i investiciono savjetovanje.", cta: "Istražite investiranje", link: "investiranje" },
+        { t: "Kompaniji je potreban kapital", d: "Emisije obveznica i akcija, dokapitalizacija i poslovi agenta emisije.", cta: "Prikupljanje kapitala", link: "prikupljanje-kapitala" },
+        { t: "Kompanija donosi važnu finansijsku odluku", d: "Struktura kapitala, poslovna strategija i druga pitanja koja zahtijevaju finansijsku procjenu.", cta: "Poslovno i finansijsko savjetovanje", link: "poslovno-i-finansijsko-savjetovanje" },
+        { t: "Predstoji korporativna promjena", d: "Preoblikovanje društva, statusne promjene i povezani korporativni postupci.", cta: "Korporativni poslovi", link: "korporativni-poslovi" },
+        { t: "Potrebna je analiza ili poslovni plan", d: "Finansijske, fundamentalne i druge analize, istraživanja i poslovni planovi.", cta: "Analize i poslovni planovi", link: "analize-i-poslovni-planovi" },
+        { t: "Potrebne su kastodi usluge", d: "Čuvanje i administriranje hartija od vrijednosti i poslovi povezani sa ostvarivanjem prava iz hartija od vrijednosti.", cta: "Kastodi poslovi", link: "kastodi-poslovi" }
+      ]
+    },
+    process: {
+      eyebrow: "Proces",
+      t: "Od potrebe klijenta do konkretnog rješenja",
+      steps: [
+        { t: "Prepoznate potrebu", d: "U poslovanju klijenta prepoznajete pitanje gdje može biti potrebna ekspertiza Eurobrokera." },
+        { t: "Povezujemo timove", d: "Uz odgovarajuću saglasnost uspostavljamo kontakt i upoznajemo se sa potrebama klijenta." },
+        { t: "Procjenjujemo mogućnosti", d: "Sagledavamo predmet, regulatorni okvir i način na koji možemo pomoći." },
+        { t: "Definišemo angažman", d: "Klijentu predstavljamo obim usluge, naredne korake i uslove saradnje." }
+      ]
+    },
+    value: {
+      eyebrow: "Zašto saradnja",
+      t: "Vi zadržavate svoj odnos sa klijentom. Mi dodajemo svoju ekspertizu.",
+      lead: "Partnerstvo sa Eurobrokerom omogućava vam da proširite podršku koju pružate klijentima bez razvoja sopstvenih kapaciteta za specijalizovane poslove tržišta kapitala.",
+      items: [
+        { t: "Specijalizovana ekspertiza", d: "Uključujete stručni tim kada je potreban." },
+        { t: "Šira podrška klijentu", d: "Klijent dobija pristup dodatnim rješenjima na tržištu kapitala." },
+        { t: "Jasna podjela odgovornosti", d: "Svaka strana djeluje u okviru svoje stručnosti i ovlašćenja." },
+        { t: "Dugoročna saradnja", d: "Cilj je razvoj partnerskog odnosa i zajedničko prepoznavanje budućih poslovnih prilika." }
+      ]
+    },
+    comp: {
+      eyebrow: "Naše kompetencije",
+      t: "Jedan partner za različite potrebe tržišta kapitala",
+      items: [
+        { t: "Brokerske usluge", link: "investiranje" },
+        { t: "Investiciono savjetovanje", link: "investiciono-savjetovanje" },
+        { t: "Prikupljanje kapitala", link: "prikupljanje-kapitala" },
+        { t: "Poslovno i finansijsko savjetovanje", link: "poslovno-i-finansijsko-savjetovanje" },
+        { t: "Korporativni poslovi", link: "korporativni-poslovi" },
+        { t: "Analize i poslovni planovi", link: "analize-i-poslovni-planovi" },
+        { t: "Kastodi poslovi", link: "kastodi-poslovi" }
+      ]
+    },
+    models: {
+      eyebrow: "Modeli saradnje",
+      t: "Saradnja prilagođena konkretnom poslu",
+      cards: [
+        { t: "Upućivanje klijenta", d: "Kada klijent ima potrebu koju Eurobroker može neposredno preuzeti u okviru svojih usluga i ovlašćenja." },
+        { t: "Zajednički projekat", d: "Kada predmet zahtijeva kombinaciju ekspertize partnera i Eurobrokera." },
+        { t: "Dugoročno partnerstvo", d: "Za organizacije sa kojima postoji prostor za kontinuiranu saradnju, edukaciju, zajedničke projekte ili razvoj novih poslovnih prilika." }
+      ]
+    },
+    roles: {
+      eyebrow: "Profesionalni standardi",
+      t: "Jasne uloge. Profesionalna saradnja.",
+      p: "Svaki partner zadržava odgovornost za usluge koje pruža u okviru svoje djelatnosti i ovlašćenja. Poslove za koje su potrebne odgovarajuće dozvole i stručne kvalifikacije Eurobroker obavlja u okviru svojih regulatornih ovlašćenja i ugovornog odnosa sa klijentom."
+    },
+    final: {
+      eyebrow: "Započnimo razgovor",
+      t: "Imate klijenta ili projekat na kojem možemo sarađivati?",
+      p: "Predstavite nam potrebu ili poslovnu priliku. Razgovaraćemo o tome gdje se naše kompetencije dopunjuju i da li postoji osnov za saradnju.",
+      primary: "Razgovarajte o partnerstvu",
+      secondary: "Kontaktirajte naš tim"
+    },
+    form: {
+      t: "Partnerski upit",
+      name: "Ime i prezime", company: "Kompanija / organizacija", email: "Poslovni e-mail", phone: "Telefon",
+      type: "Vrsta saradnje",
+      typeOpts: ["Upućivanje klijenta", "Zajednički projekat", "Dugoročno partnerstvo", "Drugo"],
+      desc: "Kratak opis", descP: "Ukratko o potrebi ili prilici (bez povjerljivih podataka o klijentu)",
+      consent: "Saglasan/na sam sa obradom podataka u svrhu odgovora na ovaj upit, u skladu sa politikom zaštite podataka.",
+      note: "Molimo da u inicijalnom upitu ne dostavljate povjerljive ili osjetljive podatke o klijentu. Javljamo se u jednom radnom danu.",
+      submit: "Pošaljite upit"
+    }
   },
 
   "otvorite-racun": {

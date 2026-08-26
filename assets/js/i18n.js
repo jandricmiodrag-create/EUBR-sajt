@@ -411,8 +411,97 @@ window.EB_I18N = {
       what: "One named person and a published response time. Tell us what you need — we reply within one business day."
     },
     partneri: {
-      what: "Referrals are our strongest channel of growth. Here we formalise cooperation with partners — banks, accountants, lawyers and intermediaries — with materials and a clear referral model.",
-      whoFor: ["Accounting and consulting firms", "Law offices", "Business intermediaries and referrers"]
+      network: {
+        eyebrow: "Partner network",
+        t: "Cooperation that complements your services",
+        lead: "We work with professionals and organisations who, in their work, recognise client needs in investing, financing and the capital market.",
+        cards: [
+          { t: "Accounting and consulting firms", d: "For clients who need capital, financial analysis, a business plan or support in development projects." },
+          { t: "Law offices", d: "For transactions that, alongside the legal part, require brokerage, market or corporate-finance expertise." },
+          { t: "Financial and business advisers", d: "For clients who need specialised capital-market support." },
+          { t: "Banks and financial institutions", d: "For areas where services and professional competencies can complement one another." },
+          { t: "Business associations and chambers", d: "For company education, the exchange of professional knowledge and developing access to the capital market." },
+          { t: "Other professional partners", d: "For cooperation on specific matters where Eurobroker can complement a partner's existing expertise." }
+        ]
+      },
+      when: {
+        eyebrow: "Recognise the need",
+        t: "When we can help your client",
+        lead: "The need for the capital market often appears before the client knows which specific service they require. These are the situations where it makes sense to involve our team.",
+        cases: [
+          { t: "The client wants to invest", d: "Brokerage services and investment advice.", cta: "Explore investing", link: "investiranje" },
+          { t: "A company needs capital", d: "Bond and share issues, recapitalisation and issue-agent services.", cta: "Raising capital", link: "prikupljanje-kapitala" },
+          { t: "A company faces an important financial decision", d: "Capital structure, business strategy and other questions requiring financial assessment.", cta: "Business and financial advisory", link: "poslovno-i-finansijsko-savjetovanje" },
+          { t: "A corporate change is ahead", d: "Company restructuring, status changes and related corporate procedures.", cta: "Corporate services", link: "korporativni-poslovi" },
+          { t: "An analysis or business plan is needed", d: "Financial, fundamental and other analyses, research and business plans.", cta: "Analyses and business plans", link: "analize-i-poslovni-planovi" },
+          { t: "Custody services are needed", d: "Safekeeping and administration of securities and tasks related to exercising securities rights.", cta: "Custody services", link: "kastodi-poslovi" }
+        ]
+      },
+      process: {
+        eyebrow: "Process",
+        t: "From a client's need to a concrete solution",
+        steps: [
+          { t: "You recognise the need", d: "In your client's business you spot a question where Eurobroker's expertise may be needed." },
+          { t: "We connect the teams", d: "With the appropriate consent, we establish contact and get to know the client's needs." },
+          { t: "We assess the options", d: "We review the matter, the regulatory framework and how we can help." },
+          { t: "We define the engagement", d: "We present the client with the scope of service, the next steps and the terms of cooperation." }
+        ]
+      },
+      value: {
+        eyebrow: "Why cooperate",
+        t: "You keep your relationship with the client. We add our expertise.",
+        lead: "A partnership with Eurobroker lets you broaden the support you provide to clients without developing your own capacity for specialised capital-market work.",
+        items: [
+          { t: "Specialised expertise", d: "You bring in an expert team when it is needed." },
+          { t: "Broader client support", d: "The client gains access to additional capital-market solutions." },
+          { t: "Clear division of responsibility", d: "Each side acts within its own expertise and authorisations." },
+          { t: "Long-term cooperation", d: "The goal is to develop a partner relationship and jointly recognise future business opportunities." }
+        ]
+      },
+      comp: {
+        eyebrow: "Our competencies",
+        t: "One partner for different capital-market needs",
+        items: [
+          { t: "Brokerage services", link: "investiranje" },
+          { t: "Investment advice", link: "investiciono-savjetovanje" },
+          { t: "Raising capital", link: "prikupljanje-kapitala" },
+          { t: "Business and financial advisory", link: "poslovno-i-finansijsko-savjetovanje" },
+          { t: "Corporate services", link: "korporativni-poslovi" },
+          { t: "Analyses and business plans", link: "analize-i-poslovni-planovi" },
+          { t: "Custody services", link: "kastodi-poslovi" }
+        ]
+      },
+      models: {
+        eyebrow: "Models of cooperation",
+        t: "Cooperation tailored to the specific matter",
+        cards: [
+          { t: "Client referral", d: "When the client has a need that Eurobroker can take on directly within its services and authorisations." },
+          { t: "Joint project", d: "When the matter requires a combination of the partner's and Eurobroker's expertise." },
+          { t: "Long-term partnership", d: "For organisations where there is room for continuous cooperation, education, joint projects or the development of new business opportunities." }
+        ]
+      },
+      roles: {
+        eyebrow: "Professional standards",
+        t: "Clear roles. Professional cooperation.",
+        p: "Each partner retains responsibility for the services it provides within its own activity and authorisations. Work requiring the appropriate licences and professional qualifications is performed by Eurobroker within its regulatory authorisations and its contractual relationship with the client."
+      },
+      final: {
+        eyebrow: "Let's start the conversation",
+        t: "Have a client or a project we could work on together?",
+        p: "Tell us about the need or the business opportunity. We will discuss where our competencies complement each other and whether there is a basis for cooperation.",
+        primary: "Talk about a partnership",
+        secondary: "Contact our team"
+      },
+      form: {
+        t: "Partner enquiry",
+        name: "Full name", company: "Company / organisation", email: "Business e-mail", phone: "Phone",
+        type: "Type of cooperation",
+        typeOpts: ["Client referral", "Joint project", "Long-term partnership", "Other"],
+        desc: "Short description", descP: "Briefly about the need or opportunity (no confidential client data)",
+        consent: "I agree to the processing of my data for the purpose of responding to this enquiry, per the privacy policy.",
+        note: "Please do not include confidential or sensitive client data in this initial enquiry. We reply within one business day.",
+        submit: "Send enquiry"
+      }
     },
     dokumenti: {
       what: "In one place: business rules, general terms, forms, client information, the risk warning, the complaints procedure, data protection and conflict of interest. Every document carries a version and a date.",
@@ -456,7 +545,7 @@ window.EB_I18N = {
     "cjenovnik": "Price list",
     "otvorite-racun": "Open an account",
     "kontakt": "Contact",
-    "partneri": "Partnerships",
+    "partneri": "Partnerships & cooperation",
     "dokumenti": "Documents & forms",
     "investiranje-iz-dijaspore": "Investing from the diaspora"
   },
@@ -489,7 +578,7 @@ window.EB_I18N = {
     "edukacija": "First steps, guides and webinars",
     "cjenovnik": "A published price list, applied from its effective date",
     "dokumenti": "Every document with a version and a date",
-    "partneri": "A formalised partner channel"
+    "partneri": "Together we open new opportunities for clients"
   },
   goals: {
     "za-kompanije": "Turn “we need money” into an initial conversation.",
@@ -512,7 +601,7 @@ window.EB_I18N = {
     "edukacija": "Education as an acquisition channel.",
     "cjenovnik": "Price transparency as a trust signal.",
     "dokumenti": "Client support and lighter broker workload.",
-    "partneri": "A channel for partners and the group."
+    "partneri": "We connect our partners' expertise with Eurobroker's services so investors and companies get the right support in the capital market."
   },
 
   /* EN meta za sintetičku dijaspora stranicu i huben naslov */

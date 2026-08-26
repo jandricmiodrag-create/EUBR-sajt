@@ -583,3 +583,102 @@ table.price .fee { font-family: var(--ff-head); font-weight: 700; color: var(--n
   .hero::after, .pagehero::after { transform: none; inset: 0; }
   .hero__grid::before, .hero__grid::after { display: none; }
 }
+
+/* ============================================================
+   PARTNERI — B2B stranica (scoped .pt-*; ne utiče na ostatak sajta)
+   ============================================================ */
+.pt-heroband { background: var(--navy); margin-top: -18px; padding: 0 0 52px; position: relative; z-index: 2; }
+.pt-lead { max-width: 780px; }
+.pt-grid { display: grid; gap: 20px; }
+.pt-grid--3 { grid-template-columns: repeat(3, 1fr); }
+
+/* Partner kartice */
+.pt-card { position: relative; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 24px 24px; transition: var(--t); }
+.pt-card:hover { border-color: var(--line-strong); box-shadow: var(--shadow-sm); transform: translateY(-3px); }
+.pt-card__ic { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 12px; background: var(--bg-softer); color: var(--navy); margin-bottom: 16px; }
+.pt-card__ic svg { width: 24px; height: 24px; }
+.pt-card__no { position: absolute; top: 24px; right: 24px; font-family: var(--ff-head); font-weight: 700; font-size: .95rem; color: var(--gold); letter-spacing: .02em; }
+.pt-card h3 { font-size: 1.05rem; margin-bottom: 8px; padding-right: 30px; }
+.pt-card p { color: var(--muted); font-size: .93rem; line-height: 1.62; }
+
+/* Kada uključiti — tamna sekcija */
+.pt-dark { background: linear-gradient(160deg, var(--navy) 0%, var(--navy-700) 100%); color: #dfe8f2; }
+.pt-dark .section-head .eyebrow { color: var(--gold-soft); }
+.pt-dark .section-head h2 { color: #fff; }
+.pt-dark .section-head p { color: #b9cadd; }
+.pt-cases { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.pt-case { display: block; padding: 22px 24px; border-radius: var(--radius); background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); transition: var(--t); }
+.pt-case:hover { background: rgba(255,255,255,.09); border-color: rgba(200,162,76,.5); transform: translateY(-3px); }
+.pt-case h3 { color: #fff; font-size: 1.04rem; margin-bottom: 6px; }
+.pt-case p { color: #b9cadd; font-size: .92rem; line-height: 1.55; margin-bottom: 12px; }
+.pt-case .link-arrow { color: var(--gold); }
+.pt-case:hover .link-arrow { color: var(--gold-soft); gap: .6rem; }
+
+/* Proces — horizontalni timeline */
+.pt-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; position: relative; }
+.pt-step { position: relative; }
+.pt-step__n { font-family: var(--ff-head); font-weight: 700; font-size: 1rem; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--navy); color: var(--gold); margin-bottom: 16px; position: relative; z-index: 2; }
+.pt-step h3 { font-size: 1.02rem; margin-bottom: 6px; }
+.pt-step p { color: var(--muted); font-size: .9rem; line-height: 1.6; }
+.pt-flow .pt-step:not(:last-child)::after { content: ""; position: absolute; top: 22px; left: 56px; right: -12px; height: 2px; background: linear-gradient(90deg, var(--line-strong), var(--line)); z-index: 1; }
+
+/* Vrijednost za partnera — benefit grid */
+.pt-benefits { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.pt-benefit { display: flex; gap: 16px; padding: 22px 24px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); transition: var(--t); }
+.pt-benefit:hover { border-color: var(--line-strong); box-shadow: var(--shadow-sm); }
+.pt-benefit__ic { flex: none; width: 42px; height: 42px; border-radius: 10px; display: grid; place-items: center; background: var(--bg-softer); color: var(--gold); }
+.pt-benefit__ic svg { width: 22px; height: 22px; }
+.pt-benefit h3 { font-size: 1.02rem; margin-bottom: 4px; }
+.pt-benefit p { color: var(--muted); font-size: .92rem; line-height: 1.55; }
+
+/* Kompetencije — kompaktni link grid */
+.pt-comp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.pt-comp a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 18px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: #fff; font-family: var(--ff-head); font-weight: 600; color: var(--navy); font-size: .95rem; transition: var(--t); }
+.pt-comp a:hover { border-color: var(--navy); background: var(--navy); color: #fff; transform: translateY(-2px); }
+.pt-comp a .ar { color: var(--gold); display: inline-flex; transition: var(--t); }
+.pt-comp a:hover .ar { transform: translateX(3px); }
+
+/* Modeli saradnje — 3 kartice */
+.pt-models { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.pt-model { padding: 28px 26px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; position: relative; overflow: hidden; transition: var(--t); }
+.pt-model:hover { box-shadow: var(--shadow); transform: translateY(-4px); border-color: var(--line-strong); }
+.pt-model::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--grad-gold); opacity: .9; }
+.pt-model__no { font-family: var(--ff-head); font-weight: 700; color: var(--gold); font-size: .95rem; }
+.pt-model h3 { font-size: 1.12rem; margin: 8px 0 10px; }
+.pt-model p { color: var(--muted); font-size: .94rem; line-height: 1.62; }
+
+/* Jasne uloge — miran trust blok */
+.pt-roles { display: grid; grid-template-columns: 240px 1fr; gap: 34px; align-items: start; padding: 34px 36px; border: 1px solid var(--line); border-left: 3px solid var(--gold); border-radius: var(--radius); background: #fff; }
+.pt-roles__head .eyebrow { display: block; margin-bottom: 10px; }
+.pt-roles h2 { font-size: 1.3rem; }
+.pt-roles p { color: var(--muted); font-size: 1rem; line-height: 1.78; }
+
+/* Završni CTA — tamni premium + forma */
+.pt-final { background: linear-gradient(160deg, var(--navy) 0%, #071b30 100%); color: #dfe8f2; }
+.pt-final__head { text-align: center; max-width: 700px; margin: 0 auto; }
+.pt-final__head .eyebrow { color: var(--gold-soft); }
+.pt-final__head h2 { color: #fff; font-size: 1.7rem; margin: 8px 0 10px; }
+.pt-final__head p { color: #b9cadd; font-size: 1.05rem; }
+.pt-final__actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin: 24px 0 40px; }
+.pt-form { max-width: 720px; margin: 0 auto; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); padding: 30px 30px; }
+.pt-form h3 { color: #fff; font-size: 1.15rem; margin-bottom: 18px; }
+.pt-form .field label { color: #c7d5e5; }
+.pt-form .field input, .pt-form .field select, .pt-form .field textarea { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18); color: #fff; }
+.pt-form .field input::placeholder, .pt-form .field textarea::placeholder { color: #8ba1b8; }
+.pt-form .field select option { color: #17222e; }
+.pt-form .field input:focus, .pt-form .field select:focus, .pt-form .field textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(200,162,76,.22); }
+.pt-form .consent { color: #b9cadd; }
+.pt-form .formnote { color: #8ba1b8; }
+
+@media (max-width: 1024px) {
+  .pt-grid--3, .pt-comp, .pt-models { grid-template-columns: repeat(2, 1fr); }
+  .pt-flow { grid-template-columns: repeat(2, 1fr); row-gap: 30px; }
+  .pt-flow .pt-step:not(:last-child)::after { display: none; }
+  .pt-roles { grid-template-columns: 1fr; gap: 14px; }
+}
+@media (max-width: 640px) {
+  .pt-grid--3, .pt-cases, .pt-benefits, .pt-comp, .pt-models, .pt-flow { grid-template-columns: 1fr; }
+  .pt-final__head h2 { font-size: 1.4rem; }
+  .pt-final__actions { flex-direction: column; }
+  .pt-final__actions .btn { width: 100%; justify-content: center; }
+}

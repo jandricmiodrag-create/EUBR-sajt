@@ -513,6 +513,83 @@
     <section class="section section--soft"><div class="wrap">${consult}</div></section>${after}`;
   }
 
+  /* ---------------- PARTNERI (B2B partnerska stranica; hero iz tabele, scoped .pt-*) ---------------- */
+  function renderPartneri(p) {
+    const c = content("partneri");
+    const svc = (slug) => "#/" + (EB.page(slug) ? slug : "kontakt");
+    const head = (o) => `<div class="section-head"><span class="eyebrow">${esc(o.eyebrow)}</span><h2>${esc(o.t)}</h2>${o.lead ? `<p class="pt-lead">${esc(o.lead)}</p>` : ""}</div>`;
+    const S = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">';
+    const netIc = [
+      S + '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>',
+      S + '<path d="M12 3v18M7 21h10M8 3h8"/><path d="M5 7h14"/><path d="M5 7l-2.5 6h5L5 7zM19 7l-2.5 6h5L19 7z"/></svg>',
+      S + '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2.2 4.8-4.8 2.2 2.2-4.8 4.8-2.2z"/></svg>',
+      S + '<path d="M3 21h18M4 21V10M20 21V10M3 10l9-5 9 5M9 21v-6h6v6"/></svg>',
+      S + '<circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 5.2a3 3 0 0 1 0 5.6M21 20a6 6 0 0 0-4-5.6"/></svg>',
+      S + '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M17.5 14v7M14 17.5h7"/></svg>'
+    ];
+    const valIc = [
+      S + '<path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3z"/><path d="M9.2 12l1.9 1.9L15 10"/></svg>',
+      S + '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>',
+      S + '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16"/></svg>',
+      S + '<path d="M3 3v18h18"/><path d="M7 14l4-4 3 2 6-7"/></svg>'
+    ];
+
+    const hero = pagehero(p) + `<div class="pt-heroband"><div class="wrap"><a class="btn btn--primary" href="#partneri-forma">${esc(c.final.primary)} ${I.arrow}</a></div></div>`;
+
+    const net = c.network;
+    const netCards = net.cards.map((x, i) => `<article class="pt-card reveal"><span class="pt-card__ic">${netIc[i] || netIc[5]}</span><span class="pt-card__no">0${i + 1}</span><h3>${esc(x.t)}</h3><p>${esc(x.d)}</p></article>`).join("");
+    const sNetwork = `<section class="section"><div class="wrap">${head(net)}<div class="pt-grid pt-grid--3">${netCards}</div></div></section>`;
+
+    const wh = c.when;
+    const caseCards = wh.cases.map(x => `<a class="pt-case reveal" href="${svc(x.link)}"><h3>${esc(x.t)}</h3><p>${esc(x.d)}</p><span class="link-arrow">${esc(x.cta)} ${I.arrow}</span></a>`).join("");
+    const sWhen = `<section class="section pt-dark"><div class="wrap">${head(wh)}<div class="pt-cases">${caseCards}</div></div></section>`;
+
+    const pr = c.process;
+    const steps = pr.steps.map((x, i) => `<div class="pt-step reveal"><div class="pt-step__n">0${i + 1}</div><h3>${esc(x.t)}</h3><p>${esc(x.d)}</p></div>`).join("");
+    const sProcess = `<section class="section section--soft"><div class="wrap">${head(pr)}<div class="pt-flow">${steps}</div></div></section>`;
+
+    const va = c.value;
+    const benefits = va.items.map((x, i) => `<div class="pt-benefit reveal"><span class="pt-benefit__ic">${valIc[i] || valIc[0]}</span><div><h3>${esc(x.t)}</h3><p>${esc(x.d)}</p></div></div>`).join("");
+    const sValue = `<section class="section"><div class="wrap">${head(va)}<div class="pt-benefits">${benefits}</div></div></section>`;
+
+    const cm = c.comp;
+    const comps = cm.items.map(x => `<a href="${svc(x.link)}"><span>${esc(x.t)}</span><span class="ar">${I.arrow}</span></a>`).join("");
+    const sComp = `<section class="section section--soft"><div class="wrap">${head(cm)}<div class="pt-comp">${comps}</div></div></section>`;
+
+    const mo = c.models;
+    const models = mo.cards.map((x, i) => `<div class="pt-model reveal"><span class="pt-model__no">0${i + 1}</span><h3>${esc(x.t)}</h3><p>${esc(x.d)}</p></div>`).join("");
+    const sModels = `<section class="section"><div class="wrap">${head(mo)}<div class="pt-models">${models}</div></div></section>`;
+
+    const ro = c.roles;
+    const sRoles = `<section class="section section--soft"><div class="wrap"><div class="pt-roles reveal"><div class="pt-roles__head"><span class="eyebrow">${esc(ro.eyebrow)}</span><h2>${esc(ro.t)}</h2></div><p>${esc(ro.p)}</p></div></div></section>`;
+
+    const fn = c.final, fm = c.form;
+    const opts = fm.typeOpts.map(o => `<option>${esc(o)}</option>`).join("");
+    const form = `<form class="form pt-form" id="partneri-forma" data-form="1" data-kind="partneri" aria-label="${esc(fm.t)}">
+      <h3>${esc(fm.t)}</h3>
+      <div class="row2">
+        <div class="field"><label for="pt-name">${esc(fm.name)}</label><input id="pt-name" name="name" required placeholder="${esc(fm.name)}"></div>
+        <div class="field"><label for="pt-company">${esc(fm.company)}</label><input id="pt-company" name="company" required placeholder="${esc(fm.company)}"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="pt-email">${esc(fm.email)}</label><input id="pt-email" name="email" type="email" required placeholder="you@company"></div>
+        <div class="field"><label for="pt-phone">${esc(fm.phone)}</label><input id="pt-phone" name="phone" placeholder="+387"></div>
+      </div>
+      <div class="field"><label for="pt-type">${esc(fm.type)}</label><select id="pt-type" name="type">${opts}</select></div>
+      <div class="field"><label for="pt-desc">${esc(fm.desc)}</label><textarea id="pt-desc" name="desc" required placeholder="${esc(fm.descP)}"></textarea></div>
+      <label class="consent"><input type="checkbox" required> ${esc(fm.consent)}</label>
+      <button class="btn btn--primary" type="submit">${esc(fm.submit)} ${I.arrow}</button>
+      <p class="formnote">${esc(fm.note)}</p>
+    </form>`;
+    const sFinal = `<section class="section pt-final"><div class="wrap">
+      <div class="pt-final__head"><span class="eyebrow">${esc(fn.eyebrow)}</span><h2>${esc(fn.t)}</h2><p>${esc(fn.p)}</p></div>
+      <div class="pt-final__actions"><a class="btn btn--primary" href="#partneri-forma">${esc(fn.primary)} ${I.arrow}</a><a class="btn btn--ghost-light" href="#/kontakt">${esc(fn.secondary)} ${I.arrow}</a></div>
+      ${form}
+    </div></section>`;
+
+    return hero + sNetwork + sWhen + sProcess + sValue + sComp + sModels + sRoles + sFinal;
+  }
+
   /* ---------------- HUB ---------------- */
   function renderHub(p) {
     const cont = content(p.slug);
@@ -1086,7 +1163,8 @@
     else if (slug === "investiranje") html = renderInvestiranje(p);
     else if (slug === "za-kompanije") html = renderZaKompanije(p);
     else if (slug === "prikupljanje-kapitala" || slug === "poslovno-i-finansijsko-savjetovanje" || slug === "korporativni-poslovi" || slug === "analize-i-poslovni-planovi") html = renderZKUsluga(p);
-    else if (["regulatorni-status", "partneri", "dokumenti"].includes(slug)) html = renderSimple(p);
+    else if (slug === "partneri") html = renderPartneri(p);
+    else if (["regulatorni-status", "dokumenti"].includes(slug)) html = renderSimple(p);
     else if (slug === "investiranje-iz-dijaspore") html = renderService(p);
     else if (slug === "kastodi-poslovi") html = renderKastodi(p);
     else if ((p.type || "").toLowerCase().includes("hub")) html = renderHub(p);
