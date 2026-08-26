@@ -342,7 +342,7 @@ window.EB_I18N = {
     "otvorite-racun": {
       what: "Opening an account is the first step to trading. In Phase 1 the process is combined (form + signature), aiming for at most two business days.",
       steps: [
-        { t: "Fill in the questionnaire", d: "Fill in and submit the client questionnaire and start the account-opening process.", href: "https://script.google.com/macros/s/AKfycbzRgdBpOfkwgHTwg-JbalH9G0SxrVL_Dmmet9mlQcyyLd1s_mqK-ZrLrhMbwFWyuz2-7w/exec", embed: true, embedTitle: "Eurobroker — Client questionnaire", accShow: "Show questionnaire", accHide: "Hide questionnaire" },
+        { t: "Fill in the questionnaire", d: "Fill in and submit the client questionnaire and start the account-opening process." },
         { t: "Provide documentation", d: "You receive the exact document list in advance." },
         { t: "Signing and account activation", d: "After completing the documentation you sign the agreement and we finalise the account-opening process." }
       ]

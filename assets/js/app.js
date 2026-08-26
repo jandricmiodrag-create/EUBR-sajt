@@ -905,22 +905,13 @@
       : { name: "Ime i prezime", nameP: "Vaše ime", contact: "Kontakt (telefon ili e-pošta)", contactP: "+387 / vas@email", topicRacun: "Šta vas zanima", topicTema: "Tema", msg: "Poruka", msgP: "Ukratko o vašoj situaciji", source: "Kako ste čuli za nas? (izvor)", consent: "Saglasan/na sam sa obradom podataka u svrhu odgovora na upit, u skladu sa politikom zaštite podataka.", note: "Javljamo se u jednom radnom danu. Ovaj obrazac ne predstavlja ugovor niti investicionu preporuku.", direct: "Direktan kontakt", hours: "Radnim danima 08–16h.", phone: "Telefon", email: "E-pošta", hq: "Sjedište", optRacun: ["Domaće tržište", "Svjetska tržišta", "Obveznice RS", "Investiciono savjetovanje"], optTema: ["Opšti upit", "Otvaranje računa", "Investiciono savjetovanje", "Usluge za kompanije", "Institucionalni program", "Partnerstva"], optSrc: ["Pretraga (Google)", "Preporuka", "Društvene mreže", "Postojeći klijent", "Drugo"] };
     // Jedan korak (broj dolazi iz .step::before CSS countera)
     const stepBox = (s, extra) => `<div class="step${s.embed ? " step--embed" : ""}"><div><h4>${esc(s.t)}</h4><p>${esc(s.d)}</p>${extra || ""}</div></div>`;
-    // Accordion sa ugrađenim elektronskim Upitnikom (otvara se na zahtjev; pristupačan <button>)
-    const embedAcc = (s) => {
-      const show = esc(s.accShow || (en ? "Show questionnaire" : "Prikaži upitnik"));
-      const hide = esc(s.accHide || (en ? "Hide questionnaire" : "Sakrij upitnik"));
-      return `<div class="oa-acc">
-        <button class="btn btn--ghost oa-acc__toggle" type="button" aria-expanded="false" aria-controls="oa-upitnik-panel" data-show="${show}" data-hide="${hide}"><span class="oa-acc__label">${show}</span><span class="oa-acc__chev" aria-hidden="true">↓</span></button>
-        <div class="oa-acc__panel" id="oa-upitnik-panel" hidden><div class="oa-embed"><iframe src="${esc(s.href)}" title="${esc(s.embedTitle || s.t)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
-      </div>`;
-    };
-    // Sadržaj kolone: za /otvorite-racun/ (racun) proces je 01 (accordion) + 02 → dokumentacija → 03 (poslije dokumentacije)
+    // Sadržaj kolone: za /otvorite-racun/ (racun) proces je 01 + 02 → dokumentacija → 03 (poslije dokumentacije)
     let mid = "";
     if (kind === "racun" && c.steps && c.steps.length >= 3) {
       const st = c.steps;
       const req = (EB.data.dokumenti || []).filter(d => d.kategorija === "Otvaranje računa");
       const docsBlock = req.length ? `<div class="oa-docs"><h3 class="oa-docs__h">${en ? "Required documentation and forms" : "Potrebna dokumentacija i obrasci"}</h3><div class="doclist">${req.map(docCard).join("")}</div></div>` : "";
-      mid = `<div class="steps" style="margin-bottom:20px">${stepBox(st[0], embedAcc(st[0]))}${stepBox(st[1], "")}</div>${docsBlock}<div class="steps" style="counter-reset:s 2;margin:20px 0 28px">${stepBox(st[2], "")}</div>`;
+      mid = `<div class="steps" style="margin-bottom:20px">${stepBox(st[0], "")}${stepBox(st[1], "")}</div>${docsBlock}<div class="steps" style="counter-reset:s 2;margin:20px 0 28px">${stepBox(st[2], "")}</div>`;
     } else {
       mid = c.steps ? `<div class="steps" style="margin-bottom:28px">${c.steps.map(s => stepBox(s, s.href ? `<a class="btn btn--primary step__cta" href="${esc(s.href)}"${s.ext ? ' target="_blank" rel="noopener noreferrer" data-ext' : ''}>${esc(s.cta)} ${I.arrow}</a>` : "")).join("")}</div>` : "";
     }
@@ -928,10 +919,15 @@
     const topic = kind === "racun"
       ? `<div class="field"><label>${L.topicRacun}</label><select>${opts(L.optRacun)}</select></div>`
       : `<div class="field"><label>${L.topicTema}</label><select>${opts(L.optTema)}</select></div>`;
+    // Uvodna poruka neposredno iznad obrasca (samo /otvorite-racun/) — povezuje proces sa formom zahtjeva
+    const formIntro = kind === "racun"
+      ? `<div class="oa-formintro"><h3>${en ? "Start the account-opening process" : "Započnite postupak otvaranja računa"}</h3><p>${en ? "Fill in and submit the request form to receive the online questionnaire and begin the account-opening process." : "Popunite i pošaljite obrazac sa zahtjevom za dostavu online Upitnika za početak postupka otvaranja računa."}</p></div>`
+      : "";
     return pagehero(p) + `<section class="section"><div class="wrap"><div class="pglayout">
       <div>
         ${c.what ? `<p class="lead" style="margin-bottom:24px">${esc(c.what)}</p>` : ""}
         ${mid}
+        ${formIntro}
         <form class="form" data-form="1" data-kind="${kind}">
           <div class="row2">
             <div class="field"><label>${L.name}</label><input required placeholder="${L.nameP}"></div>
@@ -1286,19 +1282,6 @@
       }
       f.innerHTML = `<div class="success">${okMsg}</div>`;
     }));
-    // accordion (elektronski Upitnik na /otvorite-racun/) — pristupačan toggle bez reloada
-    document.querySelectorAll(".oa-acc__toggle").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const panel = document.getElementById(btn.getAttribute("aria-controls"));
-        const wasOpen = btn.getAttribute("aria-expanded") === "true";
-        btn.setAttribute("aria-expanded", wasOpen ? "false" : "true");
-        if (panel) panel.hidden = wasOpen;
-        const label = btn.querySelector(".oa-acc__label"), chev = btn.querySelector(".oa-acc__chev");
-        if (label) label.textContent = wasOpen ? btn.getAttribute("data-show") : btn.getAttribute("data-hide");
-        if (chev) chev.textContent = wasOpen ? "↓" : "↑";
-        if (!wasOpen && EB.track) EB.track(EB.EVENTS.CTA_CLICK, { label: "otvori-upitnik", href: "accordion" });
-      });
-    });
   }
 
   /* ---------------- Global bindings ---------------- */
