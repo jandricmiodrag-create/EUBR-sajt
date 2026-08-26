@@ -458,12 +458,12 @@
     const lines = en ? [
       { slug: "prikupljanje-kapitala", icon: "kapital", t: "Raising capital", d: "Share and bond issues, recapitalisation, issue-agent services and other solutions for accessing capital.", cta: "Learn more" },
       { slug: "poslovno-i-finansijsko-savjetovanje", icon: "savjet", t: "Business and financial advisory", d: "Advice on capital structure, business strategy and corporate governance, tailored to your company's needs and goals.", cta: "Learn more" },
-      { slug: "priprema-za-trziste-kapitala", icon: "korp", t: "Corporate services", d: "Company restructuring, status changes, preparation of legal and other documents, and support in complex corporate procedures.", cta: "Learn more" },
+      { slug: "korporativni-poslovi", icon: "korp", t: "Corporate services", d: "Company restructuring, status changes, preparation of legal and other documents, and support in complex corporate procedures.", cta: "Learn more" },
       { slug: "kontakt", icon: "analiza", t: "Analyses and business plans", d: "Financial, fundamental, technical and other analyses, investment research and the preparation of business plans.", cta: "Learn more" }
     ] : [
       { slug: "prikupljanje-kapitala", icon: "kapital", t: "Prikupljanje kapitala", d: "Emisije akcija i obveznica, dokapitalizacija, poslovi agenta emisije i druga rješenja za pristup kapitalu.", cta: "Saznajte više" },
       { slug: "poslovno-i-finansijsko-savjetovanje", icon: "savjet", t: "Poslovno i finansijsko savjetovanje", d: "Savjetovanje o strukturi kapitala, poslovnoj strategiji i korporativnom upravljanju, prilagođeno potrebama i ciljevima vaše kompanije.", cta: "Saznajte više" },
-      { slug: "priprema-za-trziste-kapitala", icon: "korp", t: "Korporativni poslovi", d: "Preoblikovanje društava, statusne promjene, priprema pravnih i drugih akata i podrška u složenim korporativnim postupcima.", cta: "Saznajte više" },
+      { slug: "korporativni-poslovi", icon: "korp", t: "Korporativni poslovi", d: "Preoblikovanje društava, statusne promjene, priprema pravnih i drugih akata i podrška u složenim korporativnim postupcima.", cta: "Saznajte više" },
       { slug: "kontakt", icon: "analiza", t: "Analize i poslovni planovi", d: "Finansijske, fundamentalne, tehničke i druge analize, istraživanja iz oblasti investiranja i izrada poslovnih planova.", cta: "Saznajte više" }
     ];
     const cards = lines.map((b, i) => `
@@ -1081,7 +1081,7 @@
     else if (slug === "o-nama") html = renderONama(p);
     else if (slug === "investiranje") html = renderInvestiranje(p);
     else if (slug === "za-kompanije") html = renderZaKompanije(p);
-    else if (slug === "prikupljanje-kapitala" || slug === "poslovno-i-finansijsko-savjetovanje") html = renderZKUsluga(p);
+    else if (slug === "prikupljanje-kapitala" || slug === "poslovno-i-finansijsko-savjetovanje" || slug === "korporativni-poslovi") html = renderZKUsluga(p);
     else if (["regulatorni-status", "partneri", "dokumenti"].includes(slug)) html = renderSimple(p);
     else if (slug === "investiranje-iz-dijaspore") html = renderService(p);
     else if (slug === "kastodi-poslovi") html = renderKastodi(p);

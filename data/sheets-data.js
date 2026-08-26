@@ -677,6 +677,32 @@ window.EB_DATA = {
    "kpi": "",
    "classification": "A",
    "eyebrow": "Poslovno i finansijsko savjetovanje"
+  },
+  {
+   "id": "27",
+   "level": "2",
+   "parent": "za-kompanije",
+   "slug": "korporativni-poslovi",
+   "title": "Korporativni poslovi",
+   "url": "/za-kompanije/korporativni-poslovi/",
+   "type": "Uslužna",
+   "phase": "1",
+   "nav_order": "",
+   "segment": "F",
+   "intent": "Kako da sprovedem korporativnu promjenu",
+   "message": "Složene promjene, jasno definisan proces",
+   "goal": "Od preoblikovanja društva do složenijih korporativnih postupaka, pomažemo vam da promjene pripremite i sprovedete efikasno i u skladu sa propisima.",
+   "primary_cta": "Zakažite razgovor",
+   "primary_cta_link": "kontakt",
+   "secondary_cta": "",
+   "secondary_cta_link": "",
+   "related": "priprema-za-trziste-kapitala,poslovno-i-finansijsko-savjetovanje,prikupljanje-kapitala",
+   "documents": "",
+   "seo": "",
+   "compliance": "",
+   "kpi": "",
+   "classification": "A",
+   "eyebrow": "Korporativni poslovi"
   }
  ],
  "cjenovnik": [

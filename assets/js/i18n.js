@@ -297,6 +297,23 @@ window.EB_I18N = {
       ],
       consult: { t: "Need a second opinion?", p: "If you are facing a decision that requires an additional financial assessment or specific expertise, present us the situation. We tailor the advice to the specific question and to your company's needs.", cta: "Talk to our team" }
     },
+    "korporativni-poslovi": {
+      sections: [
+        { t: "Company restructuring", link: "kontakt", cta: "Learn more about restructuring", p: [
+          "As a company grows, its existing legal form does not always match its size, ownership structure or future plans. Restructuring makes it possible to change the company's legal form while the business continues in the new form.",
+          "We help you review the procedure, prepare the necessary acts and documentation, and carry out the steps required to restructure the company."
+        ] },
+        { t: "Status changes", link: "kontakt", cta: "Status changes", p: [
+          "Mergers, acquisitions, divisions and other status changes can be part of a reorganisation, growth, or a change in the company's ownership and business structure.",
+          "We provide support in preparing and carrying out the procedure, including the required documentation and the activities related to realising a specific status change."
+        ] },
+        { t: "Legal and other acts and documentation", link: "kontakt", cta: "Request more information", p: [
+          "Financial and corporate transactions often require the preparation of specific decisions, acts, analyses and other documentation.",
+          "We take part in preparing them within the scope of the work we perform, making sure the documentation fits the specific procedure and its regulatory requirements."
+        ] }
+      ],
+      consult: { t: "Have a more complex corporate procedure?", p: "Not every task fits a predefined category. Tell us what you want to carry out, and our team will assess how we can support you.", cta: "Send an enquiry" }
+    },
     "otvorite-racun": {
       what: "Opening an account is the first step to trading. In Phase 1 the process is combined (form + signature), aiming for at most two business days.",
       steps: [
@@ -397,6 +414,7 @@ window.EB_I18N = {
     "finansiranje-putem-trzista-kapitala": "Capital-markets financing",
     "prikupljanje-kapitala": "Raising capital",
     "poslovno-i-finansijsko-savjetovanje": "Business and financial advisory",
+    "korporativni-poslovi": "Corporate services",
     "emisija-obveznica": "Bond issue",
     "emisija-akcija-i-dokapitalizacija": "Share issue & recapitalisation",
     "priprema-za-trziste-kapitala": "Preparing for the capital markets",
@@ -422,6 +440,7 @@ window.EB_I18N = {
     "finansiranje-putem-trzista-kapitala": "Loan and capital markets — a factual comparison",
     "prikupljanje-kapitala": "Capital doesn't have to come from a loan alone",
     "poslovno-i-finansijsko-savjetovanje": "Expert support for important business decisions",
+    "korporativni-poslovi": "Complex changes, a clearly defined process",
     "emisija-obveznica": "We run the issue from readiness assessment to listing",
     "emisija-akcija-i-dokapitalizacija": "Recapitalisation as an alternative to debt",
     "priprema-za-trziste-kapitala": "We prepare your company for a future issue",
@@ -449,6 +468,7 @@ window.EB_I18N = {
     "za-kompanije": "Turn “we need money” into an initial conversation.",
     "prikupljanje-kapitala": "Explore the options for financing through the capital market and find the model that suits your company's needs and plans.",
     "poslovno-i-finansijsko-savjetovanje": "We help you review the financial and business options and make decisions aligned with your company's goals.",
+    "korporativni-poslovi": "From company restructuring to more complex corporate procedures, we help you prepare and carry out changes efficiently and in line with regulations.",
     "emisija-obveznica": "A clear path for companies raising capital.",
     "institucionalni-klijenti": "A serious institutional programme, without marketing tone.",
     "o-nama": "Eurobroker combines long-standing capital-markets experience with a professional and responsible relationship with every client.",

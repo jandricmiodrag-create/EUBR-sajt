@@ -231,6 +231,28 @@ window.EB_CONTENT = {
     }
   },
 
+  "korporativni-poslovi": {
+    sections: [
+      { t: "Preoblikovanje društava", link: "kontakt", cta: "Saznajte više o preoblikovanju", p: [
+        "Kako se kompanija razvija, postojeća pravna forma ne mora uvijek odgovarati njenoj veličini, vlasničkoj strukturi ili budućim planovima. Preoblikovanje omogućava promjenu pravne forme društva uz nastavak poslovanja u novom obliku.",
+        "Pomažemo vam da sagledate postupak, pripremite potrebne akte i dokumentaciju i sprovedete korake potrebne za preoblikovanje društva."
+      ] },
+      { t: "Statusne promjene", link: "kontakt", cta: "Statusne promjene", p: [
+        "Spajanje, pripajanje, podjela i druge statusne promjene mogu biti dio reorganizacije, razvoja ili promjene vlasničke i poslovne strukture kompanije.",
+        "Pružamo podršku u pripremi i sprovođenju postupka, uključujući potrebnu dokumentaciju i aktivnosti povezane sa realizacijom konkretne statusne promjene."
+      ] },
+      { t: "Pravni i drugi akti i dokumentacija", link: "kontakt", cta: "Zatražite više informacija", p: [
+        "Finansijske i korporativne transakcije često zahtijevaju pripremu posebnih odluka, akata, analiza i druge dokumentacije.",
+        "Učestvujemo u njihovoj izradi u okviru poslova koje obavljamo, vodeći računa da dokumentacija odgovara konkretnom postupku i njegovim regulatornim zahtjevima."
+      ] }
+    ],
+    consult: {
+      t: "Imate složeniji korporativni postupak?",
+      p: "Ne mora svaki posao odgovarati unaprijed definisanoj kategoriji. Predstavite nam šta želite da sprovedete, a naš tim će procijeniti na koji način možemo da vas podržimo.",
+      cta: "Pošaljite upit"
+    }
+  },
+
   partneri: {
     what: "Preporuke su najjači kanal našeg rasta. Ovdje formalizujemo saradnju sa partnerima — bankama, računovođama, advokatima i posrednicima — uz materijale i jasan model upućivanja.",
     whoFor: ["Računovodstvene i konsultantske kuće", "Advokatske kancelarije", "Poslovni posrednici i preporučioci"]
