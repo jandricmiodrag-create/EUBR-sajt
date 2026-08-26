@@ -359,6 +359,7 @@ a svg, button svg, .link-arrow svg, .mq-val svg, .chip svg, .svc__no svg { width
 .step::before { counter-increment: s; content: counter(s); flex: none; width: 30px; height: 30px; border-radius: 8px; background: var(--navy); color: #fff; font-family: var(--ff-head); font-weight: 700; display: grid; place-items: center; font-size: .9rem; }
 .step h4 { font-size: 1rem; margin-bottom: 3px; }
 .step p { color: var(--muted); font-size: .9rem; margin: 0; }
+.step__cta { margin-top: 12px; }
 .roles { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 6px; }
 .role { border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
 .role b { font-family: var(--ff-head); color: var(--navy); font-size: .95rem; display: block; margin-bottom: 6px; }

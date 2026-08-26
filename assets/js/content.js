@@ -380,7 +380,7 @@ window.EB_CONTENT = {
   "otvorite-racun": {
     what: "Otvaranje računa je prvi korak do trgovanja. U Fazi 1 postupak je kombinovan (obrazac + potpis), sa ciljem od najviše dva radna dana.",
     steps: [
-      { t: "Pošaljite zahtjev", d: "Popunite kratak obrazac; javljamo se u jednom radnom danu." },
+      { t: "Popunite upitnik", d: "Popunite i pošaljite Upitnik za klijente i započnite postupak otvaranja računa.", cta: "Popunite upitnik", href: "https://script.google.com/macros/s/AKfycbzRgdBpOfkwgHTwg-JbalH9G0SxrVL_Dmmet9mlQcyyLd1s_mqK-ZrLrhMbwFWyuz2-7w/exec", ext: true },
       { t: "Dostavite dokumentaciju", d: "Dobijate tačnu listu dokumenata unaprijed." },
       { t: "Aktivacija računa", d: "Potpisujete ugovor; račun je spreman za nalog." }
     ]

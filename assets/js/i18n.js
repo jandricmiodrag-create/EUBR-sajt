@@ -342,7 +342,7 @@ window.EB_I18N = {
     "otvorite-racun": {
       what: "Opening an account is the first step to trading. In Phase 1 the process is combined (form + signature), aiming for at most two business days.",
       steps: [
-        { t: "Send a request", d: "Fill in a short form; we reply within one business day." },
+        { t: "Fill in the questionnaire", d: "Fill in and submit the client questionnaire and start the account-opening process.", cta: "Fill in the questionnaire", href: "https://script.google.com/macros/s/AKfycbzRgdBpOfkwgHTwg-JbalH9G0SxrVL_Dmmet9mlQcyyLd1s_mqK-ZrLrhMbwFWyuz2-7w/exec", ext: true },
         { t: "Provide documentation", d: "You receive the exact document list in advance." },
         { t: "Account activation", d: "You sign the agreement; the account is ready for an order." }
       ]
