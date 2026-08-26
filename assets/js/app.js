@@ -903,16 +903,27 @@
     const L = en
       ? { name: "Full name", nameP: "Your name", contact: "Contact (phone or e-mail)", contactP: "+387 / you@email", topicRacun: "What are you interested in", topicTema: "Topic", msg: "Message", msgP: "Briefly about your situation", source: "How did you hear about us? (source)", consent: "I agree to the processing of my data for the purpose of responding to this inquiry, per the privacy policy.", note: "We reply within one business day. This form is neither a contract nor investment advice.", direct: "Direct contact", hours: "Weekdays 8am–4pm", phone: "Phone", email: "E-mail", hq: "Head office", optRacun: ["Domestic market", "World markets", "RS bonds", "Investment advice"], optTema: ["General inquiry", "Opening an account", "Investment advice", "Corporate services", "Institutional programme", "Partnerships"], optSrc: ["Search (Google)", "Referral", "Social media", "Existing client", "Other"] }
       : { name: "Ime i prezime", nameP: "Vaše ime", contact: "Kontakt (telefon ili e-pošta)", contactP: "+387 / vas@email", topicRacun: "Šta vas zanima", topicTema: "Tema", msg: "Poruka", msgP: "Ukratko o vašoj situaciji", source: "Kako ste čuli za nas? (izvor)", consent: "Saglasan/na sam sa obradom podataka u svrhu odgovora na upit, u skladu sa politikom zaštite podataka.", note: "Javljamo se u jednom radnom danu. Ovaj obrazac ne predstavlja ugovor niti investicionu preporuku.", direct: "Direktan kontakt", hours: "Radnim danima 08–16h.", phone: "Telefon", email: "E-pošta", hq: "Sjedište", optRacun: ["Domaće tržište", "Svjetska tržišta", "Obveznice RS", "Investiciono savjetovanje"], optTema: ["Opšti upit", "Otvaranje računa", "Investiciono savjetovanje", "Usluge za kompanije", "Institucionalni program", "Partnerstva"], optSrc: ["Pretraga (Google)", "Preporuka", "Društvene mreže", "Postojeći klijent", "Drugo"] };
-    const steps = c.steps ? `<div class="steps" style="margin-bottom:28px">${c.steps.map(s => {
-      let extra = "";
-      if (s.embed && s.href) {
-        // Ugrađeni elektronski upitnik (Apps Script /exec dozvoljava cross-origin iframe) + diskretan fallback
-        extra = `<div class="oa-embed"><iframe src="${esc(s.href)}" title="${esc(s.embedTitle || s.t)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div><a class="oa-embed__fb link-arrow" href="${esc(s.href)}" target="_blank" rel="noopener noreferrer" data-ext>${esc(s.fb)} ${I.arrow}</a>`;
-      } else if (s.href) {
-        extra = `<a class="btn btn--primary step__cta" href="${esc(s.href)}"${s.ext ? ' target="_blank" rel="noopener noreferrer" data-ext' : ''}>${esc(s.cta)} ${I.arrow}</a>`;
-      }
-      return `<div class="step${s.embed ? " step--embed" : ""}"><div><h4>${esc(s.t)}</h4><p>${esc(s.d)}</p>${extra}</div></div>`;
-    }).join("")}</div>` : "";
+    // Jedan korak (broj dolazi iz .step::before CSS countera)
+    const stepBox = (s, extra) => `<div class="step${s.embed ? " step--embed" : ""}"><div><h4>${esc(s.t)}</h4><p>${esc(s.d)}</p>${extra || ""}</div></div>`;
+    // Accordion sa ugrađenim elektronskim Upitnikom (otvara se na zahtjev; pristupačan <button>)
+    const embedAcc = (s) => {
+      const show = esc(s.accShow || (en ? "Show questionnaire" : "Prikaži upitnik"));
+      const hide = esc(s.accHide || (en ? "Hide questionnaire" : "Sakrij upitnik"));
+      return `<div class="oa-acc">
+        <button class="btn btn--ghost oa-acc__toggle" type="button" aria-expanded="false" aria-controls="oa-upitnik-panel" data-show="${show}" data-hide="${hide}"><span class="oa-acc__label">${show}</span><span class="oa-acc__chev" aria-hidden="true">↓</span></button>
+        <div class="oa-acc__panel" id="oa-upitnik-panel" hidden><div class="oa-embed"><iframe src="${esc(s.href)}" title="${esc(s.embedTitle || s.t)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+      </div>`;
+    };
+    // Sadržaj kolone: za /otvorite-racun/ (racun) proces je 01 (accordion) + 02 → dokumentacija → 03 (poslije dokumentacije)
+    let mid = "";
+    if (kind === "racun" && c.steps && c.steps.length >= 3) {
+      const st = c.steps;
+      const req = (EB.data.dokumenti || []).filter(d => d.kategorija === "Otvaranje računa");
+      const docsBlock = req.length ? `<div class="oa-docs"><h3 class="oa-docs__h">${en ? "Required documentation and forms" : "Potrebna dokumentacija i obrasci"}</h3><div class="doclist">${req.map(docCard).join("")}</div></div>` : "";
+      mid = `<div class="steps" style="margin-bottom:20px">${stepBox(st[0], embedAcc(st[0]))}${stepBox(st[1], "")}</div>${docsBlock}<div class="steps" style="counter-reset:s 2;margin:20px 0 28px">${stepBox(st[2], "")}</div>`;
+    } else {
+      mid = c.steps ? `<div class="steps" style="margin-bottom:28px">${c.steps.map(s => stepBox(s, s.href ? `<a class="btn btn--primary step__cta" href="${esc(s.href)}"${s.ext ? ' target="_blank" rel="noopener noreferrer" data-ext' : ''}>${esc(s.cta)} ${I.arrow}</a>` : "")).join("")}</div>` : "";
+    }
     const opts = (arr) => arr.map(o => `<option>${esc(o)}</option>`).join("");
     const topic = kind === "racun"
       ? `<div class="field"><label>${L.topicRacun}</label><select>${opts(L.optRacun)}</select></div>`
@@ -920,11 +931,7 @@
     return pagehero(p) + `<section class="section"><div class="wrap"><div class="pglayout">
       <div>
         ${c.what ? `<p class="lead" style="margin-bottom:24px">${esc(c.what)}</p>` : ""}
-        ${steps}
-        ${kind === "racun" ? (function () {
-          const req = (EB.data.dokumenti || []).filter(d => d.kategorija === "Otvaranje računa");
-          return req.length ? `<div style="margin-bottom:28px"><h3 style="font-size:1.05rem;margin-bottom:12px">${en ? "Required documentation and forms" : "Potrebna dokumentacija i obrasci"}</h3><div class="doclist">${req.map(docCard).join("")}</div><p class="formnote" style="margin-top:10px">${en ? "Choose the list that matches your status; a broker sends the exact set after your request." : "Izaberite spisak koji odgovara vašem statusu; tačan set šalje broker nakon vašeg zahtjeva."}</p></div>` : "";
-        })() : ""}
+        ${mid}
         <form class="form" data-form="1" data-kind="${kind}">
           <div class="row2">
             <div class="field"><label>${L.name}</label><input required placeholder="${L.nameP}"></div>
@@ -1279,6 +1286,19 @@
       }
       f.innerHTML = `<div class="success">${okMsg}</div>`;
     }));
+    // accordion (elektronski Upitnik na /otvorite-racun/) — pristupačan toggle bez reloada
+    document.querySelectorAll(".oa-acc__toggle").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const panel = document.getElementById(btn.getAttribute("aria-controls"));
+        const wasOpen = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", wasOpen ? "false" : "true");
+        if (panel) panel.hidden = wasOpen;
+        const label = btn.querySelector(".oa-acc__label"), chev = btn.querySelector(".oa-acc__chev");
+        if (label) label.textContent = wasOpen ? btn.getAttribute("data-show") : btn.getAttribute("data-hide");
+        if (chev) chev.textContent = wasOpen ? "↓" : "↑";
+        if (!wasOpen && EB.track) EB.track(EB.EVENTS.CTA_CLICK, { label: "otvori-upitnik", href: "accordion" });
+      });
+    });
   }
 
   /* ---------------- Global bindings ---------------- */
