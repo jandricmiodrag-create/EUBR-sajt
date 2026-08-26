@@ -459,12 +459,12 @@
       { slug: "prikupljanje-kapitala", icon: "kapital", t: "Raising capital", d: "Share and bond issues, recapitalisation, issue-agent services and other solutions for accessing capital.", cta: "Learn more" },
       { slug: "poslovno-i-finansijsko-savjetovanje", icon: "savjet", t: "Business and financial advisory", d: "Advice on capital structure, business strategy and corporate governance, tailored to your company's needs and goals.", cta: "Learn more" },
       { slug: "korporativni-poslovi", icon: "korp", t: "Corporate services", d: "Company restructuring, status changes, preparation of legal and other documents, and support in complex corporate procedures.", cta: "Learn more" },
-      { slug: "kontakt", icon: "analiza", t: "Analyses and business plans", d: "Financial, fundamental, technical and other analyses, investment research and the preparation of business plans.", cta: "Learn more" }
+      { slug: "analize-i-poslovni-planovi", icon: "analiza", t: "Analyses and business plans", d: "Financial, fundamental, technical and other analyses, investment research and the preparation of business plans.", cta: "Learn more" }
     ] : [
       { slug: "prikupljanje-kapitala", icon: "kapital", t: "Prikupljanje kapitala", d: "Emisije akcija i obveznica, dokapitalizacija, poslovi agenta emisije i druga rješenja za pristup kapitalu.", cta: "Saznajte više" },
       { slug: "poslovno-i-finansijsko-savjetovanje", icon: "savjet", t: "Poslovno i finansijsko savjetovanje", d: "Savjetovanje o strukturi kapitala, poslovnoj strategiji i korporativnom upravljanju, prilagođeno potrebama i ciljevima vaše kompanije.", cta: "Saznajte više" },
       { slug: "korporativni-poslovi", icon: "korp", t: "Korporativni poslovi", d: "Preoblikovanje društava, statusne promjene, priprema pravnih i drugih akata i podrška u složenim korporativnim postupcima.", cta: "Saznajte više" },
-      { slug: "kontakt", icon: "analiza", t: "Analize i poslovni planovi", d: "Finansijske, fundamentalne, tehničke i druge analize, istraživanja iz oblasti investiranja i izrada poslovnih planova.", cta: "Saznajte više" }
+      { slug: "analize-i-poslovni-planovi", icon: "analiza", t: "Analize i poslovni planovi", d: "Finansijske, fundamentalne, tehničke i druge analize, istraživanja iz oblasti investiranja i izrada poslovnih planova.", cta: "Saznajte više" }
     ];
     const cards = lines.map((b, i) => `
       <a class="segcard reveal" href="#/${b.slug}">
@@ -487,26 +487,30 @@
     </div></section>`;
   }
 
-  /* ---------------- USLUŽNA STRANICA sa sekcijama (namjenska: prikupljanje-kapitala, poslovno-i-finansijsko-savjetovanje) ---------------- */
+  /* ---------------- USLUŽNA STRANICA sa sekcijama (namjenska: prikupljanje-kapitala, poslovno-i-finansijsko-savjetovanje, korporativni-poslovi, analize-i-poslovni-planovi) ---------------- */
+  function sectQb(s, n, more) {
+    const paras = (s.p || []).map(t => `<p>${esc(t)}</p>`).join("");
+    const link = s.link && EB.page(s.link) ? `<a class="link-arrow" href="#/${s.link}">${esc(s.cta || more)} ${I.arrow}</a>` : "";
+    return qb(s.t, n, paras + link);
+  }
   function renderZKUsluga(p) {
     const en = isEN();
     const c = content(p.slug);
     const more = en ? "Learn more" : "Saznajte više";
     let inner = "";
-    (c.sections || []).forEach((s, i) => {
-      const paras = (s.p || []).map(t => `<p>${esc(t)}</p>`).join("");
-      const link = s.link && EB.page(s.link) ? `<a class="link-arrow" href="#/${s.link}">${esc(s.cta || more)} ${I.arrow}</a>` : "";
-      inner += qb(s.t, "0" + (i + 1), paras + link);
-    });
+    (c.sections || []).forEach((s, i) => { inner += sectQb(s, "0" + (i + 1), more); });
     const con = c.consult;
     const conLink = (con && con.link) || "kontakt";
     const consult = con ? `<div class="zk-consult reveal"><h2>${esc(con.t)}</h2><p>${esc(con.p)}</p><a class="btn btn--primary" href="#/${conLink}">${esc(con.cta)} ${I.arrow}</a></div>` : "";
+    // Opciona zaključna sadržajna sekcija nakon CTA bloka (npr. „Poslovni planovi")
+    const after = c.after ? `
+    <section class="section"><div class="wrap"><div class="prose">${sectQb(c.after, "0" + ((c.sections || []).length + 1), more)}</div></div></section>` : "";
     return pagehero(p) + `
     <section class="section"><div class="wrap"><div class="pglayout">
       <div class="prose">${inner}</div>
       ${serviceSidebar(p)}
     </div></div></section>
-    <section class="section section--soft"><div class="wrap">${consult}</div></section>`;
+    <section class="section section--soft"><div class="wrap">${consult}</div></section>${after}`;
   }
 
   /* ---------------- HUB ---------------- */
@@ -1081,7 +1085,7 @@
     else if (slug === "o-nama") html = renderONama(p);
     else if (slug === "investiranje") html = renderInvestiranje(p);
     else if (slug === "za-kompanije") html = renderZaKompanije(p);
-    else if (slug === "prikupljanje-kapitala" || slug === "poslovno-i-finansijsko-savjetovanje" || slug === "korporativni-poslovi") html = renderZKUsluga(p);
+    else if (slug === "prikupljanje-kapitala" || slug === "poslovno-i-finansijsko-savjetovanje" || slug === "korporativni-poslovi" || slug === "analize-i-poslovni-planovi") html = renderZKUsluga(p);
     else if (["regulatorni-status", "partneri", "dokumenti"].includes(slug)) html = renderSimple(p);
     else if (slug === "investiranje-iz-dijaspore") html = renderService(p);
     else if (slug === "kastodi-poslovi") html = renderKastodi(p);

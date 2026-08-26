@@ -29,7 +29,7 @@
   var csv = function (id) { return "https://docs.google.com/spreadsheets/d/" + id + "/gviz/tq?tqx=out:csv"; };
   var src = LIVE ? "gsheet" : "embedded";
   window.EB_SHEETS_CONFIG = {
-    stranice:      { source: src, file: "gsheet/stranice.csv",       url: csv("1ilpC3D9QqDnN9mIaC0IWWkVO2rXq2fnCGCWOkjd8oso") },
+    stranice:      { source: src, file: "gsheet/stranice.csv",       url: csv("1I4bg05VyO71bhHYdqopJHSITrsJbsAVpn06EqakRk2s") },
     cjenovnik:     { source: src, file: "gsheet/cjenovnik.csv",      url: csv("1jybJiqU2b47cktaH6PqejiwoewS9M5TkMO5Ke7ARYjE") },
     urednickiPlan: { source: src, file: "gsheet/urednicki-plan.csv", url: csv("1iu41K45917wFqyAfrUCOiEGRy7vyOC9mC9UhkqkRIDQ") },
     segmenti:      { source: src, file: "gsheet/segmenti.csv",       url: csv("1dHRDSJCgYBgxiAZ4erOTlBnMCxsCE37_YJlDqDwGYv4") },
@@ -46,7 +46,7 @@
   // Direktni linkovi na tabele (za uređivanje):
   window.EB_SHEETS_LINKS = {
     folder:        "https://drive.google.com/drive/folders/1a85KKlnBy7vfiauHk0_PFRH_mzdAWfar",
-    stranice:      "https://docs.google.com/spreadsheets/d/1ilpC3D9QqDnN9mIaC0IWWkVO2rXq2fnCGCWOkjd8oso/edit",
+    stranice:      "https://docs.google.com/spreadsheets/d/1I4bg05VyO71bhHYdqopJHSITrsJbsAVpn06EqakRk2s/edit",
     cjenovnik:     "https://docs.google.com/spreadsheets/d/1jybJiqU2b47cktaH6PqejiwoewS9M5TkMO5Ke7ARYjE/edit",
     urednickiPlan: "https://docs.google.com/spreadsheets/d/1iu41K45917wFqyAfrUCOiEGRy7vyOC9mC9UhkqkRIDQ/edit",
     segmenti:      "https://docs.google.com/spreadsheets/d/1dHRDSJCgYBgxiAZ4erOTlBnMCxsCE37_YJlDqDwGYv4/edit",

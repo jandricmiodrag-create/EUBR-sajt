@@ -703,6 +703,32 @@ window.EB_DATA = {
    "kpi": "",
    "classification": "A",
    "eyebrow": "Korporativni poslovi"
+  },
+  {
+   "id": "28",
+   "level": "2",
+   "parent": "za-kompanije",
+   "slug": "analize-i-poslovni-planovi",
+   "title": "Analize i poslovni planovi",
+   "url": "/za-kompanije/analize-i-poslovni-planovi/",
+   "type": "Uslužna",
+   "phase": "1",
+   "nav_order": "",
+   "segment": "F",
+   "intent": "Kakva mi analiza treba za odluku",
+   "message": "Dobre odluke traže kvalitetnu analizu",
+   "goal": "Pretvaramo podatke i informacije u jasnu osnovu za procjenu investicija, poslovnih mogućnosti i budućih poteza.",
+   "primary_cta": "Zakažite razgovor",
+   "primary_cta_link": "kontakt",
+   "secondary_cta": "",
+   "secondary_cta_link": "",
+   "related": "poslovno-i-finansijsko-savjetovanje,korporativni-poslovi,prikupljanje-kapitala",
+   "documents": "",
+   "seo": "",
+   "compliance": "Razgraničenje opšte analize/researcha od individualnog investicionog savjetovanja",
+   "kpi": "",
+   "classification": "A",
+   "eyebrow": "Analize i poslovni planovi"
   }
  ],
  "cjenovnik": [

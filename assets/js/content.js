@@ -253,6 +253,36 @@ window.EB_CONTENT = {
     }
   },
 
+  "analize-i-poslovni-planovi": {
+    sections: [
+      { t: "Finansijske analize", link: "kontakt", cta: "Zatražite finansijsku analizu", p: [
+        "Finansijska analiza omogućava detaljniji uvid u poslovanje, finansijsku poziciju i kretanje ključnih pokazatelja kompanije.",
+        "Analiziramo relevantne finansijske podatke i odnose među njima kako biste dobili jasniju osnovu za procjenu poslovanja, investicije, finansiranja ili druge odluke."
+      ] },
+      { t: "Fundamentalna analiza", link: "kontakt", cta: "Fundamentalne analize", p: [
+        "Fundamentalna analiza posmatra vrijednost investicije kroz poslovanje emitenta, njegove finansijske rezultate, poziciju na tržištu i druge relevantne faktore.",
+        "Cilj je da se, na osnovu dostupnih podataka i pokazatelja, dobije kvalitetnija osnova za procjenu određene hartije od vrijednosti ili investicione mogućnosti."
+      ] },
+      { t: "Tehnička analiza", link: "kontakt", cta: "Tehničke analize", p: [
+        "Tehnička analiza polazi od istorijskih podataka o cijenama i obimu trgovanja i prati obrasce i pokazatelje koji mogu biti relevantni za procjenu tržišnih kretanja.",
+        "Izrađujemo tehničke i druge analize u oblasti investiranja u skladu sa predmetom i ciljem analize."
+      ] },
+      { t: "Istraživanja u oblasti investiranja", link: "kontakt", cta: "Istraživanja i analize", p: [
+        "Kada odluka zahtijeva širu sliku, istražujemo tržišta, hartije od vrijednosti i druge relevantne finansijske informacije i pripremamo strukturiranu analitičku podlogu.",
+        "Na taj način veliki broj podataka pretvaramo u pregledne informacije koje mogu biti korisne pri procjeni investicionih mogućnosti."
+      ] }
+    ],
+    consult: {
+      t: "Treba vam analiza za konkretnu odluku?",
+      p: "Recite nam šta želite da saznate ili procijenite. Definisaćemo obim analize prema vašem pitanju i informacijama koje su vam potrebne za donošenje odluke.",
+      cta: "Pošaljite upit"
+    },
+    after: { t: "Poslovni planovi", link: "kontakt", cta: "Izrada poslovnog plana", p: [
+      "Dobar poslovni plan treba jasno da pokaže šta kompanija želi postići, koliko joj je sredstava potrebno i da li su planirane aktivnosti finansijski održive.",
+      "Izrađujemo poslovne planove za nove projekte, investicije, razvoj poslovanja, potrebe finansiranja i druge namjene, sa finansijskim projekcijama i analizama prilagođenim konkretnom projektu."
+    ] }
+  },
+
   partneri: {
     what: "Preporuke su najjači kanal našeg rasta. Ovdje formalizujemo saradnju sa partnerima — bankama, računovođama, advokatima i posrednicima — uz materijale i jasan model upućivanja.",
     whoFor: ["Računovodstvene i konsultantske kuće", "Advokatske kancelarije", "Poslovni posrednici i preporučioci"]

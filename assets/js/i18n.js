@@ -314,6 +314,31 @@ window.EB_I18N = {
       ],
       consult: { t: "Have a more complex corporate procedure?", p: "Not every task fits a predefined category. Tell us what you want to carry out, and our team will assess how we can support you.", cta: "Send an enquiry" }
     },
+    "analize-i-poslovni-planovi": {
+      sections: [
+        { t: "Financial analysis", link: "kontakt", cta: "Request a financial analysis", p: [
+          "Financial analysis provides a more detailed insight into a company's operations, financial position and the movement of its key indicators.",
+          "We analyse the relevant financial data and the relationships between them so you get a clearer basis for assessing operations, an investment, financing or other decisions."
+        ] },
+        { t: "Fundamental analysis", link: "kontakt", cta: "Fundamental analyses", p: [
+          "Fundamental analysis looks at the value of an investment through the issuer's operations, its financial results, market position and other relevant factors.",
+          "The goal is to obtain, based on the available data and indicators, a stronger basis for assessing a particular security or investment opportunity."
+        ] },
+        { t: "Technical analysis", link: "kontakt", cta: "Technical analyses", p: [
+          "Technical analysis starts from historical price and trading-volume data and follows patterns and indicators that may be relevant for assessing market movements.",
+          "We prepare technical and other analyses in the area of investing, in line with the subject and objective of the analysis."
+        ] },
+        { t: "Investment research", link: "kontakt", cta: "Research and analyses", p: [
+          "When a decision requires a broader picture, we research markets, securities and other relevant financial information and prepare a structured analytical basis.",
+          "In this way we turn a large amount of data into clear information that can be useful when assessing investment opportunities."
+        ] }
+      ],
+      consult: { t: "Need an analysis for a specific decision?", p: "Tell us what you want to learn or assess. We will define the scope of the analysis according to your question and the information you need to make a decision.", cta: "Send an enquiry" },
+      after: { t: "Business plans", link: "kontakt", cta: "Business plan preparation", p: [
+        "A good business plan should clearly show what the company wants to achieve, how much funding it needs and whether the planned activities are financially sustainable.",
+        "We prepare business plans for new projects, investments, business development, financing needs and other purposes, with financial projections and analyses tailored to the specific project."
+      ] }
+    },
     "otvorite-racun": {
       what: "Opening an account is the first step to trading. In Phase 1 the process is combined (form + signature), aiming for at most two business days.",
       steps: [
@@ -415,6 +440,7 @@ window.EB_I18N = {
     "prikupljanje-kapitala": "Raising capital",
     "poslovno-i-finansijsko-savjetovanje": "Business and financial advisory",
     "korporativni-poslovi": "Corporate services",
+    "analize-i-poslovni-planovi": "Analyses and business plans",
     "emisija-obveznica": "Bond issue",
     "emisija-akcija-i-dokapitalizacija": "Share issue & recapitalisation",
     "priprema-za-trziste-kapitala": "Preparing for the capital markets",
@@ -441,6 +467,7 @@ window.EB_I18N = {
     "prikupljanje-kapitala": "Capital doesn't have to come from a loan alone",
     "poslovno-i-finansijsko-savjetovanje": "Expert support for important business decisions",
     "korporativni-poslovi": "Complex changes, a clearly defined process",
+    "analize-i-poslovni-planovi": "Good decisions call for quality analysis",
     "emisija-obveznica": "We run the issue from readiness assessment to listing",
     "emisija-akcija-i-dokapitalizacija": "Recapitalisation as an alternative to debt",
     "priprema-za-trziste-kapitala": "We prepare your company for a future issue",
@@ -469,6 +496,7 @@ window.EB_I18N = {
     "prikupljanje-kapitala": "Explore the options for financing through the capital market and find the model that suits your company's needs and plans.",
     "poslovno-i-finansijsko-savjetovanje": "We help you review the financial and business options and make decisions aligned with your company's goals.",
     "korporativni-poslovi": "From company restructuring to more complex corporate procedures, we help you prepare and carry out changes efficiently and in line with regulations.",
+    "analize-i-poslovni-planovi": "We turn data and information into a clear basis for assessing investments, business options and future moves.",
     "emisija-obveznica": "A clear path for companies raising capital.",
     "institucionalni-klijenti": "A serious institutional programme, without marketing tone.",
     "o-nama": "Eurobroker combines long-standing capital-markets experience with a professional and responsible relationship with every client.",
