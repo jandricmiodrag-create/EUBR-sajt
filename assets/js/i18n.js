@@ -127,8 +127,8 @@ window.EB_I18N = {
     "trust.rules": { sr: "Pravila poslovanja", en: "Business rules" },
     "trust.contact": { sr: "Imenovani sagovornik", en: "A named contact" },
     "trust.complaints": { sr: "Odgovor u toku radnog dana", en: "A reply within the business day" },
-    "home.finalTitle": { sr: "Naredni korak je jednostavan i neobavezujući", en: "The next step is simple and without obligation" },
-    "home.finalSub": { sr: "Otvorite račun ili zakažite razgovor — javljamo se u jednom radnom danu.", en: "Open an account or book a call — we reply within one business day." },
+    "home.finalTitle": { sr: "Napravite sljedeći korak", en: "Take the next step" },
+    "home.finalSub": { sr: "Otvorite brokerski račun ili razgovarajte sa našim timom.", en: "Open a brokerage account or talk to our team." },
   },
 
   /* --- EN proza po stranici (ista struktura kao window.EB_CONTENT) --- */
