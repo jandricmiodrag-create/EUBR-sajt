@@ -903,7 +903,16 @@
     const L = en
       ? { name: "Full name", nameP: "Your name", contact: "Contact (phone or e-mail)", contactP: "+387 / you@email", topicRacun: "What are you interested in", topicTema: "Topic", msg: "Message", msgP: "Briefly about your situation", source: "How did you hear about us? (source)", consent: "I agree to the processing of my data for the purpose of responding to this inquiry, per the privacy policy.", note: "We reply within one business day. This form is neither a contract nor investment advice.", direct: "Direct contact", hours: "Weekdays 8am–4pm", phone: "Phone", email: "E-mail", hq: "Head office", optRacun: ["Domestic market", "World markets", "RS bonds", "Investment advice"], optTema: ["General inquiry", "Opening an account", "Investment advice", "Corporate services", "Institutional programme", "Partnerships"], optSrc: ["Search (Google)", "Referral", "Social media", "Existing client", "Other"] }
       : { name: "Ime i prezime", nameP: "Vaše ime", contact: "Kontakt (telefon ili e-pošta)", contactP: "+387 / vas@email", topicRacun: "Šta vas zanima", topicTema: "Tema", msg: "Poruka", msgP: "Ukratko o vašoj situaciji", source: "Kako ste čuli za nas? (izvor)", consent: "Saglasan/na sam sa obradom podataka u svrhu odgovora na upit, u skladu sa politikom zaštite podataka.", note: "Javljamo se u jednom radnom danu. Ovaj obrazac ne predstavlja ugovor niti investicionu preporuku.", direct: "Direktan kontakt", hours: "Radnim danima 08–16h.", phone: "Telefon", email: "E-pošta", hq: "Sjedište", optRacun: ["Domaće tržište", "Svjetska tržišta", "Obveznice RS", "Investiciono savjetovanje"], optTema: ["Opšti upit", "Otvaranje računa", "Investiciono savjetovanje", "Usluge za kompanije", "Institucionalni program", "Partnerstva"], optSrc: ["Pretraga (Google)", "Preporuka", "Društvene mreže", "Postojeći klijent", "Drugo"] };
-    const steps = c.steps ? `<div class="steps" style="margin-bottom:28px">${c.steps.map(s => `<div class="step"><div><h4>${esc(s.t)}</h4><p>${esc(s.d)}</p>${s.href ? `<a class="btn btn--primary step__cta" href="${esc(s.href)}"${s.ext ? ' target="_blank" rel="noopener noreferrer" data-ext' : ''}>${esc(s.cta)} ${I.arrow}</a>` : ""}</div></div>`).join("")}</div>` : "";
+    const steps = c.steps ? `<div class="steps" style="margin-bottom:28px">${c.steps.map(s => {
+      let extra = "";
+      if (s.embed && s.href) {
+        // Ugrađeni elektronski upitnik (Apps Script /exec dozvoljava cross-origin iframe) + diskretan fallback
+        extra = `<div class="oa-embed"><iframe src="${esc(s.href)}" title="${esc(s.embedTitle || s.t)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div><a class="oa-embed__fb link-arrow" href="${esc(s.href)}" target="_blank" rel="noopener noreferrer" data-ext>${esc(s.fb)} ${I.arrow}</a>`;
+      } else if (s.href) {
+        extra = `<a class="btn btn--primary step__cta" href="${esc(s.href)}"${s.ext ? ' target="_blank" rel="noopener noreferrer" data-ext' : ''}>${esc(s.cta)} ${I.arrow}</a>`;
+      }
+      return `<div class="step${s.embed ? " step--embed" : ""}"><div><h4>${esc(s.t)}</h4><p>${esc(s.d)}</p>${extra}</div></div>`;
+    }).join("")}</div>` : "";
     const opts = (arr) => arr.map(o => `<option>${esc(o)}</option>`).join("");
     const topic = kind === "racun"
       ? `<div class="field"><label>${L.topicRacun}</label><select>${opts(L.optRacun)}</select></div>`
