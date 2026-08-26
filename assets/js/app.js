@@ -354,15 +354,15 @@
       <div class="band reveal">
         <div>
           <span class="eyebrow">Investiciono savjetovanje</span>
-          <h2>Savjet postoji kao ugovorena usluga</h2>
-          <p>Razlika između izvršenja naloga i savjetovanja je odgovornost: kod savjeta dobijate pisanu preporuku zasnovanu na vašem cilju i profilu rizika.</p>
+          <h2>Niste sigurni u šta da uložite?</h2>
+          <p>Tu smo da vam pomognemo.</p>
           <div class="packages" style="margin-top:18px">
             <div class="pkg"><b>Pregled</b><span>Osnovni paket</span></div>
             <div class="pkg"><b>Portfelj</b><span>Prošireni paket</span></div>
             <div class="pkg"><b>Privatni</b><span>Za veće portfelje</span></div>
           </div>
         </div>
-        <div><a class="btn btn--dark btn--block" href="#/investiciono-savjetovanje">Zakažite razgovor sa savjetnikom ${I.arrow}</a><p class="formnote" style="margin-top:10px;text-align:center">Cijena paketa objavljuje se po usvajanju internih akata.</p></div>
+        <div><a class="btn btn--dark btn--block" href="#/investiciono-savjetovanje">Želim da saznam više ${I.arrow}</a></div>
       </div>
     </div></section>`}
 
