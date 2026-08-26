@@ -67,17 +67,19 @@ window.EB_CONTENT = {
   },
 
   "investiciono-savjetovanje": {
-    what: "Investiciono savjetovanje je ugovorena usluga: dobijate pisanu preporuku zasnovanu na vašem cilju i profilu rizika. To nije usputni razgovor uz izvršenje naloga.",
+    what: "Investiciono savjetovanje namijenjeno je svima koji žele stručnu procjenu prije donošenja investicione odluke. Kroz jasno definisan proces dolazimo do konkretnog prijedloga za ulaganje.",
     whoFor: ["Imućni privatni klijenti", "Vlasnici većih portfelja", "Nije za one koji traže „siguran tip“ bez ugovora i profila rizika"],
-    problem: "Izvršenje naloga i savjet se često miješaju. Kod savjetovanja odgovornost je jasno određena i dokumentovana — vi znate na čemu se preporuka zasniva.",
+    problem: "Savjetovanje donosi dodatnu vrijednost: jasnu preporuku, dokumentovanu analizu i veću sigurnost u investicionoj odluci.",
     steps: [
-      { t: "Razgovor i profil rizika", d: "Utvrđujemo cilj, horizont i odnos prema riziku." },
-      { t: "Pregled portfelja", d: "Analiziramo postojeće stanje." },
-      { t: "Pisana preporuka", d: "Dobijate obrazloženu preporuku po ugovoru." }
+      { t: "UPOZNAJEMO VAS", d: "Prije nego što počnemo sa razmatranjem konkretnih investicija, važno je da razumijemo šta očekujete od ulaganja. Razgovaramo o vašoj finansijskoj situaciji, iskustvu, planiranom periodu ulaganja i spremnosti da prihvatite promjene vrijednosti investicije." },
+      { t: "SAGLEDAVAMO TRŽIŠTE", d: "Naš tim analizira dostupne finansijske instrumente, procjenjuje njihov potencijal i rizike i izdvaja one koje odgovaraju vašim ciljevima." },
+      { t: "DOBIJATE PREPORUKU", d: "Dobijate pisanu preporuku u kojoj jasno predstavljamo predloženo ulaganje, razloge za izbor i rizike koje treba uzeti u obzir." },
+      { t: "VI DONOSITE ODLUKU", d: "Konačna odluka je uvijek vaša. Ukoliko se odlučite za ulaganje, Eurobroker može izvršiti nalog za kupovinu odabranih finansijskih instrumenata." }
     ],
     roles: { eurobroker: "Daje pisanu preporuku po ugovoru i vodi registar preporuka.", klijent: "Dostavlja podatke i donosi konačnu odluku.", treci: "—" },
     risks: ["Preporuka ne garantuje prinos.", "Rezultat zavisi od tržišnih kretanja.", "Savjet važi u okviru ugovorenog odnosa i profila rizika."],
-    napomenaCijena: "Cijena i nazivi paketa objavljuju se tek po usvajanju politike sukoba interesa, registra preporuka i cjenovnika. Do tada je moguć samo razgovor."
+    napomenaCijena: "Cijena i nazivi paketa objavljuju se tek po usvajanju politike sukoba interesa, registra preporuka i cjenovnika. Do tada je moguć samo razgovor.",
+    finalCta: { t: "Razgovarajmo o vašim investicijama", p: "Ne morate imati spreman investicioni plan prije prvog razgovora. Recite nam šta želite postići, a mi ćemo zajedno sa vama pronaći optimalno rješenje.", cta: "Zakažite razgovor", link: "kontakt" }
   },
 
   "za-kompanije": {

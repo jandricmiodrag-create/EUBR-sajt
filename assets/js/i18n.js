@@ -395,17 +395,19 @@ window.EB_I18N = {
       risks: ["There is not a guaranteed return in every situation.", "Risk of price change before maturity.", "Read the risk warning before deciding."]
     },
     "investiciono-savjetovanje": {
-      what: "Investment advice is a contracted service: you receive a written recommendation based on your goal and risk profile. It is not a casual conversation alongside order execution.",
+      what: "Investment advice is for anyone who wants an expert assessment before making an investment decision. Through a clearly defined process we arrive at a concrete investment proposal.",
       whoFor: ["Higher-net-worth private clients", "Larger-portfolio owners", "Not for those seeking a “sure tip” without a contract and risk profile"],
-      problem: "Order execution and advice are often confused. With advice, responsibility is clearly defined and documented — you know what the recommendation is based on.",
+      problem: "Advice adds value: a clear recommendation, documented analysis and greater confidence in your investment decision.",
       steps: [
-        { t: "Conversation and risk profile", d: "We establish your goal, horizon and attitude to risk." },
-        { t: "Portfolio review", d: "We analyse your current position." },
-        { t: "Written recommendation", d: "You receive a reasoned recommendation under contract." }
+        { t: "WE GET TO KNOW YOU", d: "Before we consider specific investments, it is important to understand what you expect from investing. We talk about your financial situation, experience, planned investment horizon and willingness to accept changes in the value of the investment." },
+        { t: "WE REVIEW THE MARKET", d: "Our team analyses the available financial instruments, assesses their potential and risks and selects those that match your goals." },
+        { t: "YOU RECEIVE A RECOMMENDATION", d: "You receive a written recommendation in which we clearly present the proposed investment, the reasons for the choice and the risks to consider." },
+        { t: "YOU MAKE THE DECISION", d: "The final decision is always yours. If you decide to invest, Eurobroker can execute the order to purchase the selected financial instruments." }
       ],
       roles: { eurobroker: "Provides a written recommendation under contract and keeps a register of recommendations.", klijent: "Provides data and makes the final decision.", treci: "—" },
       risks: ["A recommendation does not guarantee a return.", "The outcome depends on market movements.", "Advice applies within the contracted relationship and risk profile."],
-      napomenaCijena: "Prices and package names are published only after the conflict-of-interest policy, the register of recommendations and the price list are adopted. Until then, only a conversation is possible."
+      napomenaCijena: "Prices and package names are published only after the conflict-of-interest policy, the register of recommendations and the price list are adopted. Until then, only a conversation is possible.",
+      finalCta: { t: "Let's talk about your investments", p: "You don't need a ready investment plan before the first conversation. Tell us what you want to achieve, and together we will find the optimal solution.", cta: "Book a call", link: "kontakt" }
     },
     kontakt: {
       what: "One named person and a published response time. Tell us what you need — we reply within one business day."

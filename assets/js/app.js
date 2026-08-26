@@ -643,11 +643,16 @@
       body += `<div class="qblock"><span class="qn">${T("q.faq")}</span><h2>${T("q.faqTitle")}</h2>${renderFaq(faqs)}</div>`;
     }
 
+    const finalCta = c.finalCta ? `<section class="section section--soft"><div class="wrap"><div class="finalcta reveal">
+      <h2>${esc(c.finalCta.t)}</h2>
+      <p>${esc(c.finalCta.p)}</p>
+      <div class="hero__actions"><a class="btn btn--primary" href="#/${esc(c.finalCta.link || "kontakt")}">${esc(c.finalCta.cta)} ${I.arrow}</a></div>
+    </div></div></section>` : "";
     return pagehero(p) + `
     <section class="section"><div class="wrap"><div class="pglayout">
       <div class="prose">${body}</div>
       ${serviceSidebar(p)}
-    </div></div></section>`;
+    </div></div></section>` + finalCta;
   }
   function qb(title, n, inner) { return `<div class="qblock"><span class="qn">${T("q.label")} ${n}</span><h2>${esc(title)}</h2>${inner}</div>`; }
 

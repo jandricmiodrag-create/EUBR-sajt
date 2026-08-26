@@ -52,7 +52,7 @@ window.EB_DATA = {
    "compliance": "Bez tvrdnji o prinosu",
    "kpi": "Prelazak na uslužnu stranicu",
    "classification": "A",
-   "eyebrow": ""
+   "eyebrow": "Investiranje"
   },
   {
    "id": "3",
@@ -144,8 +144,8 @@ window.EB_DATA = {
    "nav_order": "",
    "segment": "D",
    "intent": "Da li je moj portfelj dobro postavljen",
-   "message": "Investicione odluke uz stručnu podršku",
-   "goal": "Investiciono savjetovanje povezuje vaše ciljeve, finansijsku situaciju i odnos prema riziku sa stručnom analizom i pisanom investicionom preporukom prilagođenom vašem profilu.",
+   "message": "Zajedno kreiramo vaš portfolio",
+   "goal": "Pomažemo vam da izaberete investicije koje odgovaraju vašim ciljevima.",
    "primary_cta": "Zakažite razgovor sa savjetnikom",
    "primary_cta_link": "kontakt",
    "secondary_cta": "Zatražite pregled portfelja",
@@ -153,10 +153,10 @@ window.EB_DATA = {
    "related": "analize,svjetska-trzista",
    "documents": "Opis paketa; izvod iz cjenovnika",
    "seo": "4",
-   "compliance": "Ne objavljuje se cijena prije usvajanja internih akata",
+   "compliance": "",
    "kpi": "Zahtjevi; sastanci; ugovoreni paketi",
    "classification": "A (uslovno)",
-   "eyebrow": ""
+   "eyebrow": "Investiciono savjetovanje"
   },
   {
    "id": "8",
@@ -182,7 +182,7 @@ window.EB_DATA = {
    "compliance": "Bez utiska da je emisija unaprijed odobrena",
    "kpi": "Popunjeni upitnici; sastanci",
    "classification": "A",
-   "eyebrow": ""
+   "eyebrow": "Za kompanije"
   },
   {
    "id": "9",
@@ -326,7 +326,7 @@ window.EB_DATA = {
    "nav_order": "3",
    "segment": "G",
    "intent": "Postoji li program za institucije",
-   "message": "Program prilagođen institucionalnim zahtjevima",
+   "message": "Program prilagođen institucionalnim klijentima",
    "goal": "Jasno definisane usluge, odgovornost i podrška za institucionalne klijente",
    "primary_cta": "Zatražite formalnu ponudu",
    "primary_cta_link": "kontakt",
@@ -338,7 +338,7 @@ window.EB_DATA = {
    "compliance": "Bez objavljenih rokova dok nisu izvodljivi",
    "kpi": "Zahtjevi za ponudu",
    "classification": "A (uslovno)",
-   "eyebrow": ""
+   "eyebrow": "Institucionalni klijenti"
   },
   {
    "id": "15",
