@@ -205,6 +205,32 @@ window.EB_CONTENT = {
     }
   },
 
+  "poslovno-i-finansijsko-savjetovanje": {
+    sections: [
+      { t: "Struktura kapitala", link: "kontakt", cta: "Razgovarajte sa savjetnikom", p: [
+        "Koliko poslovanje finansirati sopstvenim, a koliko pozajmljenim kapitalom? Da li postojeća struktura odgovara planovima kompanije i postoji li prostor za drugačiji način finansiranja?",
+        "Analiziramo strukturu kapitala i pomažemo vam da sagledate odnos različitih izvora finansiranja, njihove troškove i uticaj na finansijsku poziciju kompanije."
+      ] },
+      { t: "Poslovna strategija", link: "kontakt", cta: "Zatražite konsultacije", p: [
+        "Investicija, širenje poslovanja, promjena načina finansiranja ili drugi važan poslovni potez zahtijevaju sagledavanje finansijskih posljedica prije donošenja odluke.",
+        "Pomažemo vam da analizirate finansijske aspekte poslovnih planova i strategije i procijenite različite mogućnosti prije nego što napravite naredni korak."
+      ] },
+      { t: "Poslovni planovi", link: "kontakt", cta: "Izrada poslovnog plana", p: [
+        "Dobar poslovni plan treba jasno da pokaže šta kompanija želi postići, koliko joj je sredstava potrebno i da li su planirane aktivnosti finansijski održive.",
+        "Izrađujemo poslovne planove za nove projekte, investicije, razvoj poslovanja, potrebe finansiranja i druge namjene, sa finansijskim projekcijama i analizama prilagođenim konkretnom projektu."
+      ] },
+      { t: "Korporativno upravljanje", link: "kontakt", cta: "Saznajte više", p: [
+        "Kvalitetno korporativno upravljanje podrazumijeva jasno uređene odnose, odgovornosti i procese donošenja odluka unutar kompanije.",
+        "Pružamo pravne i finansijske savjete iz oblasti korporativnog upravljanja i pomažemo kompanijama da sagledaju pitanja koja mogu biti važna za vlasnike, organe upravljanja i budući razvoj društva."
+      ] }
+    ],
+    consult: {
+      t: "Treba vam drugo mišljenje?",
+      p: "Ako je pred vama odluka koja zahtijeva dodatnu finansijsku procjenu ili specifično stručno znanje, predstavite nam situaciju. Savjetovanje prilagođavamo konkretnom pitanju i potrebama vaše kompanije.",
+      cta: "Razgovarajte sa našim timom"
+    }
+  },
+
   partneri: {
     what: "Preporuke su najjači kanal našeg rasta. Ovdje formalizujemo saradnju sa partnerima — bankama, računovođama, advokatima i posrednicima — uz materijale i jasan model upućivanja.",
     whoFor: ["Računovodstvene i konsultantske kuće", "Advokatske kancelarije", "Poslovni posrednici i preporučioci"]

@@ -276,6 +276,27 @@ window.EB_I18N = {
       ],
       consult: { t: "Not sure which model suits your company?", p: "Before deciding on an issue, it is necessary to review the company's financial position, its capital needs and the options the market offers. Talk to our team about what you want to achieve.", cta: "Book an initial call" }
     },
+    "poslovno-i-finansijsko-savjetovanje": {
+      sections: [
+        { t: "Capital structure", link: "kontakt", cta: "Talk to an adviser", p: [
+          "How much of the business should be financed with own capital and how much with borrowed capital? Does the existing structure match the company's plans, and is there room for a different way of financing?",
+          "We analyse the capital structure and help you review the balance of the various sources of financing, their costs and their impact on the company's financial position."
+        ] },
+        { t: "Business strategy", link: "kontakt", cta: "Request a consultation", p: [
+          "An investment, business expansion, a change in the way of financing or another important business move requires a look at the financial consequences before the decision is made.",
+          "We help you analyse the financial aspects of business plans and strategy and assess the different options before you take the next step."
+        ] },
+        { t: "Business plans", link: "kontakt", cta: "Business plan preparation", p: [
+          "A good business plan should clearly show what the company wants to achieve, how much funding it needs and whether the planned activities are financially sustainable.",
+          "We prepare business plans for new projects, investments, business development, financing needs and other purposes, with financial projections and analyses tailored to the specific project."
+        ] },
+        { t: "Corporate governance", link: "kontakt", cta: "Learn more", p: [
+          "Sound corporate governance means clearly arranged relationships, responsibilities and decision-making processes within the company.",
+          "We provide legal and financial advice in the area of corporate governance and help companies review questions that may matter to owners, governing bodies and the future development of the company."
+        ] }
+      ],
+      consult: { t: "Need a second opinion?", p: "If you are facing a decision that requires an additional financial assessment or specific expertise, present us the situation. We tailor the advice to the specific question and to your company's needs.", cta: "Talk to our team" }
+    },
     "otvorite-racun": {
       what: "Opening an account is the first step to trading. In Phase 1 the process is combined (form + signature), aiming for at most two business days.",
       steps: [
@@ -375,6 +396,7 @@ window.EB_I18N = {
     "za-kompanije": "For companies",
     "finansiranje-putem-trzista-kapitala": "Capital-markets financing",
     "prikupljanje-kapitala": "Raising capital",
+    "poslovno-i-finansijsko-savjetovanje": "Business and financial advisory",
     "emisija-obveznica": "Bond issue",
     "emisija-akcija-i-dokapitalizacija": "Share issue & recapitalisation",
     "priprema-za-trziste-kapitala": "Preparing for the capital markets",
@@ -399,6 +421,7 @@ window.EB_I18N = {
     "za-kompanije": "Capital does not have to come from a loan alone",
     "finansiranje-putem-trzista-kapitala": "Loan and capital markets — a factual comparison",
     "prikupljanje-kapitala": "Capital doesn't have to come from a loan alone",
+    "poslovno-i-finansijsko-savjetovanje": "Expert support for important business decisions",
     "emisija-obveznica": "We run the issue from readiness assessment to listing",
     "emisija-akcija-i-dokapitalizacija": "Recapitalisation as an alternative to debt",
     "priprema-za-trziste-kapitala": "We prepare your company for a future issue",
@@ -425,6 +448,7 @@ window.EB_I18N = {
   goals: {
     "za-kompanije": "Turn “we need money” into an initial conversation.",
     "prikupljanje-kapitala": "Explore the options for financing through the capital market and find the model that suits your company's needs and plans.",
+    "poslovno-i-finansijsko-savjetovanje": "We help you review the financial and business options and make decisions aligned with your company's goals.",
     "emisija-obveznica": "A clear path for companies raising capital.",
     "institucionalni-klijenti": "A serious institutional programme, without marketing tone.",
     "o-nama": "Eurobroker combines long-standing capital-markets experience with a professional and responsible relationship with every client.",
