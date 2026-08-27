@@ -43,7 +43,8 @@ EB._source = {};
    (a ne HTML stranica za prijavu ako Sheet još nije javno dijeljen) */
 EB._firstCol = {
   stranice: "id", cjenovnik: "kategorija", urednickiPlan: "mjesec", segmenti: "oznaka",
-  klasifikacija: "usluga", faq: "stranica", drustvo: "polje", kpi: "pokazatelj", dokumenti: "kategorija", publikacije: "emitent"
+  klasifikacija: "usluga", faq: "stranica", drustvo: "polje", kpi: "pokazatelj", dokumenti: "kategorija", publikacije: "emitent",
+  planAnalize: "mjesec", planVodici: "mjesec", planWebinari: "mjesec"
 };
 EB._valid = function (key, rows) {
   if (!Array.isArray(rows) || !rows.length) return false;
@@ -100,3 +101,26 @@ EB.drustvo = () => {
   const o = {}; (EB.data.drustvo || []).forEach(r => { o[r.polje] = r.vrijednost; }); return o;
 };
 EB.faqFor = (slug) => (EB.data.faq || []).filter(f => f.stranica === slug);
+
+/* --- Urednički plan: tri normalizovana content streama (jedan centralni mapping) ---
+   Fetch/cache/fallback ide kroz zajednički EB.loadAll; ovdje je samo schema adapter po tipu.
+   Alias logika (opis↔*_opis, vodic_link↔vodic_url) je centralizovana, ne razbacana po rendererima. */
+EB._ts = (v) => { const d = Date.parse(v); return isNaN(d) ? NaN : d; };
+EB._truthy = (v) => /^(true|da|1|yes|x|✓)$/i.test(String(v || "").trim());
+EB.plan = {
+  analize: () => (EB.data.planAnalize || []).map(r => ({
+    month: r.mjesec || "", topic: r.tema || "", title: r.analiza || "",
+    date: r.analiza_datum || "", url: r.analiza_url || "", status: r.analiza_status || "", description: r.analiza_opis || ""
+  })).filter(x => x.title),
+  vodici: () => (EB.data.planVodici || []).map(r => ({
+    month: r.mjesec || "", title: r.vodic || "", description: r.opis || r.vodic_opis || "",
+    url: r.vodic_link || r.vodic_url || "", date: r.vodic_datum || "", featured: EB._truthy(r.vodic_featured)
+  })).filter(x => x.title),
+  webinari: () => (EB.data.planWebinari || []).map(r => ({
+    month: r.mjesec || "", title: r.webinar || "", description: r.opis || r.webinar_opis || "",
+    date: r.webinar_datum || "", time: r.webinar_vrijeme || "", registrationUrl: r.webinar_prijava || "", status: r.webinar_status || ""
+  })).filter(x => x.title)
+};
+/* Objava: skriva samo eksplicitni draft/nacrt/interno; prazan ili "objavljeno" se prikazuje. */
+EB.plan.isPublished = (status) => !/draft|nacrt|interno/i.test(String(status || ""));
+EB.plan.isUrl = (u) => /^https?:\/\//i.test(String(u || "").trim());

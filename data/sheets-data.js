@@ -1059,6 +1059,312 @@ window.EB_DATA = {
    "vodic_opis": ""
   }
  ],
+ "planAnalize": [
+  {
+   "mjesec": "M1",
+   "tema": "Pokretanje sajta",
+   "analiza": "Prvi pregled svjetskih tržišta",
+   "analiza_datum": "",
+   "analiza_url": "",
+   "analiza_status": "",
+   "analiza_opis": ""
+  },
+  {
+   "mjesec": "M2",
+   "tema": "Domaći investitor",
+   "analiza": "Mjesečni pregled",
+   "analiza_datum": "",
+   "analiza_url": "",
+   "analiza_status": "",
+   "analiza_opis": ""
+  },
+  {
+   "mjesec": "M3",
+   "tema": "Kompanije",
+   "analiza": "Mjesečni + kvartalni pregled domaćeg tržišta",
+   "analiza_datum": "",
+   "analiza_url": "",
+   "analiza_status": "",
+   "analiza_opis": ""
+  },
+  {
+   "mjesec": "M4",
+   "tema": "Dijaspora",
+   "analiza": "Mjesečni pregled",
+   "analiza_datum": "",
+   "analiza_url": "",
+   "analiza_status": "",
+   "analiza_opis": ""
+  },
+  {
+   "mjesec": "M5",
+   "tema": "Rizik",
+   "analiza": "Mjesečni pregled",
+   "analiza_datum": "",
+   "analiza_url": "",
+   "analiza_status": "",
+   "analiza_opis": ""
+  },
+  {
+   "mjesec": "M6",
+   "tema": "Savjetovanje",
+   "analiza": "Mjesečni + kvartalni pregled",
+   "analiza_datum": "",
+   "analiza_url": "",
+   "analiza_status": "",
+   "analiza_opis": ""
+  },
+  {
+   "mjesec": "M7",
+   "tema": "Domaće tržište",
+   "analiza": "Mjesečni pregled",
+   "analiza_datum": "",
+   "analiza_url": "",
+   "analiza_status": "",
+   "analiza_opis": ""
+  },
+  {
+   "mjesec": "M8",
+   "tema": "Portfelj",
+   "analiza": "Mjesečni pregled",
+   "analiza_datum": "",
+   "analiza_url": "",
+   "analiza_status": "",
+   "analiza_opis": ""
+  },
+  {
+   "mjesec": "M9",
+   "tema": "Institucije",
+   "analiza": "Mjesečni + kvartalni pregled",
+   "analiza_datum": "",
+   "analiza_url": "",
+   "analiza_status": "",
+   "analiza_opis": ""
+  },
+  {
+   "mjesec": "M10",
+   "tema": "Troškovi",
+   "analiza": "Mjesečni pregled",
+   "analiza_datum": "",
+   "analiza_url": "",
+   "analiza_status": "",
+   "analiza_opis": ""
+  },
+  {
+   "mjesec": "M11",
+   "tema": "Dugoročno ulaganje",
+   "analiza": "Mjesečni pregled",
+   "analiza_datum": "",
+   "analiza_url": "",
+   "analiza_status": "",
+   "analiza_opis": ""
+  },
+  {
+   "mjesec": "M12",
+   "tema": "Godišnji pregled",
+   "analiza": "Mjesečni + kvartalni + godišnji osvrt",
+   "analiza_datum": "",
+   "analiza_url": "",
+   "analiza_status": "",
+   "analiza_opis": ""
+  }
+ ],
+ "planVodici": [
+  {
+   "mjesec": "M1 · Pokretanje sajta",
+   "vodic": "Kako otvoriti brokerski račun - korak po korak",
+   "opis": "",
+   "vodic_link": "",
+   "vodic_datum": "",
+   "vodic_featured": ""
+  },
+  {
+   "mjesec": "M2 · Domaći investitor",
+   "vodic": "Obveznice Republike Srpske za štediše",
+   "opis": "",
+   "vodic_link": "",
+   "vodic_datum": "",
+   "vodic_featured": ""
+  },
+  {
+   "mjesec": "M3 · Kompanije",
+   "vodic": "Šta je ETF",
+   "opis": "",
+   "vodic_link": "",
+   "vodic_datum": "",
+   "vodic_featured": ""
+  },
+  {
+   "mjesec": "M4 · Dijaspora",
+   "vodic": "Investiranje iz inostranstva - dokumentacija i postupak",
+   "opis": "",
+   "vodic_link": "",
+   "vodic_datum": "",
+   "vodic_featured": ""
+  },
+  {
+   "mjesec": "M5 · Rizik",
+   "vodic": "Rizik i prinos",
+   "opis": "",
+   "vodic_link": "",
+   "vodic_datum": "",
+   "vodic_featured": ""
+  },
+  {
+   "mjesec": "M6 · Savjetovanje",
+   "vodic": "Razlika između informacije, analize i preporuke",
+   "opis": "",
+   "vodic_link": "",
+   "vodic_datum": "",
+   "vodic_featured": ""
+  },
+  {
+   "mjesec": "M7 · Domaće tržište",
+   "vodic": "Naslijeđene akcije - šta s njima",
+   "opis": "",
+   "vodic_link": "",
+   "vodic_datum": "",
+   "vodic_featured": ""
+  },
+  {
+   "mjesec": "M8 · Portfelj",
+   "vodic": "Diversifikacija na malom portfelju",
+   "opis": "",
+   "vodic_link": "",
+   "vodic_datum": "",
+   "vodic_featured": ""
+  },
+  {
+   "mjesec": "M9 · Institucije",
+   "vodic": "Šta je ugovoreni nivo usluge",
+   "opis": "",
+   "vodic_link": "",
+   "vodic_datum": "",
+   "vodic_featured": ""
+  },
+  {
+   "mjesec": "M10 · Troškovi",
+   "vodic": "Koliko stvarno košta trgovanje",
+   "opis": "",
+   "vodic_link": "",
+   "vodic_datum": "",
+   "vodic_featured": ""
+  },
+  {
+   "mjesec": "M11 · Dugoročno ulaganje",
+   "vodic": "Ulaganje za djecu i dugoročna štednja",
+   "opis": "",
+   "vodic_link": "",
+   "vodic_datum": "",
+   "vodic_featured": ""
+  },
+  {
+   "mjesec": "M12 · Godišnji pregled",
+   "vodic": "Godina na tržištu",
+   "opis": "",
+   "vodic_link": "",
+   "vodic_datum": "",
+   "vodic_featured": ""
+  }
+ ],
+ "planWebinari": [
+  {
+   "mjesec": "Webinar · M1",
+   "webinar": "Prvi koraci na stranim tržištima",
+   "opis": "",
+   "webinar_datum": "",
+   "webinar_vrijeme": "",
+   "webinar_prijava": ""
+  },
+  {
+   "mjesec": "Webinar · M2",
+   "webinar": "Obveznice: kako se kupuju i šta nose",
+   "opis": "",
+   "webinar_datum": "",
+   "webinar_vrijeme": "",
+   "webinar_prijava": ""
+  },
+  {
+   "mjesec": "Webinar · M3",
+   "webinar": "Finansiranje preduzeća putem tržišta kapitala",
+   "opis": "",
+   "webinar_datum": "",
+   "webinar_vrijeme": "",
+   "webinar_prijava": ""
+  },
+  {
+   "mjesec": "Webinar · M4",
+   "webinar": "Ulaganje iz dijaspore",
+   "opis": "",
+   "webinar_datum": "",
+   "webinar_vrijeme": "",
+   "webinar_prijava": ""
+  },
+  {
+   "mjesec": "Webinar · M5",
+   "webinar": "Najčešće greške početnika",
+   "opis": "",
+   "webinar_datum": "",
+   "webinar_vrijeme": "",
+   "webinar_prijava": ""
+  },
+  {
+   "mjesec": "Webinar · M6",
+   "webinar": "Kada ima smisla platiti investicioni savjet",
+   "opis": "",
+   "webinar_datum": "",
+   "webinar_vrijeme": "",
+   "webinar_prijava": ""
+  },
+  {
+   "mjesec": "Webinar · M7",
+   "webinar": "Kako funkcioniše Banjalučka berza",
+   "opis": "",
+   "webinar_datum": "",
+   "webinar_vrijeme": "",
+   "webinar_prijava": ""
+  },
+  {
+   "mjesec": "Webinar · M8",
+   "webinar": "Kako se sastavlja jednostavan portfelj",
+   "opis": "",
+   "webinar_datum": "",
+   "webinar_vrijeme": "",
+   "webinar_prijava": ""
+  },
+  {
+   "mjesec": "Webinar · M9",
+   "webinar": "Institucionalno izvještavanje (po pozivu)",
+   "opis": "",
+   "webinar_datum": "",
+   "webinar_vrijeme": "",
+   "webinar_prijava": ""
+  },
+  {
+   "mjesec": "Webinar · M10",
+   "webinar": "Troškovi i porezi u globalnom ulaganju",
+   "opis": "",
+   "webinar_datum": "",
+   "webinar_vrijeme": "",
+   "webinar_prijava": ""
+  },
+  {
+   "mjesec": "Webinar · M11",
+   "webinar": "Za povratnike i dijasporu",
+   "opis": "",
+   "webinar_datum": "",
+   "webinar_vrijeme": "",
+   "webinar_prijava": ""
+  },
+  {
+   "mjesec": "Webinar · M12",
+   "webinar": "Plan za narednu godinu",
+   "opis": "",
+   "webinar_datum": "",
+   "webinar_vrijeme": "",
+   "webinar_prijava": ""
+  }
+ ],
  "segmenti": [
   {
    "oznaka": "A",

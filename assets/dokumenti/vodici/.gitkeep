@@ -1,0 +1,3 @@
+# Folder za vodiče (Centar znanja).
+# URL svakog vodiča se upisuje u kolonu `vodic_link` tabele „EB · urednicki-plan-edukacija-centar-znanja".
+# Web ne hardkodira nazive PDF-ova — dobija ih iz tabele.

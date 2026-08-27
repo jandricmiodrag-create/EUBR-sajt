@@ -288,6 +288,14 @@ a svg, button svg, .link-arrow svg, .mq-val svg, .chip svg, .svc__no svg { width
 .icard__body h3 { font-size: 1.05rem; margin-bottom: 8px; }
 .icard__body p { color: var(--muted); font-size: .88rem; margin-bottom: 14px; }
 .icard__body .link-arrow { margin-top: auto; }
+/* Urednički plan: CTA grupa (Analiza + Zatražite pristup / Prijavite se) i „u pripremi" stanje */
+.icard__cta { margin-top: auto; }
+.icard__cta .link-arrow { margin-top: 0; }
+.icard__access { display: inline-flex; align-items: center; gap: .3rem; margin-top: 8px; font-size: .8rem; font-family: var(--ff-head); font-weight: 600; color: var(--muted); transition: var(--t); }
+.icard__access:hover { color: var(--navy); }
+.link-arrow.is-muted { color: var(--muted); cursor: default; pointer-events: none; }
+.cal__d { color: var(--muted); font-size: .85rem; margin: 0 0 12px; }
+.cal__item.is-featured { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold) inset; }
 
 /* ---------- Trust strip ---------- */
 .trust { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
