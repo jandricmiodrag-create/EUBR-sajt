@@ -234,10 +234,10 @@
       ? { eyebrow: t("Edukacija · Webinar", "Learning · Webinar"), title: webinari[0].title, desc: webinari[0].description || "", date: webinari[0].date, time: webinari[0].time || "", href: webinari[0].registrationUrl, ext: true, cls: "webinar", cta: t("Prijavite se", "Sign up") }
       : { eyebrow: t("Edukacija · Webinar", "Learning · Webinar"), title: t("Prvi koraci na svjetskim tržištima", "First steps on the world markets"), desc: t("Upoznajte se sa načinom pristupa svjetskim tržištima, vrstama instrumenata i osnovama procesa trgovanja.", "Get to know how to access world markets, the types of instruments and the basics of trading."), href: "#/edukacija", cls: "webinar", cta: t("Pogledajte edukaciju", "See learning") };
     // 3) Vodič — featured, pa najnoviji sa URL-om (izvor: planVodici)
-    const vodici = EB.plan.vodici().filter(g => isUrl(g.url))
+    const vodici = EB.plan.vodici().filter(g => EB.plan.isLink(g.url))
       .sort((a, b) => ((b.featured ? 1 : 0) - (a.featured ? 1 : 0)) || (ts(b.date) - ts(a.date)));
     const vodic = vodici[0]
-      ? { eyebrow: t("Vodič · Početak investiranja", "Guide · Getting started"), title: vodici[0].title, desc: vodici[0].description || "", date: vodici[0].date, href: vodici[0].url, ext: true, cls: "vodic", cta: t("Pogledajte vodič", "See guide") }
+      ? { eyebrow: t("Vodič · Početak investiranja", "Guide · Getting started"), title: vodici[0].title, desc: vodici[0].description || "", date: vodici[0].date, href: EB.plan.href(vodici[0].url), ext: true, cls: "vodic", cta: t("Pogledajte vodič", "See guide") }
       : { eyebrow: t("Vodič · Početak investiranja", "Guide · Getting started"), title: t("Kako otvoriti brokerski račun", "How to open a brokerage account"), desc: t("Jasan vodič kroz dokumentaciju, otvaranje računa i korake do prvog naloga.", "A clear guide through the paperwork, opening an account and the steps to your first order."), href: "#/edukacija", cls: "vodic", cta: t("Pogledajte vodič", "See guide") };
     return [analiza, webinar, vodic];
   }
@@ -821,10 +821,11 @@
     const guidesArr = EB.plan.vodici()
       .sort((a, b) => ((b.featured ? 1 : 0) - (a.featured ? 1 : 0)) || ((isNaN(EB._ts(b.date)) ? 0 : EB._ts(b.date)) - (isNaN(EB._ts(a.date)) ? 0 : EB._ts(a.date))));
     const guides = guidesArr.map(g => {
-      const hasUrl = EB.plan.isUrl(g.url);
+      const hasUrl = EB.plan.isLink(g.url);
+      const href = hasUrl ? EB.plan.href(g.url) : "";
       const cta = hasUrl ? `<span class="link-arrow">${gL.see} ${I.arrow}</span>` : `<span class="link-arrow is-muted">${gL.soon}</span>`;
       const desc = g.description ? `<p class="cal__d">${esc(g.description)}</p>` : "";
-      const open = hasUrl ? `<a class="cal__item reveal${g.featured ? " is-featured" : ""}" href="${esc(g.url)}" target="_blank" rel="noopener" data-ext>` : `<div class="cal__item reveal${g.featured ? " is-featured" : ""}">`;
+      const open = hasUrl ? `<a class="cal__item reveal${g.featured ? " is-featured" : ""}" href="${esc(href)}" target="_blank" rel="noopener" data-ext>` : `<div class="cal__item reveal${g.featured ? " is-featured" : ""}">`;
       const close = hasUrl ? "</a>" : "</div>";
       return `${open}<div class="cal__m">${esc(g.month)}</div><h4>${esc(g.title)}</h4>${desc}${cta}${close}`;
     }).join("");

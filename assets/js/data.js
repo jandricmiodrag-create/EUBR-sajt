@@ -123,4 +123,18 @@ EB.plan = {
 };
 /* Objava: skriva samo eksplicitni draft/nacrt/interno; prazan ili "objavljeno" se prikazuje. */
 EB.plan.isPublished = (status) => !/draft|nacrt|interno/i.test(String(status || ""));
+/* isUrl: strogo apsolutni http(s) — za analiza_url (Drive) i webinar_prijava (eksterni obrazac). */
 EB.plan.isUrl = (u) => /^https?:\/\//i.test(String(u || "").trim());
+EB.plan.isExternal = (u) => /^https?:\/\//i.test(String(u || "").trim());
+/* isLink: prihvata i relativni vodic_link (npr. assets/dokumenti/vodici/x.pdf) pored apsolutnog URL-a.
+   Relativni put mora ličiti na fajl/putanju da slučajni tekst ne postane CTA. */
+EB.plan.isLink = (u) => {
+  const s = String(u || "").trim();
+  return EB.plan.isExternal(s) || /^\//.test(s) || /^(assets|dokumenti)\//i.test(s) || /\.(pdf|html?|docx?|xlsx?|pptx?)$/i.test(s);
+};
+/* href: apsolutni ostaje kakav jest; relativni se razrješava u odnosu na <base> (/EUBR-sajt/ na produkciji). */
+EB.plan.href = (u) => {
+  const s = String(u || "").trim();
+  if (EB.plan.isExternal(s)) return s;
+  try { return new URL(s, document.baseURI).href; } catch (e) { return s; }
+};
