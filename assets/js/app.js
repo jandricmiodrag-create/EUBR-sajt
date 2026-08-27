@@ -169,7 +169,7 @@
       <div class="footer__top">
         <div class="footer__brand">
           <a class="brand" href="#/">${brandMark()}<span class="brand__name">EURO<b>BROKER</b></span></a>
-          <p>${esc(d.puni_naziv || "Eurobroker a.d. Banja Luka")} — ${T("foot.tagline")}</p>
+          <p>${T("foot.tagline")}</p>
         </div>
         <div><h4>${T("foot.usluge")}</h4><ul>
           <li><a href="#/domace-trziste">${T("svc.dom")}</a></li>

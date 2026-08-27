@@ -24,7 +24,7 @@ window.EB_I18N = {
     "u.dokumenti":        { sr: "Dokumenti", en: "Documents" },
     "u.kontakt":          { sr: "Kontakt", en: "Contact" },
 
-    "foot.tagline":       { sr: "licencirano društvo tržišta kapitala pod nadzorom KHOV RS.", en: "a licensed capital-markets firm supervised by the SEC of Republika Srpska." },
+    "foot.tagline":       { sr: "„Eurobroker“ a.d. Banja Luka - brokersko-dilersko društvo sa dozvolom za obavljanje poslova na tržištu hartija od vrijednosti, pod nadzorom Komisije za hartije od vrijednosti Republike Srpske.", en: "„Eurobroker“ a.d. Banja Luka - a broker-dealer licensed to conduct securities-market operations, supervised by the Securities Commission of Republika Srpska." },
     "foot.usluge":        { sr: "Usluge", en: "Services" },
     "foot.sadrzaj":       { sr: "Sadržaj", en: "Content" },
     "foot.dokumenti":     { sr: "Dokumenti", en: "Documents" },
