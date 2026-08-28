@@ -6,8 +6,8 @@ window.EB_CONTENT = {
   pocetna: {
     heroProofs: [
       { k: "25 GODINA", v: "na tržištu kapitala" },
-      { k: "LICENCIRANI TIM", v: "brokera i investicionih savjetnika" },
-      { k: "STRUČNOST I INTEGRITET", v: "temelj poslovanja" }
+      { k: "169.000+", v: "klijenata" },
+      { k: "LICENCIRANI TIM", v: "brokera i investicionih savjetnika" }
     ],
     zasto: [
       { t: "Više usluga tržišta kapitala na jednom mjestu", d: "Brokersko posredovanje, investiciono savjetovanje, korporativne finansije i poslovi agenta emisije te kastodi poslovi — povezane usluge za investitore, kompanije i institucije." },

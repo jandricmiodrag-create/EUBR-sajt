@@ -139,8 +139,8 @@ window.EB_I18N = {
       heroSub: "The domestic exchange and world markets, investment advice and corporate services.",
       heroProofs: [
         { k: "25 YEARS", v: "in the capital market" },
-        { k: "LICENSED TEAM", v: "of brokers and investment advisers" },
-        { k: "EXPERTISE & INTEGRITY", v: "the foundation of our work" }
+        { k: "169,000+", v: "clients" },
+        { k: "LICENSED TEAM", v: "of brokers and investment advisers" }
       ],
       zasto: [
         { t: "More capital-markets services in one place", d: "Brokerage, investment advice, corporate finance and issue-agent services, plus custody — connected services for investors, companies and institutions." },
