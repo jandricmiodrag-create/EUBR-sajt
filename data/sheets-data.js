@@ -494,7 +494,7 @@ window.EB_DATA = {
    "compliance": "Sadržaj potvrđuje funkcija usklađenosti prije objave",
    "kpi": "Posjete institucionalnih segmenata",
    "classification": "A",
-   "eyebrow": "Regulatorna"
+   "eyebrow": ""
   },
   {
    "id": "21",
@@ -1574,169 +1574,64 @@ window.EB_DATA = {
  ],
  "drustvo": [
   {
-   "grupa": "",
-   "grupa_en": "",
-   "grupa_redoslijed": "",
    "polje": "naziv",
-   "label": "",
-   "label_en": "",
-   "vrijednost": "Eurobroker a.d. Banja Luka",
-   "url": "",
-   "status": ""
+   "vrijednost": "Eurobroker a.d. Banja Luka"
   },
   {
-   "grupa": "Osnovni podaci o društvu",
-   "grupa_en": "Company details",
-   "grupa_redoslijed": "1",
    "polje": "puni_naziv",
-   "label": "Puni naziv",
-   "label_en": "Full name",
-   "vrijednost": "Eurobroker akcionarsko društvo za posredovanje u trgovini hartijama od vrijednosti Banja Luka",
-   "url": "",
-   "status": "aktivan"
+   "vrijednost": "Eurobroker akcionarsko društvo za posredovanje u trgovini hartijama od vrijednosti Banja Luka"
   },
   {
-   "grupa": "Osnovni podaci o društvu",
-   "grupa_en": "Company details",
-   "grupa_redoslijed": "1",
    "polje": "djelatnost",
-   "label": "Djelatnost",
-   "label_en": "Activity",
-   "vrijednost": "Licencirano društvo tržišta kapitala",
-   "url": "",
-   "status": "aktivan"
+   "vrijednost": "Licencirano društvo tržišta kapitala"
   },
   {
-   "grupa": "Sjedište",
-   "grupa_en": "Head office",
-   "grupa_redoslijed": "2",
    "polje": "grad",
-   "label": "Sjedište",
-   "label_en": "Head office",
-   "vrijednost": "Banja Luka",
-   "url": "",
-   "status": "aktivan"
+   "vrijednost": "Banja Luka"
   },
   {
-   "grupa": "Sjedište",
-   "grupa_en": "Head office",
-   "grupa_redoslijed": "2",
    "polje": "adresa",
-   "label": "Adresa",
-   "label_en": "Address",
-   "vrijednost": "[unijeti tačnu adresu sjedišta prije objave]",
-   "url": "",
-   "status": "aktivan"
+   "vrijednost": "[unijeti tačnu adresu sjedišta prije objave]"
   },
   {
-   "grupa": "",
-   "grupa_en": "",
-   "grupa_redoslijed": "",
    "polje": "telefon",
-   "label": "",
-   "label_en": "",
-   "vrijednost": "+387 51 [unijeti]",
-   "url": "",
-   "status": ""
+   "vrijednost": "+387 51 [unijeti]"
   },
   {
-   "grupa": "Kontakt",
-   "grupa_en": "Contact",
-   "grupa_redoslijed": "5",
    "polje": "email",
-   "label": "E-pošta",
-   "label_en": "E-mail",
-   "vrijednost": "info@eurobroker.ba",
-   "url": "",
-   "status": "aktivan"
+   "vrijednost": "info@eurobroker.ba"
   },
   {
-   "grupa": "",
-   "grupa_en": "",
-   "grupa_redoslijed": "",
    "polje": "web",
-   "label": "",
-   "label_en": "",
-   "vrijednost": "eurobroker.ba",
-   "url": "",
-   "status": ""
+   "vrijednost": "eurobroker.ba"
   },
   {
-   "grupa": "Registracioni podaci",
-   "grupa_en": "Registration details",
-   "grupa_redoslijed": "3",
    "polje": "maticni_broj",
-   "label": "Matični broj",
-   "label_en": "Registration no.",
-   "vrijednost": "[unijeti prije objave]",
-   "url": "",
-   "status": "aktivan"
+   "vrijednost": "[unijeti prije objave]"
   },
   {
-   "grupa": "Registracioni podaci",
-   "grupa_en": "Registration details",
-   "grupa_redoslijed": "3",
    "polje": "poreski_broj",
-   "label": "Poreski broj",
-   "label_en": "Tax ID",
-   "vrijednost": "[unijeti prije objave]",
-   "url": "",
-   "status": "aktivan"
+   "vrijednost": "[unijeti prije objave]"
   },
   {
-   "grupa": "Nadzor i dozvole",
-   "grupa_en": "Supervision and licences",
-   "grupa_redoslijed": "4",
    "polje": "nadzorni_organ",
-   "label": "Nadzorni organ",
-   "label_en": "Supervisory authority",
-   "vrijednost": "Komisija za hartije od vrijednosti Republike Srpske (KHOV RS)",
-   "url": "",
-   "status": "aktivan"
+   "vrijednost": "Komisija za hartije od vrijednosti Republike Srpske (KHOV RS)"
   },
   {
-   "grupa": "",
-   "grupa_en": "",
-   "grupa_redoslijed": "",
    "polje": "godina_osnivanja",
-   "label": "",
-   "label_en": "",
-   "vrijednost": "[unijeti provjerenu godinu]",
-   "url": "",
-   "status": ""
+   "vrijednost": "[unijeti provjerenu godinu]"
   },
   {
-   "grupa": "Nadzor i dozvole",
-   "grupa_en": "Supervision and licences",
-   "grupa_redoslijed": "4",
    "polje": "dozvole",
-   "label": "Dozvole",
-   "label_en": "Licences",
-   "vrijednost": "Brokersko-dilerski poslovi; poslovi agenta emisije; investiciono savjetovanje; kastodi poslovi",
-   "url": "",
-   "status": "aktivan"
+   "vrijednost": "Brokersko-dilerski poslovi; poslovi agenta emisije; investiciono savjetovanje; kastodi poslovi"
   },
   {
-   "grupa": "",
-   "grupa_en": "",
-   "grupa_redoslijed": "",
    "polje": "rok_odziva",
-   "label": "",
-   "label_en": "",
-   "vrijednost": "Jedan radni dan",
-   "url": "",
-   "status": ""
+   "vrijednost": "Jedan radni dan"
   },
   {
-   "grupa": "",
-   "grupa_en": "",
-   "grupa_redoslijed": "",
    "polje": "upozorenje_rizik",
-   "label": "",
-   "label_en": "",
-   "vrijednost": "Vrijednost ulaganja može rasti i padati. Prije odluke pročitajte upozorenje o rizicima. Sadržaj ovog sajta ne predstavlja individualnu investicionu preporuku.",
-   "url": "",
-   "status": ""
+   "vrijednost": "Vrijednost ulaganja može rasti i padati. Prije odluke pročitajte upozorenje o rizicima. Sadržaj ovog sajta ne predstavlja individualnu investicionu preporuku."
   }
  ],
  "kpi": [
