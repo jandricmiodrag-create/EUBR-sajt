@@ -711,3 +711,56 @@ table.price .fee { font-family: var(--ff-head); font-weight: 700; color: var(--n
   .pt-final__actions { flex-direction: column; }
   .pt-final__actions .btn { width: 100%; justify-content: center; }
 }
+
+/* ============================================================
+   Institucionalni klijenti — scoped (.ik-*)
+   Institucionalno, mirno, tamna paleta sa diskretnim zlatnim akcentima.
+   ============================================================ */
+/* Trust bar */
+.ik-trust { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px 26px; }
+.ik-trust__item { padding-left: 18px; border-left: 2px solid var(--gold); }
+.ik-trust__k { font-family: var(--ff-head); font-weight: 700; color: var(--navy); font-size: 1.12rem; letter-spacing: -.01em; line-height: 1.2; }
+.ik-trust__v { color: var(--muted); font-size: .88rem; margin-top: 5px; }
+/* Ciljne grupe / opisne kartice (bez linka, diskretno) */
+.ik-card { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 24px; }
+.ik-card__ic { width: 44px; height: 44px; border-radius: 11px; display: grid; place-items: center; background: var(--bg-soft); color: var(--navy); margin-bottom: 14px; }
+.ik-card__ic svg { width: 22px; height: 22px; }
+.ik-card h3 { font-size: 1.08rem; margin-bottom: 6px; }
+.ik-card p { color: var(--muted); font-size: .93rem; margin: 0; }
+/* Program 01–04 */
+.ik-prog { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 44px; margin-top: 8px; }
+.ik-prog__item { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: start; }
+.ik-prog__no { font-family: var(--ff-head); font-weight: 700; font-size: 1.5rem; color: var(--gold); line-height: 1; padding-top: 2px; }
+.ik-prog__b h3 { font-size: 1.04rem; margin-bottom: 6px; }
+.ik-prog__b p { color: var(--muted); font-size: .93rem; margin: 0; }
+/* Diferencijaciona tamna sekcija */
+.ik-dark { background: var(--navy); color: #eaf1f8; border-radius: 24px; padding: 48px; position: relative; overflow: hidden; }
+.ik-dark::before { content: ""; position: absolute; left: 0; top: 0; height: 3px; width: 100%; background: var(--grad-gold); }
+.ik-dark .eyebrow { color: var(--gold-soft); }
+.ik-dark h2 { color: #fff; font-size: clamp(1.5rem, 3vw, 2.1rem); margin: 10px 0 14px; }
+.ik-dark__lead { color: #c3d2e2; max-width: 760px; margin-bottom: 26px; font-size: 1.04rem; }
+.ik-check { display: grid; grid-template-columns: 1fr 1fr; gap: 13px 34px; }
+.ik-check li { list-style: none; display: grid; grid-template-columns: auto 1fr; gap: 12px; color: #dbe6f1; font-size: .95rem; align-items: start; }
+.ik-check svg { color: var(--gold); width: 18px; height: 18px; margin-top: 2px; flex: none; }
+/* Proces / timeline 01–04 */
+.ik-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; margin-top: 10px; }
+.ik-steps__item { padding-top: 20px; border-top: 2px solid var(--line-strong); }
+.ik-steps__no { font-family: var(--ff-head); font-weight: 700; color: var(--gold); font-size: 1.05rem; }
+.ik-steps__item h3 { font-size: 1rem; margin: 7px 0 6px; }
+.ik-steps__item p { color: var(--muted); font-size: .9rem; margin: 0; }
+/* Regulatorna napomena (nizak intenzitet) */
+.ik-reg { margin: 0; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: .84rem; max-width: 960px; }
+@media (max-width: 900px) {
+  .ik-steps { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 820px) {
+  .ik-trust { grid-template-columns: 1fr 1fr; }
+  .ik-prog { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .ik-dark { padding: 32px 22px; }
+  .ik-check { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .ik-steps { grid-template-columns: 1fr; }
+}

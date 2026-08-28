@@ -591,6 +591,100 @@
   }
 
   /* ---------------- HUB ---------------- */
+  /* ---------------- INSTITUCIONALNI KLIJENTI (namjenski redizajn ispod hero-a) ----------------
+     Hero ostaje pagehero(p) = dinamički iz EB·stranice. Sve ispod je scoped (.ik-*). */
+  function renderInstitucionalni(p) {
+    const en = isEN();
+    const trust = [
+      { k: en ? "25 YEARS" : "25 GODINA", v: en ? "in the capital market" : "na tržištu kapitala" },
+      { k: en ? "LICENSED FIRM" : "LICENCIRANO DRUŠTVO", v: en ? "supervised by the SEC of Republika Srpska" : "pod nadzorom KHOV RS" },
+      { k: en ? "CUSTODY LICENCE" : "KASTODI DOZVOLA", v: en ? "for performing custody operations" : "za obavljanje kastodi poslova" },
+      { k: en ? "LICENSED TEAM" : "LICENCIRANI TIM", v: en ? "of brokers and investment advisers" : "brokera i investicionih savjetnika" }
+    ];
+    const audience = [
+      { ic: I.invest, t: en ? "Investment and pension funds" : "Investicioni i penzioni fondovi", d: en ? "Brokerage and other support tailored to the investment process and the needs of an institutional client." : "Brokerska i druga podrška prilagođena investicionom procesu i potrebama institucionalnog klijenta." },
+      { ic: I.shield, t: en ? "Insurance companies" : "Osiguravajuća društva", d: en ? "Services related to trading and managing portfolios of financial assets." : "Usluge povezane sa trgovanjem i upravljanjem portfeljima finansijske imovine." },
+      { ic: I.inst, t: en ? "Public institutions and funds" : "Javne institucije i fondovi", d: en ? "Structured support for institutions operating within specific regulatory and internal procedures." : "Strukturisana podrška institucijama koje posluju u okviru posebnih regulatornih i internih procedura." },
+      { ic: I.company, t: en ? "Companies and other institutional investors" : "Kompanije i drugi institucionalni investitori", d: en ? "Support for legal entities that invest in or manage portfolios of financial assets." : "Podrška pravnim licima koja investiraju ili upravljaju portfeljima finansijske imovine." }
+    ];
+    const program = [
+      { no: "01", t: en ? "Order execution" : "Izvršenje naloga", d: en ? "Receipt, confirmation and execution of orders in line with agreed procedures and available market conditions." : "Prijem, potvrđivanje i izvršenje naloga u skladu sa ugovorenim procedurama i raspoloživim tržišnim uslovima." },
+      { no: "02", t: en ? "Designated contact" : "Odgovorna osoba", d: en ? "A named contact at Eurobroker for operational communication, coordinating requests and monitoring the cooperation." : "Imenovani kontakt u Eurobrokeru za operativnu komunikaciju, koordinaciju zahtjeva i praćenje saradnje." },
+      { no: "03", t: en ? "Reporting" : "Izvještavanje", d: en ? "The scope, format and frequency of reporting are defined according to the agreed model of cooperation and the institution's needs." : "Obim, format i dinamika izvještavanja definišu se prema ugovorenom modelu saradnje i potrebama institucije." },
+      { no: "04", t: en ? "Operational escalation" : "Operativna eskalacija", d: en ? "A predefined way of handling situations when a request or operational issue requires additional coordination." : "Unaprijed definisan način postupanja kada zahtjev ili operativni problem zahtijeva dodatnu koordinaciju." }
+    ];
+    const services = [
+      { ic: I.invest, t: en ? "Brokerage services" : "Brokerske usluge", d: en ? "Order execution on the domestic and available foreign markets, with operational support and reporting tailored to an institutional client." : "Izvršenje naloga na domaćem i dostupnim stranim tržištima uz operativnu podršku i izvještavanje prilagođeno institucionalnom klijentu.", cta: en ? "Explore brokerage services" : "Istražite brokerske usluge", href: "#/investiranje" },
+      { ic: I.scale, t: en ? "Block trades" : "Blok-transakcije", d: en ? "Support in preparing and executing larger transactions, coordinating the process and taking account of the market, regulatory and operational conditions of execution." : "Podrška pri pripremi i realizaciji većih transakcija, uz koordinaciju procesa i vođenje računa o tržišnim, regulatornim i operativnim uslovima izvršenja.", cta: en ? "Learn more" : "Saznajte više", href: "#/blok-transakcije" },
+      { ic: I.shield, t: en ? "Custody services" : "Kastodi poslovi", d: en ? "Keeping and administering securities accounts, exercising the rights arising from securities and other custody services within Eurobroker's licence." : "Vođenje i administriranje računa hartija od vrijednosti, ostvarivanje prava iz hartija od vrijednosti i druge kastodi usluge u okviru dozvole Eurobrokera.", cta: en ? "Custody services" : "Kastodi usluge", href: "#/kastodi-poslovi" }
+    ];
+    const checks = en
+      ? ["The scope of services and responsibilities", "How orders are received and confirmed", "Response times and operational deadlines", "The format and frequency of reporting", "Responsible contacts and their backups", "The escalation procedure", "Handling operational issues and complaints", "Periodic review of the cooperation"]
+      : ["Obuhvat usluga i odgovornosti", "Način prijema i potvrđivanja naloga", "Vrijeme odziva i operativne rokove", "Format i dinamiku izvještavanja", "Odgovorne kontakte i zamjene", "Proceduru eskalacije", "Postupanje po operativnim problemima i prigovorima", "Periodično preispitivanje saradnje"];
+    const steps = [
+      { no: "01", t: en ? "We understand your needs" : "Razumijemo vaše potrebe", d: en ? "We discuss your way of investing, the types of transactions, internal procedures, reporting and the expected level of support." : "Razgovaramo o načinu investiranja, vrstama transakcija, internim procedurama, izvještavanju i očekivanom nivou podrške." },
+      { no: "02", t: en ? "We define the model of cooperation" : "Definišemo model saradnje", d: en ? "We propose the scope of services, the operational model, responsibilities, communication and the reporting approach." : "Predlažemo obim usluga, operativni model, odgovornosti, komunikaciju i način izvještavanja." },
+      { no: "03", t: en ? "We contract the service" : "Ugovaramo uslugu", d: en ? "After the necessary regulatory and operational checks, we define the contractual relationship and, where applicable, the service level." : "Nakon potrebnih regulatornih i operativnih provjera definišemo ugovorni odnos i, kada je primjenjivo, nivo usluge." },
+      { no: "04", t: en ? "We monitor delivery" : "Pratimo izvršenje", d: en ? "During the cooperation we monitor the agreed obligations, communication, reporting and any matters that require additional coordination." : "Tokom saradnje pratimo ugovorene obaveze, komunikaciju, izvještavanje i pitanja koja zahtijevaju dodatnu koordinaciju." }
+    ];
+    const regNote = en
+      ? "Eurobroker a.d. Banja Luka is a broker-dealer licensed to operate in the securities market, supervised by the Securities and Exchange Commission of Republika Srpska. Individual services are provided within the relevant licences, statutory conditions and the contractual relationship with the client."
+      : "Eurobroker a.d. Banja Luka je brokersko-dilersko društvo sa dozvolom za obavljanje poslova na tržištu hartija od vrijednosti, pod nadzorom Komisije za hartije od vrijednosti Republike Srpske. Pojedinačne usluge pružaju se u okviru odgovarajućih dozvola, zakonskih uslova i ugovornog odnosa sa klijentom.";
+
+    return pagehero(p) + `
+    <section class="section" style="padding-bottom:0"><div class="wrap">
+      <div class="ik-trust reveal">${trust.map(x => `<div class="ik-trust__item"><div class="ik-trust__k">${esc(x.k)}</div><div class="ik-trust__v">${esc(x.v)}</div></div>`).join("")}</div>
+    </div></section>
+
+    <section class="section"><div class="wrap">
+      <div class="section-head" style="max-width:840px"><h2>${en ? "For institutions that require more than order execution" : "Za institucije koje zahtijevaju više od izvršenja naloga"}</h2>
+      <p class="lead">${en ? "The institutional programme is intended for organisations that manage financial assets and require reliable execution, clearly defined procedures, accountable communication and quality reporting." : "Institucionalni program namijenjen je organizacijama koje upravljaju finansijskom imovinom i zahtijevaju pouzdano izvršenje, jasno definisane procedure, odgovornu komunikaciju i kvalitetno izvještavanje."}</p></div>
+      <div class="grid grid-2">${audience.map(a => `<div class="ik-card reveal"><div class="ik-card__ic">${a.ic}</div><h3>${esc(a.t)}</h3><p>${esc(a.d)}</p></div>`).join("")}</div>
+    </div></section>
+
+    <section class="section section--soft"><div class="wrap">
+      <div class="section-head" style="max-width:840px"><span class="eyebrow">${en ? "Institutional programme" : "Institucionalni program"}</span>
+      <h2>${en ? "A service tailored to the way your institution operates" : "Usluga prilagođena načinu na koji vaša institucija posluje"}</h2>
+      <p class="lead">${en ? "Institutional clients have different requirements regarding order execution, communication, reporting and operational support. That is why cooperation can be defined through an agreed service level tailored to the client's needs and procedures." : "Institucionalni klijenti imaju različite zahtjeve u pogledu izvršenja naloga, komunikacije, izvještavanja i operativne podrške. Zato saradnju možemo definisati kroz ugovoreni nivo usluge prilagođen potrebama i procedurama klijenta."}</p></div>
+      <div class="ik-prog">${program.map(x => `<div class="ik-prog__item"><div class="ik-prog__no">${x.no}</div><div class="ik-prog__b"><h3>${esc(x.t)}</h3><p>${esc(x.d)}</p></div></div>`).join("")}</div>
+    </div></section>
+
+    <section class="section"><div class="wrap">
+      <div class="section-head" style="max-width:840px"><h2>${en ? "Services we can include in an institutional relationship" : "Usluge koje možemo uključiti u institucionalni odnos"}</h2></div>
+      <div class="grid grid-3">${services.map(s => `<a class="segcard reveal" href="${s.href}"><div class="segcard__icon">${s.ic}</div><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p><span class="link-arrow">${esc(s.cta)} ${I.arrow}</span></a>`).join("")}</div>
+    </div></section>
+
+    <section class="section"><div class="wrap">
+      <div class="ik-dark reveal">
+        <span class="eyebrow">${en ? "Clearly defined cooperation" : "Jasno definisana saradnja"}</span>
+        <h2>${en ? "Institutional cooperation must be measurable" : "Institucionalna saradnja mora biti mjerljiva"}</h2>
+        <p class="ik-dark__lead">${en ? "For an institutional client it is not enough to know which services a broker provides. What matters is knowing in advance how the cooperation will work and who is responsible for what." : "Institucionalnom klijentu nije dovoljno da zna koje usluge broker pruža. Važno je da unaprijed zna kako će saradnja funkcionisati i ko je za šta odgovoran."}</p>
+        <ul class="ik-check">${checks.map(c => `<li>${I.check}<span>${esc(c)}</span></li>`).join("")}</ul>
+      </div>
+    </div></section>
+
+    <section class="section section--soft"><div class="wrap">
+      <div class="section-head" style="max-width:840px"><span class="eyebrow">${en ? "The cooperation process" : "Proces saradnje"}</span><h2>${en ? "How we begin the cooperation" : "Kako počinjemo saradnju"}</h2></div>
+      <div class="ik-steps">${steps.map(x => `<div class="ik-steps__item reveal"><div class="ik-steps__no">${x.no}</div><h3>${esc(x.t)}</h3><p>${esc(x.d)}</p></div>`).join("")}</div>
+    </div></section>
+
+    <section class="section"><div class="wrap">
+      <div class="section-head" style="max-width:840px"><h2>${en ? "We define the service level according to the institution's needs" : "Nivo usluge definišemo prema potrebama institucije"}</h2>
+      <p class="lead">${en ? "We do not offer the same operational model to every institutional client. The scope of services, the way we communicate, deadlines, reporting and other matters are defined according to the type of service, regulatory requirements and the needs of the specific institution." : "Ne nudimo isti operativni model svakom institucionalnom klijentu. Obim usluga, način komunikacije, rokovi, izvještavanje i druga pitanja definišu se u skladu sa vrstom usluge, regulatornim zahtjevima i potrebama konkretne institucije."}</p>
+      <div style="margin-top:18px"><a class="btn btn--dark" href="#/kontakt">${en ? "Discuss the model of cooperation" : "Razgovarajte o modelu saradnje"} ${I.arrow}</a></div></div>
+    </div></section>
+
+    <section class="section"><div class="wrap"><div class="finalcta reveal">
+      <h2>${en ? "Let's talk about your institution's needs" : "Razgovarajmo o potrebama vaše institucije"}</h2>
+      <p>${en ? "Tell us how you manage your portfolio, the markets you operate in and the level of support you expect. On that basis we can consider a suitable model of cooperation." : "Predstavite nam način na koji upravljate portfeljem, tržišta na kojima poslujete i nivo podrške koji očekujete. Na osnovu toga možemo sagledati odgovarajući model saradnje."}</p>
+      <div class="hero__actions"><a class="btn btn--primary" href="#/kontakt">${en ? "Book an institutional conversation" : "Zakažite institucionalni razgovor"} ${I.arrow}</a></div>
+    </div></div></section>
+
+    <section class="section" style="padding-top:0"><div class="wrap">
+      <p class="ik-reg">${esc(regNote)}</p>
+    </div></section>`;
+  }
+
   function renderHub(p) {
     const cont = content(p.slug);
     const kids = EB.children(p.slug);
@@ -1220,6 +1314,7 @@
     else if (slug === "o-nama") html = renderONama(p);
     else if (slug === "investiranje") html = renderInvestiranje(p);
     else if (slug === "za-kompanije") html = renderZaKompanije(p);
+    else if (slug === "institucionalni-klijenti") html = renderInstitucionalni(p);
     else if (slug === "prikupljanje-kapitala" || slug === "poslovno-i-finansijsko-savjetovanje" || slug === "korporativni-poslovi" || slug === "analize-i-poslovni-planovi") html = renderZKUsluga(p);
     else if (slug === "partneri") html = renderPartneri(p);
     else if (["regulatorni-status", "dokumenti"].includes(slug)) html = renderSimple(p);
