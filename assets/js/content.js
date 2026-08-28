@@ -36,17 +36,13 @@ window.EB_CONTENT = {
   },
 
   "svjetska-trzista": {
-    what: "Preko Eurobrokera, kao domaćeg licenciranog društva, kupujete globalne akcije, ETF-ove i fjučerse — bez otvaranja računa kod nepoznate inostrane aplikacije.",
-    whoFor: ["Investitori koji žele globalnu diversifikaciju", "Klijenti iz dijaspore", "Imućniji privatni klijenti", "Nije za one koji očekuju zagarantovan prinos"],
-    problem: "Globalna tržišta djeluju nedostupno iz BiH, a inostrane platforme nose pitanja povjerenja, jezika, poreza i podrške. Eurobroker je domaći, licencirani sagovornik za isti pristup.",
+    what: "Usluga međunarodnog posredovanja omogućava vam kupovinu globalnih akcija, ETF-ova i fjučersa preko Eurobrokera, domaćeg licenciranog društva. Time dobijate siguran i regulisan pristup svjetskim tržištima, bez rizika i komplikacija vezanih za nepoznate inostrane aplikacije.",
     steps: [
       { t: "Otvaranje računa za svjetska tržišta", d: "Dostavljate dokumentaciju; dobijate listu koraka unaprijed." },
       { t: "Uplata i konverzija", d: "Sredstva se pripremaju za trgovanje prema važećim uslovima." },
       { t: "Nalog", d: "Kupujete globalne akcije, ETF-ove ili fjučerse uz podršku brokera." },
       { t: "Izvještaj", d: "Dobijate uzorak izvještaja i redovan pregled stanja." }
-    ],
-    roles: { eurobroker: "Posreduje, izvršava naloge i izvještava.", klijent: "Donosi investicionu odluku.", treci: "Inostrani izvršni partner i depozitar (naziv se navodi samo ako ugovor to dozvoljava)." },
-    risks: ["Valutni rizik pri ulaganju u stranoj valuti.", "Tržišni rizik globalnih instrumenata.", "Poreske obaveze zavise od vaše situacije — dajemo opšte informacije, ne poreski savjet."]
+    ]
   },
 
   "obveznice-rs": {

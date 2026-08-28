@@ -366,17 +366,13 @@ window.EB_I18N = {
       ]
     },
     "svjetska-trzista": {
-      what: "Through Eurobroker, as a local licensed firm, you buy global equities, ETFs and futures — without opening an account with an unfamiliar foreign app.",
-      whoFor: ["Investors seeking global diversification", "Clients from the diaspora", "Higher-net-worth private clients", "Not for those expecting a guaranteed return"],
-      problem: "Global markets seem out of reach from BiH, and foreign platforms raise questions of trust, language, tax and support. Eurobroker is a local, licensed partner for the same access.",
+      what: "International brokerage lets you buy global equities, ETFs and futures through Eurobroker, a local licensed firm. You gain secure, regulated access to world markets, without the risks and complications of unfamiliar foreign apps.",
       steps: [
         { t: "Opening a world-markets account", d: "You provide documentation; you get the list of steps in advance." },
         { t: "Funding and conversion", d: "Funds are prepared for trading per the applicable terms." },
         { t: "Order", d: "You buy global equities, ETFs or futures with broker support." },
         { t: "Reporting", d: "You get a sample report and regular balance overviews." }
-      ],
-      roles: { eurobroker: "Intermediates, executes orders and reports.", klijent: "Makes the investment decision.", treci: "A foreign execution partner and depositary (named only if the contract allows)." },
-      risks: ["Currency risk when investing in a foreign currency.", "Market risk of global instruments.", "Tax obligations depend on your situation — we give general information, not tax advice."]
+      ]
     },
     "obveznice-rs": {
       what: "Republika Srpska bonds are a debt instrument: you lend funds to the issuer and, in return, receive interest and repayment of principal at maturity. They are bought through a broker, not at a bank.",
