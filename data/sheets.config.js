@@ -39,7 +39,7 @@
     segmenti:      { source: src, file: "gsheet/segmenti.csv",       url: csv("1dHRDSJCgYBgxiAZ4erOTlBnMCxsCE37_YJlDqDwGYv4") },
     klasifikacija: { source: src, file: "gsheet/klasifikacija.csv",  url: csv("1rXoIDjp_AT5TXZ9l3_lkHt9zugHl0T0daVzv99Ym6Tc") },
     faq:           { source: src, file: "gsheet/faq.csv",            url: csv("1u3abhAluksimNRmLixWjxpt4xGX3fZMeQRUUb60rCSE") },
-    drustvo:       { source: src, file: "gsheet/drustvo.csv",        url: csv("14vfqL4Hw7C5lysPIxDUEXAGRYF6mfrEWZiIPWcKy9vM") },
+    drustvo:       { source: src, file: "gsheet/drustvo.csv",        url: csv("1KPAE5rLGqdtji2B7A81DN5Qq6_CsvryA9e7xd1YWXO8") },
     kpi:           { source: src, file: "gsheet/kpi.csv",            url: csv("15FY3PDqOOkjJ2rM1DgwYzZa86rB2wn0Zwu5PI8_agrM") },
     // Katalog dokumenata i obrazaca (koristi ga cjenovnik i otvorite-racun; embedded kopija)
     dokumenti:     { source: "embedded", file: "gsheet/dokumenti.csv", url: "" },
@@ -62,7 +62,7 @@
     segmenti:      "https://docs.google.com/spreadsheets/d/1dHRDSJCgYBgxiAZ4erOTlBnMCxsCE37_YJlDqDwGYv4/edit",
     klasifikacija: "https://docs.google.com/spreadsheets/d/1rXoIDjp_AT5TXZ9l3_lkHt9zugHl0T0daVzv99Ym6Tc/edit",
     faq:           "https://docs.google.com/spreadsheets/d/1u3abhAluksimNRmLixWjxpt4xGX3fZMeQRUUb60rCSE/edit",
-    drustvo:       "https://docs.google.com/spreadsheets/d/14vfqL4Hw7C5lysPIxDUEXAGRYF6mfrEWZiIPWcKy9vM/edit",
+    drustvo:       "https://docs.google.com/spreadsheets/d/1KPAE5rLGqdtji2B7A81DN5Qq6_CsvryA9e7xd1YWXO8/edit",
     kpi:           "https://docs.google.com/spreadsheets/d/15FY3PDqOOkjJ2rM1DgwYzZa86rB2wn0Zwu5PI8_agrM/edit"
   };
 })();

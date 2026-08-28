@@ -1066,13 +1066,16 @@
     let inner = "";
     if (c.what) inner += `<p class="lead" style="margin-bottom:24px">${esc(c.what)}</p>`;
     if (p.slug === "regulatorni-status") {
-      const d = EB.drustvo();
-      const L = isEN()
-        ? { puni_naziv: "Full name", djelatnost: "Activity", grad: "Head office", adresa: "Address", nadzorni_organ: "Supervisory authority", dozvole: "Licences", maticni_broj: "Registration no.", poreski_broj: "Tax ID", email: "E-mail" }
-        : { puni_naziv: "Puni naziv", djelatnost: "Djelatnost", grad: "Sjedište", adresa: "Adresa", nadzorni_organ: "Nadzorni organ", dozvole: "Dozvole", maticni_broj: "Matični broj", poreski_broj: "Poreski broj", email: "E-pošta" };
-      inner += `<div class="tablewrap" style="margin:8px 0 20px"><table class="price"><tbody>
-        ${Object.keys(L).map(k => `<tr><td class="cat" style="width:220px">${L[k]}</td><td colspan="4">${esc(d[k] || "—")}</td></tr>`).join("")}
-      </tbody></table></div>`;
+      // Potpuno data-driven iz tabele EB · drustvo: grupe (H2) iz kolone `grupa`, polja iz `label`/`vrijednost`.
+      const groups = EB.drustvoGroups(isEN());
+      if (groups.length) {
+        inner += groups.map(g => `<h2 class="reg__gh">${esc(g.grupa)}</h2>
+        <div class="tablewrap" style="margin:8px 0 20px"><table class="price"><tbody>
+          ${g.items.map(it => `<tr><td class="cat" style="width:220px">${it.href ? `<a href="${esc(it.href)}"${EB.plan.isExternal(it.href) ? ' target="_blank" rel="noopener"' : ""}>${esc(it.label)}</a>` : esc(it.label)}</td><td colspan="4">${esc(it.value)}</td></tr>`).join("")}
+        </tbody></table></div>`).join("");
+      } else {
+        inner += `<div class="notebox">${isEN() ? "Regulatory details are being prepared." : "Regulatorni podaci se pripremaju."}</div>`;
+      }
       if (c.napomena) inner += `<div class="notebox notebox--reg">${esc(c.napomena)}</div>`;
     }
     if (p.slug === "partneri" && c.whoFor) {

@@ -43,7 +43,7 @@ EB._source = {};
    (a ne HTML stranica za prijavu ako Sheet još nije javno dijeljen) */
 EB._firstCol = {
   stranice: "id", cjenovnik: "kategorija", urednickiPlan: "mjesec", segmenti: "oznaka",
-  klasifikacija: "usluga", faq: "stranica", drustvo: "polje", kpi: "pokazatelj", dokumenti: "kategorija", publikacije: "emitent",
+  klasifikacija: "usluga", faq: "stranica", drustvo: "grupa", kpi: "pokazatelj", dokumenti: "kategorija", publikacije: "emitent",
   planAnalize: "mjesec", planVodici: "mjesec", planWebinari: "mjesec", dokumentiRegistar: "grupa"
 };
 EB._valid = function (key, rows) {
@@ -99,6 +99,36 @@ EB.navPages = () => EB.pages()
   .sort((a, b) => (+a.nav_order) - (+b.nav_order));
 EB.drustvo = () => {
   const o = {}; (EB.data.drustvo || []).forEach(r => { o[r.polje] = r.vrijednost; }); return o;
+};
+/* Regulatorni status: dinamičke grupe iz tabele EB · drustvo (kolona `grupa`).
+   Prikazuju se samo redovi sa popunjenom `grupa`, statusom aktivan i vrijednošću.
+   Grupe se sortiraju po `grupa_redoslijed` (pa prvom pojavljivanju), polja po redoslijedu iz tabele.
+   Bilingvalno: grupa/grupa_en i label/label_en. */
+EB.drustvoGroups = function (en) {
+  const rows = EB.data.drustvo || [];
+  const num = (v) => { const n = parseFloat(v); return isNaN(n) ? Infinity : n; };
+  const active = (s) => { const x = String(s || "").trim().toLowerCase(); return x === "" || x === "aktivan"; };
+  const href = (u) => { const s = String(u || "").trim(); if (!s || /^\s*javascript:/i.test(s)) return ""; return EB.plan.isLink(s) ? EB.plan.href(s) : ""; };
+  const items = rows.map((r, i) => ({
+    key: (r.grupa || "").trim(),
+    grupa: ((en ? (r.grupa_en || r.grupa) : r.grupa) || "").trim(),
+    grupaOrder: num(r.grupa_redoslijed),
+    label: ((en ? (r.label_en || r.label) : (r.label || r.label_en)) || r.polje || "").trim(),
+    value: (r.vrijednost || "").trim(),
+    href: href(r.url),
+    status: (r.status || "").trim(),
+    idx: i
+  })).filter(x => x.key && x.value && active(x.status));
+  const map = new Map();
+  items.forEach(it => {
+    if (!map.has(it.key)) map.set(it.key, { grupa: it.grupa, order: it.grupaOrder, seen: it.idx, items: [] });
+    const g = map.get(it.key);
+    if (it.grupaOrder < g.order) g.order = it.grupaOrder;
+    g.items.push(it);
+  });
+  const groups = [...map.values()].sort((a, b) => (a.order - b.order) || (a.seen - b.seen));
+  groups.forEach(g => g.items.sort((a, b) => a.idx - b.idx));
+  return groups;
 };
 EB.faqFor = (slug) => (EB.data.faq || []).filter(f => f.stranica === slug);
 

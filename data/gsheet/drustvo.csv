@@ -1,16 +1,16 @@
-polje,vrijednost
-naziv,Eurobroker a.d. Banja Luka
-puni_naziv,"Eurobroker akcionarsko društvo za posredovanje u trgovini hartijama od vrijednosti Banja Luka"
-djelatnost,Licencirano društvo tržišta kapitala
-grad,Banja Luka
-adresa,[unijeti tačnu adresu sjedišta prije objave]
-telefon,+387 51 [unijeti]
-email,info@eurobroker.ba
-web,eurobroker.ba
-maticni_broj,[unijeti prije objave]
-poreski_broj,[unijeti prije objave]
-nadzorni_organ,Komisija za hartije od vrijednosti Republike Srpske (KHOV RS)
-godina_osnivanja,[unijeti provjerenu godinu]
-dozvole,"Brokersko-dilerski poslovi; poslovi agenta emisije; investiciono savjetovanje; kastodi poslovi"
-rok_odziva,Jedan radni dan
-upozorenje_rizik,"Vrijednost ulaganja može rasti i padati. Prije odluke pročitajte upozorenje o rizicima. Sadržaj ovog sajta ne predstavlja individualnu investicionu preporuku."
+grupa,grupa_en,grupa_redoslijed,polje,label,label_en,vrijednost,url,status
+,,,naziv,,,Eurobroker a.d. Banja Luka,,
+Osnovni podaci o društvu,Company details,1,puni_naziv,Puni naziv,Full name,Eurobroker akcionarsko društvo za posredovanje u trgovini hartijama od vrijednosti Banja Luka,,aktivan
+Osnovni podaci o društvu,Company details,1,djelatnost,Djelatnost,Activity,Licencirano društvo tržišta kapitala,,aktivan
+Sjedište,Head office,2,grad,Sjedište,Head office,Banja Luka,,aktivan
+Sjedište,Head office,2,adresa,Adresa,Address,[unijeti tačnu adresu sjedišta prije objave],,aktivan
+,,,telefon,,,+387 51 [unijeti],,
+Kontakt,Contact,5,email,E-pošta,E-mail,info@eurobroker.ba,,aktivan
+,,,web,,,eurobroker.ba,,
+Registracioni podaci,Registration details,3,maticni_broj,Matični broj,Registration no.,[unijeti prije objave],,aktivan
+Registracioni podaci,Registration details,3,poreski_broj,Poreski broj,Tax ID,[unijeti prije objave],,aktivan
+Nadzor i dozvole,Supervision and licences,4,nadzorni_organ,Nadzorni organ,Supervisory authority,Komisija za hartije od vrijednosti Republike Srpske (KHOV RS),,aktivan
+,,,godina_osnivanja,,,[unijeti provjerenu godinu],,
+Nadzor i dozvole,Supervision and licences,4,dozvole,Dozvole,Licences,Brokersko-dilerski poslovi; poslovi agenta emisije; investiciono savjetovanje; kastodi poslovi,,aktivan
+,,,rok_odziva,,,Jedan radni dan,,
+,,,upozorenje_rizik,,,Vrijednost ulaganja može rasti i padati. Prije odluke pročitajte upozorenje o rizicima. Sadržaj ovog sajta ne predstavlja individualnu investicionu preporuku.,,
