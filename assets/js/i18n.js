@@ -256,8 +256,7 @@ window.EB_I18N = {
       ]
     },
     "regulatorni-status": {
-      what: "Eurobroker operates as a licensed capital-markets firm supervised by the Securities and Exchange Commission of Republika Srpska. Here, in one place, are the licences and basic identification details.",
-      napomena: "Exact licence numbers, validity dates and identification details are confirmed by the compliance function before publication. Fields marked “to be entered” are filled with verified data."
+      what: "Eurobroker operates as a licensed capital-markets firm supervised by the Securities and Exchange Commission of Republika Srpska. Here, in one place, are the licences and basic identification details."
     },
     "prikupljanje-kapitala": {
       sections: [

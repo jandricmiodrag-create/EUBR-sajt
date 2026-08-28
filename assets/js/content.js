@@ -155,8 +155,7 @@ window.EB_CONTENT = {
   },
 
   "regulatorni-status": {
-    what: "Eurobroker posluje kao licencirano društvo tržišta kapitala pod nadzorom Komisije za hartije od vrijednosti Republike Srpske. Ovdje su, na jednom mjestu, dozvole i osnovni identifikacioni podaci.",
-    napomena: "Konkretne brojeve dozvola, datume važenja i identifikacione podatke potvrđuje funkcija usklađenosti prije objave. Polja označena sa „unijeti“ popunjavaju se provjerenim podacima."
+    what: "Eurobroker posluje kao licencirano društvo tržišta kapitala pod nadzorom Komisije za hartije od vrijednosti Republike Srpske. Ovdje su, na jednom mjestu, dozvole i osnovni identifikacioni podaci."
   },
 
   "o-nama": {
