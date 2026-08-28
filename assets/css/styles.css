@@ -474,8 +474,20 @@ table.price .fee { font-family: var(--ff-head); font-weight: 700; color: var(--n
 /* Documents list */
 .docgroup { margin-bottom: 30px; }
 .docgroup__h { font-size: 1.05rem; color: var(--navy); margin-top: 0; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--bg-softer); }
-.reg__gh { font-size: 1.05rem; color: var(--navy); margin: 26px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--bg-softer); }
-.reg__gh:first-child { margin-top: 4px; }
+/* Regulatorni status — grupa lijevo, polja (label + vrijednost) desno */
+.regtable { margin: 8px 0 22px; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.regrow { display: grid; grid-template-columns: 240px 1fr; border-top: 1px solid var(--line); }
+.regrow:first-child { border-top: 0; }
+.regrow__grupa { padding: 18px 20px; background: var(--bg-soft); font-family: var(--ff-head); font-weight: 700; color: var(--navy); font-size: .95rem; border-right: 1px solid var(--line); }
+.regrow__fields { padding: 6px 0; min-width: 0; }
+.regfield { display: grid; grid-template-columns: 190px 1fr; gap: 14px; padding: 10px 20px; }
+.regfield__label { color: var(--teal); font-family: var(--ff-head); font-weight: 600; font-size: .82rem; }
+.regfield__value { color: var(--ink); font-size: .92rem; word-break: break-word; }
+@media (max-width: 700px) {
+  .regrow { grid-template-columns: 1fr; }
+  .regrow__grupa { border-right: 0; border-bottom: 1px solid var(--line); }
+  .regfield { grid-template-columns: 1fr; gap: 2px; padding: 8px 20px; }
+}
 .doclist { display: grid; gap: 10px; }
 .docitem { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: #fff; transition: var(--t); }
 .docitem:hover { border-color: var(--teal); box-shadow: var(--shadow-sm); transform: translateX(3px); }

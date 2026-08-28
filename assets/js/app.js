@@ -1068,10 +1068,11 @@
       // Potpuno data-driven iz tabele EB · drustvo: grupe (H2) iz kolone `grupa`, polja iz `label`/`vrijednost`.
       const groups = EB.drustvoGroups(isEN());
       if (groups.length) {
-        inner += groups.map(g => `<h2 class="reg__gh">${esc(g.grupa)}</h2>
-        <div class="tablewrap" style="margin:8px 0 20px"><table class="price"><tbody>
-          ${g.items.map(it => `<tr><td class="cat" style="width:220px">${it.href ? `<a href="${esc(it.href)}"${EB.plan.isExternal(it.href) ? ' target="_blank" rel="noopener"' : ""}>${esc(it.label)}</a>` : esc(it.label)}</td><td colspan="4">${esc(it.value)}</td></tr>`).join("")}
-        </tbody></table></div>`).join("");
+        // Raspored: naziv grupe lijevo, polja (label + vrijednost) desno; svaka grupa jedan red.
+        inner += `<div class="regtable">${groups.map(g => `<div class="regrow">
+          <div class="regrow__grupa">${esc(g.grupa)}</div>
+          <div class="regrow__fields">${g.items.map(it => `<div class="regfield"><span class="regfield__label">${esc(it.label)}</span><span class="regfield__value">${it.href ? `<a href="${esc(it.href)}"${EB.plan.isExternal(it.href) ? ' target="_blank" rel="noopener"' : ""}>${esc(it.value)}</a>` : esc(it.value)}</span></div>`).join("")}</div>
+        </div>`).join("")}</div>`;
       } else {
         inner += `<div class="notebox">${isEN() ? "Regulatory details are being prepared." : "Regulatorni podaci se pripremaju."}</div>`;
       }
