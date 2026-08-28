@@ -842,8 +842,7 @@
     const now = Date.now();
     const websArr = EB.plan.webinari()
       .filter(w => { const t = EB._ts(w.date); return isNaN(t) ? true : t >= now; })
-      .sort((a, b) => { const ta = EB._ts(a.date), tb = EB._ts(b.date); if (isNaN(ta) && isNaN(tb)) return 0; if (isNaN(ta)) return 1; if (isNaN(tb)) return -1; return ta - tb; })
-      .slice(0, 4);
+      .sort((a, b) => { const ta = EB._ts(a.date), tb = EB._ts(b.date); if (isNaN(ta) && isNaN(tb)) return 0; if (isNaN(ta)) return 1; if (isNaN(tb)) return -1; return ta - tb; });
     const webs = websArr.map(w => {
       const when = [w.date ? (fmtDateSR(w.date) || w.date) : "", w.time].filter(Boolean).join(" · ");
       const cta = EB.plan.isUrl(w.registrationUrl)
