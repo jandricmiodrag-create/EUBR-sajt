@@ -494,7 +494,7 @@ window.EB_DATA = {
    "compliance": "Sadržaj potvrđuje funkcija usklađenosti prije objave",
    "kpi": "Posjete institucionalnih segmenata",
    "classification": "A",
-   "eyebrow": ""
+   "eyebrow": "Regulatorna"
   },
   {
    "id": "21",
