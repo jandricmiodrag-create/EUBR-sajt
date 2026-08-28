@@ -473,15 +473,16 @@ table.price .fee { font-family: var(--ff-head); font-weight: 700; color: var(--n
 
 /* Documents list */
 .docgroup { margin-bottom: 30px; }
-.docgroup__h { font-size: 1.05rem; color: var(--navy); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--bg-softer); }
+.docgroup__h { font-size: 1.05rem; color: var(--navy); margin-top: 0; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--bg-softer); }
 .doclist { display: grid; gap: 10px; }
 .docitem { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: #fff; transition: var(--t); }
 .docitem:hover { border-color: var(--teal); box-shadow: var(--shadow-sm); transform: translateX(3px); }
 .docitem__ic { flex: none; width: 40px; height: 40px; border-radius: 9px; background: var(--bg-soft); color: var(--teal); display: grid; place-items: center; }
 .docitem__ic svg { width: 20px; height: 20px; }
 .docitem__body { flex: 1; min-width: 0; }
-.docitem__body b { display: block; font-family: var(--ff-head); font-size: .96rem; color: var(--navy); }
-.docitem__body small { color: var(--muted); font-size: .84rem; }
+.docitem__body b, .docitem__name { display: block; margin: 0; font-family: var(--ff-head); font-size: .96rem; font-weight: 700; color: var(--navy); }
+.docitem__body small { display: block; color: var(--muted); font-size: .84rem; }
+.docitem__eff { display: block; margin-top: 2px; color: var(--muted); font-size: .8rem; }
 .docitem__meta { flex: none; display: inline-flex; align-items: center; gap: 6px; font-family: var(--ff-head); font-size: .78rem; font-weight: 600; color: var(--muted); white-space: nowrap; }
 .docitem__meta svg { width: 16px; height: 16px; color: var(--gold); }
 @media (max-width: 560px){ .docitem__body small { display: none; } .docitem__meta { font-size: .72rem; } }

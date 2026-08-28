@@ -999,25 +999,29 @@
     "Izjave": "Declarations", "Upitnici": "Questionnaires", "Otvaranje računa": "Account opening"
   };
   const docCatLabel = (c) => isEN() ? (DOC_CAT_EN[c] || c) : c;
+  /* Kartica dokumenta iz reda tabele EB · dokumenti (EB.docs). Prazna metadata se ne prikazuje. */
   function docCard(d) {
-    return `<a class="docitem" href="${esc(d.fajl)}" download>
+    const en = isEN();
+    const href = EB.docs.href(d.url);
+    const external = EB.plan.isExternal(d.url);
+    const linkAttrs = external ? 'target="_blank" rel="noopener"' : 'download';
+    const meta = [d.format, d.velicina].filter(Boolean).join(" · ");
+    const dateLoc = d.dateEff ? (fmtDateSR(d.dateEff) || d.dateEff) : "";
+    const effLabel = en ? "Effective from" : "Stupanje na snagu";
+    return `<a class="docitem" href="${esc(href)}" ${linkAttrs} aria-label="${en ? "Open document" : "Otvori dokument"}: ${esc(d.naziv)}">
       <span class="docitem__ic">${I.doc}</span>
-      <span class="docitem__body"><b>${esc(d.naziv)}</b><small>${esc(d.opis || "")}</small></span>
-      <span class="docitem__meta">${esc(d.tip)} · ${esc(d.velicina_kb)} KB ${I.download}</span>
+      <span class="docitem__body"><h3 class="docitem__name">${esc(d.naziv)}</h3>${d.opis ? `<small>${esc(d.opis)}</small>` : ""}${dateLoc ? `<span class="docitem__eff">${effLabel}: ${esc(dateLoc)}</span>` : ""}</span>
+      <span class="docitem__meta">${meta ? esc(meta) + " " : ""}${I.download}</span>
     </a>`;
   }
-  function renderDocs(filterCats) {
-    const docs = EB.data.dokumenti || [];
-    let cats = [...new Set(docs.map(d => d.kategorija))];
-    if (filterCats) cats = cats.filter(c => filterCats.indexOf(c) !== -1);
-    if (!docs.length) return `<div class="notebox">${isEN() ? "Documents are being prepared." : "Dokumenti se pripremaju."}</div>`;
-    const note = isEN()
-      ? "These are the currently published official documents (2017–2025 versions). Upon adoption of updated acts, the files here are replaced."
-      : "Ovo su trenutno objavljeni zvanični dokumenti (verzije 2017–2025). Usvajanjem ažuriranih akata, fajlovi se ovdje zamjenjuju.";
-    return `<div class="notebox" style="margin:0 0 22px">${note}</div>` + cats.map(cat => `
+  /* /dokumenti/ — dinamički registar: grupe i dokumenti u potpunosti iz tabele EB · dokumenti. */
+  function renderDocs() {
+    const groups = EB.docs.grouped();
+    if (!groups.length) return `<div class="notebox">${isEN() ? "Documents are being prepared." : "Dokumenti se pripremaju."}</div>`;
+    return groups.map(g => `
       <div class="docgroup">
-        <h3 class="docgroup__h">${esc(docCatLabel(cat))}</h3>
-        <div class="doclist">${docs.filter(d => d.kategorija === cat).map(docCard).join("")}</div>
+        <h2 class="docgroup__h">${esc(docCatLabel(g.grupa))}</h2>
+        <div class="doclist">${g.items.map(docCard).join("")}</div>
       </div>`).join("");
   }
 

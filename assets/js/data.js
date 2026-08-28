@@ -44,7 +44,7 @@ EB._source = {};
 EB._firstCol = {
   stranice: "id", cjenovnik: "kategorija", urednickiPlan: "mjesec", segmenti: "oznaka",
   klasifikacija: "usluga", faq: "stranica", drustvo: "polje", kpi: "pokazatelj", dokumenti: "kategorija", publikacije: "emitent",
-  planAnalize: "mjesec", planVodici: "mjesec", planWebinari: "mjesec"
+  planAnalize: "mjesec", planVodici: "mjesec", planWebinari: "mjesec", dokumentiRegistar: "grupa"
 };
 EB._valid = function (key, rows) {
   if (!Array.isArray(rows) || !rows.length) return false;
@@ -137,4 +137,48 @@ EB.plan.href = (u) => {
   const s = String(u || "").trim();
   if (EB.plan.isExternal(s)) return s;
   try { return new URL(s, document.baseURI).href; } catch (e) { return s; }
+};
+
+/* --- EB · dokumenti: dinamički registar zvaničnih dokumenata (jedini izvor za /dokumenti/) ---
+   Fetch/cache/fallback kroz zajednički EB.loadAll; ovdje su normalizacija, status-filter,
+   bezbjedna validacija URL-a i grupisanje/sortiranje na jednom mjestu. */
+EB.docs = {};
+/* Na javnoj strani prikazuj samo aktivne (prazan status = podrazumijevano aktivan); skrij arhiva/u_pripremi. */
+EB.docs.isPublished = (status) => { const s = String(status || "").trim().toLowerCase(); return s === "" || s === "aktivan"; };
+/* Bezbjedan URL: bez javascript:; dozvoljeni su http(s) i očekivani relativni putevi (EB.plan.isLink). */
+EB.docs.safeUrl = (u) => { const s = String(u || "").trim(); if (/^\s*javascript:/i.test(s)) return false; return EB.plan.isLink(s); };
+EB.docs.href = (u) => EB.plan.href(u);
+EB.docs._num = (v) => { const n = parseFloat(v); return isNaN(n) ? Infinity : n; };
+EB.docs.all = function () {
+  return (EB.data.dokumentiRegistar || []).map(r => ({
+    grupa: (r.grupa || "").trim(),
+    grupaOrder: EB.docs._num(r.grupa_redoslijed),
+    naziv: (r.naziv || "").trim(),
+    opis: (r.opis || "").trim(),
+    dateEff: (r.datum_stupanja_na_snagu || "").trim(),
+    datePub: (r.datum_objave || "").trim(),
+    verzija: (r.verzija || "").trim(),
+    status: (r.status || "").trim(),
+    jezik: (r.jezik || "").trim(),
+    format: (r.format || "").trim(),
+    velicina: (r.velicina || "").trim(),
+    url: (r.url || "").trim(),
+    order: EB.docs._num(r.redoslijed),
+    featured: EB._truthy(r.featured)
+  })).filter(d => d.naziv && EB.docs.safeUrl(d.url) && EB.docs.isPublished(d.status));
+};
+/* Grupiši po `grupa`; grupe sortiraj po najnižem grupa_redoslijed (pa prvom pojavljivanju),
+   dokumente unutar grupe po `redoslijed` (pa nazivu). Nove grupe se pojavljuju automatski. */
+EB.docs.grouped = function () {
+  const rows = EB.docs.all();
+  const map = new Map();
+  rows.forEach((d, i) => {
+    if (!map.has(d.grupa)) map.set(d.grupa, { grupa: d.grupa, order: d.grupaOrder, seen: i, items: [] });
+    const g = map.get(d.grupa);
+    if (d.grupaOrder < g.order) g.order = d.grupaOrder;
+    g.items.push(d);
+  });
+  const groups = [...map.values()].sort((a, b) => (a.order - b.order) || (a.seen - b.seen));
+  groups.forEach(g => g.items.sort((a, b) => (a.order - b.order) || a.naziv.localeCompare(b.naziv, "sr")));
+  return groups;
 };

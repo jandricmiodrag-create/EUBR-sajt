@@ -41,8 +41,10 @@
     faq:           { source: src, file: "gsheet/faq.csv",            url: csv("1u3abhAluksimNRmLixWjxpt4xGX3fZMeQRUUb60rCSE") },
     drustvo:       { source: src, file: "gsheet/drustvo.csv",        url: csv("14vfqL4Hw7C5lysPIxDUEXAGRYF6mfrEWZiIPWcKy9vM") },
     kpi:           { source: src, file: "gsheet/kpi.csv",            url: csv("15FY3PDqOOkjJ2rM1DgwYzZa86rB2wn0Zwu5PI8_agrM") },
-    // Katalog dokumenata i obrazaca (za sada bez zasebne Google tabele — koristi ugrađenu kopiju)
+    // Katalog dokumenata i obrazaca (koristi ga cjenovnik i otvorite-racun; embedded kopija)
     dokumenti:     { source: "embedded", file: "gsheet/dokumenti.csv", url: "" },
+    // EB · dokumenti — dinamički registar zvaničnih dokumenata za stranicu /dokumenti/ (živa tabela)
+    dokumentiRegistar: { source: src, file: "gsheet/dokumenti-registar.csv", url: csv("19IC5sUeodkwA1FCs5R5sLZvvS6kURl7Th7Syw8232uI") },
     // Istraživački izvještaji / analize po emitentu
     publikacije:   { source: "embedded", file: "gsheet/publikacije.csv", url: "" }
   };
@@ -56,6 +58,7 @@
     planAnalize:   "https://docs.google.com/spreadsheets/d/1LOrsYrhzmnsbr-9DgAZlno-yvf6U1OtClbXFdz_2Ghc/edit",
     planVodici:    "https://docs.google.com/spreadsheets/d/1eiNx3hiSCCRjAq6f0akzWTswpbebulN8hczW5Y4YcJs/edit",
     planWebinari:  "https://docs.google.com/spreadsheets/d/1qjxzseR-I2UjvwBDLuyHp9tz_yg7Y6RxTITiJLZ5758/edit",
+    dokumentiRegistar: "https://docs.google.com/spreadsheets/d/19IC5sUeodkwA1FCs5R5sLZvvS6kURl7Th7Syw8232uI/edit",
     segmenti:      "https://docs.google.com/spreadsheets/d/1dHRDSJCgYBgxiAZ4erOTlBnMCxsCE37_YJlDqDwGYv4/edit",
     klasifikacija: "https://docs.google.com/spreadsheets/d/1rXoIDjp_AT5TXZ9l3_lkHt9zugHl0T0daVzv99Ym6Tc/edit",
     faq:           "https://docs.google.com/spreadsheets/d/1u3abhAluksimNRmLixWjxpt4xGX3fZMeQRUUb60rCSE/edit",
