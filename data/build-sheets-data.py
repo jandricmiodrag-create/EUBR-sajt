@@ -18,6 +18,7 @@ MAP = {
     "kpi": "kpi.csv",
     "dokumenti": "dokumenti.csv",
     "dokumentiRegistar": "dokumenti-registar.csv",
+    "cjenovnici": "cjenovnici.csv",
     "publikacije": "publikacije.csv",
 }
 def load(fn):

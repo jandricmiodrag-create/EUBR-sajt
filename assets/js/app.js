@@ -783,7 +783,7 @@
     }).join("");
     const en = isEN();
     const th = en ? ["Category", "Service", "Fee", "Basis", "Note"] : ["Kategorija", "Usluga", "Naknada", "Osnovica", "Napomena"];
-    const priceDocs = (EB.data.dokumenti || []).filter(d => d.kategorija === "Cjenovnik");
+    const priceDocs = EB.cjenovnici();
     const officialBlock = priceDocs.length ? `
       <div class="section-head" style="margin-bottom:16px"><span class="eyebrow">${en ? "Official price lists" : "Zvanični cjenovnici"}</span><h2 style="font-size:1.3rem">${en ? "Download the published fee schedules" : "Preuzmite objavljene cjenovnike"}</h2></div>
       <div class="doclist" style="margin-bottom:28px">${priceDocs.map(docCard).join("")}</div>` : "";

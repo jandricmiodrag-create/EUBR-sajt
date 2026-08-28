@@ -44,7 +44,7 @@ EB._source = {};
 EB._firstCol = {
   stranice: "id", cjenovnik: "kategorija", urednickiPlan: "mjesec", segmenti: "oznaka",
   klasifikacija: "usluga", faq: "stranica", drustvo: "grupa", kpi: "pokazatelj", dokumenti: "kategorija", publikacije: "emitent",
-  planAnalize: "mjesec", planVodici: "mjesec", planWebinari: "mjesec", dokumentiRegistar: "grupa"
+  planAnalize: "mjesec", planVodici: "mjesec", planWebinari: "mjesec", dokumentiRegistar: "grupa", cjenovnici: "redoslijed"
 };
 EB._valid = function (key, rows) {
   if (!Array.isArray(rows) || !rows.length) return false;
@@ -131,6 +131,20 @@ EB.drustvoGroups = function (en) {
   return groups;
 };
 EB.faqFor = (slug) => (EB.data.faq || []).filter(f => f.stranica === slug);
+/* EB · cjenovnici — blok „Zvanični cjenovnici" na /cjenovnik/. Normalizacija u oblik koji koristi docCard
+   (naziv/opis/url/format/velicina), sortirano po `redoslijed`. Relativni `url` se razrješava preko <base>. */
+EB.cjenovnici = () => (EB.data.cjenovnici || [])
+  .map(r => {
+    const v = (r.velicina_kb || r.velicina || "").trim();
+    return {
+      naziv: (r.naziv || "").trim(), opis: (r.opis || "").trim(),
+      url: (r.url || r.fajl || "").trim(), format: (r.format || r.tip || "").trim(),
+      velicina: v ? (/\b(kb|mb|gb)\b/i.test(v) ? v : v + " KB") : "",
+      _o: parseFloat(r.redoslijed)
+    };
+  })
+  .filter(x => x.naziv && x.url)
+  .sort((a, b) => (isNaN(a._o) ? 999 : a._o) - (isNaN(b._o) ? 999 : b._o));
 
 /* --- Urednički plan: tri normalizovana content streama (jedan centralni mapping) ---
    Fetch/cache/fallback ide kroz zajednički EB.loadAll; ovdje je samo schema adapter po tipu.

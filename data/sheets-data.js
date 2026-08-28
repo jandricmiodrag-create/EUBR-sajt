@@ -2279,6 +2279,40 @@ window.EB_DATA = {
    "featured": "FALSE"
   }
  ],
+ "cjenovnici": [
+  {
+   "redoslijed": "1",
+   "naziv": "Cjenovnik usluga (domaće tržište)",
+   "opis": "Zvanični cjenovnik usluga (verzija 2018).",
+   "url": "assets/dokumenti/cjenovnik-2018.pdf",
+   "format": "PDF",
+   "velicina_kb": "75"
+  },
+  {
+   "redoslijed": "2",
+   "naziv": "Cjenovnik — skraćeni pregled",
+   "opis": "Skraćeni pregled naknada (verzija 2018).",
+   "url": "assets/dokumenti/cjenovnik-skraceni-2018.pdf",
+   "format": "PDF",
+   "velicina_kb": "433"
+  },
+  {
+   "redoslijed": "3",
+   "naziv": "Provizije — inostrana tržišta",
+   "opis": "Naknade za trgovanje na inostranim tržištima.",
+   "url": "assets/dokumenti/cjenovnik-inostrana-trzista.pdf",
+   "format": "PDF",
+   "velicina_kb": "299"
+  },
+  {
+   "redoslijed": "4",
+   "naziv": "Provizije — svjetske berze (2025)",
+   "opis": "Pregled provizija za trgovanje na svjetskim berzama (oktobar 2025).",
+   "url": "assets/dokumenti/cjenovnik-svjetske-berze-2025.pdf",
+   "format": "PDF",
+   "velicina_kb": "219"
+  }
+ ],
  "publikacije": [
   {
    "emitent": "BOKS",
