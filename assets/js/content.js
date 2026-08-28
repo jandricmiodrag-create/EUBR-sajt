@@ -22,17 +22,13 @@ window.EB_CONTENT = {
   },
 
   "domace-trziste": {
-    what: "Domaće posredovanje znači da Eurobroker u vaše ime kupuje i prodaje hartije od vrijednosti na Banjalučkoj berzi. Nalog potpisujete vi, a izvršenje i poravnanje vodi Društvo.",
-    whoFor: ["Vlasnici akcija domaćih preduzeća", "Štediše koji prvi put ulaze na tržište", "Nasljednici hartija od vrijednosti", "Nije za one koji traže dnevno špekulativno trgovanje bez posrednika"],
-    problem: "Domaće tržište djeluje zatvoreno i nelikvidno. Ne zna se šta se smije kupiti, koliko košta, kako se plaća i ko odgovara. Eurobroker taj put objašnjava korak po korak.",
+    what: "Usluga domaćeg posredovanja podrazumijeva da Eurobroker u Vaše ime i za Vaš račun kupuje i prodaje hartije od vrijednosti na Banjalučkoj berzi. Vi potpisujete nalog, dok Eurobroker preuzima brigu o kompletnom izvršenju i poravnanju transakcije.",
     steps: [
       { t: "Otvaranje računa", d: "Potpisujete ugovor i punomoć; dobijate imenovanog brokera. Rok: 1–2 radna dana." },
       { t: "Nalog", d: "Dajete nalog za kupovinu ili prodaju; broker objašnjava cijenu i uslove." },
       { t: "Izvršenje na berzi", d: "Društvo izvršava nalog na Banjalučkoj berzi." },
       { t: "Poravnanje i izvještaj", d: "Dobijate potvrdu o izvršenju i stanje na računu." }
     ],
-    roles: { eurobroker: "Prima i izvršava nalog, vodi evidenciju, izvještava.", klijent: "Donosi odluku i potpisuje nalog.", treci: "Banjalučka berza (izvršenje) i Centralni registar (poravnanje i evidencija vlasništva)." },
-    risks: ["Cijena hartije može rasti i padati.", "Domaće tržište može biti nelikvidno — prodaja nije uvijek trenutna.", "Prošli prinosi ne garantuju buduće."],
     platforme: [
       { naziv: "eTrader", opis: "Elektronsko trgovanje putem web platforme", url: "https://eubr.blberza.com/etrader/", ikona: "monitor" },
       { naziv: "mTrader", opis: "Trgovanje putem mobilnog telefona", url: "https://eubr.blberza.com/mtrader/sign/in?returnUrl=~%2F", ikona: "smartphone" }

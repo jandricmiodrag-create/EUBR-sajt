@@ -353,17 +353,13 @@ window.EB_I18N = {
       whoFor: ["Savers who want more than a deposit", "Experienced investors for global markets", "Clients from the diaspora", "Larger-portfolio owners seeking advice"]
     },
     "domace-trziste": {
-      what: "Domestic brokerage means Eurobroker buys and sells securities on the Banja Luka Stock Exchange on your behalf. You sign the order; the firm handles execution and settlement.",
-      whoFor: ["Owners of shares in local companies", "Savers entering the market for the first time", "Heirs of securities", "Not for those seeking daily speculative trading without an intermediary"],
-      problem: "The domestic market seems closed and illiquid. It is unclear what may be bought, what it costs, how it is paid for, and who is responsible. Eurobroker explains that path step by step.",
+      what: "Domestic brokerage means Eurobroker buys and sells securities on the Banja Luka Stock Exchange in your name and for your account. You sign the order, while Eurobroker takes care of the complete execution and settlement of the transaction.",
       steps: [
         { t: "Opening an account", d: "You sign an agreement and power of attorney; you get a named broker. Timeline: 1–2 business days." },
         { t: "Order", d: "You place a buy or sell order; the broker explains price and terms." },
         { t: "Execution on the exchange", d: "The firm executes the order on the Banja Luka Stock Exchange." },
         { t: "Settlement and report", d: "You receive execution confirmation and your account balance." }
       ],
-      roles: { eurobroker: "Receives and executes the order, keeps records, reports.", klijent: "Makes the decision and signs the order.", treci: "Banja Luka Stock Exchange (execution) and the Central Registry (settlement and ownership records)." },
-      risks: ["A security's price can rise and fall.", "The domestic market can be illiquid — a sale is not always immediate.", "Past returns do not guarantee future ones."],
       platforme: [
         { naziv: "eTrader", opis: "Electronic trading via the web platform", url: "https://eubr.blberza.com/etrader/", ikona: "monitor" },
         { naziv: "mTrader", opis: "Trading via mobile phone", url: "https://eubr.blberza.com/mtrader/sign/in?returnUrl=~%2F", ikona: "smartphone" }

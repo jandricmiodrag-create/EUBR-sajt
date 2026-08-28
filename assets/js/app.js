@@ -637,7 +637,11 @@
     if (c.roles) body += qb(T("q5"), "05", `<div class="roles"><div class="role"><b>${T("roles.eb")}</b><p>${esc(c.roles.eurobroker)}</p></div><div class="role"><b>${T("roles.client")}</b><p>${esc(c.roles.klijent)}</p></div><div class="role"><b>${T("roles.third")}</b><p>${esc(c.roles.treci)}</p></div></div>`);
     body += qb(T("q6"), "06", `<p>${esc(c.napomenaCijena || T("side.cost"))}</p><a class="link-arrow" href="#/cjenovnik">${T("side.seeFees")} ${I.arrow}</a>`);
     if (c.risks) body += qb(T("q7"), "07", `<ul class="risklist">${c.risks.map(r => `<li>${esc(r)}</li>`).join("")}</ul><div class="notebox notebox--reg">${T("side.riskNote")}</div>`);
-    if (p.documents) body += qb(T("q8"), "08", `<div class="chips">${String(p.documents).split(";").map(x => x.trim()).filter(Boolean).map(x => `<span class="chip">${I.doc} ${esc(x)}</span>`).join("")}</div>`);
+    // domace-trziste: blok "dokumenti" (PITANJE 08) uklonjen na zahtjev; izvor je kolona `documents`
+    // u tabeli `stranice` (živi Google Sheet), koju ovaj sloj ne može mijenjati po ćeliji — zato se
+    // ovdje suzbija samo za tu stranicu. Ostale stranice su nepromijenjene. Kad se ćelija isprazni u
+    // živoj tabeli, ovaj uslov (i CSV) se mogu vratiti na `if (p.documents)`.
+    if (p.documents && p.slug !== "domace-trziste") body += qb(T("q8"), "08", `<div class="chips">${String(p.documents).split(";").map(x => x.trim()).filter(Boolean).map(x => `<span class="chip">${I.doc} ${esc(x)}</span>`).join("")}</div>`);
 
     if (faqs.length) {
       body += `<div class="qblock"><span class="qn">${T("q.faq")}</span><h2>${T("q.faqTitle")}</h2>${renderFaq(faqs)}</div>`;
