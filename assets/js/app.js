@@ -647,9 +647,9 @@
       body += `<div class="qblock"><span class="qn">${T("q.faq")}</span><h2>${T("q.faqTitle")}</h2>${renderFaq(faqs)}</div>`;
     }
 
-    // svjetska-trzista: oznaka ostaje "PITANJE" ali bez rednog broja — samo na ovoj stranici
+    // Oznaka ostaje "PITANJE" ali bez rednog broja — samo na navedenim stranicama
     // (uklanjanje iz render izlaza, ne CSS). Ostale stranice zadržavaju numeraciju netaknutu.
-    if (p.slug === "svjetska-trzista") body = body.replace(/(<span class="qn">[^<]*?)\s+\d+(<\/span>)/g, "$1$2");
+    if (["svjetska-trzista", "investiciono-savjetovanje"].includes(p.slug)) body = body.replace(/(<span class="qn">[^<]*?)\s+\d+(<\/span>)/g, "$1$2");
 
     const finalCta = c.finalCta ? `<section class="section section--soft"><div class="wrap"><div class="finalcta reveal">
       <h2>${esc(c.finalCta.t)}</h2>
