@@ -952,7 +952,7 @@
     </a>`;
     return pagehero(p) + `<section class="section"><div class="wrap">
       ${dia}
-      <div class="section-head"><span class="eyebrow">${en ? "Knowledge centre" : "Centar znanja"}</span><h2>${en ? "Guides — from first step to portfolio" : "Vodiči — od prvog koraka do portfelja"}</h2></div>
+      <div class="section-head"><span class="eyebrow">${en ? "Knowledge centre" : "Centar znanja"}</span><h2>${en ? "Guides — from first step to portfolio" : "Vodiči, od prvog koraka do portfelja"}</h2></div>
       ${guides ? `<div class="cal">${guides}</div>` : `<div class="notebox">${gL.empty}</div>`}
     </div></section>
     <section class="section section--soft"><div class="wrap">
