@@ -10,9 +10,9 @@ window.EB_CONTENT = {
       { k: "LICENCIRANI TIM", v: "brokera i investicionih savjetnika" }
     ],
     zasto: [
-      { t: "Više usluga tržišta kapitala na jednom mjestu", d: "Brokersko posredovanje, investiciono savjetovanje, korporativne finansije i poslovi agenta emisije te kastodi poslovi — povezane usluge za investitore, kompanije i institucije." },
-      { t: "Domaće i svjetska tržišta kroz jedan odnos", d: "Od Banjalučke berze i domaćih hartija od vrijednosti do globalnih akcija, ETF-ova i fjučersa — uz jedan odnos sa Eurobrokerom i stručnu podršku našeg tima." },
-      { t: "Znate ko je zadužen za vas", d: "Iza odnosa sa klijentom stoji imenovana osoba. Znate kome se obraćate, ko prati vaš zahtjev i kada možete očekivati odgovor." }
+      { t: "Iza nas stoje rezultati", d: "Više od 860 miliona KM prometa i 335.000 izvršenih transakcija rezultat su dugogodišnjeg prisustva na tržištu kapitala i povjerenja naših klijenata." },
+      { t: "Pokrećemo stvari", d: "Pratimo promjene, prepoznajemo prilike i brzo pretvaramo ideje u konkretna rješenja. Stalno tražimo načine da pružimo više." },
+      { t: "Vaš interes na prvom mjestu", d: "Interese klijenata stavljamo na prvo mjesto i odluke donosimo odgovorno, u skladu sa profesionalnim standardima. Želimo da odnos sa klijentom traje mnogo duže od jedne transakcije." }
     ]
   },
 

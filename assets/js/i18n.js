@@ -91,9 +91,9 @@ window.EB_I18N = {
     "svc.inst.d": { sr: "Nivoi usluge, izvještavanje i kontrola izvršenja.", en: "Service levels, reporting and execution control." },
     "svc.cust": { sr: "Kastodi poslovi", en: "Custody services" },
     "svc.cust.d": { sr: "Čuvanje, administriranje i ostvarivanje prava iz hartija od vrijednosti uz profesionalnu kastodi podršku.", en: "Safekeeping, administration and exercise of securities rights with professional custody support." },
-    "home.whyEyebrow": { sr: "Zašto Eurobroker", en: "Why Eurobroker" },
-    "home.whyTitle": { sr: "Tri razloga za dugoročan odnos", en: "Three reasons for a long-term relationship" },
-    "home.whySub": { sr: "Licencirane usluge. Pristup domaćim i svjetskim tržištima. Lična odgovornost prema klijentu.", en: "Licensed services. Access to domestic and world markets. Personal responsibility to the client." },
+    "home.whyEyebrow": { sr: "Zašto Eurobroker?", en: "Why Eurobroker?" },
+    "home.whyTitle": { sr: "Znate gdje ulažete. Znate koliko košta. Znate kome se obraćate.", en: "You know where you invest. You know what it costs. You know who to contact." },
+    "home.whySub": { sr: "Komuniciramo jasno i otvoreno. Klijentima predstavljamo mogućnosti, troškove i rizike kako bi mogli donositi informisane odluke.", en: "We communicate clearly and openly. We present clients with the options, costs and risks so they can make informed decisions." },
     "home.mktEyebrow": { sr: "Brokerske usluge", en: "Brokerage services" },
     "home.mktTitle": { sr: "Gdje želite investirati?", en: "Where do you want to invest?" },
     "home.mktSub": { sr: "Odaberite tržište koje vas zanima, a mi vas vodimo kroz naredne korake.", en: "Choose the market that interests you and we guide you through the next steps." },
@@ -143,9 +143,9 @@ window.EB_I18N = {
         { k: "LICENSED TEAM", v: "of brokers and investment advisers" }
       ],
       zasto: [
-        { t: "More capital-markets services in one place", d: "Brokerage, investment advice, corporate finance and issue-agent services, plus custody — connected services for investors, companies and institutions." },
-        { t: "Domestic and world markets through one relationship", d: "From the Banja Luka Stock Exchange and domestic securities to global equities, ETFs and futures — through a single relationship with Eurobroker and expert support from our team." },
-        { t: "You know who is responsible for you", d: "Behind the client relationship stands a named person. You know who to contact, who follows your request, and when to expect an answer." }
+        { t: "Results behind us", d: "Over KM 860 million in turnover and 335,000 executed transactions are the result of a long-standing presence in the capital market and our clients' trust." },
+        { t: "We make things happen", d: "We follow changes, recognise opportunities and quickly turn ideas into concrete solutions. We constantly look for ways to offer more." },
+        { t: "Your interest comes first", d: "We put clients' interests first and make decisions responsibly, in line with professional standards. We want the client relationship to last far longer than a single transaction." }
       ]
     },
 
