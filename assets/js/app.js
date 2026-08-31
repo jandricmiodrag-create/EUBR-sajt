@@ -1041,9 +1041,7 @@
     let mid = "";
     if (kind === "racun" && c.steps && c.steps.length >= 3) {
       const st = c.steps;
-      const req = (EB.data.dokumenti || []).filter(d => d.kategorija === "Otvaranje računa");
-      const docsBlock = req.length ? `<div class="oa-docs"><h3 class="oa-docs__h">${en ? "Required documentation and forms" : "Potrebna dokumentacija i obrasci"}</h3><div class="doclist">${req.map(docCard).join("")}</div></div>` : "";
-      mid = `<div class="steps" style="margin-bottom:20px">${stepBox(st[0], "")}${stepBox(st[1], "")}</div>${docsBlock}<div class="steps" style="counter-reset:s 2;margin:20px 0 28px">${stepBox(st[2], "")}</div>`;
+      mid = `<div class="steps" style="margin-bottom:20px">${stepBox(st[0], "")}${stepBox(st[1], "")}</div><div class="steps" style="counter-reset:s 2;margin:20px 0 28px">${stepBox(st[2], "")}</div>`;
     } else {
       mid = c.steps ? `<div class="steps" style="margin-bottom:28px">${c.steps.map(s => stepBox(s, s.href ? `<a class="btn btn--primary step__cta" href="${esc(s.href)}"${s.ext ? ' target="_blank" rel="noopener noreferrer" data-ext' : ''}>${esc(s.cta)} ${I.arrow}</a>` : "")).join("")}</div>` : "";
     }
