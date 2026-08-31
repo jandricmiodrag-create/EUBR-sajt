@@ -47,6 +47,8 @@
     dokumentiRegistar: { source: src, file: "gsheet/dokumenti-registar.csv", url: csv("19IC5sUeodkwA1FCs5R5sLZvvS6kURl7Th7Syw8232uI") },
     // EB · cjenovnici — blok „Zvanični cjenovnici" na /cjenovnik/ (živa tabela)
     cjenovnici:    { source: src, file: "gsheet/cjenovnici.csv", url: csv("1szvX6BUHsNXFB7GA8D197_Wvavlj-sglJTIaMS1Dqhs") },
+    // EB · vijesti — dinamička lista vijesti/objava za /vijesti/ (živa tabela)
+    vijesti:       { source: src, file: "gsheet/vijesti.csv", url: csv("1al87Vix80N-CZ0JAmpJWe32-rf66R_HYk6JIZw-dcTQ") },
     // Istraživački izvještaji / analize po emitentu
     publikacije:   { source: "embedded", file: "gsheet/publikacije.csv", url: "" }
   };
@@ -62,6 +64,7 @@
     planWebinari:  "https://docs.google.com/spreadsheets/d/1qjxzseR-I2UjvwBDLuyHp9tz_yg7Y6RxTITiJLZ5758/edit",
     dokumentiRegistar: "https://docs.google.com/spreadsheets/d/19IC5sUeodkwA1FCs5R5sLZvvS6kURl7Th7Syw8232uI/edit",
     cjenovnici:    "https://docs.google.com/spreadsheets/d/1szvX6BUHsNXFB7GA8D197_Wvavlj-sglJTIaMS1Dqhs/edit",
+    vijesti:       "https://docs.google.com/spreadsheets/d/1al87Vix80N-CZ0JAmpJWe32-rf66R_HYk6JIZw-dcTQ/edit",
     segmenti:      "https://docs.google.com/spreadsheets/d/1dHRDSJCgYBgxiAZ4erOTlBnMCxsCE37_YJlDqDwGYv4/edit",
     klasifikacija: "https://docs.google.com/spreadsheets/d/1rXoIDjp_AT5TXZ9l3_lkHt9zugHl0T0daVzv99Ym6Tc/edit",
     faq:           "https://docs.google.com/spreadsheets/d/1u3abhAluksimNRmLixWjxpt4xGX3fZMeQRUUb60rCSE/edit",

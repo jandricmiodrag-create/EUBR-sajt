@@ -19,6 +19,7 @@ MAP = {
     "dokumenti": "dokumenti.csv",
     "dokumentiRegistar": "dokumenti-registar.csv",
     "cjenovnici": "cjenovnici.csv",
+    "vijesti": "vijesti.csv",
     "publikacije": "publikacije.csv",
 }
 def load(fn):

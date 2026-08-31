@@ -1201,19 +1201,44 @@
   /* ---------------- VIJESTI (korporativne i regulatorne objave) ---------------- */
   function renderVijesti() {
     const en = isEN();
-    const items = en ? [
-      { d: "2027", t: "New website and price list published", x: "The published price list applies from its effective date. Corporate and regulatory notices are collected here." },
-      { d: "2027", t: "Investor education programme launched", x: "Monthly market overviews and webinars — general information, not individual advice." }
-    ] : [
-      { d: "2027", t: "Objavljeni novi sajt i cjenovnik", x: "Objavljeni cjenovnik primjenjuje se od datuma primjene. Korporativne i regulatorne objave prikupljaju se ovdje." },
-      { d: "2027", t: "Pokrenut program edukacije investitora", x: "Mjesečni tržišni pregledi i webinari — opšte informacije, ne individualna preporuka." }
-    ];
-    const meta = { slug: "vijesti", title: en ? "News & notices" : "Vijesti i objave", type: en ? "Corporate / regulatory" : "Korporativna / regulatorna", message: en ? "Corporate and regulatory notices" : "Korporativne i regulatorne objave", goal: en ? "A record of orderly conduct and disclosure obligations." : "Dokaz urednosti i ispunjenja obaveza objavljivanja.", parent: "" };
-    return pagehero(meta) + `<section class="section"><div class="wrap">
-      <div class="notebox" style="margin-bottom:24px">${en ? "Illustrative entries. Corporate and regulatory notices are published here with a date." : "Ilustrativni unosi. Korporativne i regulatorne objave objavljuju se ovdje sa datumom."}</div>
-      <div style="display:grid;gap:16px;max-width:820px">
-        ${items.map(n => `<div class="svc"><span class="svc__no">${I.doc}</span><div><div class="cal__m">${esc(n.d)}</div><h3>${esc(n.t)}</h3><p>${esc(n.x)}</p></div></div>`).join("")}
-      </div>
+    // Hero: primarno iz EB·stranice (isti mehanizam kao ostale stranice); fallback dok red ne postoji.
+    const fallbackMeta = { slug: "vijesti", title: en ? "News & notices" : "Vijesti i objave", type: en ? "Corporate / regulatory" : "Korporativna / regulatorna", eyebrow: en ? "Corporate / regulatory" : "Korporativna / regulatorna", message: en ? "Corporate and regulatory notices" : "Korporativne i regulatorne objave", goal: en ? "A record of orderly conduct and disclosure obligations." : "Dokaz urednosti i ispunjenja obaveza objavljivanja.", parent: "" };
+    const p = EB.page("vijesti") || fallbackMeta;
+
+    const news = EB.vijesti();
+    const groups = EB.vijesti.groups();
+    const emptyMsg = `<div class="notebox">${en ? "There are currently no published news." : "Trenutno nema objavljenih vijesti."}</div>`;
+    const filter = groups.length ? `<div class="vfilter reveal">
+      <button class="vfilter__b is-active" data-vfilter="*">${en ? "All" : "Sve"}</button>
+      ${groups.map(g => `<button class="vfilter__b" data-vfilter="${esc(g)}">${esc(g)}</button>`).join("")}
+    </div>` : "";
+    const card = (v) => {
+      const isHash = /^#\//.test(v.link);
+      const href = isHash ? v.link : EB.vijesti.href(v.link);
+      const attrs = isHash ? "" : ' target="_blank" rel="noopener" data-ext';
+      const cta = href ? `<div class="icard__cta"><a class="link-arrow" href="${esc(href)}"${attrs}>${esc(v.linkTekst || (en ? "Read more" : "Pročitajte više"))} ${I.arrow}</a></div>` : "";
+      const dateStr = v.datum ? (fmtDateSR(v.datum) || v.datum) : "";
+      const img = v.slika ? `<img class="icard__img" src="${esc(v.slika)}" alt="${esc(v.altSlika)}" loading="lazy">` : "";
+      return `<div class="icard reveal" data-grupa="${esc(v.grupa)}"><div class="icard__top vijest">${esc(v.grupa || (en ? "News" : "Vijest"))}</div>${img}<div class="icard__body">${dateStr ? `<time class="icard__date">${esc(dateStr)}</time>` : ""}<h3>${esc(v.naziv)}</h3>${v.opis ? `<p>${esc(v.opis)}</p>` : ""}${cta}</div></div>`;
+    };
+    const list = news.length ? `<div class="cal" id="vijesti-list">${news.map(card).join("")}</div>` : emptyMsg;
+
+    // Filter kategorija — delegirani klik (veže se jednom; radi i nakon re-rendera).
+    if (!EB._vfilterBound) {
+      EB._vfilterBound = true;
+      document.addEventListener("click", (e) => {
+        const b = e.target.closest(".vfilter__b"); if (!b) return;
+        const wrap = b.closest(".vfilter"); if (!wrap) return;
+        wrap.querySelectorAll(".vfilter__b").forEach(x => x.classList.toggle("is-active", x === b));
+        const f = b.getAttribute("data-vfilter");
+        const el = document.getElementById("vijesti-list");
+        if (el) el.querySelectorAll(".icard").forEach(c => { c.style.display = (f === "*" || c.getAttribute("data-grupa") === f) ? "" : "none"; });
+      });
+    }
+
+    return pagehero(p) + `<section class="section"><div class="wrap">
+      ${filter}
+      ${list}
     </div></section>`;
   }
 

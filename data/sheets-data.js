@@ -729,6 +729,32 @@ window.EB_DATA = {
    "kpi": "",
    "classification": "A",
    "eyebrow": "Analize i poslovni planovi"
+  },
+  {
+   "id": "29",
+   "level": "2",
+   "parent": "",
+   "slug": "vijesti",
+   "title": "Vijesti i objave",
+   "url": "/vijesti/",
+   "type": "Vijesti",
+   "phase": "1",
+   "nav_order": "",
+   "segment": "",
+   "intent": "",
+   "message": "Korporativne i regulatorne objave",
+   "goal": "Dokaz urednosti i ispunjenja obaveza objavljivanja.",
+   "primary_cta": "",
+   "primary_cta_link": "",
+   "secondary_cta": "",
+   "secondary_cta_link": "",
+   "related": "",
+   "documents": "",
+   "seo": "",
+   "compliance": "",
+   "kpi": "",
+   "classification": "",
+   "eyebrow": "Korporativna / regulatorna"
   }
  ],
  "cjenovnik": [
@@ -2311,6 +2337,56 @@ window.EB_DATA = {
    "url": "assets/dokumenti/cjenovnik-svjetske-berze-2025.pdf",
    "format": "PDF",
    "velicina_kb": "219"
+  }
+ ],
+ "vijesti": [
+  {
+   "datum": "2026-08-31",
+   "grupa": "Regulatorne",
+   "naziv": "Primjer: naslov regulatorne objave",
+   "opis": "Primjer opisa. Uredite ovaj red ili dodajte novi i postavite status na „objavljeno\".",
+   "link": "assets/dokumenti/pravila-poslovanja-2017.pdf",
+   "link_tekst": "Otvorite dokument",
+   "status": "nacrt",
+   "featured": "FALSE",
+   "redoslijed": "1",
+   "datum_objave": "",
+   "datum_isteka": "",
+   "slug": "",
+   "slika": "",
+   "alt_slika": ""
+  },
+  {
+   "datum": "2026-08-20",
+   "grupa": "Eurobroker",
+   "naziv": "Primjer: korporativna objava",
+   "opis": "Primjer opisa vijesti iz kategorije Eurobroker.",
+   "link": "",
+   "link_tekst": "",
+   "status": "nacrt",
+   "featured": "FALSE",
+   "redoslijed": "2",
+   "datum_objave": "",
+   "datum_isteka": "",
+   "slug": "",
+   "slika": "",
+   "alt_slika": ""
+  },
+  {
+   "datum": "2026-08-10",
+   "grupa": "Berza",
+   "naziv": "Primjer: obavještenje sa berze",
+   "opis": "Primjer opisa sa eksternim linkom.",
+   "link": "https://www.blberza.com",
+   "link_tekst": "Pročitajte više",
+   "status": "nacrt",
+   "featured": "TRUE",
+   "redoslijed": "3",
+   "datum_objave": "",
+   "datum_isteka": "",
+   "slug": "",
+   "slika": "",
+   "alt_slika": ""
   }
  ],
  "publikacije": [

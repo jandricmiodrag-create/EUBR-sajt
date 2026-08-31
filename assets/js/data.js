@@ -44,7 +44,7 @@ EB._source = {};
 EB._firstCol = {
   stranice: "id", cjenovnik: "kategorija", urednickiPlan: "mjesec", segmenti: "oznaka",
   klasifikacija: "usluga", faq: "stranica", drustvo: "grupa", kpi: "pokazatelj", dokumenti: "kategorija", publikacije: "emitent",
-  planAnalize: "mjesec", planVodici: "mjesec", planWebinari: "mjesec", dokumentiRegistar: "grupa", cjenovnici: "redoslijed"
+  planAnalize: "mjesec", planVodici: "mjesec", planWebinari: "mjesec", dokumentiRegistar: "grupa", cjenovnici: "redoslijed", vijesti: "datum"
 };
 EB._valid = function (key, rows) {
   if (!Array.isArray(rows) || !rows.length) return false;
@@ -145,6 +145,38 @@ EB.cjenovnici = () => (EB.data.cjenovnici || [])
   })
   .filter(x => x.naziv && x.url)
   .sort((a, b) => (isNaN(a._o) ? 999 : a._o) - (isNaN(b._o) ? 999 : b._o));
+
+/* EB · vijesti — dinamička lista objava za /vijesti/. Prikaz: status „objavljeno" (ili prazno);
+   sakriveni nacrt/arhivirano i istekli (datum_isteka < sada) i budući (datum_objave > sada).
+   Sortiranje: featured prvo, pa najnovije po `datum` (pa `redoslijed`). Grupe potpuno dinamičke. */
+EB.vijesti = function () {
+  const now = Date.now();
+  const ts = (v) => Date.parse(v);
+  const objavljeno = (s) => { const x = String(s || "").trim().toLowerCase(); return x === "objavljeno" || x === ""; };
+  const rows = (EB.data.vijesti || []).map((r, i) => ({
+    datum: (r.datum || "").trim(), grupa: (r.grupa || "").trim(),
+    naziv: (r.naziv || "").trim(), opis: (r.opis || "").trim(),
+    link: (r.link || "").trim(), linkTekst: (r.link_tekst || "").trim(),
+    status: (r.status || "").trim(), featured: EB._truthy(r.featured),
+    redoslijed: parseFloat(r.redoslijed),
+    datumObjave: (r.datum_objave || "").trim(), datumIsteka: (r.datum_isteka || "").trim(),
+    slug: (r.slug || "").trim(), slika: (r.slika || "").trim(), altSlika: (r.alt_slika || "").trim(),
+    idx: i
+  }));
+  return rows.filter(v => v.naziv && objavljeno(v.status)
+    && (!v.datumIsteka || isNaN(ts(v.datumIsteka)) || ts(v.datumIsteka) >= now)
+    && (!v.datumObjave || isNaN(ts(v.datumObjave)) || ts(v.datumObjave) <= now))
+  .sort((a, b) => {
+    if (a.featured !== b.featured) return a.featured ? -1 : 1;
+    const ta = ts(a.datum), tb = ts(b.datum);
+    if (!isNaN(ta) && !isNaN(tb) && ta !== tb) return tb - ta;
+    const ra = isNaN(a.redoslijed) ? Infinity : a.redoslijed, rb = isNaN(b.redoslijed) ? Infinity : b.redoslijed;
+    return ra !== rb ? ra - rb : a.idx - b.idx;
+  });
+};
+EB.vijesti.groups = () => [...new Set(EB.vijesti().map(v => v.grupa).filter(Boolean))];
+/* Bezbjedan URL: bez javascript:; http(s) kako jest, relativni → /EUBR-sajt/ baza. */
+EB.vijesti.href = (u) => { const s = String(u || "").trim(); if (!s || /^\s*javascript:/i.test(s)) return ""; if (/^https?:\/\//i.test(s)) return s; try { return new URL(s, document.baseURI).href; } catch (e) { return s; } };
 
 /* --- Urednički plan: tri normalizovana content streama (jedan centralni mapping) ---
    Fetch/cache/fallback ide kroz zajednički EB.loadAll; ovdje je samo schema adapter po tipu.

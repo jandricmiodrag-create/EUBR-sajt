@@ -764,3 +764,11 @@ table.price .fee { font-family: var(--ff-head); font-weight: 700; color: var(--n
 @media (max-width: 560px) {
   .ik-steps { grid-template-columns: 1fr; }
 }
+
+/* /vijesti/ — kartice vijesti + filter kategorija (koristi postojeći .icard/.cal) */
+.icard__top.vijest { background: var(--navy); }
+.icard__img { width: 100%; height: 168px; object-fit: cover; display: block; }
+.vfilter { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+.vfilter__b { font-family: var(--ff-head); font-size: .84rem; font-weight: 600; padding: 8px 15px; border-radius: 999px; border: 1px solid var(--line-strong); background: #fff; color: var(--navy-800); cursor: pointer; transition: var(--t); }
+.vfilter__b:hover { border-color: var(--navy); }
+.vfilter__b.is-active { background: var(--navy); color: #fff; border-color: var(--navy); }

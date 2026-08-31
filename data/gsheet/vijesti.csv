@@ -1,0 +1,4 @@
+datum,grupa,naziv,opis,link,link_tekst,status,featured,redoslijed,datum_objave,datum_isteka,slug,slika,alt_slika
+2026-08-31,Regulatorne,Primjer: naslov regulatorne objave,"Primjer opisa. Uredite ovaj red ili dodajte novi i postavite status na „objavljeno"".",assets/dokumenti/pravila-poslovanja-2017.pdf,Otvorite dokument,nacrt,FALSE,1,,,,,
+2026-08-20,Eurobroker,Primjer: korporativna objava,Primjer opisa vijesti iz kategorije Eurobroker.,,,nacrt,FALSE,2,,,,,
+2026-08-10,Berza,Primjer: obavještenje sa berze,Primjer opisa sa eksternim linkom.,https://www.blberza.com,Pročitajte više,nacrt,TRUE,3,,,,,

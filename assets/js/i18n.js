@@ -508,6 +508,7 @@ window.EB_I18N = {
 
   /* EN naslovi stranica (za navigaciju, breadcrumb, kartice) */
   titles: {
+    "vijesti": "News & notices",
     "investiranje": "Investing",
     "domace-trziste": "Domestic market",
     "svjetska-trzista": "World markets",
@@ -540,6 +541,7 @@ window.EB_I18N = {
   },
   /* EN glavne poruke (message) za hero na stranicama u EN obuhvatu */
   messages: {
+    "vijesti": "Corporate and regulatory notices",
     "za-kompanije": "Capital does not have to come from a loan alone",
     "finansiranje-putem-trzista-kapitala": "Loan and capital markets — a factual comparison",
     "prikupljanje-kapitala": "Capital doesn't have to come from a loan alone",
@@ -570,6 +572,7 @@ window.EB_I18N = {
     "partneri": "Together we open new opportunities for clients"
   },
   goals: {
+    "vijesti": "A record of orderly conduct and disclosure obligations.",
     "za-kompanije": "Turn “we need money” into an initial conversation.",
     "prikupljanje-kapitala": "Explore the options for financing through the capital market and find the model that suits your company's needs and plans.",
     "poslovno-i-finansijsko-savjetovanje": "We help you review the financial and business options and make decisions aligned with your company's goals.",
