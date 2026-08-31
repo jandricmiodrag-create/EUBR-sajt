@@ -1137,7 +1137,7 @@
     return hero + `
     <section class="section"><div class="wrap onama">
       <div class="onama__prose">
-        <p class="lead">${esc(c.what)}</p>
+        <p>${esc(c.what)}</p>
         ${c.danas ? `<p>${esc(c.danas)}</p>` : ""}
         ${c.cilj ? `<p>${esc(c.cilj)}</p>` : ""}
       </div>
