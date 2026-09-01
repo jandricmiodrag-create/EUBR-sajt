@@ -772,3 +772,8 @@ table.price .fee { font-family: var(--ff-head); font-weight: 700; color: var(--n
 .vfilter__b { font-family: var(--ff-head); font-size: .84rem; font-weight: 600; padding: 8px 15px; border-radius: 999px; border: 1px solid var(--line-strong); background: #fff; color: var(--navy-800); cursor: pointer; transition: var(--t); }
 .vfilter__b:hover { border-color: var(--navy); }
 .vfilter__b.is-active { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+/* „Direktan kontakt" blok (side__meta u tamnoj kartici) — čitljivost na navy pozadini (WCAG) */
+.side__card.dark .side__meta .row { border-color: rgba(255,255,255,.16); }
+.side__card.dark .side__meta .row span { color: #c3d2e2; }
+.side__card.dark .side__meta .row b { color: #fff; }

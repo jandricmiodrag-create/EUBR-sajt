@@ -1073,7 +1073,7 @@
       </div>
       <aside class="side">
         <div class="side__card dark"><h3>${L.direct}</h3><p>${L.hours}</p>
-          <div class="side__meta"><div class="row"><span>${L.phone}</span><b>+387 51 ...</b></div><div class="row"><span>${L.email}</span><b>info@eurobroker.ba</b></div><div class="row"><span>${L.hq}</span><b>Banja Luka</b></div></div>
+          <div class="side__meta"><div class="row"><span>${L.phone}</span><b>${esc(((EB.drustvo().telefon) || "+387 51 230-820").trim())}</b></div><div class="row"><span>${L.email}</span><b>${esc((EB.drustvo().email) || "office@eurobroker.ba")}</b></div><div class="row"><span>${L.hq}</span><b>${esc((EB.drustvo().grad) || "Banja Luka")}</b></div></div>
         </div>
         <div class="side__card"><h3>${T("home.whatNeed")}</h3><div class="related" style="margin-top:8px">
           <a href="#/investiranje">${T("seg.A")} ${I.arrow}</a>
