@@ -1,0 +1,22 @@
+# EUROBROKER — Cloudflare Pages (statični sajt + funkcija za obrasce)
+#
+# Sajt nema build korak: `pages_build_output_dir = "."` znači da se repozitorijum
+# servira kakav jeste, a `functions/` Pages automatski pretvara u rute
+# (functions/api/forma.js -> POST /api/forma).
+#
+# Tajne se NE drže ovdje. Postavljaju se na projektu (Settings -> Variables and
+# Secrets), jer se iz Cloudflare-a ne mogu pročitati nazad:
+#   RESEND_API_KEY        — ključ za slanje e-pošte (Resend)
+#   TURNSTILE_SECRET_KEY  — tajna za Turnstile provjeru
+# Javni Turnstile sitekey nije tajna i stoji u assets/js/app.js.
+
+name = "eurobroker-sajt"
+pages_build_output_dir = "."
+compatibility_date = "2026-08-22"
+
+# Ista baza koju je koristio Next.js sajt — obrasci ostaju upisani i kad
+# slanje e-pošte padne (tabela `contact_submissions`).
+[[d1_databases]]
+binding = "DB"
+database_name = "eurobroker-contact-submissions"
+database_id = "5374f7e9-9b5a-4400-95ab-83e2ddb95797"

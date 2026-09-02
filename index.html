@@ -24,6 +24,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <!-- Turnstile (zaštita obrazaca). Eksplicitno rendrovanje: obrasce prerendera
+       SPA pri svakoj promjeni rute/jezika, pa ih app.js montira sam.
+       Callback se definiše ovdje jer je api.js `async` i može da se učita i
+       prije i poslije app.js — oba redoslijeda su pokrivena (app.js zove
+       mount pri rendovanju, a ovaj callback pokriva slučaj kasnijeg učitavanja). -->
+  <script>window.ebTurnstileReady = function () { if (window.EB && EB.mountTurnstile) EB.mountTurnstile(); };</script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=ebTurnstileReady" async defer></script>
 </head>
 <body>
   <div id="app"></div>

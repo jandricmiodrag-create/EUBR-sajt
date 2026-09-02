@@ -23,6 +23,36 @@
     return sr;
   };
   const isEN = () => EB.lang === "en";
+
+  /* --- Turnstile (zaštita obrazaca) ---
+   * Produkcijski sitekey je u Turnstile Hostname Management-u vezan samo za
+   * pravi domen; na localhost-u i Pages preview URL-ovima koristi se
+   * Cloudflare-ov test sitekey, pa widget nikad ne pada na grešku 110200.
+   * Isti hostname-provjera radi i na strani funkcije (functions/api/forma.js). */
+  const TURNSTILE_PROD_SITEKEY = "0x4AAAAAAEWuTxby6LwmlFKm";
+  const TURNSTILE_TEST_SITEKEY = "1x00000000000000000000AA";
+  const PROD_HOSTS = ["eurobroker.ba", "www.eurobroker.ba"];
+  const turnstileSitekey = () =>
+    PROD_HOSTS.indexOf(location.hostname) !== -1 ? TURNSTILE_PROD_SITEKEY : TURNSTILE_TEST_SITEKEY;
+  /* Mjesto za widget unutar obrasca — skriveno polje `cf-turnstile-response`
+     koje Turnstile ubaci ovdje pokupi FormData pri slanju. */
+  const turnstileMount = () => `<div class="cf-turnstile" data-sitekey="${turnstileSitekey()}"></div>`;
+  /* Eksplicitno rendrovanje: SPA prerendera obrasce pri svakoj promjeni rute
+     i jezika, pa implicitno (jednokratno) skeniranje DOM-a nije dovoljno. */
+  function mountTurnstile() {
+    if (!window.turnstile || !window.turnstile.render) return;
+    document.querySelectorAll(".cf-turnstile").forEach(el => {
+      if (el.dataset.ebRendered) return;
+      el.dataset.ebRendered = "1";
+      try {
+        el.dataset.ebWidget = window.turnstile.render(el, {
+          sitekey: el.getAttribute("data-sitekey"),
+          language: isEN() ? "en" : "sr"
+        });
+      } catch (err) { /* obrazac ostaje upotrebljiv; slanje će tražiti provjeru */ }
+    });
+  }
+  EB.mountTurnstile = mountTurnstile; // koristi ga ebTurnstileReady iz index.html
   // hero naslov iz tabele: *zvjezdice* daju zlatni naglasak; bez njih se pozlati druga polovina
   const heroAccent = (s) => {
     s = (s || "").trim();
@@ -568,16 +598,17 @@
     const form = `<form class="form pt-form" id="partneri-forma" data-form="1" data-kind="partneri" aria-label="${esc(fm.t)}">
       <h3>${esc(fm.t)}</h3>
       <div class="row2">
-        <div class="field"><label for="pt-name">${esc(fm.name)}</label><input id="pt-name" name="name" required placeholder="${esc(fm.name)}"></div>
-        <div class="field"><label for="pt-company">${esc(fm.company)}</label><input id="pt-company" name="company" required placeholder="${esc(fm.company)}"></div>
+        <div class="field"><label for="pt-name">${esc(fm.name)}</label><input id="pt-name" name="ime" required placeholder="${esc(fm.name)}"></div>
+        <div class="field"><label for="pt-company">${esc(fm.company)}</label><input id="pt-company" name="kompanija" required placeholder="${esc(fm.company)}"></div>
       </div>
       <div class="row2">
         <div class="field"><label for="pt-email">${esc(fm.email)}</label><input id="pt-email" name="email" type="email" required placeholder="you@company"></div>
-        <div class="field"><label for="pt-phone">${esc(fm.phone)}</label><input id="pt-phone" name="phone" placeholder="+387"></div>
+        <div class="field"><label for="pt-phone">${esc(fm.phone)}</label><input id="pt-phone" name="telefon" placeholder="+387"></div>
       </div>
-      <div class="field"><label for="pt-type">${esc(fm.type)}</label><select id="pt-type" name="type">${opts}</select></div>
-      <div class="field"><label for="pt-desc">${esc(fm.desc)}</label><textarea id="pt-desc" name="desc" required placeholder="${esc(fm.descP)}"></textarea></div>
-      <label class="consent"><input type="checkbox" required> ${esc(fm.consent)}</label>
+      <div class="field"><label for="pt-type">${esc(fm.type)}</label><select id="pt-type" name="tema">${opts}</select></div>
+      <div class="field"><label for="pt-desc">${esc(fm.desc)}</label><textarea id="pt-desc" name="poruka" required placeholder="${esc(fm.descP)}"></textarea></div>
+      <label class="consent"><input type="checkbox" name="saglasnost" required> ${esc(fm.consent)}</label>
+      ${turnstileMount()}
       <button class="btn btn--primary" type="submit">${esc(fm.submit)} ${I.arrow}</button>
       <p class="formnote">${esc(fm.note)}</p>
     </form>`;
@@ -1033,8 +1064,8 @@
     const c = content(p.slug);
     const en = isEN();
     const L = en
-      ? { name: "Full name", nameP: "Your name", contact: "Contact (phone or e-mail)", contactP: "+387 / you@email", topicRacun: "What are you interested in", topicTema: "Topic", msg: "Message", msgP: "Briefly about your situation", source: "How did you hear about us? (source)", consent: "I agree to the processing of my data for the purpose of responding to this inquiry, per the privacy policy.", note: "We reply within one business day. This form is neither a contract nor investment advice.", direct: "Direct contact", hours: "Weekdays 8am–4pm", phone: "Phone", email: "E-mail", hq: "Head office", optRacun: ["Domestic market", "World markets", "RS bonds", "Investment advice"], optTema: ["General inquiry", "Opening an account", "Investment advice", "Corporate services", "Institutional programme", "Partnerships"], optSrc: ["Search (Google)", "Referral", "Social media", "Existing client", "Other"] }
-      : { name: "Ime i prezime", nameP: "Vaše ime", contact: "Kontakt (telefon ili e-pošta)", contactP: "+387 / vas@email", topicRacun: "Šta vas zanima", topicTema: "Tema", msg: "Poruka", msgP: "Ukratko o vašoj situaciji", source: "Kako ste čuli za nas? (izvor)", consent: "Saglasan/na sam sa obradom podataka u svrhu odgovora na upit, u skladu sa politikom zaštite podataka.", note: "Javljamo se u jednom radnom danu. Ovaj obrazac ne predstavlja ugovor niti investicionu preporuku.", direct: "Direktan kontakt", hours: "Radnim danima 08–16h.", phone: "Telefon", email: "E-pošta", hq: "Sjedište", optRacun: ["Domaće tržište", "Svjetska tržišta", "Obveznice RS", "Investiciono savjetovanje"], optTema: ["Opšti upit", "Otvaranje računa", "Investiciono savjetovanje", "Usluge za kompanije", "Institucionalni program", "Partnerstva"], optSrc: ["Pretraga (Google)", "Preporuka", "Društvene mreže", "Postojeći klijent", "Drugo"] };
+      ? { name: "Full name", nameP: "Your name", fEmail: "E-mail", fEmailP: "you@email.com", fPhone: "Phone (optional)", fPhoneP: "+387", topicRacun: "What are you interested in", topicTema: "Topic", msg: "Message", msgP: "Briefly about your situation", source: "How did you hear about us? (source)", consent: "I agree to the processing of my data for the purpose of responding to this inquiry, per the privacy policy.", note: "We reply within one business day. This form is neither a contract nor investment advice.", direct: "Direct contact", hours: "Weekdays 8am–4pm", phone: "Phone", email: "E-mail", hq: "Head office", optRacun: ["Domestic market", "World markets", "RS bonds", "Investment advice"], optTema: ["General inquiry", "Opening an account", "Investment advice", "Corporate services", "Institutional programme", "Partnerships"], optSrc: ["Search (Google)", "Referral", "Social media", "Existing client", "Other"] }
+      : { name: "Ime i prezime", nameP: "Vaše ime", fEmail: "E-pošta", fEmailP: "vas@email.com", fPhone: "Telefon (nije obavezno)", fPhoneP: "+387", topicRacun: "Šta vas zanima", topicTema: "Tema", msg: "Poruka", msgP: "Ukratko o vašoj situaciji", source: "Kako ste čuli za nas? (izvor)", consent: "Saglasan/na sam sa obradom podataka u svrhu odgovora na upit, u skladu sa politikom zaštite podataka.", note: "Javljamo se u jednom radnom danu. Ovaj obrazac ne predstavlja ugovor niti investicionu preporuku.", direct: "Direktan kontakt", hours: "Radnim danima 08–16h.", phone: "Telefon", email: "E-pošta", hq: "Sjedište", optRacun: ["Domaće tržište", "Svjetska tržišta", "Obveznice RS", "Investiciono savjetovanje"], optTema: ["Opšti upit", "Otvaranje računa", "Investiciono savjetovanje", "Usluge za kompanije", "Institucionalni program", "Partnerstva"], optSrc: ["Pretraga (Google)", "Preporuka", "Društvene mreže", "Postojeći klijent", "Drugo"] };
     // Jedan korak (broj dolazi iz .step::before CSS countera)
     const stepBox = (s, extra) => `<div class="step${s.embed ? " step--embed" : ""}"><div><h4>${esc(s.t)}</h4><p>${esc(s.d)}</p>${extra || ""}</div></div>`;
     // Sadržaj kolone: za /otvorite-racun/ (racun) proces je 01 + 02 → dokumentacija → 03 (poslije dokumentacije)
@@ -1047,8 +1078,8 @@
     }
     const opts = (arr) => arr.map(o => `<option>${esc(o)}</option>`).join("");
     const topic = kind === "racun"
-      ? `<div class="field"><label>${L.topicRacun}</label><select>${opts(L.optRacun)}</select></div>`
-      : `<div class="field"><label>${L.topicTema}</label><select>${opts(L.optTema)}</select></div>`;
+      ? `<div class="field"><label for="${kind}-tema">${L.topicRacun}</label><select id="${kind}-tema" name="tema">${opts(L.optRacun)}</select></div>`
+      : `<div class="field"><label for="${kind}-tema">${L.topicTema}</label><select id="${kind}-tema" name="tema">${opts(L.optTema)}</select></div>`;
     // Uvodna poruka neposredno iznad obrasca (samo /otvorite-racun/) — povezuje proces sa formom zahtjeva
     const formIntro = kind === "racun"
       ? `<div class="oa-formintro"><h3>${en ? "Start the account-opening process" : "Započnite postupak otvaranja računa"}</h3><p>${en ? "Fill in and submit the request form to receive the online questionnaire and begin the account-opening process." : "Popunite i pošaljite obrazac sa zahtjevom za dostavu online Upitnika za početak postupka otvaranja računa."}</p></div>`
@@ -1060,13 +1091,17 @@
         ${formIntro}
         <form class="form" data-form="1" data-kind="${kind}">
           <div class="row2">
-            <div class="field"><label>${L.name}</label><input required placeholder="${L.nameP}"></div>
-            <div class="field"><label>${L.contact}</label><input required placeholder="${L.contactP}"></div>
+            <div class="field"><label for="${kind}-ime">${L.name}</label><input id="${kind}-ime" name="ime" required placeholder="${L.nameP}"></div>
+            <div class="field"><label for="${kind}-email">${L.fEmail}</label><input id="${kind}-email" name="email" type="email" required placeholder="${L.fEmailP}"></div>
           </div>
-          ${topic}
-          <div class="field"><label>${L.msg}</label><textarea placeholder="${L.msgP}"></textarea></div>
-          <div class="field"><label>${L.source}</label><select>${opts(L.optSrc)}</select></div>
-          <label class="consent"><input type="checkbox" required> ${L.consent}</label>
+          <div class="row2">
+            <div class="field"><label for="${kind}-telefon">${L.fPhone}</label><input id="${kind}-telefon" name="telefon" type="tel" placeholder="${L.fPhoneP}"></div>
+            ${topic}
+          </div>
+          <div class="field"><label for="${kind}-poruka">${L.msg}</label><textarea id="${kind}-poruka" name="poruka" placeholder="${L.msgP}"></textarea></div>
+          <div class="field"><label for="${kind}-izvor">${L.source}</label><select id="${kind}-izvor" name="izvor">${opts(L.optSrc)}</select></div>
+          <label class="consent"><input type="checkbox" name="saglasnost" required> ${L.consent}</label>
+          ${turnstileMount()}
           <button class="btn btn--primary" type="submit">${T("btn.posaljite")} ${I.arrow}</button>
           <p class="formnote">${L.note}</p>
         </form>
@@ -1433,18 +1468,98 @@
         if (open && EB.track) EB.track(EB.EVENTS.FAQ_OPEN, { question: q.textContent.trim().slice(0, 120) });
       });
     });
-    // forms
-    const okMsg = isEN()
-      ? "✓ Thank you. Your inquiry has been recorded (demo). In production it is sent to the CRM with the acquisition source logged, and we reply within one business day."
-      : "✓ Hvala. Vaš upit je zabilježen (demo). U produkciji se šalje u CRM sa evidentiranim izvorom akvizicije, a javljamo se u jednom radnom danu.";
-    document.querySelectorAll("form[data-form]").forEach(f => f.addEventListener("submit", e => {
-      e.preventDefault();
-      if (EB.track) {
-        const kind = f.getAttribute("data-kind");
-        EB.track(EB.EVENTS.GENERATE_LEAD, { form_kind: kind || "kontakt" });
-        EB.track(kind === "racun" ? EB.EVENTS.ACCOUNT_SUBMIT : EB.EVENTS.CONTACT_SUBMIT, {});
+    // forms — pravo slanje na Pages funkciju (functions/api/forma.js)
+    mountTurnstile();
+    const sending = isEN() ? "Sending…" : "Šaljem…";
+    const netErr = isEN()
+      ? "Sending failed — check your connection and try again, or call us directly."
+      : "Slanje nije uspjelo — provjerite vezu i pokušajte ponovo, ili nas pozovite direktno.";
+    const needTs = isEN()
+      ? "Verification did not complete. Please refresh the page and try again."
+      : "Provjera nije završena. Osvježite stranicu i pokušajte ponovo.";
+    /* Turnstile izda token asinhrono (na sporijoj vezi i nekoliko sekundi).
+       Ako korisnik pošalje prije toga, kratko se sačeka umjesto da se odmah
+       prijavi greška za provjeru koju korisnik ne vidi i ne može da "završi". */
+    const waitForToken = async (f, ms) => {
+      const until = Date.now() + ms;
+      while (Date.now() < until) {
+        const el = f.querySelector('[name="cf-turnstile-response"]');
+        if (el && el.value) return el.value;
+        await new Promise(r => setTimeout(r, 200));
       }
-      f.innerHTML = `<div class="success">${okMsg}</div>`;
+      return "";
+    };
+
+    document.querySelectorAll("form[data-form]").forEach(f => f.addEventListener("submit", async e => {
+      e.preventDefault();
+      const kind = f.getAttribute("data-kind") || "kontakt";
+      const btn = f.querySelector('button[type="submit"]');
+      const fd = new FormData(f);
+      const val = (k) => { const v = fd.get(k); return typeof v === "string" ? v.trim() : ""; };
+
+      // Poruka o grešci stoji iznad dugmeta i čisti se pri svakom novom pokušaju.
+      let box = f.querySelector(".formerror");
+      const fail = (msg) => {
+        if (!box) {
+          box = document.createElement("p");
+          box.className = "formerror";
+          box.setAttribute("role", "alert");
+          if (btn) btn.parentNode.insertBefore(box, btn); else f.appendChild(box);
+        }
+        box.textContent = msg;
+      };
+      if (box) box.textContent = "";
+
+      const label = btn ? btn.innerHTML : "";
+      if (btn) { btn.disabled = true; btn.textContent = sending; }
+
+      let token = val("cf-turnstile-response");
+      if (!token) token = await waitForToken(f, 12000);
+      if (!token) {
+        fail(needTs);
+        if (btn) { btn.disabled = false; btn.innerHTML = label; }
+        return;
+      }
+
+      const payload = {
+        kind: kind,
+        lang: EB.lang,
+        ime: val("ime"),
+        email: val("email"),
+        telefon: val("telefon"),
+        kompanija: val("kompanija"),
+        tema: val("tema"),
+        izvor: val("izvor"),
+        poruka: val("poruka"),
+        saglasnost: fd.get("saglasnost") !== null,
+        "cf-turnstile-response": token
+      };
+
+      let res = null, data = null;
+      try {
+        res = await fetch(EB.BASE + "api/forma", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        data = await res.json();
+      } catch (err) { /* mrežna greška — obrađuje se ispod */ }
+
+      if (res && res.ok && data && data.status === "success") {
+        if (EB.track) {
+          EB.track(EB.EVENTS.GENERATE_LEAD, { form_kind: kind });
+          EB.track(kind === "racun" ? EB.EVENTS.ACCOUNT_SUBMIT : EB.EVENTS.CONTACT_SUBMIT, {});
+        }
+        f.innerHTML = `<div class="success">✓ ${esc(data.message)}</div>`;
+        return;
+      }
+
+      // Neuspjeh: token je jednokratan, pa se widget resetuje za novi pokušaj.
+      fail((data && data.message) || netErr);
+      if (btn) { btn.disabled = false; btn.innerHTML = label; }
+      if (window.turnstile && f.querySelector(".cf-turnstile")) {
+        try { window.turnstile.reset(f.querySelector(".cf-turnstile").dataset.ebWidget); } catch (err) {}
+      }
     }));
   }
 

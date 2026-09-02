@@ -12,3 +12,7 @@ __pycache__/
 
 # Izvorni zadatak (nije dio sajta)
 Prompt.txt
+
+# Cloudflare (lokalno stanje wrangler-a i lokalne tajne)
+.wrangler/
+.dev.vars

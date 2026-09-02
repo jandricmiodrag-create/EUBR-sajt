@@ -777,3 +777,9 @@ table.price .fee { font-family: var(--ff-head); font-weight: 700; color: var(--n
 .side__card.dark .side__meta .row { border-color: rgba(255,255,255,.16); }
 .side__card.dark .side__meta .row span { color: #c3d2e2; }
 .side__card.dark .side__meta .row b { color: #fff; }
+
+/* Greška pri slanju obrasca (uz .success iznad) */
+.formerror:empty { display: none; }
+.formerror { background: #fdf2f2; border: 1px solid #e0b4b4; color: #8a2b2b; padding: 12px 14px; border-radius: 10px; font-size: .9rem; margin: 0; }
+.pt-form .formerror { background: rgba(224,120,120,.12); border-color: rgba(224,120,120,.45); color: #f3c9c9; }
+.form .cf-turnstile { min-height: 65px; }
