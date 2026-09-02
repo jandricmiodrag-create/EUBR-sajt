@@ -1,8 +1,14 @@
 name: Deploy to GitHub Pages
 
+# Sajt se od prelaska na Cloudflare Pages objavljuje odatle (vidi wrangler.toml
+# i functions/). Automatsko objavljivanje na GitHub Pages je isključeno da dvije
+# verzije ne bi bile žive u isto vrijeme: GitHub Pages servira sajt na
+# podputanji /<repo>/ i nema serverless funkcije, pa obrasci tamo ne rade —
+# slanje bi se završilo greškom umjesto stvarnim upitom.
+#
+# Workflow je zadržan i može se pokrenuti ručno (Actions -> Deploy to GitHub
+# Pages -> Run workflow) ako zatreba pregled bez Cloudflare-a.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
