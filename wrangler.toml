@@ -10,6 +10,14 @@
 #   TURNSTILE_SECRET_KEY  — tajna za Turnstile provjeru
 # Javni Turnstile sitekey nije tajna i stoji u assets/js/app.js.
 
+# UPOZORENJE — izlazni direktorijum je korijen repozitorijuma, pa se SVAKI
+# fajl iz njega servira javno (provjereno: /wrangler.toml, /functions/api/forma.js,
+# /migrations/*.sql se mogu preuzeti). Preko GitHub veze to ne otkriva ništa
+# novo jer je repozitorijum ionako javan i objavljuju se samo commit-ovani fajlovi.
+# ALI: `wrangler pages deploy .` (direktni upload) NE poštuje .gitignore i objavio
+# bi i `.dev.vars` sa pravim tajnama. Ako ikad bude potreban direktni upload,
+# prvo obrišite `.dev.vars` ili prebacite izlaz u zaseban direktorijum.
+
 name = "eurobroker-sajt"
 pages_build_output_dir = "."
 compatibility_date = "2026-08-22"
