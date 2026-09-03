@@ -10,7 +10,7 @@
 const TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 const RESEND_API_URL = "https://api.resend.com/emails";
 const FROM = "Eurobroker sajt <forma@send.eurobroker.ba>";
-const TO = "office@eurobroker.ba";
+const TO = "eurobroker.klijent@gmail.com";
 
 /* Cloudflare-ov zvanični „uvijek prolazi" test par ključeva —
  * https://developers.cloudflare.com/turnstile/troubleshooting/testing/
