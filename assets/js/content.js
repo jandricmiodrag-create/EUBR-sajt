@@ -48,7 +48,7 @@ window.EB_CONTENT = {
   "obveznice-rs": {
     what: "Obveznice Republike Srpske su dužnički instrument: pozajmljujete sredstva izdavaocu, a zauzvrat dobijate kamatu i povraćaj glavnice o dospijeću. Kupuju se preko brokera, ne u banci.",
     whoFor: ["Štediše koji traže razumljiviji prvi korak od akcija", "Konzervativniji investitori", "Nije za one koji traže brzu preprodaju uz visok prinos"],
-    problem: "Mnogi ne znaju da se obveznice RS uopšte mogu kupiti kao građanin, ni kako. Eurobroker objašnjava dostupne serije, dospijeće i postupak.",
+    problem: "Prvi korak je da se upoznate sa obveznicama kojima se trguje, njihovom tržišnom cijenom, dospijećem i drugim relevantnim karakteristikama. Eurobroker vam može objasniti tržišne informacije i postupak kupovine putem brokerskog računa.",
     steps: [
       { t: "Informacija o serijama", d: "Provjeravamo dostupne obveznice i uslove." },
       { t: "Otvaranje računa", d: "Standardni postupak; lista dokumenata unaprijed." },

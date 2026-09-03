@@ -376,7 +376,7 @@ window.EB_I18N = {
     "obveznice-rs": {
       what: "Republika Srpska bonds are a debt instrument: you lend funds to the issuer and, in return, receive interest and repayment of principal at maturity. They are bought through a broker, not at a bank.",
       whoFor: ["Savers wanting a more understandable first step than shares", "More conservative investors", "Not for those seeking quick resale at a high return"],
-      problem: "Many do not know that RS bonds can be bought as a citizen at all, or how. Eurobroker explains the available series, maturity and procedure.",
+      problem: "The first step is to get to know the bonds being traded — their market price, maturity and other relevant characteristics. Eurobroker can explain the market information and the purchase procedure through a brokerage account.",
       steps: [
         { t: "Information on series", d: "We check available bonds and terms." },
         { t: "Opening an account", d: "A standard procedure; the document list in advance." },

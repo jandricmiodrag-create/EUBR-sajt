@@ -757,7 +757,9 @@
     if (c.what) body += qb(T("q1"), "01", `<p>${esc(c.what)}</p>`);
     if (c.platforme) body += platformsBlock(c.platforme);
     if (c.whoFor) body += qb(T("q2"), "02", `<div class="chips">${c.whoFor.map(w => `<span class="chip">${esc(w)}</span>`).join("")}</div>`);
-    if (c.problem) body += qb(T("q3"), "03", `<p>${esc(c.problem)}</p>`);
+    if (c.problem) body += (p.slug === "obveznice-rs")
+      ? `<div class="qblock"><h2>${esc(isEN() ? "I want to invest in Republika Srpska bonds - where do I start?" : "Želim investirati u obveznice Republike Srpske - odakle da počnem?")}</h2><p>${esc(c.problem)}</p></div>`
+      : qb(T("q3"), "03", `<p>${esc(c.problem)}</p>`);
     if (c.steps) body += qb(T("q4"), "04", `<div class="steps">${c.steps.map(s => `<div class="step"><div><h4>${esc(s.t)}</h4><p>${esc(s.d)}</p></div></div>`).join("")}</div>`);
     if (c.roles) body += qb(T("q5"), "05", `<div class="roles"><div class="role"><b>${T("roles.eb")}</b><p>${esc(c.roles.eurobroker)}</p></div><div class="role"><b>${T("roles.client")}</b><p>${esc(c.roles.klijent)}</p></div><div class="role"><b>${T("roles.third")}</b><p>${esc(c.roles.treci)}</p></div></div>`);
     body += qb(T("q6"), "06", `<p>${esc(c.napomenaCijena || T("side.cost"))}</p><a class="link-arrow" href="#/cjenovnik">${T("side.seeFees")} ${I.arrow}</a>`);
