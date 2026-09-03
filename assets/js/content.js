@@ -389,7 +389,7 @@ window.EB_CONTENT = {
   },
 
   dokumenti: {
-    what: "Na jednom mjestu: pravila poslovanja, opšti uslovi, obrasci, informacije za klijente, upozorenje o rizicima, postupak po prigovorima, zaštita podataka i sukob interesa. Svaki dokument ima verziju i datum.",
+    what: "Na jednom mjestu: pravila poslovanja, opšti uslovi, obrasci, informacije za klijente, upozorenje o rizicima, postupak po prigovorima, zaštita podataka i sukob interesa.",
     lista: [
       "Pravila poslovanja i opšti uslovi",
       "Obrasci za preuzimanje (nalog, ugovor, punomoć)",
