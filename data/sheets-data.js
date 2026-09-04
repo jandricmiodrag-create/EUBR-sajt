@@ -73,7 +73,7 @@ window.EB_DATA = {
    "secondary_cta": "Upit o postojećim hartijama",
    "secondary_cta_link": "kontakt",
    "related": "obveznice-rs,cjenovnik",
-   "documents": "",
+   "documents": "Obrazac naloga; ugovor; punomoć",
    "seo": "2",
    "compliance": "Usklađenost sa Pravilima poslovanja i pravilima berze",
    "kpi": "Upiti; preuzimanja obrazaca",
