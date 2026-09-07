@@ -1,1 +1,7 @@
+# Stara putanja iz Next.js sajta (next.config.ts) — mora biti IZNAD catch-all-a
+# jer Pages primjenjuje prvo pravilo koje se poklopi. Cilj je /dokumenti/
+# („Dokumenti i obrasci"), jer stranica /dokumenti/pravila-poslovanja ne postoji
+# u ovom sajtu — dokument je tamo naveden u grupi „Pravila i uslovi".
+/pravila-poslovanja  /dokumenti/  301
+
 /*  /index.html  200

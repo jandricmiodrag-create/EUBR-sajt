@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://eurobroker.ba/sitemap.xml
+Sitemap: https://www.eurobroker.ba/sitemap.xml
