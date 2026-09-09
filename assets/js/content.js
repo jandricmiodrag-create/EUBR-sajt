@@ -66,7 +66,7 @@ window.EB_CONTENT = {
       { t: "DOBIJATE PREPORUKU", d: "Dobijate pisanu preporuku u kojoj jasno predstavljamo predloženo ulaganje, razloge za izbor i rizike koje treba uzeti u obzir." },
       { t: "VI DONOSITE ODLUKU", d: "Konačna odluka je uvijek vaša. Ukoliko se odlučite za ulaganje, Eurobroker može izvršiti nalog za kupovinu odabranih finansijskih instrumenata." }
     ],
-    napomenaCijena: "Cijena i nazivi paketa objavljuju se tek po usvajanju politike sukoba interesa, registra preporuka i cjenovnika. Do tada je moguć samo razgovor.",
+    napomenaCijena: "Naknada za investiciono savjetovanje zavisi od obima i vrste usluge. Važeće naknade možete provjeriti u Cjenovniku Eurobrokera ili kontaktirati naš tim za dodatne informacije.",
     finalCta: { t: "Razgovarajmo o vašim investicijama", p: "Ne morate imati spreman investicioni plan prije prvog razgovora. Recite nam šta želite postići, a mi ćemo zajedno sa vama pronaći optimalno rješenje.", cta: "Zakažite razgovor", link: "kontakt" }
   },
 

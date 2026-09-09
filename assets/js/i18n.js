@@ -393,7 +393,7 @@ window.EB_I18N = {
         { t: "YOU RECEIVE A RECOMMENDATION", d: "You receive a written recommendation in which we clearly present the proposed investment, the reasons for the choice and the risks to consider." },
         { t: "YOU MAKE THE DECISION", d: "The final decision is always yours. If you decide to invest, Eurobroker can execute the order to purchase the selected financial instruments." }
       ],
-      napomenaCijena: "Prices and package names are published only after the conflict-of-interest policy, the register of recommendations and the price list are adopted. Until then, only a conversation is possible.",
+      napomenaCijena: "The fee for investment advice depends on the scope and type of service. You can check the applicable fees in Eurobroker's price list or contact our team for more information.",
       finalCta: { t: "Let's talk about your investments", p: "You don't need a ready investment plan before the first conversation. Tell us what you want to achieve, and together we will find the optimal solution.", cta: "Book a call", link: "kontakt" }
     },
     kontakt: {

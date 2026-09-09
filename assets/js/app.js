@@ -792,7 +792,7 @@
       : qb(T("q3"), "03", `<p>${esc(c.problem)}</p>`);
     if (c.steps) body += qb(p.slug === "investiciono-savjetovanje" ? (isEN() ? "What does the process look like?" : "Kako izgleda proces?") : T("q4"), "04", `<div class="steps">${c.steps.map(s => `<div class="step"><div><h4>${esc(s.t)}</h4><p>${esc(s.d)}</p></div></div>`).join("")}</div>`);
     if (c.roles) body += qb(T("q5"), "05", `<div class="roles"><div class="role"><b>${T("roles.eb")}</b><p>${esc(c.roles.eurobroker)}</p></div><div class="role"><b>${T("roles.client")}</b><p>${esc(c.roles.klijent)}</p></div><div class="role"><b>${T("roles.third")}</b><p>${esc(c.roles.treci)}</p></div></div>`);
-    body += qb(T("q6"), "06", `<p>${esc(c.napomenaCijena || T("side.cost"))}</p><a class="link-arrow" href="#/cjenovnik">${T("side.seeFees")} ${I.arrow}</a>`);
+    body += qb(p.slug === "investiciono-savjetovanje" ? (isEN() ? "How much does investment advice cost?" : "Koliko košta investiciono savjetovanje?") : T("q6"), "06", `<p>${esc(c.napomenaCijena || T("side.cost"))}</p><a class="link-arrow" href="#/cjenovnik">${T("side.seeFees")} ${I.arrow}</a>`);
     if (c.risks) body += qb(T("q7"), "07", `<ul class="risklist">${c.risks.map(r => `<li>${esc(r)}</li>`).join("")}</ul><div class="notebox notebox--reg">${T("side.riskNote")}</div>`);
     // PITANJE 08 „Koji dokumenti su potrebni?" — dinamički iz kolone `documents` (tabela EB·stranice), isto za sve uslužne stranice.
     if (p.documents) body += qb(T("q8"), "08", `<div class="chips">${String(p.documents).split(";").map(x => x.trim()).filter(Boolean).map(x => `<span class="chip">${I.doc} ${esc(x)}</span>`).join("")}</div>`);
