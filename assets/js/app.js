@@ -890,7 +890,9 @@
       </div>
       ${related ? `<div class="side__card"><h3>${T("side.related")}</h3><div class="related" style="margin-top:8px">${related}</div></div>` : ""}
       <div class="side__card" style="background:var(--bg-soft)">
-        <p class="formnote">${esc(p.compliance || "Sadržaj provjerava funkcija usklađenosti prije objave.")}</p>
+        <p class="formnote">${p.slug === "investiciono-savjetovanje"
+          ? `<em>${esc("Investiranje u finansijske instrumente povezano je sa rizikom. Vrijednost ulaganja i ostvareni prinos mogu rasti i padati, a prethodni rezultati nisu garancija budućih rezultata.")}</em>`
+          : esc(p.compliance || "Sadržaj provjerava funkcija usklađenosti prije objave.")}</p>
       </div>
     </aside>`;
   }
