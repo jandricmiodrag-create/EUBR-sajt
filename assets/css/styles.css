@@ -380,6 +380,12 @@ a svg, button svg, .link-arrow svg, .mq-val svg, .chip svg, .svc__no svg { width
 .risklist { list-style: none; margin-top: 6px; }
 .risklist li { padding: 10px 0 10px 30px; position: relative; color: #33465a; border-bottom: 1px dashed var(--line); }
 .risklist li::before { content: "!"; position: absolute; left: 0; top: 10px; width: 20px; height: 20px; background: #fdeee9; color: var(--danger); border-radius: 6px; font-weight: 700; font-size: .8rem; display: grid; place-items: center; }
+/* Investiciono savjetovanje — uredna lista situacija + inline tekstualni link (scoped, ne utiče na ostale stranice). */
+.prose ul.svc-list { list-style: none; margin: 6px 0 14px; padding: 0; }
+.prose ul.svc-list li { position: relative; padding: 6px 0 6px 22px; color: #33465a; }
+.prose ul.svc-list li::before { content: ""; position: absolute; left: 4px; top: 13px; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+.prose a.tlink { color: var(--teal); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; transition: var(--t); }
+.prose a.tlink:hover { color: var(--navy); }
 .notebox { background: #fbf7ee; border: 1px solid var(--gold-soft); border-left: 4px solid var(--gold); border-radius: 10px; padding: 16px 18px; font-size: .92rem; color: #6a5a34; margin-top: 8px; }
 .notebox--reg { background: #eef6f5; border-color: var(--teal-soft); border-left-color: var(--teal); color: #245b56; }
 

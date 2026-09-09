@@ -754,7 +754,36 @@
     const c = content(p.slug);
     const faqs = EB.faqFor(p.slug);
     let body = "";
-    if (c.what) body += qb(T("q1"), "01", `<p>${esc(c.what)}</p>`);
+    if (c.what) {
+      if (p.slug === "investiciono-savjetovanje") {
+        // Namjenski „Šta je usluga?" + „Šta dobijate…" — scoped samo na ovu stranicu (kao obveznice-rs za q3).
+        const en = isEN();
+        const is = en ? {
+          intro: "Investment advice is intended for investors who want an expert opinion before making a decision — whether they are just starting to invest or considering new investment opportunities.",
+          when: "This option can be especially useful in situations where:",
+          list: ["you are not sure where to start;", "you are choosing between several investment options;", "you want to better align your portfolio with your goals and attitude to risk;", "you don't have time to follow and analyse the market in detail yourself."],
+          before: "If you already know what you want to buy or sell and you only need order execution, see our ",
+          link: "brokerage services", after: ".",
+          gainsTitle: "What you get through investment advice",
+          gains: [{ t: "Clarity", d: "A better understanding of the options, the characteristics of investments and the risks before you make a decision." }, { t: "Personalised recommendations", d: "An assessment and recommendation from an investment advisor based on expert analysis and your investment profile." }, { t: "An expert to talk to", d: "Direct contact with an investment advisor who will answer all your questions." }]
+        } : {
+          intro: "Investiciono savjetovanje je namijenjeno investitorima koji žele stručno mišljenje prije donošenja odluke — bilo da tek počinju ulagati ili razmatraju nove investicione mogućnosti.",
+          when: "Ova opcija može biti posebno korisna u situacijama kada:",
+          list: ["niste sigurni odakle početi;", "birate između više investicionih mogućnosti;", "želite bolje uskladiti portfolio sa svojim ciljevima i odnosom prema riziku;", "nemate vremena da sami detaljno pratite i analizirate tržište."],
+          before: "Ukoliko već znate šta želite kupiti ili prodati i potrebna vam je samo realizacija naloga, pogledajte naše ",
+          link: "brokerske usluge", after: ".",
+          gainsTitle: "Šta dobijate kroz investiciono savjetovanje?",
+          gains: [{ t: "Jasnoću", d: "Bolje razumijevanje mogućnosti, karakteristika ulaganja i rizika prije donošenja odluke." }, { t: "Personalizovane preporuke", d: "Procjena i preporuka investicionog savjetnika zasnovana na stručnoj analizi i vašem investicionom profilu." }, { t: "Stručnog sagovornika", d: "Direktan kontakt sa investicionim savjetnikom koji će odgovoriti na sva vaša pitanja." }]
+        };
+        body += qb(T("q1"), "01",
+          `<p>${esc(is.intro)}</p><p>${esc(is.when)}</p>` +
+          `<ul class="svc-list">${is.list.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` +
+          `<p>${esc(is.before)}<a class="tlink" href="#/investiranje">${esc(is.link)}</a>${esc(is.after)}</p>`);
+        body += `<div class="qblock"><h2>${esc(is.gainsTitle)}</h2><div class="why" style="margin-top:6px">${is.gains.map((g, i) => `<div class="why__item reveal"><span class="why__num">0${i + 1}</span><h3>${esc(g.t)}</h3><p>${esc(g.d)}</p></div>`).join("")}</div></div>`;
+      } else {
+        body += qb(T("q1"), "01", `<p>${esc(c.what)}</p>`);
+      }
+    }
     if (c.platforme) body += platformsBlock(c.platforme);
     if (c.whoFor) body += qb(T("q2"), "02", `<div class="chips">${c.whoFor.map(w => `<span class="chip">${esc(w)}</span>`).join("")}</div>`);
     if (c.problem) body += (p.slug === "obveznice-rs")
