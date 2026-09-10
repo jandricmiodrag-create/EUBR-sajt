@@ -838,11 +838,12 @@
     }
     if (c.roles) body += qb(T("q5"), "05", `<div class="roles"><div class="role"><b>${T("roles.eb")}</b><p>${esc(c.roles.eurobroker)}</p></div><div class="role"><b>${T("roles.client")}</b><p>${esc(c.roles.klijent)}</p></div><div class="role"><b>${T("roles.third")}</b><p>${esc(c.roles.treci)}</p></div></div>`);
     if (p.slug === "svjetska-trzista") {
-      // Blok o naknadama bez naslova „Koliko košta…" (scoped); CTA vodi na /cjenovnik/.
+      // Blok o naknadama sa naslovom (scoped); CTA vodi na /cjenovnik/.
+      const feeTitle = isEN() ? "How much does trading on world markets cost?" : "Koliko košta trgovanje na svjetskim tržištima?";
       const feeText = isEN()
         ? "Trading fees depend on the market, the type of financial instrument and the transaction value. You can check the applicable fees in Eurobroker's price list or contact our team for more information."
         : "Naknade za trgovanje zavise od tržišta, vrste finansijskog instrumenta i vrijednosti transakcije. Važeće naknade možete provjeriti u Cjenovniku Eurobrokera ili kontaktirati naš tim za dodatne informacije.";
-      body += `<div class="qblock"><p>${esc(feeText)}</p><a class="link-arrow" href="#/cjenovnik">${T("side.seeFees")} ${I.arrow}</a></div>`;
+      body += `<div class="qblock"><h2>${esc(feeTitle)}</h2><p>${esc(feeText)}</p><a class="link-arrow" href="#/cjenovnik">${T("side.seeFees")} ${I.arrow}</a></div>`;
     } else body += qb(p.slug === "investiciono-savjetovanje" ? (isEN() ? "How much does investment advice cost?" : "Koliko košta investiciono savjetovanje?") : T("q6"), "06", `<p>${esc(c.napomenaCijena || T("side.cost"))}</p><a class="link-arrow" href="#/cjenovnik">${T("side.seeFees")} ${I.arrow}</a>`);
     if (c.risks) body += qb(T("q7"), "07", `<ul class="risklist">${c.risks.map(r => `<li>${esc(r)}</li>`).join("")}</ul><div class="notebox notebox--reg">${T("side.riskNote")}</div>`);
     // PITANJE 08 „Koji dokumenti su potrebni?" — dinamički iz kolone `documents` (tabela EB·stranice), isto za sve uslužne stranice.
