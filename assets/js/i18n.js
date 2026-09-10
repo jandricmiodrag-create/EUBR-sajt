@@ -354,10 +354,10 @@ window.EB_I18N = {
     "domace-trziste": {
       what: "Domestic brokerage means Eurobroker buys and sells securities on the Banja Luka Stock Exchange in your name and for your account. You sign the order, while Eurobroker takes care of the complete execution and settlement of the transaction.",
       steps: [
-        { t: "Opening an account", d: "You sign an agreement and power of attorney; you get a named broker. Timeline: 1–2 business days." },
-        { t: "Order", d: "You place a buy or sell order; the broker explains price and terms." },
-        { t: "Execution on the exchange", d: "The firm executes the order on the Banja Luka Stock Exchange." },
-        { t: "Settlement and report", d: "You receive execution confirmation and your account balance." }
+        { t: "Opening a brokerage account", d: "The process begins by providing the required data and documentation and signing a brokerage agreement." },
+        { t: "Preparing funds for trading", d: "After the account is activated, the funds needed for the planned purchase of securities are secured." },
+        { t: "Placing and executing orders", d: "You can submit an order to our brokerage team by phone or e-mail, or enter it yourself through the eTrader application. When the order is executed, you receive a confirmation of execution." },
+        { t: "Tracking investments", d: "At any time you can ask the broker for information about your orders, portfolio and other relevant matters related to trading." }
       ],
       platforme: [
         { naziv: "eTrader", opis: "Electronic trading via the web platform", url: "https://eubr.blberza.com/etrader/", ikona: "monitor" },

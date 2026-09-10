@@ -750,6 +750,34 @@
       <p class="formnote" style="margin-top:10px">${en ? "For existing clients with a contract. Access is via the Banja Luka Stock Exchange platform." : "Za postojeće klijente sa ugovorom. Pristup je preko platforme Banjalučke berze."}</p>
     </div>`;
   }
+  // ELEKTRONSKO TRGOVANJE za /domace-trziste/ — tri načina trgovanja (koristi postojeći .platgrid/.platcard sistem).
+  function domaceTradingBlock(list) {
+    const en = isEN();
+    const urlOf = (naziv, fb) => { const it = (list || []).find(x => x.naziv === naziv); return (it && it.url) || fb; };
+    const eT = urlOf("eTrader", "https://eubr.blberza.com/etrader/");
+    const mT = urlOf("mTrader", "https://eubr.blberza.com/mtrader/sign/in?returnUrl=~%2F");
+    const ways = en ? [
+      { ic: I.phone, t: "With broker support", d: "You submit the order to our brokers by phone or e-mail, and they take care of its execution on the market.", cta: "contact", href: "#/kontakt", ext: false },
+      { ic: I.monitor, t: "On your own, online", d: "Through the eTrader application you can enter and track orders, view market data and an overview of your portfolio.", cta: "eTrader", href: eT, ext: true },
+      { ic: I.smartphone, t: "From a mobile device", d: "mTrader gives you access to the market from your mobile phone.", cta: "mTrader", href: mT, ext: true }
+    ] : [
+      { ic: I.phone, t: "Uz podršku brokera", d: "Nalog dostavljate našim brokerima putem telefona ili e-maila, a oni vode računa o njegovoj realizaciji na tržištu.", cta: "kontakt", href: "#/kontakt", ext: false },
+      { ic: I.monitor, t: "Samostalno online", d: "Putem eTrader aplikacije možete unositi i pratiti naloge, imati uvid u tržišne podatke i pregled svog portfolija.", cta: "eTrader", href: eT, ext: true },
+      { ic: I.smartphone, t: "Sa mobilnog uređaja", d: "mTrader vam omogućava pristup tržištu sa mobilnog telefona.", cta: "mTrader", href: mT, ext: true }
+    ];
+    const cards = ways.map(w => `
+      <a class="platcard" href="${esc(w.href)}"${w.ext ? ' target="_blank" rel="noopener" data-ext' : ""}>
+        <span class="platcard__ic">${w.ic}</span>
+        <span class="platcard__body"><b>${esc(w.t)}</b><small>${esc(w.d)}</small></span>
+        <span class="platcard__go">${esc(w.cta)} ${w.ext ? I.external : I.arrow}</span>
+      </a>`).join("");
+    return `<div class="qblock"><span class="qn">${en ? "ELECTRONIC TRADING" : "ELEKTRONSKO TRGOVANJE"}</span>
+      <h2>${en ? "Trade the way that suits you" : "Trgujte na način koji vam odgovara"}</h2>
+      <p>${en ? "A brokerage account gives you access to the domestic capital market and the execution of buy and sell orders." : "Brokerski račun vam omogućava pristup domaćem tržištu kapitala i realizaciju kupovnih i prodajnih naloga."}</p>
+      <p>${en ? "You can choose the way of trading that suits you best." : "Možete izabrati način trgovanja koji vam najviše odgovara."}</p>
+      <div class="platgrid platgrid--3">${cards}</div>
+    </div>`;
+  }
   function renderService(p) {
     const c = content(p.slug);
     const faqs = EB.faqFor(p.slug);
@@ -791,18 +819,39 @@
           ? "This way you gain secure, regulated access to world markets, without the risks and complications of unfamiliar foreign apps."
           : "Na ovaj način dobijate siguran i regulisan pristup svjetskim tržištima, bez rizika i komplikacija vezanih za nepoznate inostrane aplikacije.";
         body += `<div class="qblock"><p>${esc(p1)}</p><p>${esc(p2)}</p></div>`;
+      } else if (p.slug === "domace-trziste") {
+        // Uvod sa novim naslovom (bez „PITANJE" eyebrow-a) — scoped samo na ovu stranicu.
+        const en = isEN();
+        const dTitle = en ? "How does trading on the domestic market work?" : "Kako funkcioniše trgovanje na domaćem tržištu?";
+        const dText = en
+          ? "Through Eurobroker you can buy and sell shares, bonds and other securities traded on the Banja Luka Stock Exchange. You make the decision and place the buy or sell order, while Eurobroker executes the order and carries out the necessary activities through to settlement of the transaction."
+          : "Putem Eurobrokera možete kupovati i prodavati akcije, obveznice i druge hartije od vrijednosti kojima se trguje na Banjalučkoj berzi. Vi donosite odluku i dajete nalog za kupovinu ili prodaju, a Eurobroker izvršava nalog i sprovodi potrebne aktivnosti do poravnanja transakcije.";
+        body += `<div class="qblock"><h2>${esc(dTitle)}</h2><p>${esc(dText)}</p></div>`;
       } else {
         body += qb(T("q1"), "01", `<p>${esc(c.what)}</p>`);
       }
     }
-    if (c.platforme) body += platformsBlock(c.platforme);
+    if (c.platforme) body += (p.slug === "domace-trziste") ? domaceTradingBlock(c.platforme) : platformsBlock(c.platforme);
     if (c.whoFor) body += qb(T("q2"), "02", `<div class="chips">${c.whoFor.map(w => `<span class="chip">${esc(w)}</span>`).join("")}</div>`);
     if (c.problem) body += (p.slug === "obveznice-rs")
       ? `<div class="qblock"><h2>${esc(isEN() ? "I want to invest in Republika Srpska bonds - where do I start?" : "Želim investirati u obveznice Republike Srpske - odakle da počnem?")}</h2><p>${esc(c.problem)}</p></div>`
       : qb(T("q3"), "03", `<p>${esc(c.problem)}</p>`);
     if (c.steps) {
-      const stepsTitle = p.slug === "investiciono-savjetovanje" ? (isEN() ? "What does the process look like?" : "Kako izgleda proces?") : T("q4");
+      const stepsTitle = p.slug === "investiciono-savjetovanje" ? (isEN() ? "What does the process look like?" : "Kako izgleda proces?")
+        : p.slug === "domace-trziste" ? (isEN() ? "How do you start trading?" : "Kako početi sa trgovanjem?")
+        : T("q4");
       body += qb(stepsTitle, "04", `<div class="steps">${c.steps.map(s => `<div class="step"><div><h4>${esc(s.t)}</h4><p>${esc(s.d)}</p></div></div>`).join("")}</div>`);
+      if (p.slug === "domace-trziste") {
+        // Nova sekcija „ZAPOČNITE TRGOVANJE / Već posjedujete hartije od vrijednosti?" — odmah nakon procesa (scoped).
+        const en = isEN();
+        const eyebrow = en ? "START TRADING" : "ZAPOČNITE TRGOVANJE";
+        const h = en ? "Do you already own securities?" : "Već posjedujete hartije od vrijednosti?";
+        const txt = en
+          ? "If you already hold shares or other securities acquired through purchase, privatisation, inheritance or in another way, our brokerage team can give you information about the steps needed for their transfer, sale or further trading."
+          : "Ako već imate akcije ili druge hartije od vrijednosti stečene kupovinom, privatizacijom, nasljeđivanjem ili na drugi način, naš brokerski tim može vam pružiti informacije o koracima potrebnim za njihov prenos, prodaju ili dalje trgovanje.";
+        const cta = en ? "Contact a broker" : "Obratite se brokeru";
+        body += `<div class="qblock"><span class="qn">${eyebrow}</span><h2>${esc(h)}</h2><p>${esc(txt)}</p><div style="margin-top:6px"><a class="btn btn--primary" href="#/kontakt">${esc(cta)} ${I.arrow}</a></div></div>`;
+      }
       if (p.slug === "svjetska-trzista") {
         // Nova sekcija „Započnite trgovanje" — odmah nakon koraka „Kako funkcioniše?" (scoped samo na ovu stranicu).
         const en = isEN();
@@ -852,9 +901,9 @@
       body += `<div class="qblock"><span class="qn">${T("q.faq")}</span><h2>${T("q.faqTitle")}</h2>${renderFaq(faqs)}</div>`;
     }
 
-    // svjetska-trzista i investiciono-savjetovanje: „PITANJE"/„QUESTION" eyebrow oznake se u cijelosti uklanjaju
-    // sa svih blokova (naslovi h2 ostaju; „ČESTA PITANJA"/„FAQ" bez broja se ne dira). Ostale stranice zadržavaju numeraciju.
-    if (["svjetska-trzista", "investiciono-savjetovanje"].includes(p.slug)) body = body.replace(/<span class="qn">[^<]*?\s+\d+<\/span>/g, "");
+    // domace-trziste, svjetska-trzista i investiciono-savjetovanje: numerisane „PITANJE"/„QUESTION" eyebrow oznake
+    // se u cijelosti uklanjaju (naslovi h2 ostaju; „ČESTA PITANJA"/„ELEKTRONSKO TRGOVANJE"/„ZAPOČNITE TRGOVANJE" bez broja se ne diraju).
+    if (["domace-trziste", "svjetska-trzista", "investiciono-savjetovanje"].includes(p.slug)) body = body.replace(/<span class="qn">[^<]*?\s+\d+<\/span>/g, "");
 
     const finalCta = c.finalCta ? `<section class="section section--soft"><div class="wrap"><div class="finalcta reveal">
       <h2>${esc(c.finalCta.t)}</h2>
@@ -939,7 +988,7 @@
       </div>
       ${related ? `<div class="side__card"><h3>${T("side.related")}</h3><div class="related" style="margin-top:8px">${related}</div></div>` : ""}
       <div class="side__card" style="background:var(--bg-soft)">
-        <p class="formnote">${["investiciono-savjetovanje", "svjetska-trzista"].includes(p.slug)
+        <p class="formnote">${["investiciono-savjetovanje", "svjetska-trzista", "domace-trziste"].includes(p.slug)
           ? `<em>${esc("Investiranje u finansijske instrumente povezano je sa rizikom. Vrijednost ulaganja i ostvareni prinos mogu rasti i padati, a prethodni rezultati nisu garancija budućih rezultata.")}</em>`
           : esc(p.compliance || "Sadržaj provjerava funkcija usklađenosti prije objave.")}</p>
       </div>

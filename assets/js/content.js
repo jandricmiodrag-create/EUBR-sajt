@@ -24,10 +24,10 @@ window.EB_CONTENT = {
   "domace-trziste": {
     what: "Usluga domaćeg posredovanja podrazumijeva da Eurobroker u Vaše ime i za Vaš račun kupuje i prodaje hartije od vrijednosti na Banjalučkoj berzi. Vi potpisujete nalog, dok Eurobroker preuzima brigu o kompletnom izvršenju i poravnanju transakcije.",
     steps: [
-      { t: "Otvaranje računa", d: "Potpisujete ugovor i punomoć; dobijate imenovanog brokera. Rok: 1–2 radna dana." },
-      { t: "Nalog", d: "Dajete nalog za kupovinu ili prodaju; broker objašnjava cijenu i uslove." },
-      { t: "Izvršenje na berzi", d: "Društvo izvršava nalog na Banjalučkoj berzi." },
-      { t: "Poravnanje i izvještaj", d: "Dobijate potvrdu o izvršenju i stanje na računu." }
+      { t: "Otvaranje brokerskog računa", d: "Proces počinje dostavljanjem potrebnih podataka i dokumentacije i zaključenjem ugovora o brokerskom posredovanju." },
+      { t: "Priprema sredstava za trgovanje", d: "Nakon aktivacije računa, obezbjeđuju se sredstva potrebna za planiranu kupovinu hartija od vrijednosti." },
+      { t: "Unos i realizacija naloga", d: "Nalog možete dostaviti našem brokerskom timu putem telefona ili e-maila, ili ga samostalno unijeti putem eTrader aplikacije. Kada se nalog realizuje, dobijate potvrdu o izvršenju." },
+      { t: "Praćenje investicija", d: "U svakom trenutku možete zatražiti od brokera informacije o vašim nalozima, portfoliju i drugim relevantnim pitanjima vezanim za trgovanje." }
     ],
     platforme: [
       { naziv: "eTrader", opis: "Elektronsko trgovanje putem web platforme", url: "https://eubr.blberza.com/etrader/", ikona: "monitor" },
