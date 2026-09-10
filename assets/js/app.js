@@ -193,6 +193,27 @@
       <circle cx="24" cy="24" r="21.5" fill="none" stroke="#0a2540" stroke-width="1.4"/>
     </svg>`;
   }
+  /* Društvene mreže u podnožju — prenesene iz Next.js projekta
+     (eurobroker-sajt: src/content/site.ts → SOCIAL_LINKS, src/ui/icons.tsx).
+     Obrisne (stroke) SVG ikone 24×24 u currentColor, kao u izvoru — osim X-a:
+     izvorna X ikona je bila zaobljeni kvadrat sa „×" (liči na dugme za
+     zatvaranje), pa je zamijenjena pravim X znakom u istom obrisnom stilu.
+     Svih pet adresa provjereno je po naslovu stranice — nalozi su Eurobrokerovi. */
+  const SOC_SVG = (inner) => `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${inner}</svg>`;
+  const SOCIAL = [
+    { label: "Instagram", href: "https://www.instagram.com/eurobrokerbanjaluka/",
+      svg: SOC_SVG(`<rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/>`) },
+    { label: "YouTube", href: "https://www.youtube.com/@eurobrokerbanjaluka",
+      svg: SOC_SVG(`<rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3V9Z" fill="currentColor" stroke="none"/>`) },
+    // Pravi X znak: kosa traka (paralelogram) + tanka suprotna dijagonala,
+    // prekinuta tačno na ivicama trake.
+    { label: "X", href: "https://x.com/eurobrokerad",
+      svg: SOC_SVG(`<path d="M4 4l11.733 16H20L8.267 4Z"/><path d="M4 20l6.768-6.768M13.228 10.772L20 4"/>`) },
+    { label: "LinkedIn", href: "https://www.linkedin.com/company/-eurobroker-a-d-banja-luka",
+      svg: SOC_SVG(`<rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/>`) },
+    { label: "Facebook", href: "https://www.facebook.com/eurobrokerbanjaluka",
+      svg: SOC_SVG(`<path d="M15 3h-2a4 4 0 0 0-4 4v3H6v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h2V3Z"/>`) }
+  ];
   function renderFooter() {
     const d = EB.drustvo();
     return `<footer class="footer"><div class="wrap">
@@ -200,6 +221,9 @@
         <div class="footer__brand">
           <a class="brand" href="#/">${brandMark()}<span class="brand__name">EURO<b>BROKER</b></span></a>
           <p>${T("foot.tagline")}</p>
+          <ul class="footer__social" aria-label="${esc(T("foot.social"))}">
+            ${SOCIAL.map(s => `<li><a href="${s.href}" target="_blank" rel="noopener noreferrer" aria-label="${s.label}">${s.svg}</a></li>`).join("")}
+          </ul>
         </div>
         <div><h4>${T("foot.usluge")}</h4><ul>
           <li><a href="#/domace-trziste">${T("svc.dom")}</a></li>

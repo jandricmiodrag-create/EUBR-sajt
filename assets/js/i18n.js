@@ -28,6 +28,7 @@ window.EB_I18N = {
     "foot.usluge":        { sr: "Usluge", en: "Services" },
     "foot.sadrzaj":       { sr: "Sadržaj", en: "Content" },
     "foot.dokumenti":     { sr: "Dokumenti", en: "Documents" },
+    "foot.social":        { sr: "Društvene mreže", en: "Social media" },
 
     "crumb.home":         { sr: "Početna", en: "Home" },
     "q.label":            { sr: "PITANJE", en: "QUESTION" },

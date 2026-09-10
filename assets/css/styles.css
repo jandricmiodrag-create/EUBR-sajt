@@ -318,6 +318,17 @@ a svg, button svg, .link-arrow svg, .mq-val svg, .chip svg, .svc__no svg { width
 .footer__top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 36px; padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,.1); }
 .footer__brand .brand__name { color: #fff; }
 .footer__brand p { font-size: .9rem; color: #91a6bc; margin-top: 14px; max-width: 300px; }
+/* Društvene mreže ispod teksta u brend koloni (preneseno iz Next.js main:
+   18px ikone, razmak 14px, otvaraju se u novoj kartici). Mirovanje = boja
+   linkova u podnožju, hover = zlatna (≈6.5:1 na navy; teal bi bio ≈3.7:1).
+   Selektor je `.footer .footer__social` a ne samo `.footer__social`: opšte
+   pravilo `.footer ul` (niže) ima jaču specifičnost i inače bi ikone složilo
+   u kolonu (flex-direction: column). Pravila su namjerno ovdje, uz ostala
+   .footer pravila, a ne na kraju fajla — da se ne sudare sa zamrznutim karuselom. */
+.footer .footer__social { flex-direction: row; align-items: center; gap: 14px; margin-top: 20px; }
+.footer .footer__social a { display: inline-flex; color: #b9c9da; transition: color .16s ease; }
+.footer .footer__social a:hover { color: var(--gold); }
+.footer .footer__social a:focus-visible { color: var(--gold); outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 4px; }
 .footer h4 { color: #fff; font-size: .82rem; text-transform: uppercase; letter-spacing: .12em; margin-bottom: 16px; }
 .footer ul { list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: .92rem; }
 .footer__legal { padding: 24px 0 34px; font-size: .82rem; color: #7f95ac; }
