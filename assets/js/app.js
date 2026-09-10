@@ -892,6 +892,13 @@
         ? "Trading fees depend on the market, the type of financial instrument and the transaction value. You can check the applicable fees in Eurobroker's price list or contact our team for more information."
         : "Naknade za trgovanje zavise od tržišta, vrste finansijskog instrumenta i vrijednosti transakcije. Važeće naknade možete provjeriti u Cjenovniku Eurobrokera ili kontaktirati naš tim za dodatne informacije.";
       body += `<div class="qblock"><h2>${esc(feeTitle)}</h2><p>${esc(feeText)}</p><a class="link-arrow" href="#/cjenovnik">${T("side.seeFees")} ${I.arrow}</a></div>`;
+    } else if (p.slug === "domace-trziste") {
+      // Blok o naknadama sa novim naslovom/tekstom (scoped); CTA vodi na /cjenovnik/.
+      const feeTitle = isEN() ? "How much does trading on the domestic market cost?" : "Koliko košta trgovanje na domaćem tržištu?";
+      const feeText = isEN()
+        ? "Trading fees depend on the type of security and the transaction value. You can check the applicable fees in Eurobroker's price list or contact our team for more information."
+        : "Naknade za trgovanje zavise od vrste hartije od vrijednosti i vrijednosti transakcije. Važeće naknade možete provjeriti u Cjenovniku Eurobrokera ili kontaktirati naš tim za dodatne informacije.";
+      body += qb(feeTitle, "06", `<p>${esc(feeText)}</p><a class="link-arrow" href="#/cjenovnik">${T("side.seeFees")} ${I.arrow}</a>`);
     } else body += qb(p.slug === "investiciono-savjetovanje" ? (isEN() ? "How much does investment advice cost?" : "Koliko košta investiciono savjetovanje?") : T("q6"), "06", `<p>${esc(c.napomenaCijena || T("side.cost"))}</p><a class="link-arrow" href="#/cjenovnik">${T("side.seeFees")} ${I.arrow}</a>`);
     if (c.risks) body += qb(T("q7"), "07", `<ul class="risklist">${c.risks.map(r => `<li>${esc(r)}</li>`).join("")}</ul><div class="notebox notebox--reg">${T("side.riskNote")}</div>`);
     // PITANJE 08 „Koji dokumenti su potrebni?" — dinamički iz kolone `documents` (tabela EB·stranice), isto za sve uslužne stranice.
