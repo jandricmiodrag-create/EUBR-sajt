@@ -367,10 +367,10 @@ window.EB_I18N = {
     "svjetska-trzista": {
       what: "International brokerage lets you buy global equities, ETFs and futures through Eurobroker, a local licensed firm. You gain secure, regulated access to world markets, without the risks and complications of unfamiliar foreign apps.",
       steps: [
-        { t: "Opening a world-markets account", d: "You provide documentation; you get the list of steps in advance." },
-        { t: "Funding and conversion", d: "Funds are prepared for trading per the applicable terms." },
-        { t: "Order", d: "You buy global equities, ETFs or futures with broker support." },
-        { t: "Reporting", d: "You get a sample report and regular balance overviews." }
+        { t: "Opening an account", d: "The first step is providing the required data and documentation to open an account for trading on world markets." },
+        { t: "Platform activation", d: "After the account is opened, you get access to an online platform through which you can follow the markets and manage orders." },
+        { t: "Preparing funds for trading", d: "You deposit the funds you want to allocate to investing into the account." },
+        { t: "Trading and portfolio tracking", d: "You enter orders yourself, follow their execution and have an overview of your investments and portfolio balance." }
       ]
     },
     "obveznice-rs": {

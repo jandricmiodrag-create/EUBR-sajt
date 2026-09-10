@@ -38,10 +38,10 @@ window.EB_CONTENT = {
   "svjetska-trzista": {
     what: "Usluga međunarodnog posredovanja omogućava vam kupovinu globalnih akcija, ETF-ova i fjučersa preko Eurobrokera, domaćeg licenciranog društva. Time dobijate siguran i regulisan pristup svjetskim tržištima, bez rizika i komplikacija vezanih za nepoznate inostrane aplikacije.",
     steps: [
-      { t: "Otvaranje računa za svjetska tržišta", d: "Dostavljate dokumentaciju; dobijate listu koraka unaprijed." },
-      { t: "Uplata i konverzija", d: "Sredstva se pripremaju za trgovanje prema važećim uslovima." },
-      { t: "Nalog", d: "Kupujete globalne akcije, ETF-ove ili fjučerse uz podršku brokera." },
-      { t: "Izvještaj", d: "Dobijate uzorak izvještaja i redovan pregled stanja." }
+      { t: "Otvaranje računa", d: "Prvi korak je dostavljanje potrebnih podataka i dokumentacije za otvaranje računa za trgovanje na svjetskim tržištima." },
+      { t: "Aktivacija platforme", d: "Nakon otvaranja računa dobijate pristup online platformi putem koje možete pratiti tržišta i upravljati nalozima." },
+      { t: "Priprema sredstava za trgovanje", d: "Na račun se uplaćuju sredstva koja želite namijeniti investiranju." },
+      { t: "Trgovanje i praćenje portfolija", d: "Samostalno unosite naloge, pratite njihovu realizaciju i imate pregled svojih investicija i stanja portfolija." }
     ]
   },
 

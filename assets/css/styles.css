@@ -365,6 +365,8 @@ a svg, button svg, .link-arrow svg, .mq-val svg, .chip svg, .svc__no svg { width
 .steps { counter-reset: s; display: grid; gap: 14px; margin-top: 6px; }
 .step { display: flex; gap: 16px; padding: 16px 18px; background: var(--bg-soft); border-radius: 12px; border: 1px solid var(--line); }
 .step::before { counter-increment: s; content: counter(s); flex: none; width: 30px; height: 30px; border-radius: 8px; background: var(--navy); color: #fff; font-family: var(--ff-head); font-weight: 700; display: grid; place-items: center; font-size: .9rem; }
+/* Numerisani koraci 01–04 (svjetska-trzista); scoped modifikator, ne utiče na ostale .steps. */
+.steps--pad .step::before { content: counter(s, decimal-leading-zero); }
 .step h4 { font-size: 1rem; margin-bottom: 3px; }
 .step p { color: var(--muted); font-size: .9rem; margin: 0; }
 .step__cta { margin-top: 12px; }

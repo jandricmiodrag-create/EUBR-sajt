@@ -781,6 +781,16 @@
           `<p>${esc(is.before)}<a class="tlink" href="#/investiranje">${esc(is.link)}</a>${esc(is.after)}</p>` +
           `</div>`;
         body += `<div class="qblock"><h2>${esc(is.gainsTitle)}</h2><div class="why" style="margin-top:6px">${is.gains.map((g, i) => `<div class="why__item reveal"><span class="why__num">0${i + 1}</span><h3>${esc(g.t)}</h3><p>${esc(g.d)}</p></div>`).join("")}</div></div>`;
+      } else if (p.slug === "svjetska-trzista") {
+        // Namjenski uvod (bez „PITANJE"/„Šta je usluga?" naslova) — scoped samo na ovu stranicu.
+        const en = isEN();
+        const p1 = en
+          ? "Did you know that through Eurobroker you can invest in some of the world's best-known companies, such as Apple, Microsoft, Tesla or Coca-Cola? Access to global markets is simpler than it may seem: open a brokerage account, deposit funds and, through an online platform, choose for yourself where you want to invest."
+          : "Da li ste znali da putem Eurobrokera možete investirati u neke od najpoznatijih svjetskih kompanija, kao što su Apple, Microsoft, Tesla ili Coca-Cola? Pristup globalnim tržištima jednostavniji je nego što se možda čini: otvorite brokerski račun, uplatite sredstva i putem online platforme samostalno birajte gdje želite ulagati.";
+        const p2 = en
+          ? "This way you gain secure, regulated access to world markets, without the risks and complications of unfamiliar foreign apps."
+          : "Na ovaj način dobijate siguran i regulisan pristup svjetskim tržištima, bez rizika i komplikacija vezanih za nepoznate inostrane aplikacije.";
+        body += `<div class="qblock"><p>${esc(p1)}</p><p>${esc(p2)}</p></div>`;
       } else {
         body += qb(T("q1"), "01", `<p>${esc(c.what)}</p>`);
       }
@@ -790,9 +800,50 @@
     if (c.problem) body += (p.slug === "obveznice-rs")
       ? `<div class="qblock"><h2>${esc(isEN() ? "I want to invest in Republika Srpska bonds - where do I start?" : "Želim investirati u obveznice Republike Srpske - odakle da počnem?")}</h2><p>${esc(c.problem)}</p></div>`
       : qb(T("q3"), "03", `<p>${esc(c.problem)}</p>`);
-    if (c.steps) body += qb(p.slug === "investiciono-savjetovanje" ? (isEN() ? "What does the process look like?" : "Kako izgleda proces?") : T("q4"), "04", `<div class="steps">${c.steps.map(s => `<div class="step"><div><h4>${esc(s.t)}</h4><p>${esc(s.d)}</p></div></div>`).join("")}</div>`);
+    if (c.steps) {
+      const stepsTitle = p.slug === "investiciono-savjetovanje" ? (isEN() ? "What does the process look like?" : "Kako izgleda proces?") : T("q4");
+      const stepsCls = p.slug === "svjetska-trzista" ? "steps steps--pad" : "steps";
+      body += qb(stepsTitle, "04", `<div class="${stepsCls}">${c.steps.map(s => `<div class="step"><div><h4>${esc(s.t)}</h4><p>${esc(s.d)}</p></div></div>`).join("")}</div>`);
+      if (p.slug === "svjetska-trzista") {
+        // Nova sekcija „Započnite trgovanje" — odmah nakon koraka „Kako funkcioniše?" (scoped samo na ovu stranicu).
+        const en = isEN();
+        const zt = en ? {
+          title: "Start trading", subtitle: "A wider choice for different investment strategies",
+          intro: "Investing in world markets lets you shape your portfolio in line with your goals.",
+          cards: [
+            { t: "More investment options", d: "You are not limited to the companies and sectors available on the domestic market; you can choose among a large number of global investment opportunities." },
+            { t: "Better diversification", d: "You can spread your investments across different geographies, industries and financial instruments and thus reduce the overall investment risk." },
+            { t: "Access to leading companies and sectors", d: "Technology, healthcare, the consumer sector, energy and other global industries can become part of your portfolio." },
+            { t: "More flexibility", d: "Shares, ETFs, bonds and other available instruments give you more ways to tailor your portfolio to your own goals and investment strategy." }
+          ],
+          before: "A wider choice, however, also means more decisions. If you want expert analysis before choosing a specific investment, our ", link: "investment advice", after: " is available to you."
+        } : {
+          title: "Započnite trgovanje", subtitle: "Širi izbor za različite investicione strategije",
+          intro: "Ulaganje na svjetskim tržištima daje vam mogućnost da portfolio oblikujete u skladu sa svojim ciljevima.",
+          cards: [
+            { t: "Više investicionih mogućnosti", d: "Niste ograničeni na kompanije i sektore dostupne na domaćem tržištu, već možete birati među velikim brojem globalnih investicionih prilika." },
+            { t: "Bolja diversifikacija", d: "Ulaganja možete rasporediti između različitih geografskih područja, industrija i finansijskih instrumenata i tako smanjiti ukupan rizik ulaganja." },
+            { t: "Pristup vodećim kompanijama i sektorima", d: "Tehnologija, zdravstvo, potrošački sektor, energetika i druge globalne industrije mogu postati dio vašeg portfolija." },
+            { t: "Više fleksibilnosti", d: "Akcije, ETF-ovi, obveznice i drugi dostupni instrumenti daju vam više mogućnosti da portfolio prilagodite sopstvenim ciljevima i investicionoj strategiji." }
+          ],
+          before: "Širi izbor, međutim, znači i više odluka. Ako želite stručnu analizu prije izbora konkretne investicije, na raspolaganju vam je naše ", link: "investiciono savjetovanje", after: "."
+        };
+        body += `<div class="qblock"><h2>${esc(zt.title)}</h2>` +
+          `<p class="lead">${esc(zt.subtitle)}</p>` +
+          `<p>${esc(zt.intro)}</p>` +
+          `<div class="grid grid-2" style="margin-top:16px">${zt.cards.map(cc => `<div class="role"><b>${esc(cc.t)}</b><p>${esc(cc.d)}</p></div>`).join("")}</div>` +
+          `<p style="margin-top:18px">${esc(zt.before)}<a class="tlink" href="#/investiciono-savjetovanje">${esc(zt.link)}</a>${esc(zt.after)}</p>` +
+          `</div>`;
+      }
+    }
     if (c.roles) body += qb(T("q5"), "05", `<div class="roles"><div class="role"><b>${T("roles.eb")}</b><p>${esc(c.roles.eurobroker)}</p></div><div class="role"><b>${T("roles.client")}</b><p>${esc(c.roles.klijent)}</p></div><div class="role"><b>${T("roles.third")}</b><p>${esc(c.roles.treci)}</p></div></div>`);
-    body += qb(p.slug === "investiciono-savjetovanje" ? (isEN() ? "How much does investment advice cost?" : "Koliko košta investiciono savjetovanje?") : T("q6"), "06", `<p>${esc(c.napomenaCijena || T("side.cost"))}</p><a class="link-arrow" href="#/cjenovnik">${T("side.seeFees")} ${I.arrow}</a>`);
+    if (p.slug === "svjetska-trzista") {
+      // Blok o naknadama bez naslova „Koliko košta…" (scoped); CTA vodi na /cjenovnik/.
+      const feeText = isEN()
+        ? "Trading fees depend on the market, the type of financial instrument and the transaction value. You can check the applicable fees in Eurobroker's price list or contact our team for more information."
+        : "Naknade za trgovanje zavise od tržišta, vrste finansijskog instrumenta i vrijednosti transakcije. Važeće naknade možete provjeriti u Cjenovniku Eurobrokera ili kontaktirati naš tim za dodatne informacije.";
+      body += `<div class="qblock"><p>${esc(feeText)}</p><a class="link-arrow" href="#/cjenovnik">${T("side.seeFees")} ${I.arrow}</a></div>`;
+    } else body += qb(p.slug === "investiciono-savjetovanje" ? (isEN() ? "How much does investment advice cost?" : "Koliko košta investiciono savjetovanje?") : T("q6"), "06", `<p>${esc(c.napomenaCijena || T("side.cost"))}</p><a class="link-arrow" href="#/cjenovnik">${T("side.seeFees")} ${I.arrow}</a>`);
     if (c.risks) body += qb(T("q7"), "07", `<ul class="risklist">${c.risks.map(r => `<li>${esc(r)}</li>`).join("")}</ul><div class="notebox notebox--reg">${T("side.riskNote")}</div>`);
     // PITANJE 08 „Koji dokumenti su potrebni?" — dinamički iz kolone `documents` (tabela EB·stranice), isto za sve uslužne stranice.
     if (p.documents) body += qb(T("q8"), "08", `<div class="chips">${String(p.documents).split(";").map(x => x.trim()).filter(Boolean).map(x => `<span class="chip">${I.doc} ${esc(x)}</span>`).join("")}</div>`);
@@ -801,11 +852,9 @@
       body += `<div class="qblock"><span class="qn">${T("q.faq")}</span><h2>${T("q.faqTitle")}</h2>${renderFaq(faqs)}</div>`;
     }
 
-    // svjetska-trzista: oznaka ostaje „PITANJE" ali bez rednog broja (ne CSS, nego render izlaz).
-    if (p.slug === "svjetska-trzista") body = body.replace(/(<span class="qn">[^<]*?)\s+\d+(<\/span>)/g, "$1$2");
-    // investiciono-savjetovanje: „PITANJE"/„QUESTION" eyebrow oznake se u cijelosti uklanjaju sa svih blokova
-    // (naslovi h2 ostaju; „ČESTA PITANJA"/„FAQ" bez broja se ne dira). Ostale stranice zadržavaju numeraciju.
-    else if (p.slug === "investiciono-savjetovanje") body = body.replace(/<span class="qn">[^<]*?\s+\d+<\/span>/g, "");
+    // svjetska-trzista i investiciono-savjetovanje: „PITANJE"/„QUESTION" eyebrow oznake se u cijelosti uklanjaju
+    // sa svih blokova (naslovi h2 ostaju; „ČESTA PITANJA"/„FAQ" bez broja se ne dira). Ostale stranice zadržavaju numeraciju.
+    if (["svjetska-trzista", "investiciono-savjetovanje"].includes(p.slug)) body = body.replace(/<span class="qn">[^<]*?\s+\d+<\/span>/g, "");
 
     const finalCta = c.finalCta ? `<section class="section section--soft"><div class="wrap"><div class="finalcta reveal">
       <h2>${esc(c.finalCta.t)}</h2>
@@ -890,7 +939,7 @@
       </div>
       ${related ? `<div class="side__card"><h3>${T("side.related")}</h3><div class="related" style="margin-top:8px">${related}</div></div>` : ""}
       <div class="side__card" style="background:var(--bg-soft)">
-        <p class="formnote">${p.slug === "investiciono-savjetovanje"
+        <p class="formnote">${["investiciono-savjetovanje", "svjetska-trzista"].includes(p.slug)
           ? `<em>${esc("Investiranje u finansijske instrumente povezano je sa rizikom. Vrijednost ulaganja i ostvareni prinos mogu rasti i padati, a prethodni rezultati nisu garancija budućih rezultata.")}</em>`
           : esc(p.compliance || "Sadržaj provjerava funkcija usklađenosti prije objave.")}</p>
       </div>
