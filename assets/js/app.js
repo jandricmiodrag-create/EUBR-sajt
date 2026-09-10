@@ -802,8 +802,7 @@
       : qb(T("q3"), "03", `<p>${esc(c.problem)}</p>`);
     if (c.steps) {
       const stepsTitle = p.slug === "investiciono-savjetovanje" ? (isEN() ? "What does the process look like?" : "Kako izgleda proces?") : T("q4");
-      const stepsCls = p.slug === "svjetska-trzista" ? "steps steps--pad" : "steps";
-      body += qb(stepsTitle, "04", `<div class="${stepsCls}">${c.steps.map(s => `<div class="step"><div><h4>${esc(s.t)}</h4><p>${esc(s.d)}</p></div></div>`).join("")}</div>`);
+      body += qb(stepsTitle, "04", `<div class="steps">${c.steps.map(s => `<div class="step"><div><h4>${esc(s.t)}</h4><p>${esc(s.d)}</p></div></div>`).join("")}</div>`);
       if (p.slug === "svjetska-trzista") {
         // Nova sekcija „Započnite trgovanje" — odmah nakon koraka „Kako funkcioniše?" (scoped samo na ovu stranicu).
         const en = isEN();
