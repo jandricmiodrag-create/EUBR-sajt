@@ -997,6 +997,10 @@
     </div></div></section>`;
   }
 
+  // Centralni compliance binding: jedini izvor je kolona `compliance` iz „EB · stranice" (već učitani red `p`).
+  // Prazno/nedostaje → ne prikazuje se ništa (bez fallback teksta). Prikaz: italic napomena u postojećem stilu.
+  function complianceText(p) { try { return (p && p.compliance != null) ? String(p.compliance).trim() : ""; } catch (e) { return ""; } }
+  function complianceCard(p) { const t = complianceText(p); return t ? `<div class="side__card" style="background:var(--bg-soft)"><p class="formnote"><em>${esc(t)}</em></p></div>` : ""; }
   function serviceSidebar(p) {
     const related = String(p.related || "").split(",").map(s => s.trim()).filter(Boolean)
       .map(slug => { const rp = EB.page(slug); return rp ? `<a href="#/${slug}">${esc(pTitle(rp))} ${I.arrow}</a>` : ""; }).join("");
@@ -1018,11 +1022,7 @@
         </div>
       </div>
       ${related ? `<div class="side__card"><h3>${T("side.related")}</h3><div class="related" style="margin-top:8px">${related}</div></div>` : ""}
-      <div class="side__card" style="background:var(--bg-soft)">
-        <p class="formnote">${["investiciono-savjetovanje", "svjetska-trzista", "domace-trziste"].includes(p.slug)
-          ? `<em>${esc("Investiranje u finansijske instrumente povezano je sa rizikom. Vrijednost ulaganja i ostvareni prinos mogu rasti i padati, a prethodni rezultati nisu garancija budućih rezultata.")}</em>`
-          : esc(p.compliance || "Sadržaj provjerava funkcija usklađenosti prije objave.")}</p>
-      </div>
+      ${complianceCard(p)}
     </aside>`;
   }
   function segNames(seg) {
@@ -1277,6 +1277,7 @@
           <a href="#/za-kompanije">${T("seg.F")} ${I.arrow}</a>
           <a href="#/institucionalni-klijenti">${T("seg.G")} ${I.arrow}</a>
         </div></div>
+        ${complianceCard(p)}
       </aside>
     </div></div></section>`;
   }
@@ -1544,6 +1545,9 @@
     else html = renderService(p);
 
     main.innerHTML = html;
+    // Centralni compliance binding za stranice bez bočne trake (hub/forma-bez-side/regulatorne/…):
+    // disclaimer se dodaje na dno sadržaja iz kolone `compliance`; ako je prazno ili već postoji .side (koja ga nosi) — ništa.
+    { const ct = complianceText(p); if (ct && !main.querySelector(".side")) main.insertAdjacentHTML("beforeend", `<section class="section eb-compliance"><div class="wrap"><div class="side__card" style="background:var(--bg-soft);max-width:900px;margin-left:auto;margin-right:auto"><p class="formnote"><em>${esc(ct)}</em></p></div></div></section>`); }
     let tprefix = "";
     if (slug === "vijesti") tprefix = (isEN() ? "News & notices" : "Vijesti i objave") + " · ";
     else if (!p && slug !== "pocetna") tprefix = "404 · ";
