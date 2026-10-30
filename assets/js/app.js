@@ -1046,11 +1046,15 @@
     </div></section>`;
   }
   function ctaBand(p) {
-    const cta = isEN() ? T("btn.zakazite") : (p.primary_cta || "Zakažite razgovor");
+    const en = isEN();
+    // /edukacija/ — završni CTA: naslov „Razgovarajte sa našim timom", dugme „Kontakt" (link i dalje → /kontakt/). Scoped.
+    const edu = p && p.slug === "edukacija";
+    const cta = edu ? (en ? "Talk to our team" : "Razgovarajte sa našim timom") : (en ? T("btn.zakazite") : (p.primary_cta || "Zakažite razgovor"));
+    const btnLabel = edu ? (en ? "Contact" : "Kontakt") : (en ? T("btn.posaljite") : (p.primary_cta || "Pošaljite upit"));
     return `<section class="section section--soft"><div class="wrap"><div class="finalcta reveal">
       <h2>${esc(cta)}</h2>
       <p>${T("cta.replyNote")}</p>
-      <div class="hero__actions"><a class="btn btn--primary" href="#/${esc(p.primary_cta_link || "kontakt")}">${esc(isEN() ? T("btn.posaljite") : (p.primary_cta || "Pošaljite upit"))} ${I.arrow}</a>${p.secondary_cta ? `<a class="btn btn--ghost-light" href="#/${esc(p.secondary_cta_link || "kontakt")}">${esc(isEN() ? T("btn.zakazite") : p.secondary_cta)}</a>` : ""}</div>
+      <div class="hero__actions"><a class="btn btn--primary" href="#/${esc(p.primary_cta_link || "kontakt")}">${esc(btnLabel)} ${I.arrow}</a>${p.secondary_cta ? `<a class="btn btn--ghost-light" href="#/${esc(p.secondary_cta_link || "kontakt")}">${esc(isEN() ? T("btn.zakazite") : p.secondary_cta)}</a>` : ""}</div>
     </div></div></section>`;
   }
 
