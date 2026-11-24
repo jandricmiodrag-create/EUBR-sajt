@@ -1047,14 +1047,21 @@
   }
   function ctaBand(p) {
     const en = isEN();
-    // /edukacija/ — završni CTA: naslov „Razgovarajte sa našim timom", dugme „Kontakt" (link i dalje → /kontakt/). Scoped.
+    // /edukacija/ — završni CTA: prijava na edukativni seminar (eksterni Google Apps Script obrazac, nova kartica). Scoped.
     const edu = p && p.slug === "edukacija";
-    const cta = edu ? (en ? "Talk to our team" : "Razgovarajte sa našim timom") : (en ? T("btn.zakazite") : (p.primary_cta || "Zakažite razgovor"));
-    const btnLabel = edu ? (en ? "Contact" : "Kontakt") : (en ? T("btn.posaljite") : (p.primary_cta || "Pošaljite upit"));
+    const EDU_FORM_URL = "https://script.google.com/macros/s/AKfycbxtGL9XRsG-EOhaAD2YqRFubeGiiutAc6XEKVT66sInzhnj9Hmgz9ciUIvn2SUTyJWSIA/exec";
+    const cta = edu ? (en ? "Seminar registration" : "Prijava na seminar") : (en ? T("btn.zakazite") : (p.primary_cta || "Zakažite razgovor"));
+    const note = edu
+      ? (en ? "Deepen your knowledge of investing and financial markets. Register for Eurobroker's next educational seminar." : "Unaprijedite svoje znanje o investiranju i finansijskim tržištima. Prijavite se za naredni edukativni seminar Eurobrokera.")
+      : T("cta.replyNote");
+    const btnLabel = edu ? (en ? "Register" : "Prijavite se") : (en ? T("btn.posaljite") : (p.primary_cta || "Pošaljite upit"));
+    const primaryBtn = edu
+      ? `<a class="btn btn--primary" href="${esc(EDU_FORM_URL)}" target="_blank" rel="noopener noreferrer" data-ext>${esc(btnLabel)} ${I.arrow}</a>`
+      : `<a class="btn btn--primary" href="#/${esc(p.primary_cta_link || "kontakt")}">${esc(btnLabel)} ${I.arrow}</a>`;
     return `<section class="section section--soft"><div class="wrap"><div class="finalcta reveal">
       <h2>${esc(cta)}</h2>
-      <p>${T("cta.replyNote")}</p>
-      <div class="hero__actions"><a class="btn btn--primary" href="#/${esc(p.primary_cta_link || "kontakt")}">${esc(btnLabel)} ${I.arrow}</a>${p.secondary_cta ? `<a class="btn btn--ghost-light" href="#/${esc(p.secondary_cta_link || "kontakt")}">${esc(isEN() ? T("btn.zakazite") : p.secondary_cta)}</a>` : ""}</div>
+      <p>${esc(note)}</p>
+      <div class="hero__actions">${primaryBtn}${p.secondary_cta ? `<a class="btn btn--ghost-light" href="#/${esc(p.secondary_cta_link || "kontakt")}">${esc(isEN() ? T("btn.zakazite") : p.secondary_cta)}</a>` : ""}</div>
     </div></div></section>`;
   }
 
